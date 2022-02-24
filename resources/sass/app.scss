@@ -1,0 +1,21 @@
+// Fonts
+// @import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Admin Style
+
+@import 'admin/dashboard';
+
+a{
+    text-decoration: none;
+}
+
+body{
+    font-weight: 500;
+}

@@ -1,0 +1,92 @@
+.sidebar{
+    position: fixed;
+    width: 220px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #293042;
+    padding-left: 10px;
+
+    .logo{
+        margin: 20px 0;
+    }
+
+    .menu{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        .menu-item{
+
+            .menu-link{
+                color: #e9ecef;
+                padding: 10px 10px;
+                font-weight: 600;
+                width: 100%;
+                display: block;
+                transition: all 350ms;
+                border-top-left-radius: 3px;
+                border-bottom-left-radius: 3px;
+
+                &:hover{
+                    background-color: #242835;
+                    color: $white;
+                }
+
+                &.active{
+                    background-color: $light;
+                    color: $black;
+                }
+            }
+        }
+
+        .dropdown-menu{
+            background-color: transparent;
+            border: 0;
+            padding: 0;
+            position: static !important;
+            transform: translate(0px, 0px) !important;
+
+            .dropdown-item{
+                color: #e9ecef;
+                font-weight: 600;
+                border-radius: 3px;
+                transition: all 350ms;
+                border-top-left-radius: 3px;
+                border-bottom-left-radius: 3px;
+                border-top-right-radius: 0px;
+                border-bottom-right-radius: 0px;
+
+                &:hover{
+                    background-color: #242835;
+                    color: $white;
+                }
+
+                &.active{
+                    background-color: $light;
+                    color: $black;
+                }
+            }
+        }
+    }
+}
+
+.form-label{
+    font-weight: 600;
+}
+
+.invalid-feedback{
+    display: block;
+}
+
+main{
+    padding-left: 220px;
+
+    .page-content{
+        padding: 30px;
+    }
+
+    .welcome{
+        background-color: lighten($primary, 40%);
+    }
+}
