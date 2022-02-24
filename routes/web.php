@@ -49,8 +49,10 @@ Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () 
     Route::get('/dashboard/user/{user}','App\Http\Controllers\UserController@show')->name('user.show');
     Route::put('/dashboard/user/{user}','App\Http\Controllers\UserController@update')->name('user.update');
     Route::post('/dashboard/user/{user}','App\Http\Controllers\UserController@assignRole')->name('user.assign');
-    // Route::put('/dashboard/user/{user}','App\Http\Controllers\UserController@updateRole')->name('user.updateRole');
     Route::post('/dashboard/create','App\Http\Controllers\UserController@store')->name('user.store');
+
+    Route::get('/dashboard/permission-role','App\Http\Controllers\PermissionController@showRole')->name('permission.showRole');
+    Route::post('/dashboard/permission-role','App\Http\Controllers\PermissionController@attachRole')->name('permission.attachRole');
     
 
 });

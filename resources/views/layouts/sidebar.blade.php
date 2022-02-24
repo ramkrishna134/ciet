@@ -40,12 +40,14 @@
                 </li>
 
                 <li class="menu-item dropdown">
-                    <a class="menu-link dropdown-toggle {{ (request()->is('admin/dashboard/permissions')) ? 'show' : '' }} {{ (request()->is('admin/dashboard/roles')) ? 'show' : '' }}" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="menu-link dropdown-toggle {{ (request()->is('admin/dashboard/permissions')) ? 'show' : '' }} {{ (request()->is('admin/dashboard/roles')) ? 'show' : '' }} {{ (request()->is('admin/dashboard/permission-role')) ? 'show' : '' }}" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-lock"></i> Permission Manager
                     </a>
-                    <ul class="dropdown-menu {{ (request()->is('admin/dashboard/permissions')) ? 'show' : '' }} {{ (request()->is('admin/dashboard/roles')) ? 'show' : '' }}" aria-labelledby="dropdownMenuButton1">
+                    <ul class="dropdown-menu {{ (request()->is('admin/dashboard/permissions')) ? 'show' : '' }} {{ (request()->is('admin/dashboard/roles')) ? 'show' : '' }} {{ (request()->is('admin/dashboard/permission-role')) ? 'show' : '' }}" aria-labelledby="dropdownMenuButton1">
+                        
                       <li><a class="dropdown-item {{ (request()->is('admin/dashboard/roles')) ? 'active' : '' }}" href="{{ route('role.index') }}">User Roles</a></li>
                       <li><a class="dropdown-item {{ (request()->is('admin/dashboard/permissions')) ? 'active' : '' }}" href="{{ route('permission.index') }}">Permissions</a></li>
+                      <li><a class="dropdown-item {{ (request()->is('admin/dashboard/permission-role')) ? 'active' : '' }}" href="{{ route('permission.showRole') }}">Permissions to Role</a></li>
                     </ul>
                 </li>
 

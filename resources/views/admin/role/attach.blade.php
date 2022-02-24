@@ -1,13 +1,13 @@
 @extends('layouts.sidebar')
 
 @section('title')
-Permissions
+Permissions to Roles
 @endsection
 
 @section('content')
 
 <section class="hero-section">
-    <h3>Permissions</h3>
+    <h3>Permissions to Roles</h3>
 </section>
 <hr>
 
@@ -34,21 +34,19 @@ Permissions
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Display Name</th>
+                                <th>Permission</th>
                                 <th>Description</th>
+                                <th>Role</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            @foreach($permissions as $permission)
+                            @foreach($role_permissions as $item)
                             <tr>
-                                <th>{{ $permission->id }}</th>
-                                <td>{{ $permission->name }}</td>
-                                <td>{{ $permission->display_name }}</td>
-                                <td>{{ $permission->description }}</td>
+                                <td>{{ $item['permission'] }}</td>
+                                <td><small>{{ $item['description'] }}</small></td>
+                                <td><span class="badge bg-primary">{{ $item['role'] }}</span></td>
                                 <td>
                                     {{-- <a href="{{ route('permission.edit', $permission) }}" class="btn btn-info btn-sm text-light"><i class="fas fa-edit"></i> Edit</a> --}}
                                     <a href="" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Delete</a>
@@ -67,16 +65,21 @@ Permissions
         <div class="card sticky-top">
             <div class="card-body shadow">
 
-                <h4>Add Permission</h4>
+                <h4>Attache Permissions to Roles</h4>
 
-                <form action="{{ route('permission.store') }}" method="post">
+                <form action="{{ route('permission.attachRole') }}" method="post">
                     @csrf
                     @method('post')
                     <div class="mb-3">
-                        <label for="name" class="form-label">Function Name</label>
-                        <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" placeholder="Permission Function" value="{{ old('name') }}">
+                        <label for="permission_id" class="form-label">Permisson</label>
+                        <select class="form-control" name="permission_id" id="permission_id">
+                            <option value="">-- Select Permission --</option>
+                            @foreach ($permissions as $permission)
+                                <option value="{{ $permission->id }}">{{ $permission->display_name }}</option>
+                            @endforeach
+                        </select>
 
-                        @error('name')
+                        @error('permission_id')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -84,28 +87,23 @@ Permissions
                     </div>
 
                     <div class="mb-3">
-                        <label for="display_name" class="form-label">Display Name</label>
-                        <input type="text" name="display_name" id="display_name" class="form-control @error('display_name') is-invalid @enderror" placeholder="Display Name" value="{{ old('display_name') }}">
+                        <label for="role_id" class="form-label">Display Name</label>
+                        <select class="form-control" name="role_id" id="role_id">
+                            <option value="">-- Select Role --</option>
+                            @foreach ($roles as $role)
+                                <option value="{{ $role->id }}">{{ $role->display_name }}</option>
+                            @endforeach
+                        </select>
 
-                        @error('display_name')
+                        @error('role_id')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror
                     </div>
 
-                    <div class="mb-3">
-                        <label for="description" class="form-label">Description</label>
-                        <input type="text" name="description" id="description" class="form-control @error('description') is-invalid @enderror" placeholder="Description" value="{{ old('description') }}">
 
-                        @error('description')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-
-                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save</button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Attach</button>
 
                 </form>
 

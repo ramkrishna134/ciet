@@ -11,4 +11,6 @@ class Permission extends LaratrustPermission
         'display_name',
         'description',
     ];
+
+    
 }
