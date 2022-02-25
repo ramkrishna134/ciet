@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <link rel="stylesheet" href="{{asset('vendor/laraberg/css/laraberg.css')}}">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -37,7 +38,7 @@
                 </li>
 
                 <li class="menu-item">
-                    <a class="menu-link" href=""><i class="fas fa-file-alt"></i> Pages</a>
+                    <a class="menu-link {{ (request()->is('admin/dashboard/pages')) ? 'active' : '' }}" href="{{ route('page.index') }}"><i class="fas fa-file-alt"></i> Pages</a>
                 </li>
 
                 <li class="menu-item dropdown">

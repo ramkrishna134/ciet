@@ -57,6 +57,8 @@
             padding: 0;
             position: static !important;
             transform: translate(0px, 0px) !important;
+            border-left: 1px solid;
+            margin-left: 20px !important;
 
             .dropdown-item{
                 color: #e9ecef;
@@ -67,6 +69,7 @@
                 border-bottom-left-radius: 3px;
                 border-top-right-radius: 0px;
                 border-bottom-right-radius: 0px;
+                font-size: 0.8rem;
 
                 &:hover{
                     background-color: #242835;

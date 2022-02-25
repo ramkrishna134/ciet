@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 25, 2022 at 09:24 AM
+-- Generation Time: Feb 25, 2022 at 05:36 PM
 -- Server version: 8.0.28-0ubuntu0.20.04.3
 -- PHP Version: 7.4.3
 
@@ -41,6 +41,55 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `languages`
+--
+
+CREATE TABLE `languages` (
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lb_blocks`
+--
+
+CREATE TABLE `lb_blocks` (
+  `id` int UNSIGNED NOT NULL,
+  `raw_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `raw_content` text COLLATE utf8mb4_unicode_ci,
+  `rendered_content` text COLLATE utf8mb4_unicode_ci,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'wp_block',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lb_contents`
+--
+
+CREATE TABLE `lb_contents` (
+  `id` int UNSIGNED NOT NULL,
+  `raw_content` text COLLATE utf8mb4_unicode_ci,
+  `rendered_content` text COLLATE utf8mb4_unicode_ci,
+  `contentable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `contentable_id` bigint UNSIGNED NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'page',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -59,7 +108,38 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(5, '2022_02_23_051621_laratrust_setup_tables', 1);
+(5, '2022_02_23_051621_laratrust_setup_tables', 1),
+(8, '2022_02_23_063103_create_languages_table', 2),
+(9, '2022_02_25_061634_create_pages_table', 2),
+(10, '2019_02_08_105647_create_blocks_contents_tables', 3),
+(11, '2022_02_25_080532_add_description_to_pages', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pages`
+--
+
+CREATE TABLE `pages` (
+  `id` bigint UNSIGNED NOT NULL,
+  `title` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(550) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` longtext COLLATE utf8mb4_unicode_ci,
+  `content` longtext COLLATE utf8mb4_unicode_ci,
+  `featured_icon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_id` decimal(8,2) NOT NULL,
+  `status` decimal(8,2) NOT NULL,
+  `lang` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `pages`
+--
+
+INSERT INTO `pages` (`id`, `title`, `slug`, `description`, `content`, `featured_icon`, `user_id`, `status`, `lang`, `created_at`, `updated_at`) VALUES
+(1, 'Demo Page', 'demo-page', NULL, '<!-- wp:paragraph -->\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lobortis, velit eget hendrerit ullamcorper, tortor lacus hendrerit lectus, vel pellentesque ipsum metus a ante. Morbi sapien tellus, facilisis in luctus sed, ultricies non nisi. In a dolor vulputate tortor tempus rutrum. Sed ut tempus massa. Maecenas at tristique libero. Ut venenatis arcu in feugiat elementum. Donec bibendum eleifend turpis quis auctor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tristique nulla turpis, sit amet accumsan elit semper ac.</p>\r\n<!-- /wp:paragraph -->\r\n\r\n<!-- wp:columns {\"align\":\"full\"} -->\r\n<div class=\"wp-block-columns alignfull\"><!-- wp:column -->\r\n<div class=\"wp-block-column\"><!-- wp:paragraph -->\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lobortis, velit eget hendrerit ullamcorper, tortor lacus hendrerit lectus, vel pellentesque ipsum metus a ante. Morbi sapien tellus, facilisis in luctus sed, ultricies non nisi. In a dolor vulputate tortor tempus rutrum. Sed ut tempus massa. Maecenas at tristique libero. Ut venenatis arcu in feugiat elementum. Donec bibendum eleifend turpis quis auctor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tristique nulla turpis, sit amet accumsan elit semper ac.</p>\r\n<!-- /wp:paragraph --></div>\r\n<!-- /wp:column -->\r\n\r\n<!-- wp:column -->\r\n<div class=\"wp-block-column\"><!-- wp:paragraph -->\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lobortis, velit eget hendrerit ullamcorper, tortor lacus hendrerit lectus, vel pellentesque ipsum metus a ante. Morbi sapien tellus, facilisis in luctus sed, ultricies non nisi. In a dolor vulputate tortor tempus rutrum. Sed ut tempus massa. Maecenas at tristique libero. Ut venenatis arcu in feugiat elementum. Donec bibendum eleifend turpis quis auctor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tristique nulla turpis, sit amet accumsan elit semper ac.</p>\r\n<!-- /wp:paragraph --></div>\r\n<!-- /wp:column --></div>\r\n<!-- /wp:columns -->', NULL, '1.00', '0.00', 'en', '2022-02-25 05:40:11', '2022-02-25 06:35:27');
 
 -- --------------------------------------------------------
 
@@ -110,7 +190,12 @@ INSERT INTO `permissions` (`id`, `name`, `display_name`, `description`, `created
 (15, 'UserController@assignRole', 'Assign Role', 'Assign role to user', '2022-02-24 03:54:12', '2022-02-24 03:54:12'),
 (16, 'UserController@updateRole', 'Update Role', 'Update role to user', '2022-02-24 06:13:43', '2022-02-24 06:13:43'),
 (17, 'PermissionController@showRole', 'Permissions to Role', 'Show Permissions attach to Roles', '2022-02-24 22:17:07', '2022-02-24 22:17:07'),
-(18, 'PermissionController@attachRole', 'Attach Permission', 'Attach Permissions to User roles', '2022-02-24 22:18:32', '2022-02-24 22:18:32');
+(18, 'PermissionController@attachRole', 'Attach Permission', 'Attach Permissions to User roles', '2022-02-24 22:18:32', '2022-02-24 22:18:32'),
+(19, 'PageController@index', 'Page List', 'List of all custom pages', '2022-02-25 01:28:49', '2022-02-25 01:28:49'),
+(20, 'PageController@create', 'Page Create', 'Create new custom page', '2022-02-25 02:21:45', '2022-02-25 02:21:45'),
+(21, 'PageController@store', 'Page Store', 'Store New custom page data.', '2022-02-25 02:42:20', '2022-02-25 02:42:20'),
+(22, 'PageController@edit', 'Page Edit', 'Edit Custom Pages', '2022-02-25 06:21:48', '2022-02-25 06:21:48'),
+(23, 'PageController@update', 'Page Update', 'Update custom Page', '2022-02-25 06:32:53', '2022-02-25 06:32:53');
 
 -- --------------------------------------------------------
 
@@ -146,7 +231,16 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (16, 1),
 (17, 1),
 (18, 1),
-(3, 2);
+(19, 1),
+(20, 1),
+(21, 1),
+(22, 1),
+(23, 1),
+(3, 2),
+(20, 2),
+(21, 2),
+(1, 4),
+(3, 4);
 
 -- --------------------------------------------------------
 
@@ -208,7 +302,8 @@ CREATE TABLE `roles` (
 INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
 (1, 'Admin', 'Admin', 'Can access all features!', '2022-02-23 00:53:14', '2022-02-23 00:53:14'),
 (2, 'Editor', 'Editor', 'Can access limited features!', '2022-02-23 00:53:14', '2022-02-23 00:53:14'),
-(3, 'Pagitor', 'Page Editor', 'Can only create and update custom pages', '2022-02-23 23:59:15', '2022-02-23 23:59:15');
+(3, 'Pagitor', 'Page Editor', 'Can only create and update custom pages', '2022-02-23 23:59:15', '2022-02-23 23:59:15'),
+(4, 'Eventor', 'Event Editor', 'Can only create and update Events', '2022-02-24 23:31:43', '2022-02-24 23:31:43');
 
 -- --------------------------------------------------------
 
@@ -228,9 +323,10 @@ CREATE TABLE `role_user` (
 
 INSERT INTO `role_user` (`role_id`, `user_id`, `user_type`) VALUES
 (1, 1, 'App\\Models\\User'),
+(1, 2, 'App\\Models\\User'),
 (2, 1, 'App\\Models\\User'),
-(2, 2, 'App\\Models\\User'),
-(3, 3, 'App\\Models\\User');
+(3, 3, 'App\\Models\\User'),
+(4, 4, 'App\\Models\\User');
 
 -- --------------------------------------------------------
 
@@ -256,8 +352,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `role`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Ramkrishna Pal', 'ramkrishna.ncert@gmail.com', '2022-02-23 00:53:13', 'Admin', '$2a$12$bayZJpM48D8a8OZAPam5oeKxy6UyDUfJW8wbrHudXB.2zbwpg8vCC', '6e8Z77lyc5', '2022-02-23 00:53:13', '2022-02-23 00:53:13'),
-(2, 'Rameez Alam', 'rameezalamciet@gmail.com', '2022-02-23 00:53:13', 'Editor', '$2a$12$bayZJpM48D8a8OZAPam5oeKxy6UyDUfJW8wbrHudXB.2zbwpg8vCC', 'HseS8SftJd', '2022-02-23 00:53:13', '2022-02-23 00:53:13'),
-(3, 'Farman Ali', 'farman.ciet@gmail.com', NULL, 'Page Editor', '$2y$10$ryGCd3FarH.5CgzbRCImFe3DsMGxtnyM3.n9dyI4c8.fCA8Xl1DRe', NULL, '2022-02-24 03:07:50', '2022-02-24 06:26:38');
+(2, 'Rameez Alam', 'rameezalamciet@gmail.com', '2022-02-23 00:53:13', 'Admin', '$2a$12$bayZJpM48D8a8OZAPam5oeKxy6UyDUfJW8wbrHudXB.2zbwpg8vCC', 'HseS8SftJd', '2022-02-23 00:53:13', '2022-02-25 02:45:18'),
+(3, 'Farman Ali', 'farman.ciet@gmail.com', NULL, 'Page Editor', '$2y$10$ryGCd3FarH.5CgzbRCImFe3DsMGxtnyM3.n9dyI4c8.fCA8Xl1DRe', NULL, '2022-02-24 03:07:50', '2022-02-24 06:26:38'),
+(4, 'Saurabh Singh', 'saurabhsingh.ciet@gmail.com', NULL, 'Event Editor', '$2y$10$cv5Rh8gwXrHzZBJrbjm6/uQrdQm9HmMNcaWy6whDBXspKJxBwo5LC', NULL, '2022-02-24 23:30:29', '2022-02-24 23:32:29');
 
 --
 -- Indexes for dumped tables
@@ -271,9 +368,34 @@ ALTER TABLE `failed_jobs`
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
+-- Indexes for table `languages`
+--
+ALTER TABLE `languages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `lb_blocks`
+--
+ALTER TABLE `lb_blocks`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `lb_contents`
+--
+ALTER TABLE `lb_contents`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `lb_contents_contentable_type_contentable_id_index` (`contentable_type`,`contentable_id`);
+
+--
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pages`
+--
+ALTER TABLE `pages`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -343,16 +465,40 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `languages`
+--
+ALTER TABLE `languages`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `lb_blocks`
+--
+ALTER TABLE `lb_blocks`
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `lb_contents`
+--
+ALTER TABLE `lb_contents`
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `pages`
+--
+ALTER TABLE `pages`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -364,13 +510,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

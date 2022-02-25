@@ -87,7 +87,7 @@ Permissions to Roles
                     </div>
 
                     <div class="mb-3">
-                        <label for="role_id" class="form-label">Display Name</label>
+                        <label for="role_id" class="form-label">Role</label>
                         <select class="form-control" name="role_id" id="role_id">
                             <option value="">-- Select Role --</option>
                             @foreach ($roles as $role)

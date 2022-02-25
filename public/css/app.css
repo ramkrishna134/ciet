@@ -11336,6 +11336,8 @@ textarea.form-control-lg {
   padding: 0;
   position: static !important;
   transform: translate(0px, 0px) !important;
+  border-left: 1px solid;
+  margin-left: 20px !important;
 }
 .sidebar .menu .dropdown-menu .dropdown-item {
   color: #e9ecef;
@@ -11346,6 +11348,7 @@ textarea.form-control-lg {
   border-bottom-left-radius: 3px;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
+  font-size: 0.8rem;
 }
 .sidebar .menu .dropdown-menu .dropdown-item:hover {
   background-color: #242835;

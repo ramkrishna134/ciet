@@ -53,6 +53,14 @@ Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () 
 
     Route::get('/dashboard/permission-role','App\Http\Controllers\PermissionController@showRole')->name('permission.showRole');
     Route::post('/dashboard/permission-role','App\Http\Controllers\PermissionController@attachRole')->name('permission.attachRole');
-    
+
+
+    Route::get('/dashboard/pages','App\Http\Controllers\PageController@index')->name('page.index');
+    Route::get('/dashboard/page/create','App\Http\Controllers\PageController@create')->name('page.create');
+    Route::post('/dashboard/page/create','App\Http\Controllers\PageController@store')->name('page.store');
+    Route::get('/dashboard/page/edit/{page}','App\Http\Controllers\PageController@edit')->name('page.edit');
+    Route::put('/dashboard/page/edit/{page}','App\Http\Controllers\PageController@update')->name('page.update');
 
 });
+
+Route::get('/{slug}','App\Http\Controllers\PageController@show')->name('page.show');
