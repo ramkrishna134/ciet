@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'CIET') }}</title>
+    <title>Admin - CIET</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -36,37 +36,40 @@
                 <li class="menu-item">
                     <a class="menu-link {{ (request()->is('admin/dashboard')) ? 'active' : '' }}" href="{{ route('dashboard') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
                 </li>
+                <li class="menu-item">
+                    <a class="menu-link {{ (request()->is('admin/media')) ? 'active' : '' }}" href="{{ route('media') }}"><i class="fas fa-photo-video"></i> Media Manager</a>
+                </li>
 
                 <li class="menu-item">
-                    <a class="menu-link {{ (request()->is('admin/dashboard/pages')) ? 'active' : '' }}" href="{{ route('page.index') }}"><i class="fas fa-file-alt"></i> Pages</a>
+                    <a class="menu-link {{ (request()->is('admin/pages')) ? 'active' : '' }}" href="{{ route('page.index') }}"><i class="fas fa-file-alt"></i> Pages</a>
                 </li>
 
                 <li class="menu-item dropdown">
-                    <a class="menu-link dropdown-toggle {{ (request()->is('admin/dashboard/permissions')) ? 'show' : '' }} {{ (request()->is('admin/dashboard/roles')) ? 'show' : '' }} {{ (request()->is('admin/dashboard/permission-role')) ? 'show' : '' }}" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="menu-link dropdown-toggle {{ (request()->is('admin/permissions')) ? 'show' : '' }} {{ (request()->is('admin/roles')) ? 'show' : '' }} {{ (request()->is('admin/permission-role')) ? 'show' : '' }}" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-lock"></i> Permission Manager
                     </a>
-                    <ul class="dropdown-menu {{ (request()->is('admin/dashboard/permissions')) ? 'show' : '' }} {{ (request()->is('admin/dashboard/roles')) ? 'show' : '' }} {{ (request()->is('admin/dashboard/permission-role')) ? 'show' : '' }}" aria-labelledby="dropdownMenuButton1">
+                    <ul class="dropdown-menu {{ (request()->is('admin/permissions')) ? 'show' : '' }} {{ (request()->is('admin/roles')) ? 'show' : '' }} {{ (request()->is('admin/permission-role')) ? 'show' : '' }}" aria-labelledby="dropdownMenuButton1">
                         
-                      <li><a class="dropdown-item {{ (request()->is('admin/dashboard/roles')) ? 'active' : '' }}" href="{{ route('role.index') }}">User Roles</a></li>
-                      <li><a class="dropdown-item {{ (request()->is('admin/dashboard/permissions')) ? 'active' : '' }}" href="{{ route('permission.index') }}">Permissions</a></li>
-                      <li><a class="dropdown-item {{ (request()->is('admin/dashboard/permission-role')) ? 'active' : '' }}" href="{{ route('permission.showRole') }}">Permissions to Role</a></li>
+                      <li><a class="dropdown-item {{ (request()->is('admin/roles')) ? 'active' : '' }}" href="{{ route('role.index') }}">User Roles</a></li>
+                      <li><a class="dropdown-item {{ (request()->is('admin/permissions')) ? 'active' : '' }}" href="{{ route('permission.index') }}">Permissions</a></li>
+                      <li><a class="dropdown-item {{ (request()->is('admin/permission-role')) ? 'active' : '' }}" href="{{ route('permission.showRole') }}">Permissions to Role</a></li>
                     </ul>
                 </li>
 
 
                 <li class="menu-item dropdown">
-                    <a class="menu-link dropdown-toggle {{ (request()->is('admin/dashboard/users')) ? 'show' : '' }} {{ (request()->is('admin/dashboard/user/create')) ? 'show' : '' }}" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="menu-link dropdown-toggle {{ (request()->is('admin/users')) ? 'show' : '' }} {{ (request()->is('admin/user/create')) ? 'show' : '' }}" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-user-friends"></i> Users
                     </a>
-                    <ul class="dropdown-menu {{ (request()->is('admin/dashboard/users')) ? 'show' : '' }} {{ (request()->is('admin/dashboard/user/create')) ? 'show' : '' }}" aria-labelledby="dropdownMenuButton2">
-                      <li><a class="dropdown-item {{ (request()->is('admin/dashboard/users')) ? 'active' : '' }}" href="{{ route('user.index') }}">All Users</a></li>
-                      <li><a class="dropdown-item {{ (request()->is('admin/dashboard/user/create')) ? 'active' : '' }}" href="{{ route('user.create') }}">Add User</a></li>
+                    <ul class="dropdown-menu {{ (request()->is('admin/users')) ? 'show' : '' }} {{ (request()->is('admin/user/create')) ? 'show' : '' }}" aria-labelledby="dropdownMenuButton2">
+                      <li><a class="dropdown-item {{ (request()->is('admin/users')) ? 'active' : '' }}" href="{{ route('user.index') }}">All Users</a></li>
+                      <li><a class="dropdown-item {{ (request()->is('admin/user/create')) ? 'active' : '' }}" href="{{ route('user.create') }}">Add User</a></li>
                     </ul>
                 </li>
                 
             </ul>
         </section>
-        <main>
+        <main class="main">
             <nav class="navbar navbar-expand-md navbar-light bg-white shadow">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="{{ url('/') }}">

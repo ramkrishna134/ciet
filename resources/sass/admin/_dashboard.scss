@@ -93,7 +93,7 @@
     display: block;
 }
 
-main{
+.main{
     padding-left: 220px;
 
     .page-content{
@@ -102,5 +102,50 @@ main{
 
     .welcome{
         background-color: lighten($primary, 40%);
+    }
+
+    .table{
+        tbody{
+            tr{
+                font-size: 0.8rem;
+            }
+        }
+    }
+
+    .index-table{
+        tr{
+            .actions{
+                opacity: 0;
+                transition: all 350ms;
+                .btn{
+                    padding: 2px 6px;
+                    font-size: 0.7rem;
+                }
+            }
+
+            &:hover{
+                .actions{
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    .bootstrap-tagsinput{
+        .tag{
+            padding: 2px 5px;
+            border-radius: 3px;
+            margin-bottom: 3px;
+            display: inline-block;
+        }
+        .label-info{
+            background-color: $primary;
+        }
+    }
+
+    .sticky-top{
+        &.inner-sidebar{
+            top: 72px;
+        }
     }
 }

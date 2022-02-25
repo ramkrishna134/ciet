@@ -20,6 +20,11 @@ class Page extends Model
         'lang'
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 
     // public function show($slug) {
     //     return $this->posts($slug) || $this->categories($slug) || $this->pages($slug) || abort(404);

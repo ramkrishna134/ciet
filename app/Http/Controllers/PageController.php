@@ -48,15 +48,16 @@ class PageController extends Controller
             'title' => 'required',
             'slug' => 'nullable',
             'content' => 'nullable',
-            'description' => 'nullable',
+            'description' => 'required',
             'lang' => 'required',
-            'featured_icon' => 'nullable',
+            'filepath' => 'nullable',
+            'key_word' => 'nullable',
             'status' => 'required',
         ];
 
         $validator = Validator::make($request->all(),$rules);
         if ($validator->fails()) {
-            return redirect(route('page.create'))
+            return back()
                 ->withInput()
                 ->withErrors($validator)->with('error',"Please check the field below *");
         }
@@ -68,12 +69,16 @@ class PageController extends Controller
                     $page->slug = Str::slug( $data['title'] );
                 }
                 $page->user_id = $user->id;
+                $page->featured_icon = $data['filepath'];
+                if( !empty( $data['key_word'] ) ){
+                    $page->key_word = json_encode($data['key_word']);
+                } 
                 $page->save();
                 return redirect(route('page.index'))->with('status',"Page created successfully");
 
             }
             catch(Exception $e){  
-                return redirect(route('role.index'))->with('failed',"Operation failed");
+                return back()->with('failed',"Operation failed");
             }
         }
     }
@@ -88,9 +93,15 @@ class PageController extends Controller
     {
         //
         // dd('hello');
-        $page = Page::where('slug', $slug)->first();
-        // dd($page);
-        return view('web.single', compact('page'));
+
+        // dd($slug);
+        $page = Page::where('slug', $slug)->where('status', 1)->first();
+        if(empty($page)){
+            return abort(404);
+        }else{
+            return view('web.single', compact('page'));
+        }
+        
     }
 
     /**
@@ -122,9 +133,10 @@ class PageController extends Controller
             'title' => 'required',
             'slug' => 'nullable',
             'content' => 'nullable',
-            'description' => 'nullable',
+            'description' => 'required',
             'lang' => 'required',
-            'featured_icon' => 'nullable',
+            'filepath' => 'nullable',
+            'key_word' => 'nullable',
             'status' => 'required',
         ];
 
@@ -137,13 +149,19 @@ class PageController extends Controller
         else{
             $data = $request->input();
             try{
+                // dd($data);
                 $page->fill($data);
                 if( empty( $data['slug'] ) ){
                     $page->slug = Str::slug( $data['title'] );
                 }
+                $page->description = $data['description'];
+                $page->featured_icon = $data['filepath'];
                 $page->user_id = $user->id;
+                if( !empty( $data['key_word'] ) ){
+                    $page->key_word = json_encode($data['key_word']);
+                } 
                 $page->save();
-                return redirect(route('page.index'))->with('status',"Page updated successfully");
+                return back()->with('status',"Page updated successfully");
 
             }
             catch(Exception $e){  
@@ -161,5 +179,9 @@ class PageController extends Controller
     public function destroy(Page $page)
     {
         //
+    }
+
+    public function media(){
+        return view('admin.media');
     }
 }

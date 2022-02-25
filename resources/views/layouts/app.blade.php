@@ -7,7 +7,14 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'CIET') }}</title>
+    <!-- Meta Tags -->
+    <meta name="title" content="@yield('title')-Central Institute of Educational Technology">
+    <meta name="description" content="@yield('description')">
+    <meta name="keywords" content="@yield('keyword')">
+    <meta property="og:image"  content="@yield('image')">
+    <meta name="author" content="Central Institute of Educational Technology">
+
+    <title>@yield('title')- Central Institute of Educational Technology</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -24,7 +31,7 @@
 <body>
     <div id="app">
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow sticky-top">
             <div class="container-fluid">
               <a class="navbar-brand" href="#">CIET</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

@@ -20,8 +20,8 @@ class CreatePagesTable extends Migration
             $table->string('slug', 550);
             $table->longText('content')->nullable();
             $table->string('featured_icon')->nullable();
-            $table->decimal('user_id');
-            $table->decimal('status');
+            $table->integer('user_id');
+            $table->integer('status');
             $table->string('lang');
             
             $table->timestamps();

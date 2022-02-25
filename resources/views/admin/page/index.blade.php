@@ -33,22 +33,23 @@ Permissions
 @endif
 
 <div class="row justify-content-center">
-    <div class="col-sm-10">
+    <div class="col-sm-12">
         <div class="card">
             <div class="card-body border-white rounded">
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table index-table">
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Title</th>
+                                <th width=250>Title</th>
+                                <th width=350>Description</th>
                                 <th>Slug</th>
                                 <th>Created By</th>
                                 <th>Status</th>
                                 <th>Language</th>
-                                <th>Created at</th>
-                                <th>Updated at</th>
-                                <th>Action</th>
+                                <th width=100>Created at</th>
+                                <th width=120>Updated at</th>
+                                {{-- <th>Action</th> --}}
                             </tr>
                         </thead>
 
@@ -56,14 +57,33 @@ Permissions
                             @foreach($pages as $page)
                             <tr>
                                 <th>{{ $page->id }}</th>
-                                <td>{{ $page->title }}</td>
+                                <td>
+                                    <strong><a href="{{ route('page.edit', $page) }}">{{ $page->title }}</a></strong>
+                                    <div class="actions">
+                                        <a href="{{ route('page.edit', $page) }}" class="btn btn-info"><i class="fas fa-edit"></i> Edit</a>
+                                        <a href="{{ url($page->slug) }}" class="btn btn-primary" target="_blank"><i class="fas fa-eye"></i> View</a>
+                                        <a href="" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
+                                    </div>
+                                </td>
+                                <td>{{ Str::limit($page->description, 50) }}</td>
                                 <td>{{ $page->slug }}</td>
-                                <td>{{ $page->user_id }}</td>
-                                <td>{{ $page->status }}</td>
-                                <td>{{ $page->lang }}</td>
+                                <td>{{ $page->user->name }}</td>
+                                <td>
+                                    @if($page->lang === 'en')
+                                    English
+                                    @elseif($page->status === 'hi')
+                                    Hindi
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($page->status == 0)
+                                    <span class="badge bg-warning">Darft</span>
+                                    @elseif($page->status == 1)
+                                    <span class="badge bg-primary">Published</span>
+                                    @endif
+                                </td>
                                 <td>{{ $page->created_at->diffForHumans() }}</td>
                                 <td>{{ $page->updated_at->diffForHumans() }}</td>
-                                <td><a href="{{ route('page.edit', $page) }}" class="btn btn-info btn-sm">Edit</a></td>
                             </tr>
                             @endforeach
                         </tbody>
