@@ -21,6 +21,7 @@ class UserController extends Controller
     public function edit()
     {
         //
+        $roles = \DB::table('roles')->get();
         return view('admin.user.edit', compact('roles'));
     }
 

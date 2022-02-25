@@ -24,6 +24,7 @@
     <div id="app">
         <section class="sidebar">
             <div class="logo">
+                <img class="img-fluid" src="/images/CIET-logo.png" alt="">
                 <h5 class="text-light mb-0">Central Institute of</h5>
                 <h6 class="text-light"><strong>Educational Technology</strong></h6>
             </div>

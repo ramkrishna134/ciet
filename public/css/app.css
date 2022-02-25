@@ -11293,15 +11293,24 @@ textarea.form-control-lg {
   bottom: 0;
   left: 0;
   background-color: #293042;
-  padding-left: 10px;
 }
 .sidebar .logo {
-  margin: 20px 0;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  padding: 0 5px;
+  text-align: center;
+}
+.sidebar .logo img {
+  width: 80px;
+  margin-bottom: 5px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .sidebar .menu {
   margin: 0;
   padding: 0;
   list-style: none;
+  padding-left: 10px;
 }
 .sidebar .menu .menu-item .menu-link {
   color: #e9ecef;
