@@ -59,6 +59,8 @@ Permissions
                     </table>
                 </div>
 
+                {!! $permissions->links() !!}
+
             </div>
         </div>
     </div>
