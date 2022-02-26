@@ -11288,11 +11288,11 @@ textarea.form-control-lg {
 }
 .sidebar {
   position: fixed;
-  width: 220px;
+  width: 200px;
   top: 0;
   bottom: 0;
   left: 0;
-  background-color: #293042;
+  background-color: #1D2327;
 }
 .sidebar .logo {
   margin-bottom: 20px;
@@ -11301,7 +11301,7 @@ textarea.form-control-lg {
   text-align: center;
 }
 .sidebar .logo img {
-  width: 80px;
+  width: 60px;
   margin-bottom: 5px;
   margin-left: auto;
   margin-right: auto;
@@ -11311,16 +11311,20 @@ textarea.form-control-lg {
   padding: 0;
   list-style: none;
   padding-left: 10px;
+  padding-right: 10px;
+}
+.sidebar .menu .menu-item {
+  margin-bottom: 10px;
 }
 .sidebar .menu .menu-item .menu-link {
   color: #e9ecef;
-  padding: 10px 10px;
-  font-weight: 600;
+  padding: 5px 10px;
+  font-weight: 500;
   width: 100%;
   display: block;
   transition: all 350ms;
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
+  border-radius: 3px;
+  font-size: 0.8rem;
 }
 .sidebar .menu .menu-item .menu-link:hover {
   background-color: #242835;
@@ -11344,11 +11348,10 @@ textarea.form-control-lg {
   font-weight: 600;
   border-radius: 3px;
   transition: all 350ms;
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
-  font-size: 0.8rem;
+  border-radius: 3px;
+  font-size: 0.7rem;
+  padding: 3px 9px;
+  margin-bottom: 5px;
 }
 .sidebar .menu .dropdown-menu .dropdown-item:hover {
   background-color: #242835;
@@ -11368,7 +11371,7 @@ textarea.form-control-lg {
 }
 
 .main {
-  padding-left: 220px;
+  padding-left: 200px;
 }
 .main .page-content {
   padding: 30px;

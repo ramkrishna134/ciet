@@ -18,7 +18,7 @@ class PageController extends Controller
     {
         //
 
-        $pages = Page::paginate(15);
+        $pages = Page::paginate(10);
         return view('admin.page.index', compact('pages'));
     }
 
@@ -89,13 +89,14 @@ class PageController extends Controller
      * @param  \App\Models\Page  $page
      * @return \Illuminate\Http\Response
      */
-    public function show(Page $page, $slug)
+    public function show(Page $page, $slug, $local)
     {
-        //
-        // dd('hello');
-
-        // dd($slug);
-        $page = Page::where('slug', $slug)->where('status', 1)->first();
+        if(!empty($local)){
+            $page = Page::where('slug', $slug)->where('lang', $local)->where('status', 1)->first();
+        }else{
+            $page = Page::where('slug', $slug)->where('lang', 'en')->where('status', 1)->first();
+        };
+        
         if(empty($page)){
             return abort(404);
         }else{

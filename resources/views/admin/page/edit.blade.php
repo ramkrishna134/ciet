@@ -74,7 +74,7 @@
                             <input type="text" class="form-control" name="slug" id="slug" placeholder="slug" value="{{ $page->slug ?? old('slug') }}">
                             @if (!empty($page))
                             <div class="input-group-append">
-                                <a href="{{ url($page->slug) }}" target="_blank" class="btn btn-primary btn-lg"><i class="fas fa-eye"></i></a>
+                                <a href="{{ url($page->slug,$page->lang) }}" target="_blank" class="btn btn-primary btn-lg"><i class="fas fa-eye"></i></a>
                               </div>
                             @endif
                           </div>
@@ -105,8 +105,14 @@
                     </div>
                     <div class="col-sm-1">
                         <select name="lang" id="lang" class="form-control">
+                            @if(!empty($page))
+                                <option value="en" @if($page->lang === 'en') selected @endif>English</option>
+                                <option value="hi" @if($page->lang === 'hi') selected @endif>Hindi</option>           
+                            @else
                             <option value="en">English</option>
                             <option value="hi">Hindi</option>
+                            @endif
+                            
                         </select>
                         @error('lang')
                             <span class="invalid-feedback" role="alert">

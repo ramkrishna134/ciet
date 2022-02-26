@@ -74,4 +74,4 @@ Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () 
 
 });
 
-Route::get('/{slug}','App\Http\Controllers\PageController@show')->name('page.show');
+Route::get('/{slug}/{local}','App\Http\Controllers\PageController@show')->name('page.show');

@@ -41,12 +41,11 @@ Permissions
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th width=250>Title</th>
-                                <th width=350>Description</th>
+                                <th width=350>Title</th>
                                 <th>Slug</th>
-                                <th>Created By</th>
-                                <th>Status</th>
+                                <th>Author</th>
                                 <th>Language</th>
+                                <th>Status</th>
                                 <th width=100>Created at</th>
                                 <th width=120>Updated at</th>
                                 {{-- <th>Action</th> --}}
@@ -61,18 +60,17 @@ Permissions
                                     <strong><a href="{{ route('page.edit', $page) }}">{{ $page->title }}</a></strong>
                                     <div class="actions">
                                         <a href="{{ route('page.edit', $page) }}" class="btn btn-info"><i class="fas fa-edit"></i> Edit</a>
-                                        <a href="{{ url($page->slug) }}" class="btn btn-primary" target="_blank"><i class="fas fa-eye"></i> View</a>
+                                        <a href="{{ url($page->slug, $page->lang) }}" class="btn btn-primary" target="_blank"><i class="fas fa-eye"></i> View</a>
                                         <a href="" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
                                     </div>
                                 </td>
-                                <td>{{ Str::limit($page->description, 50) }}</td>
                                 <td>{{ $page->slug }}</td>
                                 <td>{{ $page->user->name }}</td>
                                 <td>
                                     @if($page->lang === 'en')
-                                    English
-                                    @elseif($page->status === 'hi')
-                                    Hindi
+                                    <i class="fas fa-language"></i> English
+                                    @elseif($page->lang === 'hi')
+                                    <i class="fas fa-language"></i> Hindi
                                     @endif
                                 </td>
                                 <td>
