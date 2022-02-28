@@ -14,6 +14,14 @@
     <meta property="og:image"  content="@yield('image')">
     <meta name="author" content="Central Institute of Educational Technology">
 
+    <meta name="twitter:card" value="@yield('description')">
+
+    <meta property="og:title" content="@yield('title')" />
+    <meta property="og:type" content="@yield('description')" />
+    <meta property="og:url" content="{{ url('/') }}" />
+    <meta property="og:image" content="@yield('image')" />
+    <meta property="og:description" content="@yield('description')" />
+
     <title>@yield('title')- Central Institute of Educational Technology</title>
 
     <!-- Scripts -->
@@ -67,7 +75,7 @@
               </div>
             </div>
           </nav>
-        
+
         <main>
             @yield('content')
         </main>
