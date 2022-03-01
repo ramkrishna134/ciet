@@ -26,11 +26,11 @@
         <section class="sidebar">
             <div class="logo">
                 <img class="img-fluid" src="/images/CIET-logo.png" alt="">
-                <h5 class="text-light mb-0">Central Institute of</h5>
-                <h6 class="text-light"><strong>Educational Technology</strong></h6>
+                {{-- <h5 class="text-light mb-0">Central Institute of</h5> --}}
+                <h6 class="text-black"><strong>CIET</strong></h6>
             </div>
 
-            <hr class="bg-light">
+            {{-- <hr> --}}
 
             <ul class="menu">
                 <li class="menu-item">
@@ -70,10 +70,10 @@
             </ul>
         </section>
         <main class="main">
-            <nav class="navbar navbar-expand-md navbar-light bg-white shadow">
+            <nav class="navbar navbar-expand-md navbar-light">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        <h5 class="mb-0">@yield('title')</h4>
+                        <h4 class="mb-0">@yield('title')</h4>
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>

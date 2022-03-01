@@ -13,10 +13,10 @@
 
 <section class="hero-section">
     <div class="row">
-        <div class="col-sm-8">
+        {{-- <div class="col-sm-8">
             <h3>{{ $user ? "Edit User" : "Add New User" }}</h3>
-        </div>
-        <div class="col-sm-4 text-end">
+        </div> --}}
+        <div class="col-sm-4">
             <a href="{{ route('user.index') }}" class="btn btn-primary"><i class="fas fa-user-friends"></i> View Users</a>
         </div>
     </div>

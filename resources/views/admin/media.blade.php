@@ -8,11 +8,11 @@ Media Manager
 
 
 
-<section class="hero-section">
+{{-- <section class="hero-section">
     <h3>Media Manager</h3>
 </section>
 
-<hr>
+<hr> --}}
 
 <div class="card border-white rounded">
     <div class="card-body shadow">

@@ -11288,11 +11288,12 @@ textarea.form-control-lg {
 }
 .sidebar {
   position: fixed;
-  width: 200px;
+  width: 210px;
   top: 0;
   bottom: 0;
   left: 0;
-  background-color: #1D2327;
+  background-color: #fff;
+  border-right: 1px solid #80808059;
 }
 .sidebar .logo {
   margin-bottom: 20px;
@@ -11301,10 +11302,13 @@ textarea.form-control-lg {
   text-align: center;
 }
 .sidebar .logo img {
-  width: 60px;
+  width: 65px;
   margin-bottom: 5px;
   margin-left: auto;
   margin-right: auto;
+  background-color: #000;
+  padding: 5px;
+  border-radius: 5px;
 }
 .sidebar .menu {
   margin: 0;
@@ -11317,22 +11321,25 @@ textarea.form-control-lg {
   margin-bottom: 10px;
 }
 .sidebar .menu .menu-item .menu-link {
-  color: #e9ecef;
+  color: #7e8388;
   padding: 5px 10px;
-  font-weight: 500;
+  font-weight: 600;
   width: 100%;
   display: block;
   transition: all 350ms;
   border-radius: 3px;
   font-size: 0.8rem;
 }
+.sidebar .menu .menu-item .menu-link i {
+  margin-right: 10px;
+}
 .sidebar .menu .menu-item .menu-link:hover {
   background-color: #242835;
   color: #fff;
 }
 .sidebar .menu .menu-item .menu-link.active {
-  background-color: #f8f9fa;
-  color: #000;
+  background-color: #000;
+  color: #fff;
 }
 .sidebar .menu .dropdown-menu {
   background-color: transparent;
@@ -11342,9 +11349,10 @@ textarea.form-control-lg {
   transform: translate(0px, 0px) !important;
   border-left: 1px solid;
   margin-left: 20px !important;
+  border-radius: 0;
 }
 .sidebar .menu .dropdown-menu .dropdown-item {
-  color: #e9ecef;
+  color: #7e8388;
   font-weight: 600;
   border-radius: 3px;
   transition: all 350ms;
@@ -11358,8 +11366,8 @@ textarea.form-control-lg {
   color: #fff;
 }
 .sidebar .menu .dropdown-menu .dropdown-item.active {
-  background-color: #f8f9fa;
-  color: #000;
+  background-color: #000;
+  color: #fff;
 }
 
 .form-label {
@@ -11371,7 +11379,7 @@ textarea.form-control-lg {
 }
 
 .main {
-  padding-left: 200px;
+  padding-left: 210px;
 }
 .main .page-content {
   padding: 30px;

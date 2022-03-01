@@ -1,14 +1,14 @@
 @extends('layouts.sidebar')
 
 @section('title')
-Dashbaord
+Dashboard
 @endsection
 
 @section('content')
 
-<section class="hero-section">
+{{-- <section class="hero-section">
     <h3>Dashboard</h3>
-</section>
+</section> --}}
 
 <div class="row">
     <div class="col-sm-3">

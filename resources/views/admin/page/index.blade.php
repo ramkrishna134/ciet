@@ -1,17 +1,17 @@
 @extends('layouts.sidebar')
 
 @section('title')
-Permissions
+All Pages
 @endsection
 
 @section('content')
 
 <section class="hero-section">
     <div class="row">
-        <div class="col-sm-8">
+        {{-- <div class="col-sm-8">
             <h3>All Pages</h3>
-        </div>
-        <div class="col-sm-4 text-end">
+        </div> --}}
+        <div class="col-sm-4">
             <a href="{{ route('page.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add New Page</a>
         </div>
     </div>
