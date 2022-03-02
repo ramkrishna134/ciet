@@ -19,12 +19,13 @@ class CreateInfrastructuresTable extends Migration
             $table->string('icon')->nullable();
             $table->string('url')->nullable();
             $table->string('language');
-            $table->string('status')->default(0);
+            $table->integer('status')->default(0);
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
 
-    
+
     /**
      * Reverse the migrations.
      *

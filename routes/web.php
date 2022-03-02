@@ -63,11 +63,17 @@ Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () 
     Route::post('/user/{user}','App\Http\Controllers\UserController@assignRole')->name('user.assign');
     Route::post('/create','App\Http\Controllers\UserController@store')->name('user.store');
 
-    Route::get('/dashboard/permission-role','App\Http\Controllers\PermissionController@showRole')->name('permission.showRole');
-    Route::post('/dashboard/permission-role','App\Http\Controllers\PermissionController@attachRole')->name('permission.attachRole');
 
-    Route::get('/dashboard/infrastructure/create', 'App\Http\Controllers\InfrastructureController@edit')->name('infrastructure.create');
+
+    Route::get('/infrastructure/create', 'App\Http\Controllers\InfrastructureController@create')->name('infrastructure.create');
+    Route::get('/infrastructures', 'App\Http\Controllers\InfrastructureController@index')->name('infrastructure.index');
+    Route::get('/infrastructure/{infrastructure}','App\Http\Controllers\InfrastructureController@edit')->name('infrastructure.edit');
+    Route::put('/infrastructure/{infrastructure}','App\Http\Controllers\InfrastructureController@update')->name('infrastructure.update');
+    Route::post('/infrastructure','App\Http\Controllers\InfrastructureController@store')->name('infrastructure.store');
+    Route::get('/infrastructures/{infrastructure}','App\Http\Controllers\InfrastructureController@destroy')->name('infrastructure.destroy');
     
+
+
     Route::get('/permission-role','App\Http\Controllers\PermissionController@showRole')->name('permission.showRole');
     Route::post('/permission-role','App\Http\Controllers\PermissionController@attachRole')->name('permission.attachRole');
 

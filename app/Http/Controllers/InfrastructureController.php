@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Infrastructure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
 class InfrastructureController extends Controller
 {
@@ -15,6 +17,9 @@ class InfrastructureController extends Controller
     public function index()
     {
         //
+
+        $infrastructures = Infrastructure::paginate(10);
+        return view('admin.infrastructure.index', compact('infrastructures'));
 
     }
 
@@ -29,6 +34,7 @@ class InfrastructureController extends Controller
     public function create()
     {
         //
+        return view('admin.infrastructure.edit');
     }
 
     /**
@@ -40,6 +46,35 @@ class InfrastructureController extends Controller
     public function store(Request $request)
     {
         //
+        $user = auth()->user();
+        $rules = [
+            'title' => ['required', 'string'],
+            'icon' => ['required', 'string', 'max:255'],
+            'url' => ['required', 'string'],
+            'lang' => ['required', 'string', 'max:255'],
+            'status' => 'required'
+        ];
+
+        $validator = Validator::make($request->all(),$rules);
+        if ($validator->fails()) {
+            return redirect(route('infrastructure.create'))
+                ->withInput()
+                ->withErrors($validator)->with('error',"Please check the field below *");
+                // dd($validator);
+        }else{
+            $data = $request->input();
+            // dd($data);
+            try{
+                $infrastructure = new Infrastructure($data);
+                $infrastructure->user_id = $user->id;
+                $infrastructure->save();
+                return redirect(route('infrastructure.index'))->with('status',"New infrastructure created successfully");
+
+            }
+            catch(Exception $e){  
+                return redirect(route('infrastructure.create'))->with('failed',"Operation failed");
+            }
+        }
     }
 
     /**
@@ -62,7 +97,9 @@ class InfrastructureController extends Controller
     public function edit(Infrastructure $infrastructure)
     {
         //
-        return view('admin.infrastructure.edit');
+
+        return view('admin.infrastructure.edit', compact('infrastructure'));
+        
     }
 
     /**
@@ -75,6 +112,35 @@ class InfrastructureController extends Controller
     public function update(Request $request, Infrastructure $infrastructure)
     {
         //
+        $user = auth()->user();
+        $rules = [
+            'title' => ['required', 'string'],
+            'icon' => ['required', 'string', 'max:255'],
+            'url' => ['required', 'string'],
+            'lang' => ['required', 'string', 'max:255'],
+            'status' => 'required'
+        ];
+
+        $validator = Validator::make($request->all(),$rules);
+        if ($validator->fails()) {
+            return back()
+                ->withInput()
+                ->withErrors($validator)->with('error',"Please check the field below *");
+            }else{
+                $data = $request->input();
+                // dd($data);
+                try{
+                    //$infrastructure->fill($data);
+                    $infrastructure->fill($data);
+                    $infrastructure->user_id = $user->id;
+                    $infrastructure->save();
+                    return redirect(route('infrastructure.index'))->with('status',"infrastructure updated successfully");
+    
+                }
+                catch(Exception $e){  
+                    return redirect(route('infrastructure.create'))->with('failed',"Operation failed");
+                }
+            }
     }
 
     /**
@@ -86,5 +152,7 @@ class InfrastructureController extends Controller
     public function destroy(Infrastructure $infrastructure)
     {
         //
+        $infrastructure->delete();
+        return redirect(route('infrastructure.index'))->with('status',"infrastructure Deleted successfully");
     }
 }

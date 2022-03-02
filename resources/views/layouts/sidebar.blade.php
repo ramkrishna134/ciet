@@ -41,6 +41,10 @@
                 </li>
 
                 <li class="menu-item">
+                    <a class="menu-link {{ (request()->is('admin/infrastructures')) ? 'active' : '' }}" href="{{ route('infrastructure.index') }}"><i class="fas fa-photo-video"></i> Infrastructures</a>
+                </li>
+
+                <li class="menu-item">
                     <a class="menu-link {{ (request()->is('admin/pages')) ? 'active' : '' }}" href="{{ route('page.index') }}"><i class="fas fa-file-alt"></i> Pages</a>
                 </li>
 
