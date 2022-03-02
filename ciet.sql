@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 25, 2022 at 05:36 PM
+-- Generation Time: Mar 02, 2022 at 05:29 PM
 -- Server version: 8.0.28-0ubuntu0.20.04.3
 -- PHP Version: 7.4.3
 
@@ -21,6 +21,26 @@ SET time_zone = "+00:00";
 --
 -- Database: `ciet`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `departments`
+--
+
+CREATE TABLE `departments` (
+  `id` bigint UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `featured_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` int NOT NULL,
+  `status` int NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -90,6 +110,21 @@ CREATE TABLE `lb_contents` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `metas`
+--
+
+CREATE TABLE `metas` (
+  `id` bigint UNSIGNED NOT NULL,
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_id` int UNSIGNED NOT NULL,
+  `lang` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -112,7 +147,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (8, '2022_02_23_063103_create_languages_table', 2),
 (9, '2022_02_25_061634_create_pages_table', 2),
 (10, '2019_02_08_105647_create_blocks_contents_tables', 3),
-(11, '2022_02_25_080532_add_description_to_pages', 4);
+(11, '2022_02_25_080532_add_description_to_pages', 4),
+(12, '2022_02_25_192341_add_keywords_to_page', 5),
+(14, '2022_03_02_045043_create_departments_table', 6),
+(15, '2022_03_02_082803_create_metas_table', 7);
 
 -- --------------------------------------------------------
 
@@ -130,6 +168,7 @@ CREATE TABLE `pages` (
   `user_id` decimal(8,2) NOT NULL,
   `status` decimal(8,2) NOT NULL,
   `lang` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `key_word` json DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -138,8 +177,9 @@ CREATE TABLE `pages` (
 -- Dumping data for table `pages`
 --
 
-INSERT INTO `pages` (`id`, `title`, `slug`, `description`, `content`, `featured_icon`, `user_id`, `status`, `lang`, `created_at`, `updated_at`) VALUES
-(1, 'Demo Page', 'demo-page', NULL, '<!-- wp:paragraph -->\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lobortis, velit eget hendrerit ullamcorper, tortor lacus hendrerit lectus, vel pellentesque ipsum metus a ante. Morbi sapien tellus, facilisis in luctus sed, ultricies non nisi. In a dolor vulputate tortor tempus rutrum. Sed ut tempus massa. Maecenas at tristique libero. Ut venenatis arcu in feugiat elementum. Donec bibendum eleifend turpis quis auctor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tristique nulla turpis, sit amet accumsan elit semper ac.</p>\r\n<!-- /wp:paragraph -->\r\n\r\n<!-- wp:columns {\"align\":\"full\"} -->\r\n<div class=\"wp-block-columns alignfull\"><!-- wp:column -->\r\n<div class=\"wp-block-column\"><!-- wp:paragraph -->\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lobortis, velit eget hendrerit ullamcorper, tortor lacus hendrerit lectus, vel pellentesque ipsum metus a ante. Morbi sapien tellus, facilisis in luctus sed, ultricies non nisi. In a dolor vulputate tortor tempus rutrum. Sed ut tempus massa. Maecenas at tristique libero. Ut venenatis arcu in feugiat elementum. Donec bibendum eleifend turpis quis auctor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tristique nulla turpis, sit amet accumsan elit semper ac.</p>\r\n<!-- /wp:paragraph --></div>\r\n<!-- /wp:column -->\r\n\r\n<!-- wp:column -->\r\n<div class=\"wp-block-column\"><!-- wp:paragraph -->\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lobortis, velit eget hendrerit ullamcorper, tortor lacus hendrerit lectus, vel pellentesque ipsum metus a ante. Morbi sapien tellus, facilisis in luctus sed, ultricies non nisi. In a dolor vulputate tortor tempus rutrum. Sed ut tempus massa. Maecenas at tristique libero. Ut venenatis arcu in feugiat elementum. Donec bibendum eleifend turpis quis auctor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tristique nulla turpis, sit amet accumsan elit semper ac.</p>\r\n<!-- /wp:paragraph --></div>\r\n<!-- /wp:column --></div>\r\n<!-- /wp:columns -->', NULL, '1.00', '0.00', 'en', '2022-02-25 05:40:11', '2022-02-25 06:35:27');
+INSERT INTO `pages` (`id`, `title`, `slug`, `description`, `content`, `featured_icon`, `user_id`, `status`, `lang`, `key_word`, `created_at`, `updated_at`) VALUES
+(1, 'Demo Page', 'demo-page', 'Bhasha Sangam by Central Institute of Educational Technology', '<!-- wp:image {\"align\":\"center\",\"width\":235,\"height\":197,\"sizeSlug\":\"large\",\"className\":\"is-style-default\"} -->\r\n<div class=\"wp-block-image is-style-default\"><figure class=\"aligncenter size-large is-resized\"><img src=\"http://localhost:8000/storage/photos/1/Bhasha Sangam-Social Media Banner (1).jpg\" alt=\"\" width=\"235\" height=\"197\"/></figure></div>\r\n<!-- /wp:image -->\r\n\r\n<!-- wp:heading {\"align\":\"center\"} -->\r\n<h2 class=\"has-text-align-center\"><strong>Demo Page</strong></h2>\r\n<!-- /wp:heading -->\r\n\r\n<!-- wp:paragraph {\"align\":\"center\"} -->\r\n<p class=\"has-text-align-center\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lobortis, velit eget hendrerit ullamcorper, tortor lacus hendrerit lectus, vel pellentesque ipsum metus a ante. Morbi sapien tellus, facilisis in luctus sed, ultricies non nisi. In a dolor vulputate tortor tempus rutrum. Sed ut tempus massa. Maecenas at tristique libero. Ut venenatis arcu in feugiat elementum. Donec bibendum eleifend turpis quis auctor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tristique nulla turpis, sit amet accumsan elit semper ac.</p>\r\n<!-- /wp:paragraph -->\r\n\r\n<!-- wp:columns {\"align\":\"full\",\"backgroundColor\":\"light-green-cyan\"} -->\r\n<div class=\"wp-block-columns alignfull has-light-green-cyan-background-color has-background\"><!-- wp:column -->\r\n<div class=\"wp-block-column\"><!-- wp:paragraph -->\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lobortis, velit eget hendrerit ullamcorper, tortor lacus hendrerit lectus, vel pellentesque ipsum metus a ante. Morbi sapien tellus, facilisis in luctus sed, ultricies non nisi. In a dolor vulputate tortor tempus rutrum. Sed ut tempus massa. Maecenas at tristique libero. Ut venenatis arcu in feugiat elementum. Donec bibendum eleifend turpis quis auctor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tristique nulla turpis, sit amet accumsan elit semper ac.</p>\r\n<!-- /wp:paragraph --></div>\r\n<!-- /wp:column -->\r\n\r\n<!-- wp:column -->\r\n<div class=\"wp-block-column\"><!-- wp:paragraph -->\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lobortis, velit eget hendrerit ullamcorper, tortor lacus hendrerit lectus, vel pellentesque ipsum metus a ante. Morbi sapien tellus, facilisis in luctus sed, ultricies non nisi. In a dolor vulputate tortor tempus rutrum. Sed ut tempus massa. Maecenas at tristique libero. Ut venenatis arcu in feugiat elementum. Donec bibendum eleifend turpis quis auctor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tristique nulla turpis, sit amet accumsan elit semper ac.</p>\r\n<!-- /wp:paragraph --></div>\r\n<!-- /wp:column --></div>\r\n<!-- /wp:columns -->\r\n\r\n<!-- wp:image {\"align\":\"full\",\"sizeSlug\":\"large\"} -->\r\n<figure class=\"wp-block-image alignfull size-large\"><img src=\"http://localhost:8000/storage/photos/1/Nishtha 3.0 Website banner (2)-03.jpg\" alt=\"\"/></figure>\r\n<!-- /wp:image -->\r\n\r\n<!-- wp:columns {\"align\":\"full\"} -->\r\n<div class=\"wp-block-columns alignfull\"><!-- wp:column -->\r\n<div class=\"wp-block-column\"><!-- wp:table -->\r\n<figure class=\"wp-block-table\"><table><tbody><tr><td>Name </td><td>Number</td></tr><tr><td></td><td></td></tr></tbody></table></figure>\r\n<!-- /wp:table --></div>\r\n<!-- /wp:column -->\r\n\r\n<!-- wp:column -->\r\n<div class=\"wp-block-column\"><!-- wp:table -->\r\n<figure class=\"wp-block-table\"><table><tbody><tr><td>Name</td><td>Number</td></tr><tr><td></td><td></td></tr></tbody></table></figure>\r\n<!-- /wp:table --></div>\r\n<!-- /wp:column --></div>\r\n<!-- /wp:columns -->\r\n\r\n<!-- wp:paragraph -->\r\n<p></p>\r\n<!-- /wp:paragraph -->', 'http://localhost:8000/storage/photos/1/Sanketik-Sampreshan-Competition-Banner.png', '1.00', '1.00', 'en', '\"Bhasha sangam,CIET,NCERT\"', '2022-02-25 05:40:11', '2022-02-28 04:48:11'),
+(3, 'Page Title', 'page-title', 'Hello', '<!-- wp:columns {\"align\":\"full\"} -->\r\n<div class=\"wp-block-columns alignfull\"><!-- wp:column -->\r\n<div class=\"wp-block-column\"><!-- wp:image {\"sizeSlug\":\"large\"} -->\r\n<figure class=\"wp-block-image size-large\"><img src=\"http://localhost:8000/storage/photos/1/Bhasha Sangam-Social Media Banner (1).jpg\" alt=\"\"/></figure>\r\n<!-- /wp:image --></div>\r\n<!-- /wp:column -->\r\n\r\n<!-- wp:column -->\r\n<div class=\"wp-block-column\"><!-- wp:heading {\"style\":{\"color\":{\"text\":\"#23b1dc\"}}} -->\r\n<h2 class=\"has-text-color\" style=\"color:#23b1dc\">What is Lorem Ipsum?</h2>\r\n<!-- /wp:heading -->\r\n\r\n<!-- wp:paragraph -->\r\n<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n<!-- /wp:paragraph -->\r\n\r\n<!-- wp:heading -->\r\n<h2>Why do we use it?</h2>\r\n<!-- /wp:heading -->\r\n\r\n<!-- wp:paragraph -->\r\n<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>\r\n<!-- /wp:paragraph --></div>\r\n<!-- /wp:column --></div>\r\n<!-- /wp:columns -->', 'http://localhost:8000/storage/photos/1/Nishtha 3.0 Website banner (2)-03.jpg', '1.00', '1.00', 'hi', '\"NCERT,CIET,NISHTHA,DIKSHA\"', '2022-02-28 04:54:14', '2022-02-28 04:55:00');
 
 -- --------------------------------------------------------
 
@@ -195,7 +235,11 @@ INSERT INTO `permissions` (`id`, `name`, `display_name`, `description`, `created
 (20, 'PageController@create', 'Page Create', 'Create new custom page', '2022-02-25 02:21:45', '2022-02-25 02:21:45'),
 (21, 'PageController@store', 'Page Store', 'Store New custom page data.', '2022-02-25 02:42:20', '2022-02-25 02:42:20'),
 (22, 'PageController@edit', 'Page Edit', 'Edit Custom Pages', '2022-02-25 06:21:48', '2022-02-25 06:21:48'),
-(23, 'PageController@update', 'Page Update', 'Update custom Page', '2022-02-25 06:32:53', '2022-02-25 06:32:53');
+(23, 'PageController@update', 'Page Update', 'Update custom Page', '2022-02-25 06:32:53', '2022-02-25 06:32:53'),
+(24, 'PageController@media', 'Media', 'Media Management', '2022-02-26 02:17:31', '2022-02-26 02:17:31'),
+(25, 'DepartmentController@index', 'Department List', 'List of all Departments', '2022-03-02 00:23:57', '2022-03-02 00:23:57'),
+(26, 'DepartmentController@create', 'Department Create Form', 'Create Form for New Department', '2022-03-02 00:29:51', '2022-03-02 00:29:51'),
+(27, 'DepartmentController@store', 'Department store', 'New Department Store', '2022-03-02 06:14:57', '2022-03-02 06:14:57');
 
 -- --------------------------------------------------------
 
@@ -236,6 +280,10 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (21, 1),
 (22, 1),
 (23, 1),
+(24, 1),
+(25, 1),
+(26, 1),
+(27, 1),
 (3, 2),
 (20, 2),
 (21, 2),
@@ -351,7 +399,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `role`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Ramkrishna Pal', 'ramkrishna.ncert@gmail.com', '2022-02-23 00:53:13', 'Admin', '$2a$12$bayZJpM48D8a8OZAPam5oeKxy6UyDUfJW8wbrHudXB.2zbwpg8vCC', '6e8Z77lyc5', '2022-02-23 00:53:13', '2022-02-23 00:53:13'),
+(1, 'Ramkrishna Pal', 'ramkrishna.ncert@gmail.com', '2022-02-23 00:53:13', 'Admin', '$2a$12$bayZJpM48D8a8OZAPam5oeKxy6UyDUfJW8wbrHudXB.2zbwpg8vCC', 'qOM3wT2Uu02WoOF5LtPHQGqUCX5zcMXwzaWQZ44NLvskmQbbH69x2pmUI8pf', '2022-02-23 00:53:13', '2022-02-23 00:53:13'),
 (2, 'Rameez Alam', 'rameezalamciet@gmail.com', '2022-02-23 00:53:13', 'Admin', '$2a$12$bayZJpM48D8a8OZAPam5oeKxy6UyDUfJW8wbrHudXB.2zbwpg8vCC', 'HseS8SftJd', '2022-02-23 00:53:13', '2022-02-25 02:45:18'),
 (3, 'Farman Ali', 'farman.ciet@gmail.com', NULL, 'Page Editor', '$2y$10$ryGCd3FarH.5CgzbRCImFe3DsMGxtnyM3.n9dyI4c8.fCA8Xl1DRe', NULL, '2022-02-24 03:07:50', '2022-02-24 06:26:38'),
 (4, 'Saurabh Singh', 'saurabhsingh.ciet@gmail.com', NULL, 'Event Editor', '$2y$10$cv5Rh8gwXrHzZBJrbjm6/uQrdQm9HmMNcaWy6whDBXspKJxBwo5LC', NULL, '2022-02-24 23:30:29', '2022-02-24 23:32:29');
@@ -359,6 +407,12 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `role`, `passwo
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `departments`
+--
+ALTER TABLE `departments`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -385,6 +439,12 @@ ALTER TABLE `lb_blocks`
 ALTER TABLE `lb_contents`
   ADD PRIMARY KEY (`id`),
   ADD KEY `lb_contents_contentable_type_contentable_id_index` (`contentable_type`,`contentable_id`);
+
+--
+-- Indexes for table `metas`
+--
+ALTER TABLE `metas`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `migrations`
@@ -459,6 +519,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `departments`
+--
+ALTER TABLE `departments`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -483,22 +549,28 @@ ALTER TABLE `lb_contents`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `metas`
+--
+ALTER TABLE `metas`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `pages`
 --
 ALTER TABLE `pages`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
