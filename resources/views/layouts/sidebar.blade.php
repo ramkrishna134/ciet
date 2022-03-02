@@ -41,6 +41,10 @@
                 </li>
 
                 <li class="menu-item">
+                    <a class="menu-link {{ (request()->is('admin/departments')) ? 'active' : '' }}" href="{{ route('department.index') }}"><i class="fas fa-cubes"></i> Departments</a>
+                </li>
+
+                <li class="menu-item">
                     <a class="menu-link {{ (request()->is('admin/pages')) ? 'active' : '' }}" href="{{ route('page.index') }}"><i class="fas fa-file-alt"></i> Pages</a>
                 </li>
 

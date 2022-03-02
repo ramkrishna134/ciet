@@ -43,6 +43,8 @@ Route::group(['prefix' => 'laraberg', 'middleware' => ['web', 'auth']], function
   });
 
 
+// Admin Routes ====================================
+
 Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () {
 
     Route::get('/media','App\Http\Controllers\PageController@media')->name('media');
@@ -72,6 +74,14 @@ Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () 
     Route::get('/page/edit/{page}','App\Http\Controllers\PageController@edit')->name('page.edit');
     Route::put('/page/edit/{page}','App\Http\Controllers\PageController@update')->name('page.update');
 
+
+    Route::get('/departments','App\Http\Controllers\DepartmentController@index')->name('department.index');
+    Route::get('/department/create','App\Http\Controllers\DepartmentController@create')->name('department.create');
+    Route::post('/department/create','App\Http\Controllers\DepartmentController@store')->name('department.store');
+
 });
+
+
+// Web Routes ==============================
 
 Route::get('/{slug}/{local}','App\Http\Controllers\PageController@show')->name('page.show');
