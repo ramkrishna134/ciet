@@ -6,10 +6,10 @@ Permissions to Roles
 
 @section('content')
 
-<section class="hero-section">
+{{-- <section class="hero-section">
     <h3>Permissions to Roles</h3>
 </section>
-<hr>
+<hr> --}}
 
 @if (session('status'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -87,7 +87,7 @@ Permissions to Roles
                     </div>
 
                     <div class="mb-3">
-                        <label for="role_id" class="form-label">Display Name</label>
+                        <label for="role_id" class="form-label">Role</label>
                         <select class="form-control" name="role_id" id="role_id">
                             <option value="">-- Select Role --</option>
                             @foreach ($roles as $role)

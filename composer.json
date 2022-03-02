@@ -12,7 +12,9 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
-        "santigarcor/laratrust": "^7.0"
+        "santigarcor/laratrust": "^7.0",
+        "unisharp/laravel-filemanager": "^2.4",
+        "van-ons/laraberg": "^1.1"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

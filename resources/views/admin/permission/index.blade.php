@@ -6,10 +6,10 @@ Permissions
 
 @section('content')
 
-<section class="hero-section">
+{{-- <section class="hero-section">
     <h3>Permissions</h3>
 </section>
-<hr>
+<hr> --}}
 
 @if (session('status'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
