@@ -24,6 +24,7 @@ class CreateInfrastructuresTable extends Migration
         });
     }
 
+    
     /**
      * Reverse the migrations.
      *

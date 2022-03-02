@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CheckController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InfrastructureController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,6 +54,8 @@ Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () 
 
     Route::get('/dashboard/permission-role','App\Http\Controllers\PermissionController@showRole')->name('permission.showRole');
     Route::post('/dashboard/permission-role','App\Http\Controllers\PermissionController@attachRole')->name('permission.attachRole');
+
+    Route::get('/dashboard/infrastructure/create', 'App\Http\Controllers\InfrastructureController@edit')->name('infrastructure.create');
     
 
 });

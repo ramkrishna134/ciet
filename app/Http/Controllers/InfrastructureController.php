@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Infrastructure;
-use App\Http\Requests\StoreInfrastructureRequest;
-use App\Http\Requests\UpdateInfrastructureRequest;
+use Illuminate\Http\Request;
 
 class InfrastructureController extends Controller
 {
@@ -16,7 +15,11 @@ class InfrastructureController extends Controller
     public function index()
     {
         //
+
     }
+
+    
+
 
     /**
      * Show the form for creating a new resource.
@@ -34,7 +37,7 @@ class InfrastructureController extends Controller
      * @param  \App\Http\Requests\StoreInfrastructureRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreInfrastructureRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -59,6 +62,7 @@ class InfrastructureController extends Controller
     public function edit(Infrastructure $infrastructure)
     {
         //
+        return view('admin.infrastructure.edit');
     }
 
     /**
@@ -68,7 +72,7 @@ class InfrastructureController extends Controller
      * @param  \App\Models\Infrastructure  $infrastructure
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateInfrastructureRequest $request, Infrastructure $infrastructure)
+    public function update(Request $request, Infrastructure $infrastructure)
     {
         //
     }
