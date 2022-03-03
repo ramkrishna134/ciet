@@ -78,6 +78,10 @@ Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () 
     Route::get('/departments','App\Http\Controllers\DepartmentController@index')->name('department.index');
     Route::get('/department/create','App\Http\Controllers\DepartmentController@create')->name('department.create');
     Route::post('/department/create','App\Http\Controllers\DepartmentController@store')->name('department.store');
+    Route::get('/department/{department}','App\Http\Controllers\DepartmentController@edit')->name('department.edit');
+    Route::put('/department/{department}','App\Http\Controllers\DepartmentController@update')->name('department.update');
+
+    Route::get('/meta/{meta}','App\Http\Controllers\MetaController@destroy')->name('meta.delete');
 
 });
 

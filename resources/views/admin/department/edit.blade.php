@@ -30,6 +30,20 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 <script src="{{asset('vendor/laravel-filemanager/js/stand-alone-button.js')}}"></script>
 
+@if (session('status'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <i class="fas fa-check mr-1"></i> {{ session('status') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
+
+@if (session('error'))
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <i class="fas fa-exclamation-triangle"></i> {{ session('error') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
+
 
 <form action="{{ $department ? route('department.update', $department) : route('department.store') }}" method="POST">
 
@@ -42,7 +56,7 @@
                 <div class="card-body shadow" id="dynamicAddRemove">
                     <div class="mb-3">
                         <label for="title" class="form-label">Department Title</label>
-                        <input type="text" class="form-control" name="title" id="title" placeholder="Department Title">
+                        <input type="text" class="form-control" name="title" id="title" placeholder="Department Title" value="{{ $department->title ?? old('title') }}">
                         @error('title')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -52,7 +66,12 @@
 
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon3"><strong>slug: </strong> {{ env('APP_URL') }}/</span>
-                        <input type="text" class="form-control" id="slug" name="slug" aria-describedby="basic-addon3">
+                        <input type="text" class="form-control" id="slug" name="slug" value="{{ $department->slug ?? old('slug') }}">
+                        @if (!empty($department))
+                            <div class="input-group-append">
+                                <a href="{{ url($department->slug,$department->lang) }}" target="_blank" class="btn btn-primary"><i class="fas fa-eye"></i></a>
+                            </div>
+                        @endif
                     </div>
                     @error('slug')
                         <span class="invalid-feedback" role="alert">
@@ -62,7 +81,7 @@
 
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
-                        <textarea name="description" id="description" class="form-control summernote"></textarea>
+                        <textarea name="description" id="description" class="form-control summernote">{!! $department->description ?? old('description') !!}</textarea>
                         @error('description')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -70,12 +89,46 @@
                         @enderror
                     </div>
 
-                    <button type="button" name="add" id="dynamic-ar" class="btn btn-primary mb-3"><i class="fas fa-plus"></i> Add Field</button>
+                    {{-- If meta already added then update meta --}}
+
+                    @if(!empty($metas))
+
+                        <h4><strong class="text-primary">Sections</strong></h4>
+                        <div class="added-fields" data-meta="{{ $metas->count() }}">
+                        
+
+                            @foreach($metas as $i=>$meta)
+    
+                            <div class="mb-3">
+
+                                <div class="input-group">
+                                    <input type="text" class="form-control mb-2" readonly  name="meta[{{ $meta->key }}]" value="{{ $meta->key }}">
+                                    <div class="input-group-append">
+                                        <a href="{{ route('meta.delete', $meta) }}" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
+                                    </div>
+                                </div>
+
+                                <textarea name="meta[{{ $meta->key }}]" class="form-control summernote">{!! $meta->value !!}</textarea>
+                            </div>
+                            <hr>
+    
+                            @endforeach
+                        </div>
+                    @endif
+                    
+                    
+
+                    <button type="button" name="add" id="dynamic-ar" class="btn btn-primary mb-3"><i class="fas fa-plus"></i> Add Section</button>
                 </div>
             </div>
         </div>
+
+
+
+        {{-- Side bar --}}
+
         <div class="col-sm-3">
-            <div class="card mb-2">
+            <div class="card mb-2 sticky-top">
                 <div class="card-body shadow">
                     <div class="mb-3">
                         <label for="status" class="form-label">Status</label>
@@ -115,7 +168,7 @@
                         @enderror
                     </div>
 
-                    <button type="submit" class="btn btn-success">Create</button>
+                    <button type="submit" class="btn btn-success">{{ $department ? "Update" : "Create" }}</button>
                 </div>
             </div>
 
@@ -130,28 +183,28 @@
                         </span>
                         <input id="thumbnail" class="form-control" type="text" name="featured_image" value="{{ $department->featured_image ?? old('featured_image') }}">
                     </div>
-                    {{-- <div id="holder" style="margin-top:5px;width:100%;">
+                    <div id="holder" style="margin-top:5px;width:100%;">
                         @if(!empty($department->featured_image))
-                        <img src="{{ $department->featured_image }}" alt="">
+                        <a href="{{ $department->featured_image }}" alt="" target="_blank"><img src="{{ $department->featured_image }}" alt=""></a>
                         @endif
-                    </div> --}}
+                    </div>
 
                     <hr>
 
                     <label for="" class="form-label">Icon</label>
                     <div class="input-group">
                         <span class="input-group-btn">
-                        <a id="icon" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+                        <a id="icon" data-input="thumbnail2" data-preview="holder2" class="btn btn-primary">
                             <i class="fas fa-file-image"></i> Choose
                         </a>
                         </span>
-                        <input id="thumbnail" class="form-control" type="text" name="icon" value="{{ $department->icon ?? old('icon') }}">
+                        <input id="thumbnail2" class="form-control" type="text" name="icon" value="{{ $department->icon ?? old('icon') }}">
                     </div>
-                    {{-- <div id="holder2" style="margin-top:5px;width:100%;">
+                    <div id="holder2" style="margin-top:5px;width:100%;">
                         @if(!empty($department->icon))
-                        <img src="{{ $department->icon }}" alt="">
+                        <a href="{{ $department->icon }}" alt="" target="_blank"><img class="img-fluid" src="{{ $department->icon }}" alt=""></a>
                         @endif
-                    </div> --}}
+                    </div>
 
                 </div>
             </div>
@@ -191,6 +244,7 @@ $(document).ready(function(){
     };
 
 
+
     $('.summernote').summernote({
       height: 300,
       toolbar: [
@@ -210,6 +264,7 @@ $(document).ready(function(){
 
     $('#lfm').filemanager('image');
 
+    // $('#icon').filemanager('file');
     $('#icon').filemanager('image');
 
     var i = 0;
@@ -237,11 +292,24 @@ $(document).ready(function(){
 
         $('#meta'+i+'key').keyup(function(){
             var value = $(this).val();
-            $(this).attr('name', 'meta_key['+value+']');
-            $(this).parents().children('.summernote').attr('name', 'meta_value['+value+']');
+            $(this).attr('name', 'meta['+value+']');
+            $(this).parents().children('.summernote').attr('name', 'meta['+value+']');
         })
 
     });
+
+    var meta = $('.added-fields').attr('data-meta');
+
+    for(i=0; i<=meta; i++){
+        $('#meta'+i+'field').keyup(function(){
+            var value = $(this).val();
+            $(this).attr('name', 'meta['+value+']');
+            $(this).parents().children('.summernote').attr('name', 'meta['+value+']');
+            $(this).parents().children('.meta_id').attr('name', 'meta['+value+']');
+    })
+    }
+
+    
 
     $(document).on('click', '.remove-input-field', function () {
         $(this).parents('.custom-field').remove();

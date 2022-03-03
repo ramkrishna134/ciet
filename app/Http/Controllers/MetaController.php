@@ -82,5 +82,10 @@ class MetaController extends Controller
     public function destroy(Meta $meta)
     {
         //
+
+        // dd($meta);
+        $meta->delete();
+        return back()->with('status',"Meta field Deleted successfully");
+
     }
 }

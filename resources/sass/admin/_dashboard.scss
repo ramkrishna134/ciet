@@ -159,4 +159,14 @@
             top: 72px;
         }
     }
+
+    .media{
+        .nav-link{
+            &.active{
+                background-color: #333844;
+                color: $white;
+                border-color: #333844;
+            }
+        }
+    }
 }

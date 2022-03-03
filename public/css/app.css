@@ -11413,6 +11413,11 @@ textarea.form-control-lg {
 .main .sticky-top.inner-sidebar {
   top: 72px;
 }
+.main .media .nav-link.active {
+  background-color: #333844;
+  color: #fff;
+  border-color: #333844;
+}
 
 a {
   text-decoration: none;

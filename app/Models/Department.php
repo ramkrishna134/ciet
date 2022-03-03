@@ -13,11 +13,16 @@ class Department extends Model
     protected $fillable = [
         'title',
         'slug',
-        'desription',
+        'description',
         'featured_image',
         'icon',
         'user_id',
         'status',
         'lang'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

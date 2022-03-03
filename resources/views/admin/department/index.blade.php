@@ -57,8 +57,8 @@ Departments
                                 <td>
                                     <strong><a href="{{ route('department.edit', $department) }}">{{ $department->title }}</a></strong>
                                     <div class="actions">
-                                        <a href="{{ route('page.edit', $department) }}" class="btn btn-info"><i class="fas fa-edit"></i> Edit</a>
-                                        {{-- <a href="{{ url($page->slug, $page->lang) }}" class="btn btn-primary" target="_blank"><i class="fas fa-eye"></i> View</a> --}}
+                                        <a href="{{ route('department.edit', $department) }}" class="btn btn-info"><i class="fas fa-edit"></i> Edit</a>
+                                        <a href="{{ url($department->slug, $department->lang) }}" class="btn btn-primary" target="_blank"><i class="fas fa-eye"></i> View</a>
                                         <a href="" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
                                     </div>
                                 </td>

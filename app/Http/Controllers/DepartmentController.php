@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Department;
+use App\Models\Meta;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -42,7 +43,6 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $user = auth()->user();
         $rules = [
             'title' => 'required',
@@ -52,7 +52,7 @@ class DepartmentController extends Controller
             'icon' => 'nullable',
             'featured_image' => 'nullable',
             'status' => 'required',
-            'meta-.*' => 'required'
+            'meta.*' => 'required'
         ];
 
         $validator = Validator::make($request->all(),$rules);
@@ -63,23 +63,34 @@ class DepartmentController extends Controller
         }
         else{
             $data = $request->input();
-            // dd($data);
+
             try{
                 $department = new Department($data);
 
-                $metas = [
-                    $data['meta_key'] = $data['meta_value'],
-                ];
-
-                dd($metas);
+                // If slug is empty then create slug from title
 
                 if( empty( $data['slug'] ) ){
                     $department->slug = Str::slug( $data['title'] );
+                }else{
+                    $department->slug = $data['slug'];
                 }
-                $department->user_id = $user->id;
-                
+                $department->user_id = $user->id;              
                 $department->save();
-                return redirect(route('page.index'))->with('status',"Page created successfully");
+
+
+                // Save custom fields in meta table
+
+                $metas = $data['meta'];
+                foreach($metas as $key => $value){
+                   $new_meta = new Meta;
+                   $new_meta->key = $key;
+                   $new_meta->value = $value;
+                   $new_meta->model_type = 'App\Models\Department';
+                   $new_meta->model_id = $department->id;
+                   $new_meta->lang = $department->lang;
+                   $new_meta->save();
+                }
+                return redirect(route('department.index'))->with('status',"Department created successfully");
 
             }
             catch(Exception $e){  
@@ -108,6 +119,8 @@ class DepartmentController extends Controller
     public function edit(Department $department)
     {
         //
+        $metas = Meta::query()->where('model_id', $department->id)->get();
+        return view('admin.department.edit', compact('department','metas'));
     }
 
     /**
@@ -120,6 +133,75 @@ class DepartmentController extends Controller
     public function update(Request $request, Department $department)
     {
         //
+        $user = auth()->user();
+        $rules = [
+            'title' => 'required',
+            'slug' => 'nullable',
+            'description' => 'required',
+            'lang' => 'required',
+            'icon' => 'nullable',
+            'featured_image' => 'nullable',
+            'status' => 'required',
+            'meta.*' => 'required'
+        ];
+
+        $validator = Validator::make($request->all(),$rules);
+        if ($validator->fails()) {
+            return back()
+                ->withInput()
+                ->withErrors($validator)->with('error',"Please check the field below *");
+        }
+        else{
+            $data = $request->input();
+
+            try{
+                $department->fill($data);
+
+                if( empty( $data['slug'] ) ){
+                    $department->slug = Str::slug( $data['title'] );
+                }else{
+                    $department->slug = $data['slug'];
+                }
+                $department->user_id = $user->id;              
+                $department->save();
+
+
+                // Save custom fields in meta table
+
+                $metas = $data['meta'];
+                $fields = \DB::table('metas')->get();
+
+                // dd($metas);
+                // dd($metas->count());
+                // dd($metas[1]);
+
+                // for($i=0; $i<=count($metas); $i++){
+                //     dd($metas[$i]);
+                // }
+                
+                foreach($metas as $key => $value){
+                    
+                    if(\DB::table('metas')->where('model_id', $department->id)->where('key', $key)->first()){
+                        \DB::table('metas')->where('model_id', $department->id)->where('key', $key)->update(['value' => $value]);
+                    }else{
+                        $new_meta = new Meta;
+                        $new_meta->key = $key;
+                        $new_meta->value = $value;
+                        $new_meta->model_type = 'App\Models\Department';
+                        $new_meta->model_id = $department->id;
+                        $new_meta->lang = $department->lang;
+                        $new_meta->save();
+                    }
+
+                    
+                }
+                return back()->with('status',"Department updated successfully");
+
+            }
+            catch(Exception $e){  
+                return back()->with('failed',"Operation failed");
+            }
+        }
     }
 
     /**
