@@ -3,6 +3,7 @@
 use App\Http\Controllers\CheckController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InfrastructureController;
+use App\Http\Controllers\AnnouncementsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -83,6 +84,13 @@ Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () 
     Route::post('/page/create','App\Http\Controllers\PageController@store')->name('page.store');
     Route::get('/page/edit/{page}','App\Http\Controllers\PageController@edit')->name('page.edit');
     Route::put('/page/edit/{page}','App\Http\Controllers\PageController@update')->name('page.update');
+
+
+    Route::get('/announcement', 'App\Http\Controllers\AnnouncementsController@index')->name('announcements.index');
+    Route::get('/announcement/create', 'App\Http\Controllers\AnnouncementsController@create')->name('announcements.create');
+    Route::post('/announcement/create', 'App\Http\Controllers\AnnouncementsController@store')->name('announcement.store');
+    Route::get('/announcement/{announcement}','App\Http\Controllers\AnnouncementsController@edit')->name('announcements.edit');
+    Route::put('/announcement/{announcement}','App\Http\Controllers\AnnouncementsController@update')->name('announcements.update');
 
 });
 

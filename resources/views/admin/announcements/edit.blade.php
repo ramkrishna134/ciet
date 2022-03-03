@@ -1,12 +1,12 @@
 @php
-    $infrastructure = $infrastructure ?? null;
+    $announcement = $announcement ?? null;
 @endphp
 
 
 @extends('layouts.sidebar')
 
 @section('title')
-{{ $infrastructure ? "Edit Infrastructure" : "Add Infrastructure" }}
+{{ $announcement ? "Edit Announcement" : "Add Announcement" }}
 @endsection
 
 @section('content')
@@ -23,7 +23,7 @@
     <div class="row">
         <div class="col-sm-8">
             {{-- <h3>{{ $infrastructure ? "Edit Infrastructure" : "Add Infrastructure" }}</h3> --}}
-            <a href="{{ route('infrastructure.index') }}" class="btn btn-primary"><i class="fas fa-user-friends"></i> View Infrastructure</a>
+            <a href="{{ route('announcements.index') }}" class="btn btn-primary"><i class="fas fa-user-friends"></i> View Announcements</a>
         </div>
         <div class="col-sm-4 text-end">
             {{-- <a href="{{ route('infrastructure.index') }}" class="btn btn-primary"><i class="fas fa-user-friends"></i> View Infrastructure</a> --}}
@@ -51,14 +51,14 @@
     <div class="col-sm-8">
         <div class="card border border-white rounded shadow">
             <div class="card-body">
-                <form action="{{ $infrastructure ? route('infrastructure.update', $infrastructure) : route('infrastructure.store') }}" method="post">
+                <form action="{{ $announcement ? route('announcements.update', $announcement) : route('announcement.store') }}" method="post">
                     @csrf
-                    @method( $infrastructure ? 'put' : 'post')
+                    @method( $announcement ? 'put' : 'post')
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Title</label>
-                                <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title" placeholder="Title" value="{{ $infrastructure->title ?? old('title') }}">
+                                <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title" placeholder="Title" value="{{ $announcement->title ?? old('title') }}">
                                 @error('title')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -69,21 +69,9 @@
 
                         <div class="col-sm-6">
                             <div class="mb-3">
-                                <label for="email" class="form-label">Featured Icon</label>
-                                <div class="input-group">
-                                    <span class="input-group-btn">
-                                    <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
-                                        <i class="fas fa-file-image"></i> Choose
-                                    </a>
-                                    </span>
-                                    <input id="thumbnail" class="form-control  @error('icon') is-invalid @enderror" type="text" name="icon" value="{{ $infrastructure->icon ?? old('icon') }}">
-                                    <div id="holder" style="margin-top:5px;width:100%;">
-                                        {{-- @if(!empty($page->featured_icon))
-                                        <img src="{{ $page->featured_icon }}" alt="">
-                                        @endif --}}
-                                    </div>
-                                </div>
-                                @error('icon')
+                                <label for="category" class="form-label">Category</label>
+                                <input type="text" class="form-control @error('category') is-invalid @enderror" name="category" id="category" placeholder="category" value="{{ $announcement->category ?? old('category') }}">
+                                @error('category')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -93,8 +81,32 @@
 
                         <div class="col-sm-6">
                             <div class="mb-3">
-                                <label for="password" class="form-label">Mapping URL</label>
-                                <input type="url" class="form-control @error('url') is-invalid @enderror" name="url" id="url" placeholder="Mapping URL" value="{{ $infrastructure->url ?? old('url') }}">
+                                <label for="sub_category" class="form-label">Sub Category</label>
+                                <input type="text" class="form-control @error('sub_category') is-invalid @enderror" name="sub_category" id="sub_category" placeholder="sub_category" value="{{ $announcement->sub_category ?? old('sub_category') }}">
+                                @error('sub_category')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label for="file" class="form-label">File</label>
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                    <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+                                        <i class="fas fa-file-image"></i> Choose
+                                    </a>
+                                    </span>
+                                    <input id="thumbnail" class="form-control  @error('url') is-invalid @enderror" type="text" name="url" value="{{ $announcement->url ?? old('url') }}">
+                                    <div id="holder" style="margin-top:5px;width:100%;">
+                                        {{-- @if(!empty($page->featured_icon))
+                                        <img src="{{ $page->featured_icon }}" alt="">
+                                        @endif --}}
+                                    </div>
+                                </div>
                                 @error('url')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -103,10 +115,22 @@
                             </div>
                         </div>
 
+                        {{-- <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label for="url" class="form-label">Mapping URL</label>
+                                <input type="url" class="form-control @error('url') is-invalid @enderror" name="url" id="url" placeholder="Mapping URL" value="{{ $announcement->url ?? old('url') }}">
+                                @error('url')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div> --}}
+
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label for="lang" class="form-label">Language</label>
-                                <select class="form-control @error('lang') is-invalid @enderror" name="lang" id="lang" value="{{ $infrastructure->lang ?? old('lang') }}">
+                                <select class="form-control @error('lang') is-invalid @enderror" name="lang" id="lang" value="{{ $announcement->lang ?? old('lang') }}">
                                     <option value="">-- Select Language --</option>
                                     <option value="en">English</option>
                                     <option value="hi">Hindi</option>
@@ -119,14 +143,27 @@
                                 @enderror
                             </div>
                         </div>
+
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label for="expiry_date" class="form-label">Expiry Date</label>
+                                <input type="date" class="form-control @error('expiry_date') is-invalid @enderror" name="expiry_date" id="expiry_date" placeholder="Expiry Date" value="{{ $announcement->expiry_date ?? old('expiry_date') }}">
+                                @error('expiry_date')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label for="status" class="form-label">Status</label>
                                 <select name="status" id="status" class="form-control">
 
-                                    @if(!empty($infrastructure))
-                                        <option value="0" @if($infrastructure->status == 0) selected @endif>Darft</option>
-                                        <option value="1" @if($infrastructure->status == 1) selected @endif>Published</option>           
+                                    @if(!empty($announcement))
+                                        <option value="0" @if($announcement->status == 0) selected @endif>Darft</option>
+                                        <option value="1" @if($announcement->status == 1) selected @endif>Published</option>           
                                     @else
                                     <option value="0">Darft</option>
                                     <option value="1">Published</option>
@@ -136,7 +173,7 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">{{ $infrastructure ? "Update" : "Create" }}</button>
+                    <button type="submit" class="btn btn-primary">{{ $announcement ? "Update" : "Create" }}</button>
                 </form>
             </div>
         </div>
@@ -147,7 +184,7 @@
 
 <script>
     $(document).ready(function(){
-        $('#lfm').filemanager('image');
+        $('#lfm').filemanager('file');
         
     })
 
