@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 02, 2022 at 05:29 PM
+-- Generation Time: Mar 04, 2022 at 05:25 PM
 -- Server version: 8.0.28-0ubuntu0.20.04.3
 -- PHP Version: 7.4.3
 
@@ -32,11 +32,45 @@ CREATE TABLE `departments` (
   `id` bigint UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `featured_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `featured_image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `lang` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_id` int NOT NULL,
+  `status` int NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `departments`
+--
+
+INSERT INTO `departments` (`id`, `title`, `slug`, `icon`, `featured_image`, `description`, `lang`, `user_id`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Dict', 'dict', NULL, 'http://localhost:8000/storage/photos/1/Nishtha 3.0 Website banner (2)-03.jpg', '<p>Description<br></p>', 'en', 1, 0, '2022-03-02 23:07:26', '2022-03-02 23:07:26'),
+(2, 'DICTs', 'department-slug', 'http://localhost:8000/storage/photos/1/Cover_page-0002.jpg', 'http://localhost:8000/storage/photos/1/Nishtha 3.0 Website banner (2)-03.jpg', '<p>Descriptionsffdg</p>', 'en', 1, 1, '2022-03-02 23:15:37', '2022-03-03 22:17:02');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `events`
+--
+
+CREATE TABLE `events` (
+  `id` bigint UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `featured_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descrtiption` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `star_date` date NOT NULL,
+  `end_date` date NOT NULL,
+  `user_id` int NOT NULL,
+  `department_id` int NOT NULL,
+  `lang` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `key_word` json NOT NULL,
   `status` int NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -122,6 +156,16 @@ CREATE TABLE `metas` (
   `lang` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `metas`
+--
+
+INSERT INTO `metas` (`id`, `key`, `value`, `model_type`, `model_id`, `lang`) VALUES
+(10, 'Video', 'Description', 'App\\Models\\Department', 2, 'en'),
+(11, 'Audio', '<span style=\"font-size: 14.4px;\">Description</span>', 'App\\Models\\Department', 2, 'en'),
+(13, 'Media', '<span style=\"font-size: 14.4px;\">Media Description</span>', 'App\\Models\\Department', 2, 'en'),
+(14, 'Image', '<span style=\"font-size: 14.4px;\">Image Description</span>', 'App\\Models\\Department', 2, 'en');
+
 -- --------------------------------------------------------
 
 --
@@ -150,7 +194,74 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (11, '2022_02_25_080532_add_description_to_pages', 4),
 (12, '2022_02_25_192341_add_keywords_to_page', 5),
 (14, '2022_03_02_045043_create_departments_table', 6),
-(15, '2022_03_02_082803_create_metas_table', 7);
+(15, '2022_03_02_082803_create_metas_table', 7),
+(16, '2019_11_18_105032_create_pages_table', 8),
+(17, '2019_11_18_105615_create_uploads_table', 8),
+(18, '2020_04_18_064412_create_page_translations_table', 8),
+(19, '2020_04_18_065546_create_settings_table', 8),
+(22, '2022_03_04_034856_create_events_table', 9);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pagebuilder__pages`
+--
+
+CREATE TABLE `pagebuilder__pages` (
+  `id` int UNSIGNED NOT NULL,
+  `name` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `layout` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `data` longtext COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pagebuilder__page_translations`
+--
+
+CREATE TABLE `pagebuilder__page_translations` (
+  `id` int UNSIGNED NOT NULL,
+  `page_id` int UNSIGNED NOT NULL,
+  `locale` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `route` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pagebuilder__settings`
+--
+
+CREATE TABLE `pagebuilder__settings` (
+  `id` int UNSIGNED NOT NULL,
+  `setting` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `is_array` tinyint(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pagebuilder__uploads`
+--
+
+CREATE TABLE `pagebuilder__uploads` (
+  `id` int UNSIGNED NOT NULL,
+  `public_id` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `original_file` varchar(512) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mime_type` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `server_file` varchar(512) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -179,7 +290,8 @@ CREATE TABLE `pages` (
 
 INSERT INTO `pages` (`id`, `title`, `slug`, `description`, `content`, `featured_icon`, `user_id`, `status`, `lang`, `key_word`, `created_at`, `updated_at`) VALUES
 (1, 'Demo Page', 'demo-page', 'Bhasha Sangam by Central Institute of Educational Technology', '<!-- wp:image {\"align\":\"center\",\"width\":235,\"height\":197,\"sizeSlug\":\"large\",\"className\":\"is-style-default\"} -->\r\n<div class=\"wp-block-image is-style-default\"><figure class=\"aligncenter size-large is-resized\"><img src=\"http://localhost:8000/storage/photos/1/Bhasha Sangam-Social Media Banner (1).jpg\" alt=\"\" width=\"235\" height=\"197\"/></figure></div>\r\n<!-- /wp:image -->\r\n\r\n<!-- wp:heading {\"align\":\"center\"} -->\r\n<h2 class=\"has-text-align-center\"><strong>Demo Page</strong></h2>\r\n<!-- /wp:heading -->\r\n\r\n<!-- wp:paragraph {\"align\":\"center\"} -->\r\n<p class=\"has-text-align-center\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lobortis, velit eget hendrerit ullamcorper, tortor lacus hendrerit lectus, vel pellentesque ipsum metus a ante. Morbi sapien tellus, facilisis in luctus sed, ultricies non nisi. In a dolor vulputate tortor tempus rutrum. Sed ut tempus massa. Maecenas at tristique libero. Ut venenatis arcu in feugiat elementum. Donec bibendum eleifend turpis quis auctor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tristique nulla turpis, sit amet accumsan elit semper ac.</p>\r\n<!-- /wp:paragraph -->\r\n\r\n<!-- wp:columns {\"align\":\"full\",\"backgroundColor\":\"light-green-cyan\"} -->\r\n<div class=\"wp-block-columns alignfull has-light-green-cyan-background-color has-background\"><!-- wp:column -->\r\n<div class=\"wp-block-column\"><!-- wp:paragraph -->\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lobortis, velit eget hendrerit ullamcorper, tortor lacus hendrerit lectus, vel pellentesque ipsum metus a ante. Morbi sapien tellus, facilisis in luctus sed, ultricies non nisi. In a dolor vulputate tortor tempus rutrum. Sed ut tempus massa. Maecenas at tristique libero. Ut venenatis arcu in feugiat elementum. Donec bibendum eleifend turpis quis auctor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tristique nulla turpis, sit amet accumsan elit semper ac.</p>\r\n<!-- /wp:paragraph --></div>\r\n<!-- /wp:column -->\r\n\r\n<!-- wp:column -->\r\n<div class=\"wp-block-column\"><!-- wp:paragraph -->\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lobortis, velit eget hendrerit ullamcorper, tortor lacus hendrerit lectus, vel pellentesque ipsum metus a ante. Morbi sapien tellus, facilisis in luctus sed, ultricies non nisi. In a dolor vulputate tortor tempus rutrum. Sed ut tempus massa. Maecenas at tristique libero. Ut venenatis arcu in feugiat elementum. Donec bibendum eleifend turpis quis auctor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tristique nulla turpis, sit amet accumsan elit semper ac.</p>\r\n<!-- /wp:paragraph --></div>\r\n<!-- /wp:column --></div>\r\n<!-- /wp:columns -->\r\n\r\n<!-- wp:image {\"align\":\"full\",\"sizeSlug\":\"large\"} -->\r\n<figure class=\"wp-block-image alignfull size-large\"><img src=\"http://localhost:8000/storage/photos/1/Nishtha 3.0 Website banner (2)-03.jpg\" alt=\"\"/></figure>\r\n<!-- /wp:image -->\r\n\r\n<!-- wp:columns {\"align\":\"full\"} -->\r\n<div class=\"wp-block-columns alignfull\"><!-- wp:column -->\r\n<div class=\"wp-block-column\"><!-- wp:table -->\r\n<figure class=\"wp-block-table\"><table><tbody><tr><td>Name </td><td>Number</td></tr><tr><td></td><td></td></tr></tbody></table></figure>\r\n<!-- /wp:table --></div>\r\n<!-- /wp:column -->\r\n\r\n<!-- wp:column -->\r\n<div class=\"wp-block-column\"><!-- wp:table -->\r\n<figure class=\"wp-block-table\"><table><tbody><tr><td>Name</td><td>Number</td></tr><tr><td></td><td></td></tr></tbody></table></figure>\r\n<!-- /wp:table --></div>\r\n<!-- /wp:column --></div>\r\n<!-- /wp:columns -->\r\n\r\n<!-- wp:paragraph -->\r\n<p></p>\r\n<!-- /wp:paragraph -->', 'http://localhost:8000/storage/photos/1/Sanketik-Sampreshan-Competition-Banner.png', '1.00', '1.00', 'en', '\"Bhasha sangam,CIET,NCERT\"', '2022-02-25 05:40:11', '2022-02-28 04:48:11'),
-(3, 'Page Title', 'page-title', 'Hello', '<!-- wp:columns {\"align\":\"full\"} -->\r\n<div class=\"wp-block-columns alignfull\"><!-- wp:column -->\r\n<div class=\"wp-block-column\"><!-- wp:image {\"sizeSlug\":\"large\"} -->\r\n<figure class=\"wp-block-image size-large\"><img src=\"http://localhost:8000/storage/photos/1/Bhasha Sangam-Social Media Banner (1).jpg\" alt=\"\"/></figure>\r\n<!-- /wp:image --></div>\r\n<!-- /wp:column -->\r\n\r\n<!-- wp:column -->\r\n<div class=\"wp-block-column\"><!-- wp:heading {\"style\":{\"color\":{\"text\":\"#23b1dc\"}}} -->\r\n<h2 class=\"has-text-color\" style=\"color:#23b1dc\">What is Lorem Ipsum?</h2>\r\n<!-- /wp:heading -->\r\n\r\n<!-- wp:paragraph -->\r\n<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n<!-- /wp:paragraph -->\r\n\r\n<!-- wp:heading -->\r\n<h2>Why do we use it?</h2>\r\n<!-- /wp:heading -->\r\n\r\n<!-- wp:paragraph -->\r\n<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>\r\n<!-- /wp:paragraph --></div>\r\n<!-- /wp:column --></div>\r\n<!-- /wp:columns -->', 'http://localhost:8000/storage/photos/1/Nishtha 3.0 Website banner (2)-03.jpg', '1.00', '1.00', 'hi', '\"NCERT,CIET,NISHTHA,DIKSHA\"', '2022-02-28 04:54:14', '2022-02-28 04:55:00');
+(3, 'Page Title', 'page-title', 'Hello', '<!-- wp:columns {\"align\":\"full\"} -->\r\n<div class=\"wp-block-columns alignfull\"><!-- wp:column -->\r\n<div class=\"wp-block-column\"><!-- wp:image {\"sizeSlug\":\"large\"} -->\r\n<figure class=\"wp-block-image size-large\"><img src=\"http://localhost:8000/storage/photos/1/Bhasha Sangam-Social Media Banner (1).jpg\" alt=\"\"/></figure>\r\n<!-- /wp:image --></div>\r\n<!-- /wp:column -->\r\n\r\n<!-- wp:column -->\r\n<div class=\"wp-block-column\"><!-- wp:heading {\"style\":{\"color\":{\"text\":\"#23b1dc\"}}} -->\r\n<h2 class=\"has-text-color\" style=\"color:#23b1dc\">What is Lorem Ipsum?</h2>\r\n<!-- /wp:heading -->\r\n\r\n<!-- wp:paragraph -->\r\n<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n<!-- /wp:paragraph -->\r\n\r\n<!-- wp:heading -->\r\n<h2>Why do we use it?</h2>\r\n<!-- /wp:heading -->\r\n\r\n<!-- wp:paragraph -->\r\n<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>\r\n<!-- /wp:paragraph --></div>\r\n<!-- /wp:column --></div>\r\n<!-- /wp:columns -->', 'http://localhost:8000/storage/photos/1/Nishtha 3.0 Website banner (2)-03.jpg', '1.00', '1.00', 'en', '\"NCERT,CIET,NISHTHA,DIKSHA\"', '2022-02-28 04:54:14', '2022-03-03 23:48:06'),
+(4, 'Orientation of State Resource Groups (SRGs)', 'srg', 'Helloy', '<!-- wp:columns {\"align\":\"full\"} -->\r\n<div class=\"wp-block-columns alignfull\"><!-- wp:column -->\r\n<div class=\"wp-block-column\"><!-- wp:image {\"align\":\"full\",\"sizeSlug\":\"large\"} -->\r\n<figure class=\"wp-block-image alignfull size-large\"><img src=\"http://localhost:8000/storage/photos/1/Bhasha Sangam-Social Media Banner (1).jpg\" alt=\"\"/></figure>\r\n<!-- /wp:image --></div>\r\n<!-- /wp:column -->\r\n\r\n<!-- wp:column -->\r\n<div class=\"wp-block-column\"><!-- wp:image {\"sizeSlug\":\"large\"} -->\r\n<figure class=\"wp-block-image size-large\"><img src=\"http://localhost:8000/storage/photos/1/Cover_page-0002.jpg\" alt=\"\"/></figure>\r\n<!-- /wp:image --></div>\r\n<!-- /wp:column --></div>\r\n<!-- /wp:columns -->\r\n\r\n<!-- wp:paragraph -->\r\n<p>Government of India has brought in several initiatives for dissemination of eContent such as DIKSHA (One Nation One Platform), PMeVIDYA (One Class One Channel), MOOCs on SWAYAM, ePathshala, etc and DIKSHA has been sought as a one stop solution for School Education. The Ministry of Education has launched NIPUN Bharat Mission for Foundational Literacy and Numeracy (FLN) and Adult Education as special verticals on the DIKSHA platform. Besides, several other verticals i.e. DIVYANG/ CWSN, CPD for educating educators, administrators, vocational education etc are also being created on DIKSHA portal. These verticals aim to nurture skills, special abilities and help increase the quality of life of an individual by enabling them to pursue their livelihood, be aware of their rights and responsibilities. The National Education Policy - 2020 (NEP- 2020), unveiled by the Ministry of Education emphasises for the development of quality eContent in varied forms in all regional languages for a diverse group of learners including DIVYANG and to empower students and teacher communities across India. eContent augments the learning experience by deploying various resources for visualization and explanation of abstract ideas. Keeping in view the diverse needs of learners, now use of eContent has become an essential component of the teaching and learning processes. eContent is available in large numbers through various sources, but few of them are found to have the desired quality in terms of content, pedagogy as well as technical aspects. Copyright violations are rampant thereby restricting the scope of customising the eContent according to the local needs. Also with a plethora of smart and mobile devices, teacher and student driven eContents are available in abundance in the market. NEP -2020 further emphasises on development of eContent by NCERT-CIET, CBSE, NIOS, and other bodies/ institutions, which will be uploaded on to the DIKSHA platform and also use the platform for teacher professional development. eContents have to be created for DIKSHA and its other verticals based on the quality parameters and learning outcomes. NEP-2020 also puts emphasis that each teacher and school principals will be expected to participate in at least 50 hours per annum Continuous Professional Development (CPD) activities. Therefore, CIET- NCERT is organising a series of virtual training programmes to familiarise the SRGs on development of eContent, process of developing quality eContent and curation of eContent and its dissemination through multiple modes -online/ offline/ on air/ web portals /apps etc and contribute in bridging the digital divide.</p>\r\n<!-- /wp:paragraph -->\r\n\r\n<!-- wp:table {\"hasFixedLayout\":true,\"backgroundColor\":\"subtle-pale-green\"} -->\r\n<figure class=\"wp-block-table\"><table class=\"has-subtle-pale-green-background-color has-fixed-layout has-background\"><thead><tr><th>Name</th><th>Email</th></tr></thead><tbody><tr><td>dfjhdfjds</td><td>gfhgfhf</td></tr><tr><td>gfhgfh</td><td>jhgjhgj</td></tr></tbody></table></figure>\r\n<!-- /wp:table -->\r\n\r\n<!-- wp:group -->\r\n<div class=\"wp-block-group\"><div class=\"wp-block-group__inner-container\"><!-- wp:group -->\r\n<div class=\"wp-block-group\"><div class=\"wp-block-group__inner-container\"><!-- wp:gallery {\"ids\":[null],\"className\":\"columns-1\"} -->\r\n<figure class=\"wp-block-gallery columns-1 is-cropped\"><ul class=\"blocks-gallery-grid\"><li class=\"blocks-gallery-item\"><figure><img src=\"http://localhost:8000/storage/photos/1/Nishtha 3.0 Website banner (2)-03.jpg\" data-id=\"\"/></figure></li>\r\n<li class=\"blocks-gallery-item\"><figure><img src=\"http://localhost:8000/storage/photos/1/Nishtha 3.0 Website banner (2)-03.jpg\" data-id=\"\"/></figure></li>\r\n</ul></figure>\r\n<!-- /wp:gallery --></div></div>\r\n<!-- /wp:group --></div></div>\r\n<!-- /wp:group -->', 'http://localhost:8000/storage/photos/1/Nishtha 3.0 Website banner (2)-03.jpg', '1.00', '1.00', 'en', '\"SRg,Diksha,CIET\"', '2022-03-03 02:57:16', '2022-03-03 03:03:41');
 
 -- --------------------------------------------------------
 
@@ -239,7 +351,16 @@ INSERT INTO `permissions` (`id`, `name`, `display_name`, `description`, `created
 (24, 'PageController@media', 'Media', 'Media Management', '2022-02-26 02:17:31', '2022-02-26 02:17:31'),
 (25, 'DepartmentController@index', 'Department List', 'List of all Departments', '2022-03-02 00:23:57', '2022-03-02 00:23:57'),
 (26, 'DepartmentController@create', 'Department Create Form', 'Create Form for New Department', '2022-03-02 00:29:51', '2022-03-02 00:29:51'),
-(27, 'DepartmentController@store', 'Department store', 'New Department Store', '2022-03-02 06:14:57', '2022-03-02 06:14:57');
+(27, 'DepartmentController@store', 'Department store', 'New Department Store', '2022-03-02 06:14:57', '2022-03-02 06:14:57'),
+(28, 'DepartmentController@edit', 'Department edit', 'Edit existing Department', '2022-03-02 23:17:57', '2022-03-02 23:17:57'),
+(29, 'DepartmentController@update', 'Department update', 'Update existing Department', '2022-03-02 23:24:50', '2022-03-02 23:24:50'),
+(30, 'MetaController@destroy', 'Meta Delete', 'Delete Meta Field', '2022-03-03 06:18:23', '2022-03-03 06:18:23'),
+(31, 'EventController@index', 'Event List', 'List of all Events', '2022-03-04 00:47:56', '2022-03-04 00:47:56'),
+(32, 'EventController@create', 'Event Create Form', 'Event Create Form', '2022-03-04 00:48:31', '2022-03-04 00:48:31'),
+(33, 'EventController@store', 'Event Store', 'Store new Event data', '2022-03-04 00:49:05', '2022-03-04 00:49:05'),
+(34, 'EventController@edit', 'Event Edit Form', 'Event Edit Form', '2022-03-04 00:49:40', '2022-03-04 00:49:40'),
+(35, 'EventController@update', 'Event Update', 'Event Update', '2022-03-04 00:50:42', '2022-03-04 00:50:42'),
+(36, 'PageController@css', 'Css Page', 'Display Custom CSS Page', '2022-03-04 04:57:15', '2022-03-04 04:57:15');
 
 -- --------------------------------------------------------
 
@@ -284,6 +405,15 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (25, 1),
 (26, 1),
 (27, 1),
+(28, 1),
+(29, 1),
+(30, 1),
+(31, 1),
+(32, 1),
+(33, 1),
+(34, 1),
+(35, 1),
+(36, 1),
 (3, 2),
 (20, 2),
 (21, 2),
@@ -415,6 +545,12 @@ ALTER TABLE `departments`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `events`
+--
+ALTER TABLE `events`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -451,6 +587,34 @@ ALTER TABLE `metas`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pagebuilder__pages`
+--
+ALTER TABLE `pagebuilder__pages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pagebuilder__page_translations`
+--
+ALTER TABLE `pagebuilder__page_translations`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `pagebuilder__page_translations_page_id_locale_unique` (`page_id`,`locale`);
+
+--
+-- Indexes for table `pagebuilder__settings`
+--
+ALTER TABLE `pagebuilder__settings`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `pagebuilder__settings_setting_unique` (`setting`);
+
+--
+-- Indexes for table `pagebuilder__uploads`
+--
+ALTER TABLE `pagebuilder__uploads`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `pagebuilder__uploads_public_id_unique` (`public_id`),
+  ADD UNIQUE KEY `pagebuilder__uploads_server_file_unique` (`server_file`);
 
 --
 -- Indexes for table `pages`
@@ -522,6 +686,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `events`
+--
+ALTER TABLE `events`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
@@ -552,25 +722,49 @@ ALTER TABLE `lb_contents`
 -- AUTO_INCREMENT for table `metas`
 --
 ALTER TABLE `metas`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `pagebuilder__pages`
+--
+ALTER TABLE `pagebuilder__pages`
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `pagebuilder__page_translations`
+--
+ALTER TABLE `pagebuilder__page_translations`
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `pagebuilder__settings`
+--
+ALTER TABLE `pagebuilder__settings`
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `pagebuilder__uploads`
+--
+ALTER TABLE `pagebuilder__uploads`
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pages`
 --
 ALTER TABLE `pages`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -593,6 +787,12 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `pagebuilder__page_translations`
+--
+ALTER TABLE `pagebuilder__page_translations`
+  ADD CONSTRAINT `pagebuilder__page_translations_page_id_foreign` FOREIGN KEY (`page_id`) REFERENCES `pagebuilder__pages` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `permission_role`
