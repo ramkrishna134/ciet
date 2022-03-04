@@ -48,6 +48,7 @@ Route::group(['prefix' => 'laraberg', 'middleware' => ['web', 'auth']], function
 Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () {
 
     Route::get('/media','App\Http\Controllers\PageController@media')->name('media');
+    Route::get('/custom-css','App\Http\Controllers\PageController@css')->name('css');
 
     Route::get('/dashboard','App\Http\Controllers\HomeController@dashboard')->name('dashboard');
     Route::get('/permissions','App\Http\Controllers\PermissionController@index')->name('permission.index');
@@ -82,6 +83,12 @@ Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () 
     Route::put('/department/{department}','App\Http\Controllers\DepartmentController@update')->name('department.update');
 
     Route::get('/meta/{meta}','App\Http\Controllers\MetaController@destroy')->name('meta.delete');
+
+    Route::get('/events','App\Http\Controllers\EventController@index')->name('event.index');
+    Route::get('/event/create','App\Http\Controllers\EventController@create')->name('event.create');
+    Route::post('/event/create','App\Http\Controllers\EventController@store')->name('event.store');
+    Route::get('/event/{event}','App\Http\Controllers\EventController@edit')->name('event.edit');
+    Route::put('/event/{event}','App\Http\Controllers\EventController@update')->name('event.update');
 
 });
 

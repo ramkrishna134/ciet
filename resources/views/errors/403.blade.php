@@ -9,10 +9,12 @@
 </head>
 <body class="bg-white">
 
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-sm-8">
-                <img class="img-responsive" src="/images/403.png" alt="">
+    <div class="container mt-5">
+        <div class="row justify-content-center pt-5">
+            <div class="col-sm-4">
+                <img class="img-responsive mx-auto d-block" src="/images/403.png" alt="">
+
+                <p class="mt-2 text-center">Please contact to your Administration</p>
             </div>
         </div>
     </div>

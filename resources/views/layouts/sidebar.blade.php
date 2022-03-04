@@ -45,6 +45,10 @@
                 </li>
 
                 <li class="menu-item">
+                    <a class="menu-link {{ (request()->is('admin/events')) ? 'active' : '' }}" href="{{ route('event.index') }}"><i class="fas fa-calendar-day"></i> Events</a>
+                </li>
+
+                <li class="menu-item">
                     <a class="menu-link {{ (request()->is('admin/pages')) ? 'active' : '' }}" href="{{ route('page.index') }}"><i class="fas fa-file-alt"></i> Pages</a>
                 </li>
 
@@ -69,6 +73,10 @@
                       <li><a class="dropdown-item {{ (request()->is('admin/users')) ? 'active' : '' }}" href="{{ route('user.index') }}">All Users</a></li>
                       <li><a class="dropdown-item {{ (request()->is('admin/user/create')) ? 'active' : '' }}" href="{{ route('user.create') }}">Add User</a></li>
                     </ul>
+                </li>
+
+                <li class="menu-item">
+                    <a class="menu-link btn btn-outline-primary text-primary {{ (request()->is('admin/custom-css')) ? 'bg-primary text-light' : '' }}" href="{{ route('css') }}"><i class="fab fa-css3"></i> Custom CSS</a>
                 </li>
                 
             </ul>

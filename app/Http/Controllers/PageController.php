@@ -185,4 +185,8 @@ class PageController extends Controller
     public function media(){
         return view('admin.media');
     }
+
+    public function css(){
+        return view('admin.css');
+    }
 }
