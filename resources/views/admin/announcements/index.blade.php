@@ -71,7 +71,7 @@ All Announcements
                             </td>
                             <td>{{ $item->created_at->diffForHumans() }}</td>
                             <td>{{ $item->updated_at->diffForHumans() }}</td>
-                            <td><a href="{{ route('announcements.edit', $item) }}" class="btn btn-primary btn-sm">Edit</a> <a href="" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Delete</a></td>
+                            <td><a href="{{ route('announcements.edit', $item) }}" class="btn btn-primary btn-sm">Edit</a> <a href="{{ route('announcements.destroy', $item) }}" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Delete</a></td>
                         </tr>
         
                         @endforeach

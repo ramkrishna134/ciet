@@ -45,6 +45,10 @@
                 </li>
 
                 <li class="menu-item">
+                    <a class="menu-link {{ (request()->is('admin/announcements')) ? 'active' : '' }}" href="{{ route('announcements.index') }}"><i class="fas fa-photo-video"></i> Announcements</a>
+                </li>
+
+                <li class="menu-item">
                     <a class="menu-link {{ (request()->is('admin/pages')) ? 'active' : '' }}" href="{{ route('page.index') }}"><i class="fas fa-file-alt"></i> Pages</a>
                 </li>
 

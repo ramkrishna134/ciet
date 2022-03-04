@@ -150,8 +150,10 @@ class AnnouncementsController extends Controller
      * @param  \App\Models\Announcements  $announcements
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Announcements $announcements)
+    public function destroy(Announcements $announcement)
     {
         //
+        $announcement->delete();
+        return redirect(route('announcements.index'))->with('status',"Announcement Deleted successfully");
     }
 }

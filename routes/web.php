@@ -91,6 +91,7 @@ Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () 
     Route::post('/announcement/create', 'App\Http\Controllers\AnnouncementsController@store')->name('announcement.store');
     Route::get('/announcement/{announcement}','App\Http\Controllers\AnnouncementsController@edit')->name('announcements.edit');
     Route::put('/announcement/{announcement}','App\Http\Controllers\AnnouncementsController@update')->name('announcements.update');
+    Route::get('/announcements/{announcement}','App\Http\Controllers\AnnouncementsController@destroy')->name('announcements.destroy');
 
 });
 

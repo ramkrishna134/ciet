@@ -26,7 +26,7 @@ All Infrastructure
 @endif
 
 <div class="row">
-    <div class="col-sm-8">
+    <div class="col-sm-12">
         <div class="card">
             <div class="card-body shadow">
                 <table class="table">
