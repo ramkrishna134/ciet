@@ -10,6 +10,7 @@
     <title>Admin - CIET</title>
 
     <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
@@ -50,6 +51,10 @@
 
                 <li class="menu-item">
                     <a class="menu-link {{ (request()->is('admin/pages')) ? 'active' : '' }}" href="{{ route('page.index') }}"><i class="fas fa-file-alt"></i> Pages</a>
+                </li>
+
+                <li class="menu-item">
+                    <a class="menu-link {{ (request()->is('admin/menu')) ? 'active' : '' }}" href="{{ route('menu') }}"><i class="fas fa-list-ul"></i> Menus</a>
                 </li>
 
                 <li class="menu-item dropdown">

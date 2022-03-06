@@ -11418,6 +11418,21 @@ textarea.form-control-lg {
   color: #fff;
   border-color: #333844;
 }
+.main .display-menu-item.child {
+  margin-left: 15px;
+}
+.main .display-menu-item.sub-child {
+  margin-left: 30px;
+}
+.main .display-menu-item .item {
+  background-color: #d7dde4;
+  padding: 5px 10px;
+  border-radius: 3px;
+  margin-bottom: 2px;
+}
+.main .display-menu-item .item a {
+  color: #000;
+}
 
 a {
   text-decoration: none;

@@ -90,9 +90,16 @@ Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () 
     Route::get('/event/{event}','App\Http\Controllers\EventController@edit')->name('event.edit');
     Route::put('/event/{event}','App\Http\Controllers\EventController@update')->name('event.update');
 
+    Route::get('/menu','App\Http\Controllers\MenuController@index')->name('menu');
+    Route::post('/menu','App\Http\Controllers\MenuController@store')->name('menu.store');
+    Route::post('/menuItem','App\Http\Controllers\MenuItemController@store')->name('menuItem.store');
+    Route::put('/menuItem/{menuItem}','App\Http\Controllers\MenuItemController@update')->name('menuItem.update');
+
 });
 
 
 // Web Routes ==============================
 
 Route::get('/{slug}/{local}','App\Http\Controllers\PageController@show')->name('page.show');
+
+

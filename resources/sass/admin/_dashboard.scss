@@ -169,4 +169,25 @@
             }
         }
     }
+
+
+    .display-menu-item{
+        &.child{
+            margin-left: 15px;
+        }
+
+        &.sub-child{
+            margin-left: 30px;
+        }
+        .item{
+            background-color: #d7dde4;
+            padding: 5px 10px;
+            border-radius: 3px;
+            margin-bottom: 2px;
+            
+            a{
+                color: $black;
+            }
+        }
+    }
 }
