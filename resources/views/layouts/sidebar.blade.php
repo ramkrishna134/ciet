@@ -45,7 +45,11 @@
                 </li>
 
                 <li class="menu-item">
-                    <a class="menu-link {{ (request()->is('admin/announcements')) ? 'active' : '' }}" href="{{ route('announcements.index') }}"><i class="fas fa-photo-video"></i> Announcements</a>
+                    <a class="menu-link {{ (request()->is('admin/announcement')) ? 'active' : '' }}" href="{{ route('announcements.index') }}"><i class="fas fa-photo-video"></i>Announcements</a>
+                </li>
+
+                <li class="menu-item">
+                    <a class="menu-link {{ (request()->is('admin/app')) ? 'active' : '' }}" href="{{ route('app.index') }}"><i class="fas fa-photo-video"></i> Mobile Apps</a>
                 </li>
 
                 <li class="menu-item">

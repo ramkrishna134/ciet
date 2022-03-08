@@ -4,6 +4,7 @@ use App\Http\Controllers\CheckController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InfrastructureController;
 use App\Http\Controllers\AnnouncementsController;
+use App\Http\Controllers\AppController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -92,6 +93,15 @@ Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () 
     Route::get('/announcement/{announcement}','App\Http\Controllers\AnnouncementsController@edit')->name('announcements.edit');
     Route::put('/announcement/{announcement}','App\Http\Controllers\AnnouncementsController@update')->name('announcements.update');
     Route::get('/announcements/{announcement}','App\Http\Controllers\AnnouncementsController@destroy')->name('announcements.destroy');
+
+
+
+    Route::get('/app', 'App\Http\Controllers\AppController@index')->name('app.index');
+    Route::get('/app/create', 'App\Http\Controllers\AppController@create')->name('app.create');
+    Route::post('/app/create','App\Http\Controllers\AppController@store')->name('app.store');
+    Route::put('/app/{application}','App\Http\Controllers\AppController@update')->name('app.update');
+    Route::get('/app/{application}','App\Http\Controllers\AppController@edit')->name('app.edit');
+    Route::get('/apps/{application}','App\Http\Controllers\AppController@destroy')->name('app.destroy');
 
 });
 
