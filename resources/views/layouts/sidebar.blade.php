@@ -45,11 +45,15 @@
                 </li>
 
                 <li class="menu-item">
-                    <a class="menu-link {{ (request()->is('admin/announcement')) ? 'active' : '' }}" href="{{ route('announcements.index') }}"><i class="fas fa-photo-video"></i>Announcements</a>
+                    <a class="menu-link {{ (request()->is('admin/announcement')) ? 'active' : '' }}" href="{{ route('announcements.index') }}"><i class="fas fa-bullhorn"></i>Announcements</a>
                 </li>
 
                 <li class="menu-item">
-                    <a class="menu-link {{ (request()->is('admin/app')) ? 'active' : '' }}" href="{{ route('app.index') }}"><i class="fas fa-photo-video"></i> Mobile Apps</a>
+                    <a class="menu-link {{ (request()->is('admin/app')) ? 'active' : '' }}" href="{{ route('app.index') }}"><i class="fas fa-mobile-alt"></i> Mobile Apps</a>
+                </li>
+
+                <li class="menu-item">
+                    <a class="menu-link {{ (request()->is('admin/webinar')) ? 'active' : '' }}" href="{{ route('webinar.index') }}"><i class="fas fa-warehouse"></i> Webinar</a>
                 </li>
 
                 <li class="menu-item">

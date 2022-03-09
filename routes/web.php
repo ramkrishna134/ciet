@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InfrastructureController;
 use App\Http\Controllers\AnnouncementsController;
 use App\Http\Controllers\AppController;
+use App\Http\Controllers\WebinarController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -102,6 +103,14 @@ Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () 
     Route::put('/app/{application}','App\Http\Controllers\AppController@update')->name('app.update');
     Route::get('/app/{application}','App\Http\Controllers\AppController@edit')->name('app.edit');
     Route::get('/apps/{application}','App\Http\Controllers\AppController@destroy')->name('app.destroy');
+
+
+    Route::get('/webinar', 'App\Http\Controllers\WebinarController@index')->name('webinar.index');
+    Route::get('/webinar/create', 'App\Http\Controllers\WebinarController@create')->name('webinar.create');
+    Route::post('/webinar','App\Http\Controllers\WebinarController@store')->name('webinar.store');
+    Route::put('/webinar/{webinar}','App\Http\Controllers\WebinarController@update')->name('webinar.update');
+    Route::get('/webinar/{webinar}','App\Http\Controllers\WebinarController@edit')->name('webinar.edit');
+    Route::get('/webinars/{webinar}','App\Http\Controllers\WebinarController@destroy')->name('webinar.destroy');
 
 });
 
