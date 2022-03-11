@@ -5,24 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Event extends Model
+class Message extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'user_id' ,
         'title' ,
-        'slug' ,
-        'status' ,
-        'lang' ,
-        'content',
-        'description',
-        'start_date',
-        'end_date',
-        'category',
-        'department_id',
-        'featured_image',
-        'icon',
-        'key_word',
+        'message' ,
+        'assign_to' ,
+        'status',
+        
     ];
 
     public function user()

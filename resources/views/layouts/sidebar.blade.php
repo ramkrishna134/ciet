@@ -1,6 +1,13 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+    @php
+    header("X-XSS-Protection: 1; mode=block");
+    header("x-content-type-options: nosniff"); 
+    header("X-Frame-Options: SAMEORIGIN"); 
+    // header("Content-Security-Policy: default-src 'self'");  
+    @endphp
+    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -8,6 +15,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Admin - CIET</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -50,6 +58,14 @@
                 </li>
 
                 <li class="menu-item">
+                    <a class="menu-link {{ (request()->is('admin/trainings')) ? 'active' : '' }}" href="{{ route('training.index') }}"><i class="fas fa-chalkboard"></i>Trainings</a>
+                </li>
+
+                <li class="menu-item">
+                    <a class="menu-link {{ (request()->is('admin/faculties')) ? 'active' : '' }}" href="{{ route('faculty.index') }}"><i class="fas fa-user-graduate"></i>Faculties</a>
+                </li>
+
+                <li class="menu-item">
                     <a class="menu-link {{ (request()->is('admin/pages')) ? 'active' : '' }}" href="{{ route('page.index') }}"><i class="fas fa-file-alt"></i> Pages</a>
                 </li>
 
@@ -87,7 +103,7 @@
             </ul>
         </section>
         <main class="main">
-            <nav class="navbar navbar-expand-md navbar-light">
+            <nav class="navbar navbar-expand-md navbar-light bg-white shadow sticky-top">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="{{ url('/') }}">
                         <h4 class="mb-0">@yield('title')</h4>
@@ -97,10 +113,6 @@
                     </button>
     
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <!-- Left Side Of Navbar -->
-                        <ul class="navbar-nav me-auto">
-    
-                        </ul>
     
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ms-auto">
@@ -118,22 +130,42 @@
                                     </li>
                                 @endif
                             @else
-                                <li class="nav-item dropdown">
+                                <li class="nav-item border rounded">
+                                    <div class="nav-link text-black"><i class="fas fa-calendar-day"></i> {{ date("d-m-Y") }} <i class="fas fa-clock"></i> {{ date("h:i:sa") }}</div>
+                                </li>
+                                <li class="nav-item dropdown border rounded account-menu ms-2">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         {{ Auth::user()->name }} <span class="badge bg-primary">{{ Auth::user()->role }}</span>
                                     </a>
+
     
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
+                                        <small>{{ Auth::user()->email }}</small>
+
+                                        <hr class="dropdown-divider">
+
+                                        <a class="dropdown-item" href="">
+                                            <i class="fas fa-comments"></i> Your Requests 
+                                        </a>
+
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
+                                            <i class="fas fa-sign-out-alt"></i> {{ __('Logout') }}
                                         </a>
     
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                             @csrf
                                         </form>
                                     </div>
+                                </li>
+
+                                <li class="nav-item ms-2 border rounded">
+                                    <a href="{{ route('message.index') }}" class="nav-link {{ (request()->is('admin/messages')) ? 'bg-primary text-light' : '' }}"><i class="fas fa-bell"></i></a>
+                                </li>
+                                <li class="nav-item ms-2 border rounded">
+                                    <a href="{{ route('setting.index') }}" class="nav-link {{ (request()->is('admin/settings')) ? 'bg-primary text-light' : '' }}"><i class="fas fa-cog"></i></a>
                                 </li>
                             @endguest
                         </ul>

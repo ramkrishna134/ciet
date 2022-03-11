@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Event extends Model
+class Training extends Model
 {
     use HasFactory;
 
@@ -19,7 +19,6 @@ class Event extends Model
         'start_date',
         'end_date',
         'category',
-        'department_id',
         'featured_image',
         'icon',
         'key_word',

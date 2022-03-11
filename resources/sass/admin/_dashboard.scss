@@ -68,9 +68,10 @@
             padding: 0;
             position: static !important;
             transform: translate(0px, 0px) !important;
-            border-left: 1px solid;
+            border-left: 1px solid #7e8388;
             margin-left: 20px !important;
             border-radius: 0;
+            padding-left: 10px;
 
             .dropdown-item{
                 color: #7e8388;
@@ -188,6 +189,25 @@
             a{
                 color: $black;
             }
+        }
+    }
+
+    .faculty{
+        text-align: center;
+        padding: 10px;
+        .image{
+            height: 150px;
+            width: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+    }
+
+    .account-menu{
+        .dropdown-menu{
+            min-width: 15rem;
+            padding: 10px;
         }
     }
 }

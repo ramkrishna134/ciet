@@ -43,7 +43,7 @@ Menu Builder
                 </div>
 
                 <div class="col-sm-2">
-                    <button type="submit" class="btn btn-primary">Create Menu</button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Create Menu</button>
                 </div>
             </div>
         </form>
@@ -182,7 +182,7 @@ Menu Builder
 
                                 <div class="col-sm-3">
                                     <div class="mb-3">
-                                        <button type="submit" class="btn btn-primary">Create Menu Item</button>
+                                        <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Create Menu Item</button>
                                     </div>
                                 </div>
                             </div>
@@ -370,7 +370,7 @@ Menu Builder
         </div>
       </div>
     </div>
-  </div>
+</div>
 
 
   <script>

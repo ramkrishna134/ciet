@@ -55,7 +55,7 @@ Dashboard
             <div class="row row align-items-center">
                 <div class="col-8">
                     <h2>5</h2>
-                    <h5 class="mb-0">Total Openings</h5>
+                    <h5 class="mb-0">Total Departments</h5>
                     <small><a href=""><strong><i class="fas fa-eye"></i> View</strong></a></small>
                 </div>
                 <div class="col-4">

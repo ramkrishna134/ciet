@@ -95,11 +95,36 @@ Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () 
     Route::post('/menuItem','App\Http\Controllers\MenuItemController@store')->name('menuItem.store');
     Route::put('/menuItem/{menuItem}','App\Http\Controllers\MenuItemController@update')->name('menuItem.update');
 
+    Route::get('/trainings','App\Http\Controllers\TrainingController@index')->name('training.index');
+    Route::get('/training/create','App\Http\Controllers\TrainingController@create')->name('training.create');
+    Route::post('/training/create','App\Http\Controllers\TrainingController@store')->name('training.store');
+    Route::get('/training/{training}','App\Http\Controllers\TrainingController@edit')->name('training.edit');
+    Route::put('/training/{training}','App\Http\Controllers\TrainingController@update')->name('training.update');
+
+    Route::get('/faculties','App\Http\Controllers\FacultyController@index')->name('faculty.index');
+    Route::get('/faculty/create','App\Http\Controllers\FacultyController@create')->name('faculty.create');
+    Route::post('/faculty/create','App\Http\Controllers\FacultyController@store')->name('faculty.store');
+    Route::get('/faculty/{faculty}','App\Http\Controllers\FacultyController@edit')->name('faculty.edit');
+    Route::put('/faculty/{faculty}','App\Http\Controllers\FacultyController@update')->name('faculty.update');
+
+    Route::get('/settings','App\Http\Controllers\SettingController@index')->name('setting.index');
+    Route::post('/settings','App\Http\Controllers\SettingController@store')->name('setting.store');
+
+    Route::get('/messages','App\Http\Controllers\MessageController@index')->name('message.index');
+    Route::get('/message/create','App\Http\Controllers\MessageController@create')->name('message.create');
+    Route::post('/message/create','App\Http\Controllers\MessageController@store')->name('message.store');
+    Route::get('/message/{message}','App\Http\Controllers\MessageController@edit')->name('message.edit');
+    Route::put('/message/{message}','App\Http\Controllers\MessageController@update')->name('message.update');
+
 });
 
 
 // Web Routes ==============================
 
 Route::get('/{slug}/{local}','App\Http\Controllers\PageController@show')->name('page.show');
+
+Route::get('/demo', function () {
+    return view('admin.faculty.demo');
+});
 
 

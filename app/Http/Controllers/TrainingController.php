@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Models\Event;
-use App\Models\Department;
+use App\Models\Training;
 use Illuminate\Support\Str;
 
-class EventController extends Controller
+class TrainingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +17,8 @@ class EventController extends Controller
     public function index()
     {
         //
-        $events = Event::paginate(10);
-        return view('admin.event.index', compact('events'));
+        $trainings = Training::paginate();
+        return view('admin.training.index', compact('trainings'));
     }
 
     /**
@@ -30,14 +29,13 @@ class EventController extends Controller
     public function create()
     {
         //
-        $departments = Department::query()->get();
-        return view('admin.event.edit', compact('departments'));
+        return view('admin.training.edit');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreEventRequest  $request
+     * @param  \App\Http\Requests\StoreTrainingRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -55,7 +53,6 @@ class EventController extends Controller
             'start_date' => 'required',
             'end_date' => 'required',
             'category' => 'required',
-            'department_id' => 'required',
             'featured_image' => 'required',
             'icon' => 'required',
             'key_word' => 'nullable',
@@ -73,16 +70,16 @@ class EventController extends Controller
         else{
             $data = $request->input();
             try{
-                $event = new Event($data);
+                $training = new Training($data);
                 if( empty( $data['slug'] ) ){
-                    $event->slug = Str::slug( $data['title'] );
+                    $training->slug = Str::slug( $data['title'] );
                 }
-                $event->user_id = $user->id;
+                $training->user_id = $user->id;
                 if( !empty( $data['key_word'] ) ){
-                    $event->key_word = json_encode($data['key_word']);
+                    $training->key_word = json_encode($data['key_word']);
                 } 
-                $event->save();
-                return redirect(route('event.index'))->with('status',"Event created successfully");
+                $training->save();
+                return redirect(route('training.index'))->with('status',"New Training created successfully");
 
             }
             catch(Exception $e){  
@@ -94,10 +91,10 @@ class EventController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Event  $event
+     * @param  \App\Models\Training  $training
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $event)
+    public function show(Training $training)
     {
         //
     }
@@ -105,25 +102,24 @@ class EventController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Event  $event
+     * @param  \App\Models\Training  $training
      * @return \Illuminate\Http\Response
      */
-    public function edit(Event $event)
+    public function edit(Training $training)
     {
         //
-        $departments = Department::query()->get();
-        return view('admin.event.edit', compact('event', 'departments'));
 
+        return view('admin.training.edit', compact('training'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateEventRequest  $request
-     * @param  \App\Models\Event  $event
+     * @param  \App\Http\Requests\UpdateTrainingRequest  $request
+     * @param  \App\Models\Training  $training
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Event $event)
+    public function update(Request $request, Training $training)
     {
         //
 
@@ -138,7 +134,6 @@ class EventController extends Controller
             'start_date' => 'required',
             'end_date' => 'required',
             'category' => 'required',
-            'department_id' => 'required',
             'featured_image' => 'required',
             'icon' => 'required',
             'key_word' => 'nullable',
@@ -147,21 +142,22 @@ class EventController extends Controller
 
         $validator = Validator::make($request->all(),$rules);
         if ($validator->fails()) {
-            // dd($validator);
+            dd($validator);
             return back()
                 ->withInput()
-                ->withErrors($validator)->with('error',"Please check the field below *");                
+                ->withErrors($validator)->with('error',"Please check the field below *");
+                
         }
         else{
             $data = $request->input();
             try{
-                $event->fill($data);
-                $event->user_id = $user->id;
+                $training->fill($data);
+                $training->user_id = $user->id;
                 if( !empty( $data['key_word'] ) ){
-                    $event->key_word = json_encode($data['key_word']);
+                    $training->key_word = json_encode($data['key_word']);
                 } 
-                $event->save();
-                return back()->with('status',"Event updated successfully");
+                $training->save();
+                return back()->with('status',"Training updated successfully");
 
             }
             catch(Exception $e){  
@@ -173,10 +169,10 @@ class EventController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Event  $event
+     * @param  \App\Models\Training  $training
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $event)
+    public function destroy(Training $training)
     {
         //
     }

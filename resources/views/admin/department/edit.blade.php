@@ -17,6 +17,16 @@
         max-height: 150px;
         width: 100%;
     }
+
+    .gallery{
+        border: 1px solid gray;
+        border-radius: 3px;
+        padding: 5px;
+    }
+
+    .gallery img{
+        margin: 5px;
+    }
 </style>
 
 
@@ -78,6 +88,31 @@
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
+
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Gallery</label>
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                              <a id="lfm4" data-input="thumbnail4" data-preview="holder4" class="btn btn-primary text-white btn-sm">
+                                <i class="fas fa-images"></i> Choose Multiple Images
+                              </a>
+                            </span>
+                            <input id="thumbnail4" class="form-control d-none" type="text" name="gallery">
+                        </div>
+
+                        <div id="holder4" class="gallery" style="margin-top:5px;max-height:120px;">
+                            @if(!empty($department->gallery))
+
+                            @php
+                            $gallery = json_decode($department->gallery);
+                            @endphp
+                            @foreach($gallery as $item)
+                            <img height="80px" width="80px" src="{{ $item }}" alt="">
+                            @endforeach
+                            @endif
+                        </div>
+                        
+                    </div>
 
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
@@ -192,7 +227,7 @@
                     <hr>
 
                     <label for="" class="form-label">Icon</label>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <span class="input-group-btn">
                         <a id="icon" data-input="thumbnail2" data-preview="holder2" class="btn btn-primary">
                             <i class="fas fa-file-image"></i> Choose
@@ -205,6 +240,24 @@
                         <a href="{{ $department->icon }}" alt="" target="_blank"><img class="img-fluid" src="{{ $department->icon }}" alt=""></a>
                         @endif
                     </div>
+
+                    <label for="" class="form-label">Head Image</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-btn">
+                        <a id="head" data-input="thumbnail3" data-preview="holder3" class="btn btn-primary">
+                            <i class="fas fa-file-image"></i> Choose
+                        </a>
+                        </span>
+                        <input id="thumbnail3" class="form-control" type="text" name="head_image" value="{{ $department->head_image ?? old('head_image') }}">
+                    </div>
+                    <div id="holder3" style="margin-top:5px;width:100%;">
+                        @if(!empty($department->head_image))
+                        <a href="{{ $department->head_image }}" alt="" target="_blank"><img class="img-fluid" src="{{ $department->head_image }}" alt=""></a>
+                        @endif
+                    </div>
+
+                    <label for="head_message" class="form-label">Head Message</label>
+                    <textarea name="head_message" id="head_message" class="form-control">{{ $department->head_message ?? old('head_message') }}</textarea>
 
                 </div>
             </div>
@@ -267,6 +320,10 @@ $(document).ready(function(){
     // $('#icon').filemanager('file');
     $('#icon').filemanager('image');
 
+    $('#head').filemanager('image');
+
+    $('#lfm4').filemanager('image');
+
     var i = 0;
     $("#dynamic-ar").click(function () {
         ++i;
@@ -315,7 +372,6 @@ $(document).ready(function(){
         $(this).parents('.custom-field').remove();
     });
 
-    $('.custom-field ')
 });
 
     

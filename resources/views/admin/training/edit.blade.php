@@ -1,5 +1,5 @@
 @php
-    $event = $event ?? null;
+    $training = $training ?? null;
 @endphp
 
 @extends('layouts.sidebar')
@@ -21,7 +21,7 @@
 </style>
 
 @section('title')
-<a href="{{ route('event.index') }}" class="btn btn-primary btn-sm"><i class="fas fa-arrow-left"></i> All Events</a>   {{ $event ? "Edit Event" : "Add New Event" }}
+<a href="{{ route('training.index') }}" class="btn btn-primary btn-sm"><i class="fas fa-arrow-left"></i> All trainings</a>   {{ $training ? "Edit training" : "Add New training" }}
 @endsection
 
 @section('content')
@@ -53,17 +53,17 @@
 @endif
 
 
-<form action="{{ $event ? route('event.update', $event) : route('event.store') }}" method="POST">
+<form action="{{ $training ? route('training.update', $training) : route('training.store') }}" method="POST">
 
     @csrf
-    @method( $event ? 'put' : 'post')
+    @method( $training ? 'put' : 'post')
 
     <section class="hero-section sticky-top">
         <div class="card border-white rounded">
             <div class="card-body shadow">
                 <div class="row align-items-center">
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" name="title" id="title" placeholder="Event Title" value="{{ $event->title ?? old('title') }}">
+                        <input type="text" class="form-control" name="title" id="title" placeholder="training Title" value="{{ $training->title ?? old('title') }}">
                         @error('title')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -73,10 +73,10 @@
                     <div class="col-sm-3">
 
                         <div class="input-group">
-                            <input type="text" class="form-control" name="slug" id="slug" placeholder="slug" value="{{ $event->slug ?? old('slug') }}">
-                            @if (!empty($event))
+                            <input type="text" class="form-control" name="slug" id="slug" placeholder="slug" value="{{ $training->slug ?? old('slug') }}">
+                            @if (!empty($training))
                             <div class="input-group-append">
-                                <a href="{{ url($event->slug,$event->lang) }}" target="_blank" class="btn btn-primary btn-lg"><i class="fas fa-eye"></i></a>
+                                <a href="{{ url($training->slug,$training->lang) }}" target="_blank" class="btn btn-primary btn-lg"><i class="fas fa-eye"></i></a>
                             </div>
                             @endif
                           </div>
@@ -90,9 +90,9 @@
                     <div class="col-sm-2">
                         <select name="status" id="status" class="form-control">
 
-                            @if(!empty($event))
-                                <option value="0" @if($event->status == 0) selected @endif>Darft</option>
-                                <option value="1" @if($event->status == 1) selected @endif>Published</option>           
+                            @if(!empty($training))
+                                <option value="0" @if($training->status == 0) selected @endif>Darft</option>
+                                <option value="1" @if($training->status == 1) selected @endif>Published</option>           
                             @else
                             <option value="0">Darft</option>
                             <option value="1">Published</option>
@@ -107,9 +107,9 @@
                     </div>
                     <div class="col-sm-1">
                         <select name="lang" id="lang" class="form-control">
-                            @if(!empty($event))
-                                <option value="en" @if($event->lang === 'en') selected @endif>English</option>
-                                <option value="hi" @if($event->lang === 'hi') selected @endif>Hindi</option>           
+                            @if(!empty($training))
+                                <option value="en" @if($training->lang === 'en') selected @endif>English</option>
+                                <option value="hi" @if($training->lang === 'hi') selected @endif>Hindi</option>           
                             @else
                             <option value="en">English</option>
                             <option value="hi">Hindi</option>
@@ -123,7 +123,7 @@
                         @enderror
                     </div>
                     <div class="col-sm-1 text-end">
-                        <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> {{ $event ? "Update" : "Create" }}</button>
+                        <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> {{ $training ? "Update" : "Create" }}</button>
                     </div>
                 </div>
             </div>
@@ -144,7 +144,7 @@
 
                 
         
-                    <textarea name="content" id="content" hidden>{!! $event->content ?? old('content') !!}</textarea>
+                    <textarea name="content" id="content" hidden>{!! $training->content ?? old('content') !!}</textarea>
                 </div>
             </div>
         </div>
@@ -156,11 +156,11 @@
                     <div class="row mb-3">
                         <div class="col-6">
                             <label for="start_date" class="form-label">Start Date</label>
-                            <input type="date" class="form-control" name="start_date" id="start_date" value="{{ $event->start_date ?? old('start_date') }}" placeholder="Event Start Date">
+                            <input type="date" class="form-control" name="start_date" id="start_date" value="{{ $training->start_date ?? old('start_date') }}" placeholder="training Start Date">
                         </div>
                         <div class="col-6">
                             <label for="end_date" class="form-label">End Date</label>
-                            <input type="date" class="form-control" name="end_date" id="end_date" value="{{ $event->end_date ?? old('end_date') }}" placeholder="Event End Date">
+                            <input type="date" class="form-control" name="end_date" id="end_date" value="{{ $training->end_date ?? old('end_date') }}" placeholder="training End Date">
                         </div>
                     </div>
 
@@ -169,11 +169,11 @@
                         <select name="category" id="category" class="form-control">
                             <option value="">-- Select Category ---</option>
 
-                            @if(!empty($event))
+                            @if(!empty($training))
 
-                            <option value="Upcoming" @if($event->category === 'Upcoming') selected @endif>Upcoming</option>
-                            <option value="Ongoing" @if($event->category === 'Ongoing') selected @endif>Ongoing</option>
-                            <option value="Past" @if($event->category === 'Past') selected @endif>Past</option>
+                            <option value="Upcoming" @if($training->category === 'Upcoming') selected @endif>Upcoming</option>
+                            <option value="Ongoing" @if($training->category === 'Ongoing') selected @endif>Ongoing</option>
+                            <option value="Past" @if($training->category === 'Past') selected @endif>Past</option>
                             @else
                             <option value="Upcoming">Upcoming</option>
                             <option value="Ongoing">Ongoing</option>
@@ -181,29 +181,11 @@
                             @endif
                         </select>
                     </div>
+                   
 
-                    <div class="mb-3">
-                        <label for="category" class="form-label">Department</label>
-                        <select name="department_id" id="department_id" class="form-control">
-                            <option value="">-- Select Department ---</option>
-
-                            @if(!empty($event))
-                                @foreach($departments as $department)
-                                <option value="{{ $department->id }}" @if($event->department_id == $department->id) selected @endif>{{ $department->title }}</option>
-                                @endforeach
-                            @else
-                                @foreach($departments as $department)
-                                <option value="{{ $department->id }}">{{ $department->title }}</option>
-                                @endforeach
-                            @endif
-                        </select>
-                    </div>
-                    
-
-
-                    @if(!empty($event))
-                    <small>Created at: {{ $event->created_at->diffForHumans() }}</small><br>
-                    <small>Updated at: {{ $event->updated_at->diffForHumans() }}</small>
+                    @if(!empty($training))
+                    <small>Created at: {{ $training->created_at->diffForHumans() }}</small><br>
+                    <small>Updated at: {{ $training->updated_at->diffForHumans() }}</small>
                     @endif
                     <hr>
 
@@ -214,11 +196,11 @@
                             <i class="fas fa-file-image"></i> Choose
                         </a>
                         </span>
-                        <input id="thumbnail" class="form-control" type="text" name="featured_image" value="{{ $event->featured_image ?? old('filepath') }}">
+                        <input id="thumbnail" class="form-control" type="text" name="featured_image" value="{{ $training->featured_image ?? old('featured_image') }}">
                     </div>
                     <div id="holder" style="margin-top:5px;width:100%;">
-                        @if(!empty($event->featured_image))
-                        <img src="{{ $event->featured_image }}" alt="">
+                        @if(!empty($training->featured_image))
+                        <img src="{{ $training->featured_image }}" alt="">
                         @endif
                     </div>
 
@@ -229,11 +211,11 @@
                             <i class="fas fa-file-image"></i> Choose
                         </a>
                         </span>
-                        <input id="thumbnail2" class="form-control" type="text" name="icon" value="{{ $event->icon ?? old('icon') }}">
+                        <input id="thumbnail2" class="form-control" type="text" name="icon" value="{{ $training->icon ?? old('icon') }}">
                     </div>
                     <div id="holder2" style="margin-top:5px;width:100%;">
-                        @if(!empty($event->icon))
-                        <a href="{{ $event->icon }}" alt="" target="_blank"><img class="img-fluid" src="{{ $event->icon }}" alt=""></a>
+                        @if(!empty($training->icon))
+                        <a href="{{ $training->icon }}" alt="" target="_blank"><img class="img-fluid" src="{{ $training->icon }}" alt=""></a>
                         @endif
                     </div>
 
@@ -241,7 +223,7 @@
 
                      <div class="mb-3">
                         <label for="description" class="form-label">Descripion</label>
-                        <textarea name="description" id="description" class="form-control">{{ $event->description ?? old('description') }}</textarea>
+                        <textarea name="description" id="description" class="form-control">{{ $training->description ?? old('description') }}</textarea>
                         @error('description')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -251,7 +233,7 @@
 
                      <div class="mb-3">
                         <label for="key_word" class="form-label">Meta Keywords</label> <br>
-                        <input type="key_word" data-role="tagsinput" name="key_word" id="key_word" value="{{ $event ? json_decode($event->key_word) : old('key_word') }}">
+                        <input type="key_word" data-role="tagsinput" name="key_word" id="key_word" value="{{ $training ? json_decode($training->key_word) : old('key_word') }}">
                      </div>
                 </div>
             </div>

@@ -51,6 +51,9 @@ class DepartmentController extends Controller
             'lang' => 'required',
             'icon' => 'nullable',
             'featured_image' => 'nullable',
+            'gallery' => 'nullable',
+            'head_image' => 'required',
+            'head_message' => 'required',
             'status' => 'required',
             'meta.*' => 'required'
         ];
@@ -63,12 +66,14 @@ class DepartmentController extends Controller
         }
         else{
             $data = $request->input();
-
+            
             try{
                 $department = new Department($data);
 
-                // If slug is empty then create slug from title
-
+                if(!empty($data['gallery'])){
+                    $gallery = explode(',', $data['gallery']);                
+                    $department->gallery = $gallery;
+                }
                 if( empty( $data['slug'] ) ){
                     $department->slug = Str::slug( $data['title'] );
                 }else{
@@ -141,6 +146,9 @@ class DepartmentController extends Controller
             'lang' => 'required',
             'icon' => 'nullable',
             'featured_image' => 'nullable',
+            'gallery' => 'nullable',
+            'head_image' => 'required',
+            'head_message' => 'required',
             'status' => 'required',
             'meta.*' => 'required'
         ];
@@ -153,14 +161,11 @@ class DepartmentController extends Controller
         }
         else{
             $data = $request->input();
-
             try{
                 $department->fill($data);
-
-                if( empty( $data['slug'] ) ){
-                    $department->slug = Str::slug( $data['title'] );
-                }else{
-                    $department->slug = $data['slug'];
+                if(!empty($data['gallery'])){
+                    $gallery = explode(',', $data['gallery']);                
+                    $department->gallery = $gallery;
                 }
                 $department->user_id = $user->id;              
                 $department->save();

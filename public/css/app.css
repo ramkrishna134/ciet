@@ -11347,9 +11347,10 @@ textarea.form-control-lg {
   padding: 0;
   position: static !important;
   transform: translate(0px, 0px) !important;
-  border-left: 1px solid;
+  border-left: 1px solid #7e8388;
   margin-left: 20px !important;
   border-radius: 0;
+  padding-left: 10px;
 }
 .sidebar .menu .dropdown-menu .dropdown-item {
   color: #7e8388;
@@ -11432,6 +11433,21 @@ textarea.form-control-lg {
 }
 .main .display-menu-item .item a {
   color: #000;
+}
+.main .faculty {
+  text-align: center;
+  padding: 10px;
+}
+.main .faculty .image {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto;
+}
+.main .account-menu .dropdown-menu {
+  min-width: 15rem;
+  padding: 10px;
 }
 
 a {

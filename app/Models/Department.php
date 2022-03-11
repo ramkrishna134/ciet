@@ -17,6 +17,8 @@ class Department extends Model
         'featured_image',
         'icon',
         'user_id',
+        'head_image',
+        'head_message',
         'status',
         'lang'
     ];
