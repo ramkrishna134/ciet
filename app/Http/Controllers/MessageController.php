@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreMessageRequest;
-use App\Http\Requests\UpdateMessageRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Message;
+use App\Mail\MessageMail;
+use Illuminate\Support\Facades\Mail;
 
 class MessageController extends Controller
 {
@@ -16,7 +18,9 @@ class MessageController extends Controller
     public function index()
     {
         //
-        return view('admin.message.index');
+        $user = auth()->user();
+        $messages = Message::query()->where('user_id', $user->id)->get();
+        return view('admin.message.index', compact('messages'));
     }
 
     /**
@@ -37,9 +41,47 @@ class MessageController extends Controller
      * @param  \App\Http\Requests\StoreMessageRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreMessageRequest $request)
+    public function store(Request $request)
     {
         //
+
+        $user = auth()->user();
+        $rules = [
+            'title' =>'required',
+            'message' =>'required',           
+        ];
+
+        $validator = Validator::make($request->all(),$rules);
+        if ($validator->fails()) {
+            return back()
+                ->withInput()
+                ->withErrors($validator)->with('error',"Please check the field below *");     
+        }
+        else{
+            $data = $request->input();
+            try{
+                $message = new Message($data);
+                $message->user_id = $user->id;
+                $message->assign_to = 1;
+                $message->status = 0;
+                $message->save();
+
+                Mail::to('admin@ciet.nic.in')
+                ->cc('ramkrishna.ncert@gmail.com')
+                ->send(new MessageMail($message));
+
+                return redirect(route('message.index'))->with('status',"Your Request has been submitted successfully");
+                
+
+                
+
+            }
+            catch(Exception $e){  
+                return back()->with('failed',"Operation failed");
+            }
+        }
+
+        
     }
 
     /**
@@ -71,7 +113,7 @@ class MessageController extends Controller
      * @param  \App\Models\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateMessageRequest $request, Message $message)
+    public function update(Request $request, Message $message)
     {
         //
     }

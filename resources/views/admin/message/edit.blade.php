@@ -25,32 +25,42 @@ Create New Request
 </section>
 <hr>
 
-<div class="card">
-    <div class="card-body border-white shadow">
-        <form action="">
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body border-white shadow">
+                <form action="{{ route('message.store') }}" method="POST">
+                    @csrf
+                    @method('post') 
+        
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" placeholder="Title of your request" value="{{ old('title') }}">
+        
+                        @error('title')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+        
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea name="message" id="message" class="form-control summernote"></textarea>
+                        @error('message')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
 
-            <div class="mb-3">
-                <label for="subject" class="form-label">Subject</label>
-                <input type="text" name="subject" id="subject" class="form-control @error('name') is-invalid @enderror" placeholder="Subject of your request" value="{{ old('subject') }}">
-
-                @error('name')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary">Submit Request</button>
+                    </div>
+        
+                </form>
             </div>
-
-            <div class="mb-3">
-                <label for="message" class="form-label">Message</label>
-                <textarea name="message" id="message" class="form-control summernote"></textarea>
-                @error('name')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
-            </div>
-
-        </form>
+        </div>
     </div>
 </div>
 
