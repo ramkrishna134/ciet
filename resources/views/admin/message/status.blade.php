@@ -69,6 +69,20 @@
             box-shadow:  0px 1px 5px  rgba(0, 0, 0, 0.5);
 
         }
+        
+        .success{
+            padding: 3px 5px;
+            color: white;
+            background-color: green;
+            border-radius: 3px;
+        }
+
+        .danger{
+            padding: 3px 5px;
+            color: white;
+            background-color: red;
+            border-radius: 3px;
+        }
 
 
 </style>
@@ -80,13 +94,15 @@
             <a href="{{ url('/') }}"><img class="logo" src="{{ $message->embed( public_path('images/ciet-full-logo.jpg') ) }}" alt="CIET"></a>
         </header>
         <div class="heading">
-            Below are the details of Request by {{ $name }}.
+            Status updated for Request id <a href="{{ route('message.show', $id) }}">#{{ $id }}</a>.
         </div>
 
         <div class="mail">
-            <h4>{{ $title }}</h4>
+            Dear {{ $name }},
 
-            {!! $message_text !!}
+                <p>Your Request "{{ $title }}", has been @if($status == 1) <span class="success">Approved</span> @elseif($status == 2) <span class="danger">Declined</span> @endif by Admin.
+                    Please contact at <a href="mailto:admin@ciet.nic.in">admin@ciet.nic.in</a> for more details.</p>
+
         </div>
     
         <footer>

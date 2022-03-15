@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class MessageMail extends Mailable
+class MessageStatusUpdate extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -37,10 +37,11 @@ class MessageMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('New Request From '. $this->message->user->name)->view('admin.message.mail')->with([
-            'name' => $this->message->user->name,
+        return $this->subject('Status updated for the Request id #'. $this->message->id)->view('admin.message.status')->with([
+            'id' => $this->message->id,
+            'status' => $this->message->status,
+            'name'  => $this->message->user->name,
             'title' => $this->message->title,
-            'message_text' => $this->message->message,
         ]);
     }
 }

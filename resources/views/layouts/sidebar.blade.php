@@ -19,7 +19,10 @@
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!-- JavaScript Bundle with Popper -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> --}}
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -32,9 +35,9 @@
 </head>
 <body>
     <div id="app">
-        <section class="sidebar">
-            <div class="logo">
-                <img class="img-fluid" src="/images/CIET-logo.png" alt="">
+        <section class="sidebar shadow">
+            <div class="logo2 mb-4 text-center mt-3">
+                <img class="img-fluid" width="80" src="/images/ciet-logo-black.png" alt="CIET">
                 {{-- <h5 class="text-light mb-0">Central Institute of</h5> --}}
                 <h6 class="text-black"><strong>CIET</strong></h6>
             </div>
@@ -141,12 +144,14 @@
     
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
+                                        <strong>{{ Auth::user()->name }}</strong>
+
                                         <small>{{ Auth::user()->email }}</small>
 
                                         <hr class="dropdown-divider">
 
-                                        <a class="dropdown-item" href="">
-                                            <i class="fas fa-comments"></i> Your Requests 
+                                        <a class="dropdown-item" href="{{ route('message.index') }}">
+                                            <i class="fas fa-comments"></i> @if((Auth::user()->role === 'Admin')) All Request @else Your Requests @endif 
                                         </a>
 
                                         <a class="dropdown-item" href="{{ route('logout') }}"
@@ -162,7 +167,8 @@
                                 </li>
 
                                 <li class="nav-item ms-2 border rounded">
-                                    <a href="{{ route('message.index') }}" class="nav-link {{ (request()->is('admin/messages')) ? 'bg-primary text-light' : '' }}"><i class="fas fa-bell"></i></a>
+                                    <a href="#" class="nav-link" data-bs-toggle="popover" title="Notification" data-bs-content="You have no New Notification."><i class="fas fa-bell"></i></a>
+                                    {{-- <button type="button" class="nav-link" data-toggle="popover" title="Popover title" data-bs-placement="bottom" data-content="And here's some amazing content. It's very engaging. Right?"><i class="fas fa-bell"></i></button>                                   --}}
                                 </li>
                                 <li class="nav-item ms-2 border rounded">
                                     <a href="{{ route('setting.index') }}" class="nav-link {{ (request()->is('admin/settings')) ? 'bg-primary text-light' : '' }}"><i class="fas fa-cog"></i></a>
@@ -177,5 +183,11 @@
            </div>
         </main>
     </div>
+
+    <script>
+        $(document).ready(function(){
+        
+        })
+    </script>
 </body>
 </html>

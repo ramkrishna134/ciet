@@ -113,7 +113,7 @@ Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () 
     Route::get('/messages','App\Http\Controllers\MessageController@index')->name('message.index');
     Route::get('/message/create','App\Http\Controllers\MessageController@create')->name('message.create');
     Route::post('/message/create','App\Http\Controllers\MessageController@store')->name('message.store');
-    Route::get('/message/{message}','App\Http\Controllers\MessageController@edit')->name('message.edit');
+    Route::get('/message/{message}','App\Http\Controllers\MessageController@show')->name('message.show');
     Route::put('/message/{message}','App\Http\Controllers\MessageController@update')->name('message.update');
 
 });

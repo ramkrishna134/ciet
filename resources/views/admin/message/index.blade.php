@@ -36,6 +36,7 @@ Your Requests
                         <th>Status</th>
                         <th>Created at</th>
                         <th>Updated at</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
 
@@ -48,10 +49,13 @@ Your Requests
                             <span class="badge bg-warning">Pending</span>
                             @elseif($message->status == 1)
                             <span class="badge bg-primary">Approved</span>
+                            @elseif($message->status == 2)
+                            <span class="badge bg-danger">Declined</span>
                             @endif
                         </td>
                         <td>{{ $message->created_at->diffForHumans() }}</td>
                         <td>{{ $message->updated_at->diffForHumans() }}</td>
+                        <td><a href="{{ route('message.show', $message) }}" class="btn btn-primary btn btn-sm">View</a></td>
                     </tr>
                     @endforeach
                 </tbody>

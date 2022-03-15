@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Message;
 use App\Mail\MessageMail;
+use App\Mail\MessageStatusUpdate;
 use Illuminate\Support\Facades\Mail;
 
 class MessageController extends Controller
@@ -19,7 +20,7 @@ class MessageController extends Controller
     {
         //
         $user = auth()->user();
-        $messages = Message::query()->where('user_id', $user->id)->get();
+        $messages = Message::query()->where('user_id', $user->id)->orWhere('assign_to', 1)->get();
         return view('admin.message.index', compact('messages'));
     }
 
@@ -92,7 +93,8 @@ class MessageController extends Controller
      */
     public function show(Message $message)
     {
-        //
+        // 
+        return view('admin.message.show', compact('message'));
     }
 
     /**
@@ -116,6 +118,38 @@ class MessageController extends Controller
     public function update(Request $request, Message $message)
     {
         //
+
+        $rules = [
+            'status' =>'required',      
+        ];
+
+        $validator = Validator::make($request->all(),$rules);
+        if ($validator->fails()) {
+            return back()
+                ->withInput()
+                ->withErrors($validator)->with('error',"Please check the field below *");     
+        }
+        else{
+            $data = $request->input();
+            try{
+                $message->fill($data);
+                $message->save();
+
+                Mail::to($message->user->email)
+                ->cc('ramkrishna.ncert@gmail.com')
+                ->send(new MessageStatusUpdate($message));
+
+                return back()->with('status',"Request updated successfully");
+                
+
+                
+
+            }
+            catch(Exception $e){  
+                return back()->with('failed',"Operation failed");
+            }
+        }
+
     }
 
     /**
