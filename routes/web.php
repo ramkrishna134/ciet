@@ -72,6 +72,7 @@ Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () 
     Route::get('/pages','App\Http\Controllers\PageController@index')->name('page.index');
     Route::get('/page/create','App\Http\Controllers\PageController@create')->name('page.create');
     Route::post('/page/create','App\Http\Controllers\PageController@store')->name('page.store');
+    Route::get('/page/create/general','App\Http\Controllers\PageController@general')->name('page.create.general');
     Route::get('/page/edit/{page}','App\Http\Controllers\PageController@edit')->name('page.edit');
     Route::put('/page/edit/{page}','App\Http\Controllers\PageController@update')->name('page.update');
 
@@ -116,15 +117,28 @@ Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () 
     Route::get('/message/{message}','App\Http\Controllers\MessageController@show')->name('message.show');
     Route::put('/message/{message}','App\Http\Controllers\MessageController@update')->name('message.update');
 
+
+    Route::get('/slider','App\Http\Controllers\SliderController@index')->name('slider.index');
+    Route::post('/slider','App\Http\Controllers\SliderController@store')->name('slider.store');
+    Route::post('/slider/{slider}','App\Http\Controllers\SliderController@update')->name('slider.update');
+    Route::get('/slide/{slider}','App\Http\Controllers\SliderController@destroy')->name('slider.delete');
+
 });
 
 
 // Web Routes ==============================
 
-Route::get('/{slug}/{local}','App\Http\Controllers\PageController@show')->name('page.show');
+Route::get('/{slug}/{local?}','App\Http\Controllers\PageController@show')->name('page.show');
 
-Route::get('/demo', function () {
-    return view('admin.faculty.demo');
-});
+// Route::get('/demo', function () {
+//     return view('admin.faculty.demo');
+// });
+
+
+// Web Search route =========================================
+
+Route::post('/search', 'App\Http\Controllers\PageController@search')->name('search');
+
+// Route::get('/autocomplete/{any}',array('as'=>'autocomplete','uses'=>'App\Http\Controllers\PageController@autocomplete'));
 
 

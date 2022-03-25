@@ -18,7 +18,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 
     <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- JavaScript Bundle with Popper -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> --}}
@@ -70,6 +70,10 @@
 
                 <li class="menu-item">
                     <a class="menu-link {{ (request()->is('admin/pages')) ? 'active' : '' }}" href="{{ route('page.index') }}"><i class="fas fa-file-alt"></i> Pages</a>
+                </li>
+
+                <li class="menu-item">
+                    <a class="menu-link {{ (request()->is('admin/slider')) ? 'active' : '' }}" href="{{ route('slider.index') }}"><i class="fas fa-images"></i> Slider</a>
                 </li>
 
                 <li class="menu-item">
@@ -134,7 +138,7 @@
                                 @endif
                             @else
                                 <li class="nav-item border rounded">
-                                    <div class="nav-link text-black"><i class="fas fa-calendar-day"></i> {{ date("d-m-Y") }} <i class="fas fa-clock"></i> {{ date("h:i:sa") }}</div>
+                                    <div class="nav-link text-black"><i class="fas fa-calendar-day text-primary"></i> {{ date("d-m-Y") }} <i class="fas fa-clock text-primary"></i> {{ date("h:i:sa") }}</div>
                                 </li>
                                 <li class="nav-item dropdown border rounded account-menu ms-2">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

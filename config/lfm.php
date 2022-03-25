@@ -51,7 +51,7 @@ return [
             'startup_view' => 'list',
             'max_size'     => 50000, // size in KB
             'thumb' => true,
-            'thumb_width' => 200,
+            'thumb_width' => 300,
             'thumb_height' => 100,
             'valid_mime'   => [
                 'image/jpeg',
@@ -84,7 +84,7 @@ return [
             'startup_view' => 'grid',
             'max_size'     => 50000, // size in KB
             'thumb' => true,
-            'thumb_width' => 200,
+            'thumb_width' => 360,
             'thumb_height' => 100,
             'valid_mime'   => [
                 'image/jpeg',
@@ -104,7 +104,7 @@ return [
      */
 
     'paginator' => [
-        'perPage' => 30,
+        'perPage' => 20,
     ],
 
     /*

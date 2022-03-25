@@ -4,42 +4,21 @@
 
 @extends('layouts.sidebar')
 
-<style>
-    .sidebar{
-        display: none;
-    }
-
-    .main{
-        padding-left: 0px !important;
-    }
-
-    #holder img{
-        height: auto !impotant;
-        max-height: 150px;
-        width: 100%;
-    }
-</style>
-
 @section('title')
 <a href="{{ route('page.index') }}" class="btn btn-primary btn-sm"><i class="fas fa-arrow-left"></i> All Pages</a>   {{ $page ? "Edit Page" : "Add New Page" }}
 @endsection
 
 @section('content')
-<link rel="stylesheet" href="{{asset('vendor/laraberg/css/laraberg.css')}}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css"/>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react@16.8.6/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@16.8.6/umd/react-dom.production.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css"/>
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 <script src="{{asset('vendor/laravel-filemanager/js/stand-alone-button.js')}}"></script>
-<script src="{{asset('vendor/laraberg/js/laraberg.js')}}"></script>
-
 
 @if (session('status'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -61,14 +40,7 @@
     @csrf
     @method( $page ? 'put' : 'post')
 
-    @if(!empty($page))
-        @if($page->type === 'custom')
-        <input type="hidden" name="type" value="custom">
-        @else
-        <input type="hidden" name="type" value="general">
-        @endif
-    @endif
-    
+    <input type="hidden" name="type" value="general">
 
     <section class="hero-section sticky-top">
         <div class="card border-white rounded">
@@ -155,16 +127,8 @@
                     @enderror
 
                 
-
-                    @if(!empty($page))
-                        @if($page->type === 'custom')
-                        <textarea name="content" id="content" hidden>{!! $page->content ?? old('content') !!}</textarea>
-                        @else
-                        <textarea name="content" id="summernote" class="form-control"> {!! $page->content ?? old('content') !!}</textarea>
-                        @endif
-                    @else
-                        <textarea name="content" id="content" hidden>{!! $page->content ?? old('content') !!}</textarea>
-                    @endif
+        
+                    <textarea name="content" id="content" class="form-control"></textarea>
                 </div>
             </div>
         </div>
@@ -223,13 +187,6 @@
 <script>
     $(document).ready(function(){
 
-        Laraberg.init('content', { 
-            laravelFilemanager: true,
-        });
-
-
-        
-
         // Define function to open filemanager window
         var lfm = function(options, cb) {
         var route_prefix = (options && options.prefix) ? options.prefix : '/laravel-filemanager';
@@ -237,7 +194,7 @@
         window.SetUrl = cb;
         };
 
-        // Define LFM summernote button
+    // Define LFM summernote button
         var LFMButton = function(context) {
         var ui = $.summernote.ui;
         var button = ui.button({
@@ -257,8 +214,7 @@
         };
 
 
-        $('#lfm').filemanager('image');
-        $('#summernote').summernote({
+        $('#content').summernote({
             height: 500,
             toolbar: [
                 ['style', ['style']],
@@ -274,6 +230,8 @@
                 lfm: LFMButton
             }
         });
+
+        $('#lfm').filemanager('image');
         
     })
 

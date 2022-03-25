@@ -12,7 +12,9 @@ All Pages
             <h3>All Pages</h3>
         </div> --}}
         <div class="col-sm-4">
-            <a href="{{ route('page.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add New Page</a>
+            <a href="{{ route('page.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add New Custom Page</a>
+
+            <a href="{{ route('page.create.general') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add New General Page</a>
         </div>
     </div>
 </section>
@@ -43,6 +45,7 @@ All Pages
                                 <th>ID</th>
                                 <th width=350>Title</th>
                                 <th>Slug</th>
+                                <th>Type</th>
                                 <th>Author</th>
                                 <th>Language</th>
                                 <th>Status</th>
@@ -65,6 +68,13 @@ All Pages
                                     </div>
                                 </td>
                                 <td>{{ $page->slug }}</td>
+                                <td>
+                                    @if($page->type === 'custom')
+                                    Custom
+                                    @elseif($page->type === 'general')
+                                    General
+                                    @endif
+                                </td>
                                 <td>{{ $page->user->name }}</td>
                                 <td>
                                     @if($page->lang === 'en')

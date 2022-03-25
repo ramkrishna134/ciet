@@ -55,11 +55,11 @@ Dashboard
             <div class="row row align-items-center">
                 <div class="col-8">
                     <h2>5</h2>
-                    <h5 class="mb-0">Total Departments</h5>
+                    <h5 class="mb-0">Total Trainings</h5>
                     <small><a href=""><strong><i class="fas fa-eye"></i> View</strong></a></small>
                 </div>
                 <div class="col-4">
-                    <h2 class="mb-0"><span class="badge bg-primary"><i class="fas fa-user-graduate"></i></span></h2>
+                    <h2 class="mb-0"><span class="badge bg-primary"><i class="fas fa-chalkboard"></i></span></h2>
                 </div>
             </div>
         </div>

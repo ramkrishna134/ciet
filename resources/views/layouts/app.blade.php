@@ -25,7 +25,9 @@
     <title>@yield('title')- Central Institute of Educational Technology</title>
 
     <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -70,9 +72,15 @@
                   </li>
                 </ul>
                 <form class="d-flex">
-                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <input id="txtSearch" class="form-control me-2" style="width: 500px;" type="search" placeholder="Search" aria-label="Search">
                   <button class="btn btn-outline-success" type="submit">Search</button>
+
+                  {{ csrf_field() }}
                 </form>
+
+                <div id="search-result" class="result">
+
+                </div>
               </div>
             </div>
           </nav>
@@ -81,5 +89,69 @@
             @yield('content')
         </main>
     </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
+
+    {{-- Search Box --}}
+
+    {{-- <script type="text/javascript">
+      var path = "{{ route('autocomplete') }}";
+      $('input.typeahead').typeahead({
+          source:  function (query, process) {
+              return $.get(path, { query: query }, function (data) {
+                  return process(data);
+              });
+          }
+      });
+    </script> --}}
+
+    <script type="application/javascript">
+      $(document).ready(function(){
+
+          $('#txtSearch').on('keyup', function(){
+
+            var query = $(this).val();
+
+            if(query != ''){
+              var _token = $('input[name="_token"]').val();
+
+              $.ajax({
+
+              method:"POST",
+              url: "{{ route('search') }}",
+              data: {
+                query : query,
+                _token : _token
+              },
+              success: function(data) {
+                  response = data;
+                  $('#search-result').fadeIn();
+                  $('#search-result').html(data);
+
+                  console.log(data);
+                  // for (var patient of response) {
+                  //     console.log(patient);
+                  // }
+              }
+
+
+
+              });
+
+            }
+
+              
+            
+
+              
+
+
+          });
+
+      });
+    </script>
+
+
 </body>
 </html>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Page;
 use Illuminate\Support\Str;
+use DB;
 
 class PageController extends Controller
 {
@@ -33,6 +34,12 @@ class PageController extends Controller
         return view('admin.page.edit');
     }
 
+    public function general()
+    {
+        //
+        return view('admin.page.general');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -47,6 +54,7 @@ class PageController extends Controller
         $rules = [
             'title' => 'required',
             'slug' => 'nullable',
+            'type' => 'required',
             'content' => 'nullable',
             'description' => 'required',
             'lang' => 'required',
@@ -89,7 +97,7 @@ class PageController extends Controller
      * @param  \App\Models\Page  $page
      * @return \Illuminate\Http\Response
      */
-    public function show(Page $page, $slug, $local)
+    public function show(Page $page, $slug, $local = null)
     {
         if(!empty($local)){
             $page = Page::where('slug', $slug)->where('lang', $local)->where('status', 1)->first();
@@ -133,6 +141,7 @@ class PageController extends Controller
         $rules = [
             'title' => 'required',
             'slug' => 'nullable',
+            'type' => 'required',
             'content' => 'nullable',
             'description' => 'required',
             'lang' => 'required',
@@ -188,5 +197,22 @@ class PageController extends Controller
 
     public function css(){
         return view('admin.css');
+    }
+
+
+    public function search(Request $request) {
+
+        if($request->get('query')){
+            $query = $request->get('query');
+            
+            $data = \DB::table('pages')->where("title", "LIKE", "$query")->get();
+            return response()->json($data);
+        }
+        
+        // $text = $request->input('text');
+    
+        // $patients = DB::table('pages')->where('key_word', 'Like', "$text")->get();
+    
+        // return response()->json($patients);
     }
 }
