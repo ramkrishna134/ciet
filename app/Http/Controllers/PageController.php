@@ -78,9 +78,6 @@ class PageController extends Controller
                 }
                 $page->user_id = $user->id;
                 $page->featured_icon = $data['filepath'];
-                if( !empty( $data['key_word'] ) ){
-                    $page->key_word = json_encode($data['key_word']);
-                } 
                 $page->save();
                 return redirect(route('page.index'))->with('status',"Page created successfully");
 
@@ -167,9 +164,6 @@ class PageController extends Controller
                 $page->description = $data['description'];
                 $page->featured_icon = $data['filepath'];
                 $page->user_id = $user->id;
-                if( !empty( $data['key_word'] ) ){
-                    $page->key_word = json_encode($data['key_word']);
-                } 
                 $page->save();
                 return back()->with('status',"Page updated successfully");
 
@@ -189,6 +183,8 @@ class PageController extends Controller
     public function destroy(Page $page)
     {
         //
+        $page->delete();
+        return back()->with('status',"Page Deleted successfully");
     }
 
     public function media(){
@@ -205,8 +201,16 @@ class PageController extends Controller
         if($request->get('query')){
             $query = $request->get('query');
             
-            $data = \DB::table('pages')->where("title", "LIKE", "$query")->get();
-            return response()->json($data);
+            // $data[] = \DB::table('pages')->where("key_word", "LIKE", '%' . $query . '%')->get();
+
+            $departments[] = \DB::table('departments')->where("key_word", "LIKE", '%' . $query . '%')->get();
+            $pages[] = \DB::table('pages')->where("key_word", "LIKE", '%' . $query . '%')->get();
+            $events[] = \DB::table('events')->where("key_word", "LIKE", '%' . $query . '%')->get();
+            $trainings[] = \DB::table('trainings')->where("key_word", "LIKE", '%' . $query . '%')->get();
+
+            $datas = array_merge($departments, $pages, $events, $trainings);
+
+            return response()->json($datas);
         }
         
         // $text = $request->input('text');

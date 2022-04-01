@@ -16,22 +16,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('web.home');
+})->name('home');
 
 Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::middleware(['auth','HasPermission'])->group(function () {
+// Route::middleware(['auth','HasPermission'])->group(function () {
 
-    // Route::get('/create',[CheckController::class, 'create']);
-    Route::get('/create','App\Http\Controllers\CheckController@create');
-    Route::get('/',[CheckController::class, 'index']);
-    // Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::get('/home','App\Http\Controllers\HomeController@index');
+//     // Route::get('/create',[CheckController::class, 'create']);
+//     Route::get('/create','App\Http\Controllers\CheckController@create');
+//     Route::get('/',[CheckController::class, 'index']);
+//     // Route::get('/home', [HomeController::class, 'index'])->name('home');
+//     Route::get('/home','App\Http\Controllers\HomeController@index');
 
-});
+// });
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
@@ -75,6 +75,7 @@ Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () 
     Route::get('/page/create/general','App\Http\Controllers\PageController@general')->name('page.create.general');
     Route::get('/page/edit/{page}','App\Http\Controllers\PageController@edit')->name('page.edit');
     Route::put('/page/edit/{page}','App\Http\Controllers\PageController@update')->name('page.update');
+    Route::get('/page/{page}','App\Http\Controllers\PageController@destroy')->name('page.destroy');
 
 
     Route::get('/departments','App\Http\Controllers\DepartmentController@index')->name('department.index');
@@ -93,8 +94,10 @@ Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () 
 
     Route::get('/menu','App\Http\Controllers\MenuController@index')->name('menu');
     Route::post('/menu','App\Http\Controllers\MenuController@store')->name('menu.store');
+    Route::get('/menu/{menu}','App\Http\Controllers\MenuController@destroy')->name('menu.destroy');
     Route::post('/menuItem','App\Http\Controllers\MenuItemController@store')->name('menuItem.store');
     Route::put('/menuItem/{menuItem}','App\Http\Controllers\MenuItemController@update')->name('menuItem.update');
+    Route::get('/menuItem/{menuItem}','App\Http\Controllers\MenuItemController@destroy')->name('menuItem.destroy');
 
     Route::get('/trainings','App\Http\Controllers\TrainingController@index')->name('training.index');
     Route::get('/training/create','App\Http\Controllers\TrainingController@create')->name('training.create');
@@ -122,6 +125,13 @@ Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () 
     Route::post('/slider','App\Http\Controllers\SliderController@store')->name('slider.store');
     Route::post('/slider/{slider}','App\Http\Controllers\SliderController@update')->name('slider.update');
     Route::get('/slide/{slider}','App\Http\Controllers\SliderController@destroy')->name('slider.delete');
+
+    Route::get('/articals','App\Http\Controllers\ArticalController@index')->name('artical.index');
+    Route::get('/artical/create','App\Http\Controllers\ArticalController@create')->name('artical.create');
+    Route::post('/artical/create','App\Http\Controllers\ArticalController@store')->name('artical.store');
+    Route::get('/artical/{artical}','App\Http\Controllers\ArticalController@edit')->name('artical.edit');
+    Route::put('/artical/{artical}','App\Http\Controllers\ArticalController@update')->name('artical.update');
+    Route::get('/articals/{artical}','App\Http\Controllers\ArticalController@destroy')->name('artical.destroy');
 
 });
 

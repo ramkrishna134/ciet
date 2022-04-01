@@ -66,7 +66,7 @@ Menu Builder
                             <td>{{ $menu->name }} <small>({{ $menu->location }})</td>
                             <td>
                                 <a href="" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
-                                <a href="" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>
+                                <a href="{{ route('menu.destroy', $menu) }}" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>
                             </td>
                         </tr>
                         @endforeach
@@ -245,7 +245,7 @@ Menu Builder
 
                             <td>
                                 <a href="" data-bs-toggle="modal" data-bs-target="#editMenuItem" class="btn btn-info btn-sm mb-1"><i class="fas fa-edit"></i></a>
-                                <a href="" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>
+                                <a href="{{ route('menuItem.destroy', $item) }}" class="btn btn-danger btn-sm mb-1"><i class="fas fa-trash-alt"></i></a>
                             </td>
                         </tr>
                     @endforeach

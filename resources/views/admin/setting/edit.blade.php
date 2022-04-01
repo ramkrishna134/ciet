@@ -101,6 +101,46 @@ Settings
 
             <div class="row mb-3">
                 <div class="col-sm-2">
+                    <label for="setting[popup-status]" class="col-form-label">Homepage Popup</label>
+                </div>
+                <div class="col-sm-4">
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <label class="form-check-label" for="popupstatus1">Active</label>
+                            <input class="form-check-input" type="radio" value="1" name="setting[popup-status]" id="popupstatus1" @if(setting('popup-status') == 1) checked @endif>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label" for="popupstatus">Inactive</label>
+                            <input class="form-check-input" type="radio" value="0" name="setting[popup-status]" id="popupstatus" @if(setting('popup-status') == 0) checked @endif>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                            <a id="popup" data-input="thumbnail4" data-preview="holder4" class="btn btn-primary">
+                                <i class="fas fa-file-image"></i> Image
+                            </a>
+                            </span>
+                            <input id="thumbnail4" class="form-control" type="text" name="setting[popup-image]" value="{{ setting('popup-image') }}">
+                        </div>
+                        <div id="holder4" style="margin-top:5px;width:100%;">
+                            @if(!empty(setting('popup-image')))
+                            <img width="200px" height="100px" src="{{ setting('popup-image') }}" alt="">
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="url" id="setting[popup-url]" class="form-control" name="setting[popup-url]" value="{{ setting('popup-url') }}" placeholder="Hit URL">
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="row mb-3">
+                <div class="col-sm-2">
                     <label for="setting[admin-email]" class="col-form-label">Admin Email</label>
                 </div>
                 <div class="col-sm-4">
@@ -218,6 +258,8 @@ Settings
         $('#hindi').filemanager('image');
 
         $('#urdu').filemanager('image');
+
+        $('#popup').filemanager('image');
 
     });
 </script>

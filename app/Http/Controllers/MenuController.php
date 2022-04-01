@@ -112,5 +112,7 @@ class MenuController extends Controller
     public function destroy(Menu $menu)
     {
         //
+        $menu->delete();
+        return back()->with('status',"Menu Group Deleted successfully");
     }
 }

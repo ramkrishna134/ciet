@@ -77,6 +77,10 @@
                 </li>
 
                 <li class="menu-item">
+                    <a class="menu-link {{ (request()->is('admin/articals')) ? 'active' : '' }}" href="{{ route('artical.index') }}"><i class="fas fa-newspaper"></i> Articals</a>
+                </li>
+
+                <li class="menu-item">
                     <a class="menu-link {{ (request()->is('admin/menu')) ? 'active' : '' }}" href="{{ route('menu') }}"><i class="fas fa-list-ul"></i> Menus</a>
                 </li>
 

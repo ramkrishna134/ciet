@@ -55,6 +55,7 @@ class DepartmentController extends Controller
             'head_image' => 'required',
             'head_message' => 'required',
             'status' => 'required',
+            'key_word' => 'required',
             'meta.*' => 'required'
         ];
 
@@ -85,15 +86,17 @@ class DepartmentController extends Controller
 
                 // Save custom fields in meta table
 
-                $metas = $data['meta'];
-                foreach($metas as $key => $value){
-                   $new_meta = new Meta;
-                   $new_meta->key = $key;
-                   $new_meta->value = $value;
-                   $new_meta->model_type = 'App\Models\Department';
-                   $new_meta->model_id = $department->id;
-                   $new_meta->lang = $department->lang;
-                   $new_meta->save();
+                if(!empty($data['meta'])){
+                    $metas = $data['meta'];
+                    foreach($metas as $key => $value){
+                    $new_meta = new Meta;
+                    $new_meta->key = $key;
+                    $new_meta->value = $value;
+                    $new_meta->model_type = 'App\Models\Department';
+                    $new_meta->model_id = $department->id;
+                    $new_meta->lang = $department->lang;
+                    $new_meta->save();
+                    }
                 }
                 return redirect(route('department.index'))->with('status',"Department created successfully");
 
@@ -150,6 +153,7 @@ class DepartmentController extends Controller
             'head_image' => 'required',
             'head_message' => 'required',
             'status' => 'required',
+            'key_word' => 'required',
             'meta.*' => 'required'
         ];
 

@@ -2,26 +2,22 @@
 
 namespace App\Models;
 
-use App\Traits\HasMeta;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Department extends Model
+class Artical extends Model
 {
-    use HasFactory, HasMeta;
+    use HasFactory;
 
     protected $fillable = [
         'title',
-        'slug',
-        'description',
-        'featured_image',
+        'category',
         'icon',
+        'url',
+        'date',
         'user_id',
-        'head_image',
-        'head_message',
+        'lang',
         'status',
-        'key_word',
-        'lang'
     ];
 
     public function user()

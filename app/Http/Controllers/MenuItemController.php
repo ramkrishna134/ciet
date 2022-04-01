@@ -151,5 +151,7 @@ class MenuItemController extends Controller
     public function destroy(MenuItem $menuItem)
     {
         //
+        $menuItem->delete();
+        return back()->with('status',"Menu Item Deleted successfully");
     }
 }

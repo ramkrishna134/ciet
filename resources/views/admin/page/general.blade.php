@@ -172,7 +172,7 @@
 
                      <div class="mb-3">
                         <label for="key_word" class="form-label">Meta Keywords</label> <br>
-                        <input type="key_word" data-role="tagsinput" name="key_word" id="key_word" value="{{ $page ? json_decode($page->key_word) : old('key_word') }}">
+                        <input type="key_word" data-role="tagsinput" name="key_word" id="key_word" value="{{ $page ? $page->key_word : old('key_word') }}">
                      </div>
                 </div>
             </div>

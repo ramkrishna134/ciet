@@ -64,7 +64,7 @@ All Pages
                                     <div class="actions">
                                         <a href="{{ route('page.edit', $page) }}" class="btn btn-info"><i class="fas fa-edit"></i> Edit</a>
                                         <a href="{{ url($page->slug, $page->lang) }}" class="btn btn-primary" target="_blank"><i class="fas fa-eye"></i> View</a>
-                                        <a href="" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
+                                        <a href="{{ route('page.destroy', $page) }}" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
                                     </div>
                                 </td>
                                 <td>{{ $page->slug }}</td>

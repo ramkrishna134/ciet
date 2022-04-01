@@ -1,0 +1,290 @@
+// Container width changed =============
+@media (min-width: 1400px){
+  .container{
+    max-width: 1400px;
+  }
+}
+
+body{
+  a{
+    text-decoration: none;
+  }
+}
+
+// Header scss ==============
+.header{
+  background-color: $white;
+  font-family: $font-family-heading;
+
+  .top-head{
+    background-color: $primary;   
+    padding: 5px 0;
+
+    .time-date{
+      display: flex;
+      color: $white;
+      font-family: $font-family-base;
+      font-weight: 500;
+    }
+
+    .accessibility-menu{
+      padding: 0;
+      margin: 0;
+      text-align: right;
+
+      li{
+        display: inline-block;
+        color: $white;
+        
+        &:last-child{
+          a{
+            border: none;
+          }
+        }
+
+        a{
+          color: $white;
+          position: relative;
+          border-right: 1px solid $white;
+          padding: 0 5px;
+          transition: all 250ms;
+
+          &:hover{
+            font-weight: 600;
+          }
+        }
+      }
+    }
+
+    .drop-down{
+      display: none;
+    }
+  }
+
+  .logo{
+    width: 400px;
+
+    &.logo-sm{
+      width: 300px;
+    }
+  }
+
+// Header Menu ===============
+  .navbar-nav{
+
+    .nav-item{
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+
+      .nav-link{
+        color: $black;
+        font-size: 1.1rem;
+        font-weight: 600;
+        position: relative;
+        transition: all 350ms;
+
+        &::before{
+          position: absolute;
+          content: "";
+          bottom: 0;
+          height: 2px;
+          left: 0;
+          right: 0;
+          width: 0%;
+          background-color: $primary;
+          transition: all 350ms;
+        }
+
+        &:hover{
+          &::before{
+            width: 100%;
+          }
+        }
+
+        &.active{
+          color: $primary;
+          &::before{
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  .btn-search{
+    background-color: $light;
+    border-radius: 50%;
+    color: $primary;
+  }
+
+  .cross-icon{
+    display: none;
+  }
+}
+
+
+#searchModal{
+  
+  .modal-content{
+    border-radius: 30px;
+
+    .modal-body{
+      padding: 0;
+      border-radius: 30px;
+    }
+  }
+  
+}
+
+  #txtSearch{
+    border-radius: 30px;
+    padding: 15px;
+    color: $black;
+    font-size: 1rem;
+  }
+
+  #txtSearch.active{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%) !important;
+  }
+
+  #txtSearch:focus{
+    border: none;
+  }
+
+  .search-box{
+    position: relative
+  }
+
+  .search-box .result{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 10px;
+    display: none;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  .search-box .result a{
+    display: block;
+    color: black
+  }
+
+
+
+  // Braekpoint Tablet scss ===============================
+
+  @media only screen and (max-width: $tablet-width){
+
+    .header{
+
+      .logo{
+        width: 266px;
+
+        &.logo-sm{
+          width: 266px;
+        }
+      }
+
+      .btn-menu{
+        width: 55px;
+      }
+
+      .top-head{
+        display: block;
+        text-align: center;
+
+        .row{
+          display: none;
+        }
+
+        .time-date{
+          justify-content: center;
+        }
+
+        .accessibility-menu{
+          text-align: center;
+        }
+
+        .drop-down{
+          display: block;
+          font-size: 1.2rem;
+          color: $white;
+        }
+      }
+
+      .cross-icon{
+        display: block;
+      }
+
+      .navbar-nav{
+        .nav-item{
+          .nav-link{
+            display: inline-block;
+          }
+        }
+      }
+
+      .navbar-collapse{
+        display:block;
+        position: fixed;
+        top: 0;
+        left: -100%;
+        bottom: 0;
+        width: 100%;
+        overflow: auto;
+        background-color: $white;
+        transition: all 350ms;
+        text-align: center;
+
+        &.active{
+          left: 0;
+        }
+
+        .cross-icon{
+          position: absolute;
+          top: 0px;
+          right: 10px;
+          font-size: 2rem;
+          color: $black;
+        }
+      }
+    }
+
+  }
+  
+
+  // Braekpoint Mobile scss ===============================
+  @media only screen and (max-width: $mobile-width){
+
+    .header{
+
+      .logo{
+        width: 200px;
+
+        &.logo-sm{
+          width: 200px;
+        }
+
+      }
+
+    //   .top-head{
+    //     display: block;
+    //     text-align: center;
+
+    //     .accessibility-menu{
+    //       text-align: center;
+    //     }
+    //   }
+     }
+
+  }
+  

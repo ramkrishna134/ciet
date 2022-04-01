@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Meta Tags -->
-    <meta name="title" content="@yield('title')-Central Institute of Educational Technology">
+    <meta name="title" content="@yield('title')Central Institute of Educational Technology | A Constituent unit of NCERT">
     <meta name="description" content="@yield('description')">
     <meta name="keywords" content="@yield('keyword')">
     <meta property="og:image"  content="@yield('image')">
@@ -22,12 +22,12 @@
     <meta property="og:image" content="@yield('image')" />
     <meta property="og:description" content="@yield('description')" />
 
-    <title>@yield('title')- Central Institute of Educational Technology</title>
+    <title>@yield('title')Central Institute of Educational Technology | A Constituent unit of NCERT</title>
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> --}}
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -37,28 +37,74 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
     <link rel="stylesheet" href="{{asset('vendor/laraberg/css/laraberg.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/web/app.css') }}" rel="stylesheet">
 </head>
+
+<style>
+  
+</style>
+
 <body>
     <div id="app">
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow sticky-top">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#">CIET</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
+        <header class="header">
+
+          <div class="top-head">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-3">
+                  <div class="time-date">
+                    <div class="time me-3"><i class="fas fa-clock"></i> 10:00 AM</div>
+                    <div class="date"><i class="fas fa-calendar-day"></i> {{ date('d/m/Y') }}</div>
+                  </div>
+                </div>
+                <div class="col-lg-9">
+                  <ul class="accessibility-menu">
+                    <li><a href="">Skip to main content</a></li>
+                    <li><a href="">Skip to navigation</a></li>
+                    <li><a href="">Screen Reader Access</a></li>
+                    <li>Text Size: <a href="">A-</a> <a href="">A</a> <a href="">A+</a></li>
+                    <li><a href="">Language</a></li>
+                  </ul>
+                </div>
+              </div>
+
+              <a href="" class="drop-down" id="topHeadToggler">
+                <i class="fas fa-angle-double-down"></i>
+              </a>
+
+            </div>
+          </div>
+
+          <nav class="navbar navbar-expand-lg shadow sticky-top">
+            <div class="container">
+              <a class="navbar-brand" href="{{ route('home') }}">
+                <div class="logo">
+                  <img class="img-fluid" src="/images/web/logo-english.png" alt="CIET Logo">
+                </div>
+              </a>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                <a class="navbar-brand d-lg-none d-sm-block d-block py-3 m-0" href="{{ route('home') }}">
+                  <div class="logo mx-auto logo-sm">
+                    <img class="img-fluid" class="img-fluid" src="/images/web/logo-english.png" alt="CIET Logo">
+                  </div>
+                </a>
+
+                <a href="#" class="cross-icon">
+                  <img src="/images/web/cross-icon.png" alt="Menu Close Icon">
+                </a>
+
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                   <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="#">About</a>
                   </li>
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Dropdown
+                      Contituents
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                       <li><a class="dropdown-item" href="#">Action</a></li>
@@ -68,89 +114,260 @@
                     </ul>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    <a class="nav-link" href="#">Trainings</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Events</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">More</a>
                   </li>
                 </ul>
-                <form class="d-flex">
-                  <input id="txtSearch" class="form-control me-2" style="width: 500px;" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-success" type="submit">Search</button>
-
-                  {{ csrf_field() }}
-                </form>
-
-                <div id="search-result" class="result">
-
                 </div>
+
+                <a href="#" type="button" class="btn btn-menu navbar-toggler navbar-toggle" data-bs-toggle="collapse"  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <img class="img-fluid" src="/images/web/menu-icon.png" alt="">
+                </a>
+
+                <a href="#" type="button" class="btn btn-search" data-bs-toggle="modal" data-bs-target="#searchModal">
+                  <i class="fas fa-search"></i>
+                </a>
+
               </div>
             </div>
           </nav>
+        </header>
 
         <main>
             @yield('content')
         </main>
-    </div>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
+
+        {{-- Searbox Modal --}}
+
+        <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="Search Accross the CIET Website" aria-hidden="true">
+          <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-body shadow">
+
+                <form class="search-box">
+                  <input id="txtSearch" class="form-control"type="search" placeholder="Type anything to Search ...." aria-label="Search">
+
+                  {{ csrf_field() }}
+                  <div id="search-result" class="result shadow">
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
 
     {{-- Search Box --}}
 
-    {{-- <script type="text/javascript">
-      var path = "{{ route('autocomplete') }}";
-      $('input.typeahead').typeahead({
-          source:  function (query, process) {
-              return $.get(path, { query: query }, function (data) {
-                  return process(data);
-              });
-          }
-      });
-    </script> --}}
+    <script type="text/javascript">
 
-    <script type="application/javascript">
-      $(document).ready(function(){
+    $(document).ready(function (){
+      mobileMenu();
+      searchbox();
+      topHead();
+    })
 
-          $('#txtSearch').on('keyup', function(){
+    function mobileMenu() {
+      $('.navbar-toggle').click(function(e){
+        e.preventDefault();
+        $('.navbar-collapse').addClass('active');
+      })
 
-            var query = $(this).val();
+      $('.cross-icon').click(function(e){
+        e.preventDefault();
+        $('.navbar-collapse').removeClass('active');
+      })
+    }
 
-            if(query != ''){
-              var _token = $('input[name="_token"]').val();
+    function topHead() {
+      $('#topHeadToggler').click(function(e){
+        e.preventDefault();
+        $('.top-head .row').slideToggle();
+      })
+    }
 
-              $.ajax({
+    
+    function searchbox() {
 
-              method:"POST",
-              url: "{{ route('search') }}",
-              data: {
-                query : query,
-                _token : _token
-              },
-              success: function(data) {
-                  response = data;
-                  $('#search-result').fadeIn();
-                  $('#search-result').html(data);
-
-                  console.log(data);
-                  // for (var patient of response) {
-                  //     console.log(patient);
-                  // }
-              }
+    let searchKeyTimer = null;
+    let searchAjax = null;
+    let $searchBox = $('.search-box');
+    let $searchInput = $searchBox.find('#txtSearch');
+    let $searchResults = $searchBox.find('#search-result');
 
 
+    $searchBox.click(function(e){
+        e.stopPropagation();
+    });
 
-              });
+    $searchInput.keyup(function( e ){
 
+        if( e.which === 27 ){
+
+            $searchResults.hide();
+
+            if( searchKeyTimer ){
+                clearTimeout( searchKeyTimer );
+                searchKeyTimer = null;
+            }
+            if( searchAjax ){
+                searchAjax.abort();
+                searchAjax = null;
             }
 
-              
+            return;
+        }
+
+        if( searchKeyTimer ){
+            clearTimeout( searchKeyTimer );
+            searchKeyTimer = null;
+        }
+
+        searchKeyTimer = setTimeout( search, 250 );
+
+    });
+
+    function search() {
+
+        if( searchAjax ){
+            searchAjax.abort();
+            searchAjax = null;
+        }
+
+        $searchResults.hide();
+        $searchResults.html("");
+        $('#txtSearch').removeClass('active');
+
+        let query = $.trim( $searchInput.val() );
+        if( query.length === 0 ) return;
+
+
+      if(query != ''){
+        var _token = $('input[name="_token"]').val();
+
+        $.ajax({
+
+        method:"POST",
+        url: "{{ route('search') }}",
+        data: {
+          query : query,
+          _token : _token
+        },
+        success: function(data) {
+            response = data;
+            $('#search-result').fadeIn();
+            $('#txtSearch').addClass('active');
             
 
-              
+            data.forEach(function(item) {
+              item.forEach(function(single){
+                var html = ('<a href="/'+single['slug']+'">'+single['title']+'</a>');
+                
+                $('#search-result').append(html);
+
+              })
+            });
+
+            
+
+            // console.log(data);
+            
+        }
 
 
-          });
+
+        });
+
+      }
+    }
+
+    $('body').click(function(){
+        $searchResults.hide();
+        $searchResults.html("");
+        $('#txtSearch').removeClass('active');
+    });
+
+    }
+
+
+      
+    </script>
+
+    {{-- <script type="application/javascript">
+
+      $(document).ready(function(){
+
+
+        
+        
+
+
+        let searchKeyTimer = null;
+        let searchAjax = null;
+        let $searchBox = $('.search-box');
+        let $searchInput = $searchBox.find('#txtSearch');
+        let $searchResults = $searchBox.find('#search-result');
+
+        $searchBox.click(function(e){
+            e.stopPropagation();
+        });
+
+        $searchInput.keyup(function( e ){
+
+          if( e.which === 27 ){
+            $searchResults.hide();
+
+            if( searchKeyTimer ){
+                clearTimeout( searchKeyTimer );
+                searchKeyTimer = null;
+            }
+            if( searchAjax ){
+                searchAjax.abort();
+                searchAjax = null;
+            }
+
+            return;
+
+
+          }
+
+          if( searchKeyTimer ){
+            clearTimeout( searchKeyTimer );
+            searchKeyTimer = null;
+          }
+
+
+
+
+          
+          
+        })
+
+
+
+
+        function search() {
+
+        if( searchAjax ){
+            searchAjax.abort();
+            searchAjax = null;
+        }
+
+        $searchResults.hide();
+
+        
+
+
 
       });
-    </script>
+    </script> --}}
 
 
 </body>
