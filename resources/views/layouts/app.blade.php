@@ -64,8 +64,17 @@
                     <li><a href="">Skip to navigation</a></li>
                     <li><a href="">Screen Reader Access</a></li>
                     <li>Text Size: <a href="">A-</a> <a href="">A</a> <a href="">A+</a></li>
-                    <li><a href="">Language</a></li>
-                  </ul>
+                    <li class="dropdown">
+                      <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Language
+                      </a>
+                      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">English</a></li>
+                        <li><a class="dropdown-item" href="#">Hindi</a></li>
+                        <li><a class="dropdown-item" href="#">Urdu</a></li>      
+                      </ul>
+                    </li>
+                    <li><a href=""><i class="fas fa-adjust"></i></a></li>
                 </div>
               </div>
 
@@ -106,21 +115,53 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Contituents
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item" href="#">Action</a></li>
-                      <li><a class="dropdown-item" href="#">Another action</a></li>
-                      <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="#">Department of ICT & Training</a></li>
+                      <li><a class="dropdown-item" href="#">Media Production Division</a></li>
+                      <li><a class="dropdown-item" href="#">Planning and Research Division</a></li>
+                      <li><a class="dropdown-item" href="#">Engineering Division</a></li>
+                      <li><a class="dropdown-item" href="#">Administration & Accounts</a></li>
+                         
                     </ul>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">Trainings</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Events</a>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Events
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="#">Department of ICT & Training</a></li>
+                      <li><a class="dropdown-item" href="#">Media Production Division</a></li>
+                      <li><a class="dropdown-item" href="#">Planning and Research Division</a></li>
+                      <li><a class="dropdown-item" href="#">Engineering Division</a></li>
+                      <li><a class="dropdown-item" href="#">Administration & Accounts</a></li>     
+                    </ul>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">More</a>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      More
+                    </a>
+                    <ul class="dropdown-menu mega-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <li><a class="dropdown-item" href="#">Department of ICT & Training</a></li>
+                          <li><a class="dropdown-item" href="#">Media Production Division</a></li>
+                          <li><a class="dropdown-item" href="#">Planning and Research Division</a></li>
+                          <li><a class="dropdown-item" href="#">Engineering Division</a></li>
+                          <li><a class="dropdown-item" href="#">Administration & Accounts</a></li>
+                        </div>
+                        <div class="col-sm-6">
+                          <li><a class="dropdown-item" href="#">Department of ICT & Training</a></li>
+                          <li><a class="dropdown-item" href="#">Media Production Division</a></li>
+                          <li><a class="dropdown-item" href="#">Planning and Research Division</a></li>
+                          <li><a class="dropdown-item" href="#">Engineering Division</a></li>
+                          <li><a class="dropdown-item" href="#">Administration & Accounts</a></li>
+                        </div>
+                      </div>
+                           
+                    </ul>
                   </li>
                 </ul>
                 </div>

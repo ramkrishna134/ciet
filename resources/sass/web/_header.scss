@@ -35,10 +35,30 @@ body{
       li{
         display: inline-block;
         color: $white;
+        position: relative;
         
         &:last-child{
           a{
             border: none;
+          }
+        }
+
+        .dropdown-menu{
+          z-index: 2000;
+          min-width: 6rem;
+          li{
+            display: block;
+          }
+
+          .dropdown-item{
+            &:hover{
+              color: $white;
+              text-decoration: none;
+            }
+          }
+
+          .dropdown-item{
+            color: $black;
           }
         }
 
@@ -50,7 +70,7 @@ body{
           transition: all 250ms;
 
           &:hover{
-            font-weight: 600;
+            text-decoration: underline;
           }
         }
       }
@@ -82,6 +102,12 @@ body{
         font-weight: 600;
         position: relative;
         transition: all 350ms;
+
+        &.show{
+          border-top-left-radius: 0.25rem;
+          border-top-right-radius: 0.25rem;
+          box-shadow: 0 3px 16px rgb(0 0 0 / 15%);
+        }
 
         &::before{
           position: absolute;
@@ -119,6 +145,28 @@ body{
 
   .cross-icon{
     display: none;
+  }
+
+  .dropdown-menu{
+    border: none;
+    top: 96%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    position: relative;
+    box-shadow: 0 10px 16px rgb(0 0 0 / 15%);
+
+    &.mega-menu{
+      min-width: 40rem;
+    }
+
+    .dropdown-item{
+      font-weight: 500;
+
+      &:hover{
+        background-color: $primary;
+        color: $white;
+      }
+    }
   }
 }
 
@@ -229,7 +277,17 @@ body{
         .nav-item{
           .nav-link{
             display: inline-block;
+            padding-left: 10px;
+            padding-right: 10px;
           }
+        }
+      }
+
+      .dropdown-menu{
+        text-align: center;
+
+        &.mega-menu{
+          min-width: auto;
         }
       }
 
