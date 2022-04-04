@@ -26,7 +26,8 @@
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script src="{{ asset('js/web/app.js') }}" defer></script>
     {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> --}}
 
     <!-- Fonts -->
@@ -37,6 +38,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
     <link rel="stylesheet" href="{{asset('vendor/laraberg/css/laraberg.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
     <link href="{{ asset('css/web/app.css') }}" rel="stylesheet">
 </head>
 
@@ -47,8 +50,7 @@
 <body>
     <div id="app">
 
-        <header class="header">
-
+        <header class="header sticky-top">
           <div class="top-head">
             <div class="container">
               <div class="row">
@@ -85,7 +87,7 @@
             </div>
           </div>
 
-          <nav class="navbar navbar-expand-lg shadow sticky-top">
+          <nav class="navbar navbar-expand-lg shadow">
             <div class="container">
               <a class="navbar-brand" href="{{ route('home') }}">
                 <div class="logo">
@@ -170,7 +172,7 @@
                   <img class="img-fluid" src="/images/web/menu-icon.png" alt="">
                 </a>
 
-                <a href="#" type="button" class="btn btn-search" data-bs-toggle="modal" data-bs-target="#searchModal">
+                <a href="#" type="button" class="btn-search" data-bs-toggle="modal" data-bs-target="#searchModal">
                   <i class="fas fa-search"></i>
                 </a>
 
@@ -182,6 +184,100 @@
         <main>
             @yield('content')
         </main>
+
+
+        <footer class="footer">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-2">
+
+                <h5 class="footer-heading">Links</h5>
+
+                <ul class="footer-menu">
+                  <li><a href=""><i class="fas fa-angle-double-right"></i> NCERT</a></li>
+                  <li><a href=""><i class="fas fa-angle-double-right"></i> DIKSHA</a></li>
+                  <li><a href=""><i class="fas fa-angle-double-right"></i> ePathshala</a></li>
+                  <li><a href=""><i class="fas fa-angle-double-right"></i> ICT Curriculam</a></li>
+                  <li><a href=""><i class="fas fa-angle-double-right"></i> Swayam</a></li>
+                  <li><a href=""><i class="fas fa-angle-double-right"></i> MoE</a></li>
+                  <li><a href=""><i class="fas fa-angle-double-right"></i> MyGov</a></li>
+                </ul>
+
+              </div>
+              <div class="col-sm-2">
+                <h5 class="footer-heading">Other Links</h5>
+
+                <ul class="footer-menu">
+                  <li><a href=""><i class="fas fa-angle-double-right"></i> Privacy Policy</a></li>
+                  <li><a href=""><i class="fas fa-angle-double-right"></i> Terms & Conditions</a></li>
+                  <li><a href=""><i class="fas fa-angle-double-right"></i> Feedback</a></li>
+                  <li><a href=""><i class="fas fa-angle-double-right"></i> Advisory Board</a></li>
+                  <li><a href=""><i class="fas fa-angle-double-right"></i> CIET in News</a></li>
+                  {{-- <li><a href=""><i class="fas fa-angle-double-right"></i> MoE</a></li>
+                  <li><a href=""><i class="fas fa-angle-double-right"></i> MyGov</a></li> --}}
+                </ul>
+              </div>
+              <div class="col-sm-5">
+                <h5 class="footer-heading">Contact Us</h5>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <p>Join Director, Central Institute of Educational Technology (CIET),</p>
+                    <p>NCERT, Sri Arobindo Marg, New Delhi - 110016.</p>
+                  </div>
+                  <div class="col-sm-5">
+                    <div class="foot-element mb-2">
+                      <div class="foot-icon"><i class="fas fa-envelope"></i></div>
+                      <a href="">jdciet.ncert.nic.in</a><br>
+                      <a href="">dceta.ncert.nic.in</a>
+                    </div>
+
+                    <div class="foot-element mb-2">
+                      <div class="foot-icon"><i class="fas fa-phone-alt"></i></div>
+                      <a href="">+91 8800440559</a><br>
+                      <a href="">+91 8448440632</a><br>
+                      <a href="">+91 8448440632</a>
+                    </div>
+
+                    <div class="foot-element">
+                      <div class="foot-icon"><i class="fas fa-fax"></i></div>
+                      <a href="">+91 11 2686 4141</a>
+                    </div>
+                    
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-sm-3">
+                <h5 class="footer-heading">Follow Us</h5>
+
+                <div class="foot-icon-wrap">
+                  <a href="" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                  <a href="" class="instagram"><i class="fab fa-instagram"></i></a>
+                  <a href="" class="twitter"><i class="fab fa-twitter"></i></a>
+                  <a href="" class="youtube"><i class="fab fa-youtube"></i></a>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </footer>
+
+        <section class="foot-line">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6">
+                <p class="mb-0">&#169; {{ date('Y') }} | Developed by CIET, NCERT. Hosted by NIC</p>
+              </div>
+              <div class="col-sm-6 text-end">
+                <ul class="footer-menu-inline">
+                  <li><a href="">Privacy Policy</a></li> | 
+                  <li><a href="">Sitemap</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
 
 
         {{-- Searbox Modal --}}
@@ -340,75 +436,6 @@
 
       
     </script>
-
-    {{-- <script type="application/javascript">
-
-      $(document).ready(function(){
-
-
-        
-        
-
-
-        let searchKeyTimer = null;
-        let searchAjax = null;
-        let $searchBox = $('.search-box');
-        let $searchInput = $searchBox.find('#txtSearch');
-        let $searchResults = $searchBox.find('#search-result');
-
-        $searchBox.click(function(e){
-            e.stopPropagation();
-        });
-
-        $searchInput.keyup(function( e ){
-
-          if( e.which === 27 ){
-            $searchResults.hide();
-
-            if( searchKeyTimer ){
-                clearTimeout( searchKeyTimer );
-                searchKeyTimer = null;
-            }
-            if( searchAjax ){
-                searchAjax.abort();
-                searchAjax = null;
-            }
-
-            return;
-
-
-          }
-
-          if( searchKeyTimer ){
-            clearTimeout( searchKeyTimer );
-            searchKeyTimer = null;
-          }
-
-
-
-
-          
-          
-        })
-
-
-
-
-        function search() {
-
-        if( searchAjax ){
-            searchAjax.abort();
-            searchAjax = null;
-        }
-
-        $searchResults.hide();
-
-        
-
-
-
-      });
-    </script> --}}
 
 
 </body>

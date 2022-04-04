@@ -1,0 +1,106 @@
+.footer{
+    font-family: $font-family-heading;
+    background-color: $foot-bg;
+    padding: 40px 0;
+    color: #ffffffe0;
+
+    .footer-heading{
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+    .footer-menu{
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        li{
+            margin-bottom: 3px;
+        }
+
+        i{
+            font-size: 0.8rem;
+        }
+
+        a{
+            transition: all 350ms;                                                                                                                                                                    
+            &:hover{
+                color: $primary;
+            }
+        }
+    }
+
+    .foot-element{
+        position: relative;
+        padding-left: 40px;
+        font-family: $font-family-base;
+
+        .foot-icon{
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 32px;
+            width: 32px;
+            border-radius: 50%;
+            text-align: center;
+            background-color: $green;
+            line-height: 32px;
+            display: inline-block;
+        }
+    }
+
+    .foot-icon-wrap{
+        a{
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            display: inline-block;
+            margin-right: 5px;
+
+            &.facebook{
+                background-color: #1877f2;
+            }
+
+            &.twitter{
+                background-color: #1da1f2;
+            }
+
+            &.instagram{
+                background-color: #e1306c;
+            }
+
+            &.youtube{
+                background-color: #ff0000;
+            }
+        }
+    }
+
+    
+}
+
+.foot-line{
+    background-color: $black;
+    font-family: $font-family-heading;
+    padding: 15px 0;
+    color: #adadad;
+    font-weight: 500;
+
+    .footer-menu-inline{
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        li{
+            margin-bottom: 3px;
+            display: inline-block;
+        }
+
+        a{
+            color: #adadad;
+            transition: all 350ms;                                                                                                                                                                    
+            &:hover{
+                color: $primary;
+            }
+        }
+    }
+}

@@ -1,0 +1,481 @@
+.heading{
+    font-size: 1.8rem;
+    color: $black;
+    font-weight: 700;
+    font-family: $font-family-heading;
+
+    &.uppercase{
+        text-transform: uppercase;
+    }
+}
+
+.slick-dotted.slick-slider{
+    margin-bottom: 0 !important;
+}
+
+.btn{
+    border-radius: 30px;
+    font-family: $font-family-heading;
+    font-weight: 600;
+    padding: 7px 20px;
+    font-size: 1.1rem;
+    border: 2px solid $primary;
+
+}
+
+.btn-primary{
+    background-color: $primary;
+    border-color: $primary;
+
+    &:hover{
+        color: $primary;
+        background-color: $white;
+        border: 2px solid $primary;
+    }
+}
+
+//Home Slider =====================
+.home-slider{
+    height: auto;
+    width: 100%;
+    position: relative;
+
+    .slide-item{
+        width: 100px;
+        height: auto;
+        display: block;
+        img{
+            width: 100%;
+        }
+    }
+
+    .slick-prev{
+        z-index: 1;
+        left: 20px;
+        height: 40px;
+        width: 40px;
+        border: 2px solid $white;
+        border-radius: 50%;
+        box-shadow: 0 5px 16px rgb(0 0 0 / 15%);
+
+        &::before{
+            content: "\f104";
+            font-family: "Font Awesome 5 Free";
+            font-size: 2rem;
+            font-weight: 900;
+            opacity: 1;
+            color: $primary;
+        }
+    }
+
+    .slick-next{
+        z-index: 1;
+        right: 20px;
+        height: 40px;
+        width: 40px;
+        border: 2px solid $white;
+        border-radius: 50%;
+        box-shadow: 0 5px 16px rgb(0 0 0 / 15%);
+
+        &::before{
+            content: "\f105";
+            font-size: 2rem;
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            opacity: 1;
+            color: $primary;
+        }
+    }
+
+    .slick-dots{
+        bottom: 13px;
+
+        li{
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+            border: 2px solid $white;
+            box-shadow: 0 5px 16px rgb(0 0 0 / 15%);
+
+            &.slick-active{
+                background-color: $primary;
+            }
+
+            button{
+                display: none;
+            }
+        }
+    }
+}
+
+
+// About us ================
+
+.about-us{
+    padding: 55px 0;
+    font-family: $font-family-heading;
+    position: relative;
+
+    p{
+        text-align: justify;
+    }
+
+    .head-message{
+        position: absolute;
+        right: 0;
+        top: 35px;
+        bottom: 35px;
+        width: 40%;
+        background-color: #F6F6F6;
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+        padding: 35px 70px 35px 35px;
+
+        .message-wrap{
+            background-color: $white;
+            padding: 20px;
+            max-width: 500px;
+            border-radius: 15px;
+
+            .image{
+                width: 40%;
+            }
+
+            .message{
+                width: 60%;
+
+                p{
+                    text-transform: uppercase;
+                    letter-spacing: 1;
+                }
+            }
+
+            .heading{
+                font-size: 1.4rem;
+                text-transform: uppercase;
+            }
+            
+        }
+    }
+}
+
+
+.digital-education{
+    padding: 50px 0;
+    text-align: center;
+    background-color: $pink;
+    font-family: $font-family-heading;
+
+    .digital-slider{
+        padding: 40px 0;
+
+        .slide-item{
+        text-align: center;
+
+            .image{
+                height: 200px;
+                width: 200px;
+                border-radius: 50%;
+                border: 5px solid $white;
+                background-color: $pink;
+                background-size: cover;
+                padding: 25px;
+                line-height: 140px;
+                text-align: center;
+                display: inline-block;
+
+                img{
+                    display: inline-block;
+                }
+            }
+
+            .title{
+                margin-top: 20px;
+                font-size: 1.5rem;
+                font-weight: 600;
+                color: lighten($black, 10%);
+            }
+        }
+
+        .slick-prev{
+            z-index: 1;
+            left: -25px;
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            
+            &:hover{
+                &::before{
+                    color: $primary;
+                }
+            }
+    
+            &::before{
+                content: "\f104";
+                font-family: "Font Awesome 5 Free";
+                font-size: 2rem;
+                font-weight: 900;
+                opacity: 1;
+                color: $black;
+            }
+        }
+    
+        .slick-next{
+            z-index: 1;
+            right: -25px;
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+
+            &:hover{
+                &::before{
+                    color: $primary;
+                }
+            }
+            
+    
+            &::before{
+                content: "\f105";
+                font-size: 2rem;
+                font-family: "Font Awesome 5 Free";
+                font-weight: 900;
+                opacity: 1;
+                color: $black;
+            }
+        }
+
+        .slick-dots{
+            bottom: -10px;
+    
+            li{
+                height: 12px;
+                width: 12px;
+                border-radius: 50%;
+                background-color: $white;
+                box-shadow: 0 5px 16px rgb(0 0 0 / 15%);
+    
+                &.slick-active{
+                    background-color: $primary;
+                }
+    
+                button{
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+// Ongoing Events ====================
+.ongoing-events{
+    padding: 50px 0;
+    text-align: center;
+    font-family: $font-family-heading;
+
+    .ongoing-slider{
+        padding: 40px 0;
+
+        .slide-item{
+            width: 100%;
+            padding: 0 25px;
+
+            .image{
+                height: 250px;
+                border-radius: 30px;
+                overflow: hidden;
+                width: 100%;
+                position: relative;
+
+                &:hover{
+                    .layer{
+                        opacity: 1;
+                    }
+                }
+
+                .layer{
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    bottom: 0;
+                    right: 0;
+                    background-color: #d46142bf;
+                    opacity: 0;
+                    transition: all 350ms;
+
+                    p{
+                        position: absolute;
+                        margin: 0;
+                        left: 50%;
+                        top: 50%;
+                        transform: translateX(-50%) translateY(-50%);
+                        font-weight: 500;
+                        color: $white;
+                        font-size: 1.2rem;
+                    }
+                }
+            }
+    
+            img{
+                width: 100%;
+            }
+
+            .title{
+                margin-top: 20px;
+                font-size: 1.5rem;
+                font-weight: 600;
+                color: lighten($black, 10%);
+            }
+        }
+        
+
+        .slick-dots{
+            bottom: -0px;
+    
+            li{
+                height: 12px;
+                width: 12px;
+                border-radius: 50%;
+                background-color: gray;
+                box-shadow: 0 5px 16px rgb(0 0 0 / 15%);
+    
+                &.slick-active{
+                    background-color: $primary;
+                }
+    
+                button{
+                    display: none;
+                }
+            }
+        }
+
+        .slick-prev{
+            z-index: 1;
+            left: -35px;
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            
+            &:hover{
+                &::before{
+                    color: $primary;
+                }
+            }
+    
+            &::before{
+                content: "\f104";
+                font-family: "Font Awesome 5 Free";
+                font-size: 2rem;
+                font-weight: 900;
+                opacity: 1;
+                color: $black;
+            }
+        }
+    
+        .slick-next{
+            z-index: 1;
+            right: -35px;
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+
+            &:hover{
+                &::before{
+                    color: $primary;
+                }
+            }
+            
+    
+            &::before{
+                content: "\f105";
+                font-size: 2rem;
+                font-family: "Font Awesome 5 Free";
+                font-weight: 900;
+                opacity: 1;
+                color: $black;
+            }
+
+            
+        }
+    
+    }
+
+    
+}
+
+
+// Department =========================
+
+.department{
+    padding: 80px 0;
+    background-color: #F2F2F2;
+    position: relative;
+
+    .layer{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .department-wrap{
+        padding: 0 80px;
+
+        .department-item{
+            background-color: $blue;
+            height: 200px;
+            width: 100%;
+            display: block;
+            margin-bottom: 20px;
+            position: relative;
+
+            &:hover{
+                @extend.shadow;
+                .over-layer{
+                    width: 100%;
+                }
+            }
+
+            .over-layer{
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                width: 0;
+                transition: all 350ms;
+                background-color: $primary;
+            }
+
+            &.primary{
+                background-color: $primary;
+            }
+
+            .content{
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                text-align: center;
+                color: white;
+                left: 20px;
+                right: 20px;
+
+                .image{
+                    display: inline-block;
+                    width: 120px;
+                }
+
+                .title{
+                    font-family: $font-family-heading;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    font-size: 1.7rem;
+
+                    &.sm{
+                        font-size: 1.5rem;
+                    }
+
+                }
+            }
+        }
+    }
+}

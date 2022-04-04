@@ -7,7 +7,13 @@
 
 body{
   a{
+    color: $white;
+    transition: all 350ms;
     text-decoration: none;
+
+    &:hover{
+      color: $primary;
+    }
   }
 }
 
@@ -138,6 +144,7 @@ body{
   }
 
   .btn-search{
+    padding: 0.375rem 0.75rem;
     background-color: $light;
     border-radius: 50%;
     color: $primary;
@@ -149,7 +156,7 @@ body{
 
   .dropdown-menu{
     border: none;
-    top: 96%;
+    top: 95%;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     position: relative;
