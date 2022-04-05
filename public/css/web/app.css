@@ -11616,9 +11616,6 @@ body a:hover {
 .hero-section .content .breadcrumb-item.active {
   font-weight: 400;
 }
-.hero-section .content .breadcrumb-item.active::before {
-  display: none;
-}
 
 .home-slider {
   height: auto;
@@ -12207,17 +12204,58 @@ body a:hover {
 }
 .contact-wrap {
   padding: 0 30px;
+  font-family: "Raleway", sans-serif;
 }
 .contact-wrap .content {
   background-color: #D46142;
   border-radius: 15px;
   overflow: hidden;
 }
+.contact-wrap .content hr {
+  background-color: #fff;
+  opacity: 1;
+}
+.contact-wrap .content p {
+  color: #fff;
+}
 .contact-wrap .content .form-wrap {
   padding: 25px;
   background-color: #fff;
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
+  height: 100%;
+}
+.contact-wrap .content .form-wrap .form-label {
+  font-weight: 600;
+}
+.contact-wrap .content .form-wrap .form-control {
+  border: none;
+  height: 50px;
+  border-radius: 10px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.24) !important;
+}
+.contact-wrap .content .form-wrap textarea.form-control {
+  height: 100px;
+}
+.contact-wrap .content .address {
+  padding: 30px;
+}
+.contact-wrap .content .address .address-item {
+  position: relative;
+  padding-left: 40px;
+  font-family: "Open Sans", sans-serif;
+}
+.contact-wrap .content .address .address-item .icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  text-align: center;
+  line-height: 35px;
+  color: #fff;
 }
 
 .footer {
@@ -12264,7 +12302,8 @@ body a:hover {
   line-height: 32px;
   display: inline-block;
 }
-.footer .foot-icon-wrap a {
+
+.foot-icon-wrap a {
   height: 40px;
   width: 40px;
   border-radius: 50%;
@@ -12273,16 +12312,16 @@ body a:hover {
   display: inline-block;
   margin-right: 5px;
 }
-.footer .foot-icon-wrap a.facebook {
+.foot-icon-wrap a.facebook {
   background-color: #1877f2;
 }
-.footer .foot-icon-wrap a.twitter {
+.foot-icon-wrap a.twitter {
   background-color: #1da1f2;
 }
-.footer .foot-icon-wrap a.instagram {
+.foot-icon-wrap a.instagram {
   background-color: #e1306c;
 }
-.footer .foot-icon-wrap a.youtube {
+.foot-icon-wrap a.youtube {
   background-color: #ff0000;
 }
 
@@ -12312,4 +12351,8 @@ body a:hover {
 
 .page-content {
   padding: 30px 0;
+}
+
+.text-primary {
+  color: #D46142 !important;
 }

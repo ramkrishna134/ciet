@@ -47,36 +47,35 @@
             display: inline-block;
         }
     }
+    
+}
 
-    .foot-icon-wrap{
-        a{
-            height: 40px;
-            width: 40px;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 40px;
-            display: inline-block;
-            margin-right: 5px;
+.foot-icon-wrap{
+    a{
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 40px;
+        display: inline-block;
+        margin-right: 5px;
 
-            &.facebook{
-                background-color: #1877f2;
-            }
+        &.facebook{
+            background-color: #1877f2;
+        }
 
-            &.twitter{
-                background-color: #1da1f2;
-            }
+        &.twitter{
+            background-color: #1da1f2;
+        }
 
-            &.instagram{
-                background-color: #e1306c;
-            }
+        &.instagram{
+            background-color: #e1306c;
+        }
 
-            &.youtube{
-                background-color: #ff0000;
-            }
+        &.youtube{
+            background-color: #ff0000;
         }
     }
-
-    
 }
 
 .foot-line{

@@ -1,17 +1,68 @@
 .contact-wrap{
     padding: 0 30px;
+    font-family: $font-family-heading;
 
     .content{
         background-color: $primary;
         border-radius: 15px;
         overflow: hidden;
-       
 
+        hr{
+            background-color: $white;
+            opacity: 1;
+        }
+
+        p{
+            color: $white;
+        }
+       
         .form-wrap{
             padding: 25px;
             background-color: $white;
             border-top-left-radius: 15px;
             border-bottom-left-radius: 15px;
+            height: 100%;
+
+            .form-label{
+                font-weight: 600;
+            }
+
+            
+            .form-control{
+                border: none;
+                height: 50px;
+                border-radius: 10px;
+                box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 24%) !important;
+            }
+
+            textarea{
+                &.form-control{
+                    height: 100px;
+                }
+            }
+        }
+
+        .address{
+            padding: 30px;
+
+            .address-item{
+                position: relative;
+                padding-left: 40px;
+                font-family: $font-family-base;
+
+                .icon{
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    height: 35px;
+                    width: 35px;
+                    border-radius: 50%;
+                    border: 2px solid $white;
+                    text-align: center;
+                    line-height: 35px;
+                    color: $white;
+                }
+            }
         }
     }
 

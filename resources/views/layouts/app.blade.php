@@ -23,11 +23,6 @@
     <meta property="og:description" content="@yield('description')" />
 
     <title>@yield('title')Central Institute of Educational Technology | A Constituent unit of NCERT</title>
-
-    <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-    <script src="{{ asset('js/web/app.js') }}" defer></script>
     {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> --}}
 
     <!-- Fonts -->
@@ -71,8 +66,7 @@
                       </a>
                       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#">English</a></li>
-                        <li><a class="dropdown-item" href="#">Hindi</a></li>
-                        <li><a class="dropdown-item" href="#">Urdu</a></li>      
+                        <li><a class="dropdown-item" href="#">Hindi</a></li>      
                       </ul>
                     </li>
                     <li><a href=""><i class="fas fa-adjust"></i></a></li>
@@ -207,6 +201,7 @@
                 <h5 class="footer-heading">Other Links</h5>
 
                 <ul class="footer-menu mb-lg-0 mb-sm-4 mb-4">
+                  <li><a href="{{ route('contact') }}"><i class="fas fa-angle-double-right"></i> Contact us</a></li>
                   <li><a href=""><i class="fas fa-angle-double-right"></i> Privacy Policy</a></li>
                   <li><a href=""><i class="fas fa-angle-double-right"></i> Terms & Conditions</a></li>
                   <li><a href=""><i class="fas fa-angle-double-right"></i> Feedback</a></li>
@@ -299,6 +294,13 @@
         </div>
 
     </div>
+
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script src="{{ asset('js/web/app.js') }}" defer></script>
+
 
     {{-- Search Box --}}
 
