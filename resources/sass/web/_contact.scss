@@ -1,0 +1,19 @@
+.contact-wrap{
+    padding: 0 30px;
+
+    .content{
+        background-color: $primary;
+        border-radius: 15px;
+        overflow: hidden;
+       
+
+        .form-wrap{
+            padding: 25px;
+            background-color: $white;
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+        }
+    }
+
+    
+}

@@ -34,6 +34,48 @@
     }
 }
 
+.hero-section{
+    height: 150px;
+    background-size: cover;
+    position: relative;
+    font-family: $font-family-heading;
+
+    .content{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        min-width: 300px;
+        text-align: center;
+
+        .title{
+            font-size: 2rem;
+            font-weight: 700;
+            color: $white;
+            margin-bottom: 0;
+        }
+
+        .breadcrumb-item + .breadcrumb-item::before{
+            content: ">";
+            color: $white;
+        }
+
+        .breadcrumb-item{
+            color: $white;
+            font-weight: 600;
+
+            &.active{
+                font-weight: 400;
+
+                &::before{
+                    display: none;
+                }
+            }
+ 
+        }
+    }
+}
+
 //Home Slider =====================
 .home-slider{
     height: auto;
@@ -469,6 +511,7 @@
                     font-weight: 700;
                     text-transform: uppercase;
                     font-size: 1.7rem;
+                    line-height: 1;
 
                     &.sm{
                         font-size: 1.5rem;
@@ -478,4 +521,354 @@
             }
         }
     }
+}
+
+// Infrastructure ============================
+
+.infrastructure{
+    text-align: center;
+    padding: 50px 0;
+    font-family: $font-family-heading;
+    background-size: contain;
+    background-repeat: repeat-x;
+
+    .infrastructure-wrap{
+        padding: 40px 0;
+
+        .item{
+            width: 100%;
+            height: 235px;
+            display: block;
+            padding: 25px;
+            transition: all 350ms;
+            position: relative;
+
+            .shape{
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                background-repeat: no-repeat;
+                transition: all 350ms;
+                
+            }
+
+
+            .content{
+                left: 50%;
+                top: 50%;
+                transform: translateX(-50%) translateY(-50%);
+                position: absolute;
+                transition: all 350ms;
+                line-height: 1;
+
+
+                img{
+                    width: 80px;
+                }
+            }
+
+            &:hover{
+                transform: scale(1.1);
+
+                // .shape{
+                //     transform: rotate(60deg);
+                // }
+                
+                
+            }
+            
+            
+
+            .title{
+                font-size: 1.2rem;
+                text-transform: uppercase;
+                color: $black;
+                font-weight: 600;
+                margin-top: 10px;
+            }
+        }
+
+        .top-elemement{
+            position: relative;
+            left: 55px;
+        }
+
+        .bottom-element{
+            position: relative;
+            right: 55px;
+            top: -30px;
+        }
+    }
+}
+
+// Announcement =================================
+
+.announcement{
+    padding: 70px 0;
+    background-color: #F2F2F2;
+
+    .announcement-wrap{
+
+        .nav{
+            justify-content: center;
+        }
+
+        .nav-link{
+            border-radius: 30px;
+            font-family: $font-family-heading;
+            font-weight: 600;
+            padding: 10px 30px;
+            font-size: 1.2rem;
+            border: none;
+            margin: 0 10px;
+            background-color: $white;
+            color: $black;
+            text-transform: uppercase;
+            @extend .shadow;
+
+            &.active{
+                background-color: $primary;
+                color: $white;
+            }
+
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+        .tab-content{
+            padding: 30px 20px;
+            border-radius: 15px;
+            background-color: $white;
+            height: 400px;
+            overflow: auto;
+
+            li{
+                font-size: 1.15rem;
+                margin-bottom: 5px;
+
+                a{
+                    color: $black;
+
+                    &:hover{
+                        color: $primary;
+                    }
+
+                    .contractual{
+                        display: inline-block;
+                        padding: 2px 5px;
+                        border-radius: 15px;
+                        font-size: 0.8rem;
+                        font-weight: 600;
+                        margin-left: 5px;
+                        color: $success;
+                        border: 2px solid $success;
+
+                    }
+
+                    .regular{
+                        display: inline-block;
+                        padding: 2px 5px;
+                        border-radius: 15px;
+                        font-size: 0.8rem;
+                        font-weight: 600;
+                        margin-left: 5px;
+                        color: $success;
+                        border: 2px solid $success;
+                        color: $danger;
+                        border: 2px solid $danger;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// Partner ======================================
+
+.partner{
+    padding: 50px 0;
+    background-color: $light;
+
+    .partner-slider{
+
+        .slide-item{
+            padding: 0 10px;
+
+            .image{
+                display: block;
+                height: 100px;
+                width: 100%;
+                background-color: $white;
+                padding: 10px;
+                text-align: center;
+
+                img{
+                    height: 100%;
+                    width: auto;
+                    display: inline-block;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+//=======================================
+// Breakpoint =================================
+//=======================================
+
+
+
+// Braekpoint Tablet scss ===============================
+
+@media only screen and (max-width: $tablet-width){
+
+    .about-us{
+        padding: 30px 0;
+        .head-message{
+            position: static;
+            margin-top: 20px;
+            width: auto;
+            margin-left: 30px;
+        }
+    }
+
+    .digital-education{
+        padding: 30px 0;
+    }
+
+    .ongoing-events{
+        padding: 30px 0;
+
+        .ongoing-slider{
+            .slide-item{
+                .image{
+                    height: 180px;
+                }
+            }
+        }
+    }
+
+
+    .department{
+        padding: 30px 0;
+
+        .department-wrap{
+            .department-item{
+                .content{
+
+                    .title{
+                        font-size: 1.5rem;
+
+                        &.sm{
+                            font-size: 1.4rem;
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+
+    .infrastructure{
+        .infrastructure-wrap{
+            .top-elemement{
+                left: 0;
+            }
+
+            .bottom-element{
+                right: 0;
+                top: 0;
+            }
+        }
+    }
+
+    .announcement{
+        padding: 30px 0;
+
+        .announcement-wrap{
+            .nav-link{
+                padding: 5px 23px;
+                font-size: 1rem;
+                border: none;
+                margin: 2px 5px;
+            }
+        }
+    }
+}
+
+
+
+// Braekpoint Mobile scss ===============================
+
+@media only screen and (max-width: $tablet-width){
+
+    .about-us{
+        .head-message{
+            margin-left: 20px;
+            padding: 20px;
+        }
+    }
+
+    .digital-education{
+
+        .digital-slider{
+            .slick-next{
+                right: 0;
+            }
+
+            .slick-prev{
+                left: 0;
+            }
+        }
+    }
+
+    .ongoing-events{
+
+        .ongoing-slider{
+
+            .slick-next{
+                right: -8px;
+            }
+
+            .slick-prev{
+                left: -8px;
+            }
+        }
+    }
+
+    .department{
+        .department-wrap{
+            padding: 0 30px;
+        }
+    }
+
+    .infrastructure{
+        .infrastructure-wrap{
+            .item{
+                .shape{
+                    background-size: contain;
+                }
+
+                .content{
+                    img{
+                        width: 50px;
+                    }
+                }
+
+                .title{
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+
 }

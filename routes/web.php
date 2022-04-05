@@ -19,6 +19,10 @@ Route::get('/', function () {
     return view('web.home');
 })->name('home');
 
+Route::get('/contact', function () {
+    return view('web.contact');
+})->name('contact');
+
 Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -140,6 +144,8 @@ Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () 
 
 Route::get('/{slug}/{local?}','App\Http\Controllers\PageController@show')->name('page.show');
 
+
+
 // Route::get('/demo', function () {
 //     return view('admin.faculty.demo');
 // });
@@ -149,6 +155,5 @@ Route::get('/{slug}/{local?}','App\Http\Controllers\PageController@show')->name(
 
 Route::post('/search', 'App\Http\Controllers\PageController@search')->name('search');
 
-// Route::get('/autocomplete/{any}',array('as'=>'autocomplete','uses'=>'App\Http\Controllers\PageController@autocomplete'));
 
 

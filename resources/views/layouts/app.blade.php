@@ -37,7 +37,6 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
     <link rel="stylesheet" href="{{asset('vendor/laraberg/css/laraberg.css')}}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
     <link href="{{ asset('css/web/app.css') }}" rel="stylesheet">
@@ -50,7 +49,7 @@
 <body>
     <div id="app">
 
-        <header class="header sticky-top">
+        <header class="header sticky-top shadow">
           <div class="top-head">
             <div class="container">
               <div class="row">
@@ -87,7 +86,7 @@
             </div>
           </div>
 
-          <nav class="navbar navbar-expand-lg shadow">
+          <nav class="navbar navbar-expand-lg shadow menu-container">
             <div class="container">
               <a class="navbar-brand" href="{{ route('home') }}">
                 <div class="logo">
@@ -108,7 +107,7 @@
 
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link {{ (request()->is('/')) ? 'active' : '' }}" aria-current="page" href="{{ route('home') }}">Home</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">About</a>
@@ -148,7 +147,7 @@
                     <ul class="dropdown-menu mega-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                       <div class="row">
                         <div class="col-sm-6">
-                          <li><a class="dropdown-item" href="#">Department of ICT & Training</a></li>
+                          <li><a class="dropdown-item {{ (request()->is('/contact')) ? 'active' : '' }}" href="{{ route('contact') }}">Contact us</a></li>
                           <li><a class="dropdown-item" href="#">Media Production Division</a></li>
                           <li><a class="dropdown-item" href="#">Planning and Research Division</a></li>
                           <li><a class="dropdown-item" href="#">Engineering Division</a></li>
@@ -168,7 +167,7 @@
                 </ul>
                 </div>
 
-                <a href="#" type="button" class="btn btn-menu navbar-toggler navbar-toggle" data-bs-toggle="collapse"  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <a href="#" type="button" class="btn-menu navbar-toggler navbar-toggle" data-bs-toggle="collapse"  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <img class="img-fluid" src="/images/web/menu-icon.png" alt="">
                 </a>
 
@@ -189,11 +188,11 @@
         <footer class="footer">
           <div class="container">
             <div class="row">
-              <div class="col-sm-2">
+              <div class="col-lg-2 col-sm-6">
 
                 <h5 class="footer-heading">Links</h5>
 
-                <ul class="footer-menu">
+                <ul class="footer-menu mb-lg-0 mb-sm-4 mb-4">
                   <li><a href=""><i class="fas fa-angle-double-right"></i> NCERT</a></li>
                   <li><a href=""><i class="fas fa-angle-double-right"></i> DIKSHA</a></li>
                   <li><a href=""><i class="fas fa-angle-double-right"></i> ePathshala</a></li>
@@ -204,10 +203,10 @@
                 </ul>
 
               </div>
-              <div class="col-sm-2">
+              <div class="col-lg-2 col-sm-6">
                 <h5 class="footer-heading">Other Links</h5>
 
-                <ul class="footer-menu">
+                <ul class="footer-menu mb-lg-0 mb-sm-4 mb-4">
                   <li><a href=""><i class="fas fa-angle-double-right"></i> Privacy Policy</a></li>
                   <li><a href=""><i class="fas fa-angle-double-right"></i> Terms & Conditions</a></li>
                   <li><a href=""><i class="fas fa-angle-double-right"></i> Feedback</a></li>
@@ -217,7 +216,7 @@
                   <li><a href=""><i class="fas fa-angle-double-right"></i> MyGov</a></li> --}}
                 </ul>
               </div>
-              <div class="col-sm-5">
+              <div class="col-lg-5 col-sm-12 mb-lg-0 mb-sm-4 mb-4">
                 <h5 class="footer-heading">Contact Us</h5>
                 <div class="row">
                   <div class="col-sm-6">
@@ -248,7 +247,7 @@
                 </div>
 
               </div>
-              <div class="col-sm-3">
+              <div class="col-lg-3 col-sm-6">
                 <h5 class="footer-heading">Follow Us</h5>
 
                 <div class="foot-icon-wrap">
@@ -266,10 +265,10 @@
         <section class="foot-line">
           <div class="container">
             <div class="row">
-              <div class="col-sm-6">
+              <div class="col-sm-8">
                 <p class="mb-0">&#169; {{ date('Y') }} | Developed by CIET, NCERT. Hosted by NIC</p>
               </div>
-              <div class="col-sm-6 text-end">
+              <div class="col-sm-4 text-sm-end text-center">
                 <ul class="footer-menu-inline">
                   <li><a href="">Privacy Policy</a></li> | 
                   <li><a href="">Sitemap</a></li>

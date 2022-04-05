@@ -19,6 +19,21 @@ $(document).ready(function (){
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 2000,
+
+        responsive: [
+            {
+              breakpoint: 1023,
+              settings: {
+                slidesToShow: 2
+              }
+            },
+            {
+              breakpoint: 767,
+              settings: {
+                slidesToShow: 1
+              }
+            }
+          ]
     });
 
     $('.ongoing-slider').slick({
@@ -28,7 +43,47 @@ $(document).ready(function (){
       slidesToScroll: 1,
       autoplay: true,
       autoplaySpeed: 2000,
-  });
+
+      responsive: [
+        {
+          breakpoint: 1023,
+          settings: {
+            slidesToShow: 2
+          }
+        },
+        {
+          breakpoint: 767,
+          settings: {
+            slidesToShow: 1
+          }
+        }
+      ]
+    });
+
+    $('.partner-slider').slick({
+        dots: false,
+        arrows: false,
+        infinite: true,
+        slidesToShow: 6,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
+
+        responsive: [
+            {
+              breakpoint: 1023,
+              settings: {
+                slidesToShow: 3
+              }
+            },
+            {
+              breakpoint: 767,
+              settings: {
+                slidesToShow: 2
+              }
+            }
+          ]
+    });
     
     // $('.slider-for').slick({
     //     slidesToShow: 1,
@@ -47,3 +102,28 @@ $(document).ready(function (){
     //   });
 
 })
+
+
+$(window).scroll(function () {
+
+    var $header = $('.header');
+    var height = $('.count-height').height();
+
+    var top = $(window).scrollTop();
+
+    if (top >= height){
+
+        if( !$header.hasClass('active') ){
+            $header.addClass('active')
+        }
+    }
+    else {
+        if( $header.hasClass('active') ){
+            $header.removeClass('active')
+        }
+    }
+
+
+
+});
+

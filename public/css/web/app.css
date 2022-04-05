@@ -6744,7 +6744,7 @@ textarea.form-control-lg {
   display: none !important;
 }
 
-.shadow, .department .department-wrap .department-item:hover {
+.shadow, .announcement .announcement-wrap .nav-link, .department .department-wrap .department-item:hover {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
 }
 
@@ -11299,6 +11299,15 @@ body a:hover {
 .header {
   background-color: #fff;
   font-family: "Raleway", sans-serif;
+  position: relative;
+}
+.header.active .menu-container {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  background-color: #fff;
+  z-index: 9999;
 }
 .header .top-head {
   background-color: #D46142;
@@ -11574,6 +11583,41 @@ body a:hover {
   color: #D46142;
   background-color: #fff;
   border: 2px solid #D46142;
+}
+
+.hero-section {
+  height: 150px;
+  background-size: cover;
+  position: relative;
+  font-family: "Raleway", sans-serif;
+}
+.hero-section .content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  min-width: 300px;
+  text-align: center;
+}
+.hero-section .content .title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0;
+}
+.hero-section .content .breadcrumb-item + .breadcrumb-item::before {
+  content: ">";
+  color: #fff;
+}
+.hero-section .content .breadcrumb-item {
+  color: #fff;
+  font-weight: 600;
+}
+.hero-section .content .breadcrumb-item.active {
+  font-weight: 400;
+}
+.hero-section .content .breadcrumb-item.active::before {
+  display: none;
 }
 
 .home-slider {
@@ -11926,9 +11970,254 @@ body a:hover {
   font-weight: 700;
   text-transform: uppercase;
   font-size: 1.7rem;
+  line-height: 1;
 }
 .department .department-wrap .department-item .content .title.sm {
   font-size: 1.5rem;
+}
+
+.infrastructure {
+  text-align: center;
+  padding: 50px 0;
+  font-family: "Raleway", sans-serif;
+  background-size: contain;
+  background-repeat: repeat-x;
+}
+.infrastructure .infrastructure-wrap {
+  padding: 40px 0;
+}
+.infrastructure .infrastructure-wrap .item {
+  width: 100%;
+  height: 235px;
+  display: block;
+  padding: 25px;
+  transition: all 350ms;
+  position: relative;
+}
+.infrastructure .infrastructure-wrap .item .shape {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-repeat: no-repeat;
+  transition: all 350ms;
+}
+.infrastructure .infrastructure-wrap .item .content {
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  position: absolute;
+  transition: all 350ms;
+  line-height: 1;
+}
+.infrastructure .infrastructure-wrap .item .content img {
+  width: 80px;
+}
+.infrastructure .infrastructure-wrap .item:hover {
+  transform: scale(1.1);
+}
+.infrastructure .infrastructure-wrap .item .title {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  color: #000;
+  font-weight: 600;
+  margin-top: 10px;
+}
+.infrastructure .infrastructure-wrap .top-elemement {
+  position: relative;
+  left: 55px;
+}
+.infrastructure .infrastructure-wrap .bottom-element {
+  position: relative;
+  right: 55px;
+  top: -30px;
+}
+
+.announcement {
+  padding: 70px 0;
+  background-color: #F2F2F2;
+}
+.announcement .announcement-wrap .nav {
+  justify-content: center;
+}
+.announcement .announcement-wrap .nav-link {
+  border-radius: 30px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  padding: 10px 30px;
+  font-size: 1.2rem;
+  border: none;
+  margin: 0 10px;
+  background-color: #fff;
+  color: #000;
+  text-transform: uppercase;
+}
+.announcement .announcement-wrap .nav-link.active {
+  background-color: #D46142;
+  color: #fff;
+}
+.announcement .announcement-wrap .nav-link:hover {
+  text-decoration: underline;
+}
+.announcement .announcement-wrap .tab-content {
+  padding: 30px 20px;
+  border-radius: 15px;
+  background-color: #fff;
+  height: 400px;
+  overflow: auto;
+}
+.announcement .announcement-wrap .tab-content li {
+  font-size: 1.15rem;
+  margin-bottom: 5px;
+}
+.announcement .announcement-wrap .tab-content li a {
+  color: #000;
+}
+.announcement .announcement-wrap .tab-content li a:hover {
+  color: #D46142;
+}
+.announcement .announcement-wrap .tab-content li a .contractual {
+  display: inline-block;
+  padding: 2px 5px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-left: 5px;
+  color: #198754;
+  border: 2px solid #198754;
+}
+.announcement .announcement-wrap .tab-content li a .regular {
+  display: inline-block;
+  padding: 2px 5px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-left: 5px;
+  color: #198754;
+  border: 2px solid #198754;
+  color: #dc3545;
+  border: 2px solid #dc3545;
+}
+
+.partner {
+  padding: 50px 0;
+  background-color: #f8f9fa;
+}
+.partner .partner-slider .slide-item {
+  padding: 0 10px;
+}
+.partner .partner-slider .slide-item .image {
+  display: block;
+  height: 100px;
+  width: 100%;
+  background-color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+.partner .partner-slider .slide-item .image img {
+  height: 100%;
+  width: auto;
+  display: inline-block;
+}
+
+@media only screen and (max-width: 1023px) {
+  .about-us {
+    padding: 30px 0;
+  }
+  .about-us .head-message {
+    position: static;
+    margin-top: 20px;
+    width: auto;
+    margin-left: 30px;
+  }
+
+  .digital-education {
+    padding: 30px 0;
+  }
+
+  .ongoing-events {
+    padding: 30px 0;
+  }
+  .ongoing-events .ongoing-slider .slide-item .image {
+    height: 180px;
+  }
+
+  .department {
+    padding: 30px 0;
+  }
+  .department .department-wrap .department-item .content .title {
+    font-size: 1.5rem;
+  }
+  .department .department-wrap .department-item .content .title.sm {
+    font-size: 1.4rem;
+  }
+
+  .infrastructure .infrastructure-wrap .top-elemement {
+    left: 0;
+  }
+  .infrastructure .infrastructure-wrap .bottom-element {
+    right: 0;
+    top: 0;
+  }
+
+  .announcement {
+    padding: 30px 0;
+  }
+  .announcement .announcement-wrap .nav-link {
+    padding: 5px 23px;
+    font-size: 1rem;
+    border: none;
+    margin: 2px 5px;
+  }
+}
+@media only screen and (max-width: 1023px) {
+  .about-us .head-message {
+    margin-left: 20px;
+    padding: 20px;
+  }
+
+  .digital-education .digital-slider .slick-next {
+    right: 0;
+  }
+  .digital-education .digital-slider .slick-prev {
+    left: 0;
+  }
+
+  .ongoing-events .ongoing-slider .slick-next {
+    right: -8px;
+  }
+  .ongoing-events .ongoing-slider .slick-prev {
+    left: -8px;
+  }
+
+  .department .department-wrap {
+    padding: 0 30px;
+  }
+
+  .infrastructure .infrastructure-wrap .item .shape {
+    background-size: contain;
+  }
+  .infrastructure .infrastructure-wrap .item .content img {
+    width: 50px;
+  }
+  .infrastructure .infrastructure-wrap .item .title {
+    font-size: 1rem;
+  }
+}
+.contact-wrap {
+  padding: 0 30px;
+}
+.contact-wrap .content {
+  background-color: #D46142;
+  border-radius: 15px;
+  overflow: hidden;
+}
+.contact-wrap .content .form-wrap {
+  padding: 25px;
+  background-color: #fff;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
 }
 
 .footer {
@@ -12019,4 +12308,8 @@ body a:hover {
 }
 .foot-line .footer-menu-inline a:hover {
   color: #D46142;
+}
+
+.page-content {
+  padding: 30px 0;
 }
