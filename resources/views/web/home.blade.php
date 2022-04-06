@@ -50,53 +50,57 @@
     {{-- Digital Education --}}
     <section class="digital-education">
         <div class="container">
-            <div class="heading uppercase">
-                Digital education initiatives
+            <div class="row justify-content-center">
+                <div class="col-sm-11">
+                    <div class="heading uppercase">
+                        Digital education initiatives
+                    </div>
+        
+                    <div class="digital-slider">
+        
+                        <a href="#" class="slide-item">
+                            <div class="image">
+                                <img class="img-fluid" src="/images/web/1-02.png" alt="">
+                            </div>
+                            <div class="title">NISHTHA</div>
+                        </a>
+                        <a href="#" class="slide-item">
+                            <div class="image">
+                                <img class="img-fluid" src="/images/web/1-03.png" alt="">
+                            </div>
+                            <div class="title">ePathshala</div>
+                        </a>
+                        <a href="#" class="slide-item">
+                            <div class="image">
+                                <img class="img-fluid" src="/images/web/1-04.png" alt="">
+                            </div>
+                            <div class="title">PMeVidya</div>
+                        </a>
+        
+                        <a href="#" class="slide-item">
+                            <div class="image">
+                                <img class="img-fluid" src="/images/web/1-06.png" alt="">
+                            </div>
+                            <div class="title">ICT@Schools</div>
+                        </a>
+        
+                        <a href="#" class="slide-item">
+                            <div class="image">
+                                <img class="img-fluid" src="/images/web/1-24.png" alt="">
+                            </div>
+                            <div class="title">ICT Curriculam</div>
+                        </a>
+                        <a href="#" class="slide-item">
+                            <div class="image">
+                                <img class="img-fluid" src="/images/web/1-02.png" alt="">
+                            </div>
+                            <div class="title">NISHTHA</div>
+                        </a>
+                    </div>
+        
+                    <a href="" class="btn btn-primary mt-5">View More</a>
+                </div>
             </div>
-
-            <div class="digital-slider">
-
-                <a href="#" class="slide-item">
-                    <div class="image">
-                        <img class="img-fluid" src="/images/web/1-02.png" alt="">
-                    </div>
-                    <div class="title">NISHTHA</div>
-                </a>
-                <a href="#" class="slide-item">
-                    <div class="image">
-                        <img class="img-fluid" src="/images/web/1-03.png" alt="">
-                    </div>
-                    <div class="title">ePathshala</div>
-                </a>
-                <a href="#" class="slide-item">
-                    <div class="image">
-                        <img class="img-fluid" src="/images/web/1-04.png" alt="">
-                    </div>
-                    <div class="title">PMeVidya</div>
-                </a>
-
-                <a href="#" class="slide-item">
-                    <div class="image">
-                        <img class="img-fluid" src="/images/web/1-06.png" alt="">
-                    </div>
-                    <div class="title">ICT@Schools</div>
-                </a>
-
-                <a href="#" class="slide-item">
-                    <div class="image">
-                        <img class="img-fluid" src="/images/web/1-24.png" alt="">
-                    </div>
-                    <div class="title">ICT Curriculam</div>
-                </a>
-                <a href="#" class="slide-item">
-                    <div class="image">
-                        <img class="img-fluid" src="/images/web/1-02.png" alt="">
-                    </div>
-                    <div class="title">NISHTHA</div>
-                </a>
-            </div>
-
-            <a href="" class="btn btn-primary mt-5">View More</a>
         </div>
     </section>
 
@@ -107,53 +111,58 @@
 
         <div class="container">
 
-            <div class="heading uppercase">
-                Ongoing Events
+            <div class="row justify-content-center">
+                <div class="col-sm-11">
+                    <div class="heading uppercase">
+                        Ongoing Events
+                    </div>
+        
+                    <div class="ongoing-slider">
+                        <a href="" class="slide-item">
+                            <div class="image">
+                                <img class="img-fluid" src="/images/web/event-1.jpg" alt="">
+                                <div class="layer">
+                                    <p>View Details <i class="fas fa-arrow-right"></i></p>
+                                </div>
+                            </div>
+                            <div class="title">Event Title</div>
+                        </a>
+        
+                        <a href="" class="slide-item">
+                            <div class="image">
+                                <img class="img-fluid" src="/images/web/events-2.jpg" alt="">
+                                <div class="layer">
+                                    <p>View Details <i class="fas fa-arrow-right"></i></p>
+                                </div>
+                            </div>
+                            <div class="title">Event Title</div>
+                        </a>
+        
+                        <a href="" class="slide-item">
+                            <div class="image">
+                                <img class="img-fluid" src="/images/web/event-1.jpg" alt="">
+                                <div class="layer">
+                                    <p>View Details <i class="fas fa-arrow-right"></i></p>
+                                </div>
+                            </div>
+                            <div class="title">Event Title</div>
+                        </a>
+        
+                        <a href="" class="slide-item">
+                            <div class="image">
+                                <img class="img-fluid" src="/images/web/events-2.jpg" alt="">
+                                <div class="layer">
+                                    <p>View Details <i class="fas fa-arrow-right"></i></p>
+                                </div>
+                            </div>
+                            <div class="title">Event Title</div>
+                        </a>
+                    </div>
+        
+                    <a href="" class="btn btn-primary mt-4">View All Events</a>
+                </div>
             </div>
-
-            <div class="ongoing-slider">
-                <a href="" class="slide-item">
-                    <div class="image">
-                        <img class="img-fluid" src="/images/web/event-1.jpg" alt="">
-                        <div class="layer">
-                            <p>View Details <i class="fas fa-arrow-right"></i></p>
-                        </div>
-                    </div>
-                    <div class="title">Event Title</div>
-                </a>
-
-                <a href="" class="slide-item">
-                    <div class="image">
-                        <img class="img-fluid" src="/images/web/events-2.jpg" alt="">
-                        <div class="layer">
-                            <p>View Details <i class="fas fa-arrow-right"></i></p>
-                        </div>
-                    </div>
-                    <div class="title">Event Title</div>
-                </a>
-
-                <a href="" class="slide-item">
-                    <div class="image">
-                        <img class="img-fluid" src="/images/web/event-1.jpg" alt="">
-                        <div class="layer">
-                            <p>View Details <i class="fas fa-arrow-right"></i></p>
-                        </div>
-                    </div>
-                    <div class="title">Event Title</div>
-                </a>
-
-                <a href="" class="slide-item">
-                    <div class="image">
-                        <img class="img-fluid" src="/images/web/events-2.jpg" alt="">
-                        <div class="layer">
-                            <p>View Details <i class="fas fa-arrow-right"></i></p>
-                        </div>
-                    </div>
-                    <div class="title">Event Title</div>
-                </a>
-            </div>
-
-            <a href="" class="btn btn-primary mt-4">View All Events</a>
+            
         </div>
 
     </section>
@@ -168,85 +177,89 @@
         </div> --}}
 
         <div class="container">
-            <div class="department-wrap">
-                <div class="row">
-
-                    <div class="col-lg-4 col-sm-6">
-                        <a href="" class="department-item primary">
-                            <div class="content">
-                                <div class="title">our <i class="fas fa-arrow-right"></i> <br> constituents</div>
+            <div class="row justify-content-center">
+                <div class="col-sm-11">
+                    <div class="department-wrap">
+                        <div class="row">
+        
+                            <div class="col-lg-4 col-sm-6">
+                                <a href="" class="department-item primary">
+                                    <div class="content">
+                                        <div class="title">our <i class="fas fa-arrow-right"></i> <br> constituents</div>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
-                    </div>
-
-                    <div class="col-lg-4 col-sm-6">
-                        <a href="" class="department-item">
-                            <div class="over-layer"></div>
-                            <div class="content">
-                                <div class="image">
-                                    <img class="img-fluid" src="/images/web/dict.png" alt="DICT">
-                                </div>
-                                <div class="title sm">
-                                    Department of ICT & Training
-                                </div>
+        
+                            <div class="col-lg-4 col-sm-6">
+                                <a href="" class="department-item">
+                                    <div class="over-layer"></div>
+                                    <div class="content">
+                                        <div class="image">
+                                            <img class="img-fluid" src="/images/web/dict.png" alt="DICT">
+                                        </div>
+                                        <div class="title sm">
+                                            Department of ICT & Training
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
-                    </div>
-
-                    <div class="col-lg-4 col-sm-6">
-                        <a href="" class="department-item">
-                            <div class="over-layer"></div>
-                            <div class="content">
-                                <div class="image">
-                                    <img class="img-fluid" src="/images/web/mpd.png" alt="DICT">
-                                </div>
-                                <div class="title sm">
-                                    Media production division
-                                </div>
+        
+                            <div class="col-lg-4 col-sm-6">
+                                <a href="" class="department-item">
+                                    <div class="over-layer"></div>
+                                    <div class="content">
+                                        <div class="image">
+                                            <img class="img-fluid" src="/images/web/mpd.png" alt="DICT">
+                                        </div>
+                                        <div class="title sm">
+                                            Media production division
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
-                    </div>
-
-                    <div class="col-lg-4 col-sm-6">
-                        <a href="" class="department-item">
-                            <div class="over-layer"></div>
-                            <div class="content">
-                                <div class="image">
-                                    <img class="img-fluid" src="/images/web/prd.png" alt="DICT">
-                                </div>
-                                <div class="title sm">
-                                    planing & research division
-                                </div>
+        
+                            <div class="col-lg-4 col-sm-6">
+                                <a href="" class="department-item">
+                                    <div class="over-layer"></div>
+                                    <div class="content">
+                                        <div class="image">
+                                            <img class="img-fluid" src="/images/web/prd.png" alt="DICT">
+                                        </div>
+                                        <div class="title sm">
+                                            planing & research division
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
-                    </div>
-
-                    <div class="col-lg-4 col-sm-6">
-                        <a href="" class="department-item">
-                            <div class="over-layer"></div>
-                            <div class="content">
-                                <div class="image">
-                                    <img class="img-fluid" src="/images/web/ed.png" alt="DICT">
-                                </div>
-                                <div class="title sm">
-                                    engineering division
-                                </div>
+        
+                            <div class="col-lg-4 col-sm-6">
+                                <a href="" class="department-item">
+                                    <div class="over-layer"></div>
+                                    <div class="content">
+                                        <div class="image">
+                                            <img class="img-fluid" src="/images/web/ed.png" alt="DICT">
+                                        </div>
+                                        <div class="title sm">
+                                            engineering division
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
-                    </div>
-
-                    <div class="col-lg-4 col-sm-6">
-                        <a href="" class="department-item">
-                            <div class="over-layer"></div>
-                            <div class="content">
-                                <div class="image">
-                                    <img class="img-fluid" src="/images/web/ac.png" alt="DICT">
-                                </div>
-                                <div class="title sm">
-                                    Administration & Account
-                                </div>
+        
+                            <div class="col-lg-4 col-sm-6">
+                                <a href="" class="department-item">
+                                    <div class="over-layer"></div>
+                                    <div class="content">
+                                        <div class="image">
+                                            <img class="img-fluid" src="/images/web/ac.png" alt="DICT">
+                                        </div>
+                                        <div class="title sm">
+                                            Administration & Account
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
+                        </div>
                     </div>
                 </div>
             </div>

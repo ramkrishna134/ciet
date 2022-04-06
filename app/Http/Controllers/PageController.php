@@ -65,6 +65,7 @@ class PageController extends Controller
 
         $validator = Validator::make($request->all(),$rules);
         if ($validator->fails()) {
+            // dd($validator);
             return back()
                 ->withInput()
                 ->withErrors($validator)->with('error',"Please check the field below *");

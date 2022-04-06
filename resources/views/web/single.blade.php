@@ -17,7 +17,7 @@
                   <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                   <li class="breadcrumb-item active" aria-current="page">{{ $page->title }}</li>
                 </ol>
-              </nav>
+            </nav>
         </div>
         
     </div>
@@ -25,11 +25,16 @@
 
 
 <div class="page-content">
+    <div class="with-watermark">
+        <img class="img-fluid" src="/images/web/logo-mark.png" alt="Watermark of CIET LOGO">
+    </div>
     <div class="container">
-        {!! $page->content !!}
+        <div class="row justify-content-center">
+            <div class="col-sm-10">
+                {!! $page->content !!}
+            </div>
+        </div>
     </div>
 </div>
-
-
 
 @endsection

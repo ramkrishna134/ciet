@@ -67,6 +67,10 @@
         @else
         <input type="hidden" name="type" value="general">
         @endif
+    @else
+
+    <input type="hidden" name="type" value="custom">
+
     @endif
     
 

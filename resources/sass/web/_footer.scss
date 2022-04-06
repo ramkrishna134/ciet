@@ -59,6 +59,11 @@
         line-height: 40px;
         display: inline-block;
         margin-right: 5px;
+        @extend .shadow;
+        
+        i{
+            color: $white;
+        }
 
         &.facebook{
             background-color: #1877f2;

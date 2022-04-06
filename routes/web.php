@@ -23,6 +23,10 @@ Route::get('/contact', function () {
     return view('web.contact');
 })->name('contact');
 
+Route::get('/dict', function () {
+    return view('web.department');
+})->name('dict');
+
 Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

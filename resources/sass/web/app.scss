@@ -8,6 +8,10 @@
 // Variables
 @import 'variables';
 
+body{
+    overflow-x: hidden;
+}
+
 // Header
 @import 'header';
 
@@ -16,11 +20,47 @@
 
 @import 'contact';
 
+@import 'department';
+
 // Footer
 @import 'footer';
 
 .page-content{
     padding: 30px 0;
+    font-family: $font-family-base;
+    position: relative;
+
+    .with-watermark{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 30%;
+        z-index: -1;
+        right: -10%;
+
+    }
+
+    h2{
+        font-family: $font-family-heading;
+        color: $primary;
+        font-weight: 600;
+    }
+
+    h3{
+        font-family: $font-family-heading;
+        color: $primary;
+        font-weight: 600;
+    }
+
+    h4{
+        font-family: $font-family-heading;
+        color: $primary;
+        font-weight: 600;
+    }
+
+    a{
+        color: $primary;
+    }
 }
 
 .text-primary{

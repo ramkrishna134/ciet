@@ -261,7 +261,7 @@
           <div class="container">
             <div class="row">
               <div class="col-sm-8">
-                <p class="mb-0">&#169; {{ date('Y') }} | Developed by CIET, NCERT. Hosted by NIC</p>
+                <p class="mb-0">&#169; {{ date('Y') }} | Developed by CIET, NCERT | Hosted by NIC</p>
               </div>
               <div class="col-sm-4 text-sm-end text-center">
                 <ul class="footer-menu-inline">
