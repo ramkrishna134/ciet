@@ -27,6 +27,18 @@ Route::get('/dict', function () {
     return view('web.department');
 })->name('dict');
 
+Route::get('/training-calender', function () {
+    return view('web.training-calender');
+})->name('training-calender');
+
+Route::get('/event-calender', function () {
+    return view('web.event-calender');
+})->name('event-calender');
+
+Route::get('/pmevidya', function () {
+    return view('web.pmevidya');
+})->name('pmevidya');
+
 Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

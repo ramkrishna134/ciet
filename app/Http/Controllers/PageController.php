@@ -156,6 +156,7 @@ class PageController extends Controller
         }
         else{
             $data = $request->input();
+            // dd($data);
             try{
                 // dd($data);
                 $page->fill($data);
@@ -164,6 +165,7 @@ class PageController extends Controller
                 }
                 $page->description = $data['description'];
                 $page->featured_icon = $data['filepath'];
+                $page->key_word = $data['key_word'];
                 $page->user_id = $user->id;
                 $page->save();
                 return back()->with('status',"Page updated successfully");

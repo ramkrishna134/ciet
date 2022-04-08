@@ -34,6 +34,17 @@
     }
 }
 
+.btn-outline-primary{
+    border-color: $gray-500;
+    color: $gray-600;
+
+    &:hover{
+        color: $white;
+        background-color: $primary;
+        border-color: $primary;
+    }
+}
+
 .hero-section{
     height: 150px;
     background-size: cover;
@@ -221,9 +232,15 @@
                 line-height: 140px;
                 text-align: center;
                 display: inline-block;
+                transition: all 350ms;
 
                 img{
                     display: inline-block;
+                }
+
+                &:hover{
+                    border-color: $primary;
+                    @extend .shadow;
                 }
             }
 
@@ -318,7 +335,7 @@
             padding: 0 25px;
 
             .image{
-                height: 250px;
+                height: 200px;
                 border-radius: 30px;
                 overflow: hidden;
                 width: 100%;

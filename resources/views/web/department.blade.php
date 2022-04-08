@@ -248,52 +248,100 @@
         <div class="container">
             <h2 class="heading uppercase text-center">Gallery</h2>
 
-            <div class="gallery">
+            <div class="gallery" id="lightgallery">
 
                 <div class="g-row d-flex">
                     <div class="wrap-25">
                         <div class="inner-wrap d-flex">
-                            <div class="block-xs-50 bg-info"></div>
-                            <div class="block-xs-50 bg-danger"></div>
+                            <div class="block-xs-50">
+                                <a href="/images/web/ciet-event-1.jpg" class="image">
+                                    <img class="img-fluid" src="/images/web/ciet-event-1.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="block-xs-50">
+                                <a href="/images/web/ciet-g3.jpg" class="image">
+                                    <img class="img-fluid" src="/images/web/ciet-g3.jpg" alt="">
+                                </a>
+                            </div>
                         </div>
                     </div>
                     <div class="wrap-25">
-                        <div class="block-xs-100 bg-info"></div>
+                        <div class="block-xs-100">
+                            <a href="/images/web/CIET-g2.jpg" class="image">
+                                <img class="img-fluid" src="/images/web/CIET-g2.jpg" alt="">
+                            </a>
+                        </div>
                     </div>
 
                     <div class="wrap-50">
-                        <div class="block-xs-100 bg-secondary"></div>
+                        <div class="block-xs-100 ">
+                            <a href="/images/web/CIET-g2.jpg" class="image">
+                                <img class="img-fluid" src="/images/web/ciet-g3.jpg" alt="">
+                            </a>
+                        </div>
                     </div>
 
                     
                 </div>
                 <div class="g-row d-flex">
                     <div class="wrap-25">
-                        <div class="block-xs-100 bg-secondary"></div>
-                    </div>
-
-                    <div class="wrap-25">
-                        <div class="inner-wrap d-flex">
-                            <div class="block-xs-50 bg-info"></div>
-                            <div class="block-xs-50 bg-danger"></div>
+                        <div class="block-xs-100">
+                            <a href="/images/web/ciet-event-1.jpg" class="image">
+                                <img class="img-fluid" src="/images/web/ciet-event-1.jpg" alt="">
+                            </a>
                         </div>
                     </div>
 
                     <div class="wrap-25">
                         <div class="inner-wrap d-flex">
-                            <div class="block-xs-50-h-50 bg-primary"></div>
-                            <div class="block-xs-50-h-50 bg-primary"></div>
+                            <div class="block-xs-50">
+                                <a href="/images/web/CIET-g2.jpg" class="image">
+                                    <img class="img-fluid" src="/images/web/ciet-g3.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="block-xs-50">
+                                <a href="/images/web/CIET-g2.jpg" class="image">
+                                    <img class="img-fluid" src="/images/web/ciet-g3.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="wrap-25">
+                        <div class="inner-wrap d-flex">
+                            <div class="block-xs-50-h-50">
+                                <a href="/images/web/ciet-event-1.jpg" class="image">
+                                    <img class="img-fluid" src="/images/web/ciet-event-1.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="block-xs-50-h-50">
+                                <a href="/images/web/ciet-event-1.jpg" class="image">
+                                    <img class="img-fluid" src="/images/web/ciet-event-1.jpg" alt="">
+                                </a>
+                            </div>
                         </div>
 
                         <div class="inner-wrap d-flex">
-                            <div class="block-xs-50-h-50 bg-primary"></div>
-                            <div class="block-xs-50-h-50 bg-info"></div>
+                            <div class="block-xs-50-h-50">
+                                <a href="/images/web/CIET-g2.jpg" class="image">
+                                    <img class="img-fluid" src="/images/web/ciet-g3.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="block-xs-50-h-50">
+                                <a href="/images/web/CIET-g2.jpg" class="image">
+                                    <img class="img-fluid" src="/images/web/ciet-g3.jpg" alt="">
+                                </a>
+                            </div>
                         </div>
                         
                     </div>
 
                     <div class="wrap">
-                        <div class="block-xs-100 bg-warning"></div>
+                        <div class="block-xs-100">
+                            <a href="/images/web/CIET-g2.jpg" class="image">
+                                <img class="img-fluid" src="/images/web/ciet-g3.jpg" alt="">
+                            </a>
+                        </div>
                     </div>
                 </div>
 

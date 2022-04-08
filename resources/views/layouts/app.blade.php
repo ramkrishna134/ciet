@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="{{asset('vendor/laraberg/css/laraberg.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.5.0-beta.2/css/lightgallery-bundle.min.css"/>
     <link href="{{ asset('css/web/app.css') }}" rel="stylesheet">
 </head>
 
@@ -103,8 +104,27 @@
                   <li class="nav-item">
                     <a class="nav-link {{ (request()->is('/')) ? 'active' : '' }}" aria-current="page" href="{{ route('home') }}">Home</a>
                   </li>
+
                   <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link {{ (request()->is('about')) ? 'active' : '' }}" href="/about">About</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Initiatives
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="#">DIKSHA</a></li>
+                      <li><a class="dropdown-item" href="#">TV Channels</a></li>
+                      <li><a class="dropdown-item" href="#">NISHTHA</a></li>
+                      <li><a class="dropdown-item" href="#">ePathshala</a></li>
+                      <li><a class="dropdown-item" href="{{ route('pmevidya') }}">PMeVidya</a></li>
+                      <li><a class="dropdown-item" href="#">Radio Broadcasting</a></li>
+                      <li><a class="dropdown-item" href="#">ICT Curriculam</a></li>
+                      <li><a class="dropdown-item" href="#">NCF Tech Platform</a></li>
+                      <li><a class="dropdown-item" href="#">Cyber Safety & Security</a></li>
+                      <li><a class="dropdown-item" href="#">Accesibility</a></li>
+                      <li><a class="dropdown-item" href="#">MOOC's</a></li>  
+                    </ul>
                   </li>
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -119,19 +139,31 @@
                          
                     </ul>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Trainings</a>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Trainings
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="{{ route('training-calender') }}">Training Calender</a></li>
+                      <li><a class="dropdown-item" href="#">NISHTHA Online</a></li>
+                      <li><a class="dropdown-item" href="#">MOOC's</a></li>
+                      <li><a class="dropdown-item" href="#">Webiner</a></li>
+                      <li><a class="dropdown-item" href="#">Online Training</a></li>
+                      <li><a class="dropdown-item" href="#">Offline Training</a></li>
+                      <li><a class="dropdown-item" href="#">Action Research</a></li>   
+                    </ul>
                   </li>
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Events
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item" href="#">Department of ICT & Training</a></li>
-                      <li><a class="dropdown-item" href="#">Media Production Division</a></li>
-                      <li><a class="dropdown-item" href="#">Planning and Research Division</a></li>
-                      <li><a class="dropdown-item" href="#">Engineering Division</a></li>
-                      <li><a class="dropdown-item" href="#">Administration & Accounts</a></li>     
+                      <li><a class="dropdown-item" href="{{ route('event-calender') }}">Event Calender</a></li>
+                      <li><a class="dropdown-item" href="#">ICT Award</a></li>
+                      <li><a class="dropdown-item" href="#">AICEAVF ICT Mela</a></li>
+                      <li><a class="dropdown-item" href="#">Summer Camp</a></li>
+                      <li><a class="dropdown-item" href="#">Conference</a></li>
+                      <li><a class="dropdown-item" href="#">Quiz</a></li>     
                     </ul>
                   </li>
                   <li class="nav-item dropdown">
@@ -141,7 +173,8 @@
                     <ul class="dropdown-menu mega-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                       <div class="row">
                         <div class="col-sm-6">
-                          <li><a class="dropdown-item {{ (request()->is('/contact')) ? 'active' : '' }}" href="{{ route('contact') }}">Contact us</a></li>
+                          <li><a class="dropdown-item" href="">People</a></li>
+                          <li><a class="dropdown-item {{ (request()->is('contact')) ? 'active' : '' }}" href="{{ route('contact') }}">Contact us</a></li>
                           <li><a class="dropdown-item" href="#">Media Production Division</a></li>
                           <li><a class="dropdown-item" href="#">Planning and Research Division</a></li>
                           <li><a class="dropdown-item" href="#">Engineering Division</a></li>
@@ -201,6 +234,7 @@
                 <h5 class="footer-heading">Other Links</h5>
 
                 <ul class="footer-menu mb-lg-0 mb-sm-4 mb-4">
+                  <li><a href="/about"><i class="fas fa-angle-double-right"></i> About</a></li>
                   <li><a href="{{ route('contact') }}"><i class="fas fa-angle-double-right"></i> Contact us</a></li>
                   <li><a href=""><i class="fas fa-angle-double-right"></i> Privacy Policy</a></li>
                   <li><a href=""><i class="fas fa-angle-double-right"></i> Terms & Conditions</a></li>
@@ -299,6 +333,8 @@
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.5.0-beta.2/lightgallery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.5.0-beta.2/plugins/thumbnail/lg-thumbnail.min.js"></script>
     <script src="{{ asset('js/web/app.js') }}" defer></script>
 
 

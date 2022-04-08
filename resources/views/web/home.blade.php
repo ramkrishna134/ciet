@@ -112,7 +112,7 @@
         <div class="container">
 
             <div class="row justify-content-center">
-                <div class="col-sm-11">
+                <div class="col-sm-10">
                     <div class="heading uppercase">
                         Ongoing Events
                     </div>
@@ -120,7 +120,7 @@
                     <div class="ongoing-slider">
                         <a href="" class="slide-item">
                             <div class="image">
-                                <img class="img-fluid" src="/images/web/event-1.jpg" alt="">
+                                <img class="img-fluid" src="/images/web/ciet-event-1.jpg" alt="">
                                 <div class="layer">
                                     <p>View Details <i class="fas fa-arrow-right"></i></p>
                                 </div>
@@ -130,7 +130,7 @@
         
                         <a href="" class="slide-item">
                             <div class="image">
-                                <img class="img-fluid" src="/images/web/events-2.jpg" alt="">
+                                <img class="img-fluid" src="/images/web/ciet-event-1.jpg" alt="">
                                 <div class="layer">
                                     <p>View Details <i class="fas fa-arrow-right"></i></p>
                                 </div>
@@ -140,7 +140,7 @@
         
                         <a href="" class="slide-item">
                             <div class="image">
-                                <img class="img-fluid" src="/images/web/event-1.jpg" alt="">
+                                <img class="img-fluid" src="/images/web/ciet-event-1.jpg" alt="">
                                 <div class="layer">
                                     <p>View Details <i class="fas fa-arrow-right"></i></p>
                                 </div>
@@ -150,7 +150,7 @@
         
                         <a href="" class="slide-item">
                             <div class="image">
-                                <img class="img-fluid" src="/images/web/events-2.jpg" alt="">
+                                <img class="img-fluid" src="/images/web/ciet-event-1.jpg" alt="">
                                 <div class="layer">
                                     <p>View Details <i class="fas fa-arrow-right"></i></p>
                                 </div>
