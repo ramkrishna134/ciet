@@ -4,7 +4,17 @@ $(document).ready(function (){
 
   initMap();
 
-  $('#sheduleTable').DataTable();
+  $('#sheduleTable').DataTable({
+        dom: 'Bfrtip',
+        lengthMenu: [
+            [ 10, 25, 50, -1 ],
+            [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+        ],
+        buttons: [
+            'pageLength','print'
+        ]
+        
+    });
 
     $('.home-slider').slick({
         dots: true,

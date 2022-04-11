@@ -1,10 +1,11 @@
 @php
     $programms = $data['message'];
+    // dd($programms);
 @endphp
 
 @extends('layouts.app')
 
-@section('title')PMeVidya|Channel -{{ $channel }} | {{ $category }} Programms |@endsection
+@section('title')PMeVidya | Channel -{{ $channel }} | {{ ucfirst($category) }} Programms | @endsection
 
 @section('content')
 
@@ -34,24 +35,38 @@
 
                 <div class="schedule-button d-flex justify-content-center">
                     <div class="btn-group" role="group" aria-label="Basic outlined example">
-                        <button type="button" class="btn btn-outline-primary @if($category === 'current') active @endif">Current</button>
-                        <button type="button" class="btn btn-outline-primary @if($category === 'upcoming') active @endif">Upcoming</button>
-                        <button type="button" class="btn btn-outline-primary @if($category === 'archive') active @endif">Archive</button>
+                        <a href="{{ route('pmevidya.schedule', ['class'=> $class,'channel' => $channel, 'category' => 'current']) }}" class="btn btn-outline-primary @if($category === 'current') active @endif">Current</a>
+                        <a href="{{ route('pmevidya.schedule', ['class'=> $class,'channel' => $channel, 'category' => 'upcoming']) }}" class="btn btn-outline-primary @if($category === 'upcoming') active @endif">Upcoming</a>
+                        <a href="{{ route('pmevidya.schedule', ['class'=> $class,'channel' => $channel, 'category' => 'archive']) }}" class="btn btn-outline-primary @if($category === 'archive') active @endif">Archive</a>
                     </div>
                 </div>
                 
                 <div class="card shadow rounded">
                     <div class="card-body">
-                        <table class="table table-striped table-bordered" id="sheduleTable">
+                        <table class="table table-striped" id="sheduleTable">
                             <thead>
                                 <tr>
-                                    <th>Sl. No.</th>
+                                    <th width="100px">Sl. No.</th>
+                                    @if($category === 'archive')
+                                    <th>Course</th>
+                                    @endif
+
                                     <th>Topic</th>
+                                    
+                                    @if($category != 'archive')
                                     <th>Language</th>
+                                    @endif
                                     <th>Subject</th>
-                                    <th>Telecast Date</th>
+
+                                    @if($category != 'archive')
+                                    <th width="150px">Telecast Date</th>
                                     <th>Day</th>
                                     <th>Time</th>
+                                    @else
+                                    <th>Content Link</th>
+                                    @endif
+                                    
+                                    
                                 </tr>
                             </thead>
         
@@ -59,12 +74,28 @@
                                 @foreach($programms as $item)
                                 <tr>
                                     <th>{{ $item['No'] }}</th>
+                                    @if($category === 'archive')
+                                    <td>{{ $item['Course'] }}</td> 
+                                    @endif
+                                    
                                     <td>{{ $item['Topic'] }}</td>
-                                    <td>{{ $item['Language'] }}</td>
+                                    @if($category != 'archive')
+                                    <td>{{ ucfirst($item['Language']) }}</td>
+                                    @endif
+                                    
                                     <td>{{ $item['Subject'] }}</td>
+
+                                    @if($category != 'archive')
                                     <td>{{ $item['Telecast Date'] }}</td>
                                     <td>{{ $item['Day'] }}</td>
                                     <td>{{ $item['Time'] }}</td>
+                                    @else
+                                    <td class="text-center">
+                                        <a href="{{ $item['YouTube Link'] }}" target="_blank"><i class="fas fa-video"></i></a>
+                                    </td>
+                                    @endif
+                                    
+                                    
                                 </tr>
                                 @endforeach
                             </tbody>

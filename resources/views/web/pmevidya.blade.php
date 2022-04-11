@@ -87,7 +87,7 @@
 
             <div class="class-wrap mt-3">
                 <div class="row">
-                    <div class="col-sm-3">
+                    {{-- <div class="col-sm-3">
                         <div class="class-item" style="background-image: url('/images/web/channel.jpeg')">
                             <div class="layer"></div>
                             <div class="class-name">
@@ -104,15 +104,41 @@
                                 </div>
                             </div>
                         </div>
+                    </div> --}}
+
+                    @php
+                        $class = 1;
+                        $channel = 22;
+                    @endphp
+
+                    @for ($i = $class; $i <= 12; $i++ )
+                    
+                    <div class="col-sm-3">
+                        <div class="class-item" style="background-image: url('/images/web/channel.jpeg')">
+                            <div class="layer"></div>
+                            <div class="class-name">
+                                Class {{ $i }}
+                            </div>
+                            <div class="channel">CHANNEL No: {{ $channel+$i }}</div>
+                            <div class="schedule">
+                                <div class="list">
+                                    <a href="{{ route('pmevidya.schedule', ['class'=> $i ,'channel' => $channel+$i, 'category' => 'current']) }}" class="btn-success">Current</a>
+                                    <a href="{{ route('pmevidya.schedule', ['class'=> $i, 'channel' => $channel+$i, 'category' => 'upcoming']) }}" class="bg-primary">Upcoming</a>
+                                    <a href="{{ route('pmevidya.schedule', ['class'=> $i, 'channel' => $channel+$i, 'category' => 'archive']) }}" class="btn-danger right-radius">Archive</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="col-sm-3">
+                    @endfor
+
+                    {{-- <div class="col-sm-3">
                         <div class="class-item" style="background-image: url('/images/web/channel.jpeg')">
                             <div class="layer"></div>
                             <div class="class-name">
                                 Class 2
                             </div>
-                            <div class="channel">CHANNEL: 24</div>
+                            <div class="channel">CHANNEL No: 24</div>
                             <div class="schedule">
                                 <div class="list">
                                     <a href="{{ route('pmevidya.schedule', ['class'=> 2,'channel' => 24, 'category' => 'current']) }}" class="btn-success">Current</a>
@@ -129,7 +155,7 @@
                             <div class="class-name">
                                 Class 3
                             </div>
-                            <div class="channel">CHANNEL: 25</div>
+                            <div class="channel">CHANNEL No: 25</div>
                             <div class="schedule">
                                 <div class="list">
                                     <a href="" class="btn-success">Current</a>
@@ -146,7 +172,7 @@
                             <div class="class-name">
                                 Class 4
                             </div>
-                            <div class="channel">CHANNEL: 26</div>
+                            <div class="channel">CHANNEL No: 26</div>
                             <div class="schedule">
                                 <div class="list">
                                     <a href="" class="btn-success">Current</a>
@@ -163,7 +189,7 @@
                             <div class="class-name">
                                 Class 5
                             </div>
-                            <div class="channel">CHANNEL: 27</div>
+                            <div class="channel">CHANNEL No: 27</div>
                             <div class="schedule">
                                 <div class="list">
                                     <a href="" class="btn-success">Current</a>
@@ -291,7 +317,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                 </div>
             </div>

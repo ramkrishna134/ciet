@@ -12850,13 +12850,43 @@ body a:hover {
 .programm-schedule label {
   font-weight: 600;
 }
+.programm-schedule table {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  overflow: hidden;
+}
 .programm-schedule table.dataTable {
   margin-top: 20px;
   border-top: 1px solid #ced4da;
 }
 .programm-schedule table thead tr {
-  color: #D46142;
+  color: #fff;
+  background-color: #94AD78;
   font-family: "Raleway", sans-serif;
+}
+.programm-schedule table tbody th {
+  border: none;
+  background-color: #fff;
+  border-radius: 5px;
+}
+.programm-schedule table tbody td {
+  border: none;
+  background-color: #fff;
+  border-radius: 5px;
+}
+.programm-schedule .dataTables_filter {
+  margin-bottom: 20px;
+}
+.programm-schedule .dt-button {
+  background-color: #D46142;
+  padding: 4px 1rem;
+  color: #fff;
+  border-radius: 30px;
+  border: none;
+}
+.programm-schedule .dt-button:hover {
+  background: #D46142 !important;
+  border: none !important;
 }
 .programm-schedule .dataTables_wrapper .dataTables_info {
   padding: 0;
@@ -12868,11 +12898,15 @@ body a:hover {
   margin-top: 20px;
 }
 .programm-schedule .dataTables_wrapper .dataTables_paginate .paginate_button {
+  padding: 4px 1em;
   border: 1px solid #adb5bd !important;
 }
 .programm-schedule .dataTables_wrapper .dataTables_paginate .paginate_button.current {
   background: #D46142 !important;
   color: #fff !important;
+}
+.programm-schedule .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background: #D46142 !important;
 }
 
 .footer {
