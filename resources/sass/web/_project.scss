@@ -76,11 +76,26 @@
         font-family: $font-family-heading;
 
         .class-item{
-            height: 250px;
-            background-size: contain;
+            height: 200px;
+            width: 100%;
+            background-size: cover;
             background-repeat: no-repeat;
             position: relative;
             background-position: center;
+            border-radius: 10px;
+            border: 2px solid $primary;
+            margin-bottom: 20px;
+
+            .layer{
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                background-color: #00000085;
+                border-radius: 10px;
+            }
+            
             
             .class-name{
                 position: absolute;
@@ -89,6 +104,141 @@
                 transform: translateX(-50%) translateY(-50%);
                 font-size: 2rem;
                 font-weight: 700;
+                color: $white;
+            }
+
+            .channel{
+                position: absolute;
+                padding: 4px 10px;
+                top: 25px;
+                left: -10px;
+                font-size: 0.9rem;
+                background-color: $primary;
+                font-family: $font-family-base;
+                color: $white;
+                font-weight: 600;
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+                border-bottom-left-radius: 5px;
+
+                &::before{
+                    content: "";
+                    border-top: 10px solid transparent;
+                    border-left: 10px solid transparent;
+                    border-right: 8px solid $primary;
+                    left: -10px;
+                    top: -10px;
+                    position: absolute;
+                }
+            }
+
+            .schedule{
+                position: absolute;
+                width: 100%;
+                right: -15px;
+                bottom: 15px;
+
+                
+                &::before{
+                    content: "";
+                    border-top: 10px solid transparent;
+                    border-left: 9px solid $danger;
+                    border-right: 7px solid transparent;
+                    right: -3px;
+                    top: -10px;
+                    position: absolute;
+                }
+
+                .list{
+                    display: flex;
+                    flex-grow: 1;
+                    width: 100%;
+                    border-top-left-radius: 5px;
+                    border-bottom-left-radius: 5px;
+                    overflow: hidden;
+                    a{
+                        width: 33%;
+                        padding: 7px 10px;
+                        color: $white;
+                        font-size: 0.9rem;
+                        text-align: center;
+                        font-weight: 600;
+                        
+                        &.right-radius{
+                            border-bottom-right-radius: 5px;
+                        }
+                    }
+
+                }
+
+                
+            }
+        }
+    }
+}
+
+.programm-schedule{
+    font-size: 1.1rem;
+
+    .schedule-button{
+        position: relative;
+        bottom: -20px;
+        z-index: 1;
+
+        .btn-outline-primary{
+            background-color: $white;
+
+            &.active{
+                background-color: $primary;
+                border-color: $primary;
+            }
+
+            &:hover{
+               background-color: $primary;
+            }
+        }
+    }
+
+    .dataTables_length{
+        margin-bottom: 10px;
+    }
+
+
+    label{
+        font-weight: 600;
+    }
+    
+    table{
+        &.dataTable{
+            margin-top: 20px;
+            border-top: 1px solid $gray-400;
+        }
+
+        thead{
+            tr{
+                color: $primary;
+                font-family: $font-family-heading;
+            }
+        }
+    }
+
+    .dataTables_wrapper{
+
+        .dataTables_info{
+            padding: 0;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+
+        .dataTables_paginate{
+            padding: 0;
+            margin-top: 20px;
+            .paginate_button{
+                border: 1px solid $gray-500 !important;
+                &.current{
+                    background: $primary !important;
+                    color: $white !important;
+                }
             }
         }
     }

@@ -12740,11 +12740,24 @@ body a:hover {
   font-family: "Raleway", sans-serif;
 }
 .project-content .class-wrap .class-item {
-  height: 250px;
-  background-size: contain;
+  height: 200px;
+  width: 100%;
+  background-size: cover;
   background-repeat: no-repeat;
   position: relative;
   background-position: center;
+  border-radius: 10px;
+  border: 2px solid #D46142;
+  margin-bottom: 20px;
+}
+.project-content .class-wrap .class-item .layer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #00000085;
+  border-radius: 10px;
 }
 .project-content .class-wrap .class-item .class-name {
   position: absolute;
@@ -12753,6 +12766,113 @@ body a:hover {
   transform: translateX(-50%) translateY(-50%);
   font-size: 2rem;
   font-weight: 700;
+  color: #fff;
+}
+.project-content .class-wrap .class-item .channel {
+  position: absolute;
+  padding: 4px 10px;
+  top: 25px;
+  left: -10px;
+  font-size: 0.9rem;
+  background-color: #D46142;
+  font-family: "Open Sans", sans-serif;
+  color: #fff;
+  font-weight: 600;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.project-content .class-wrap .class-item .channel::before {
+  content: "";
+  border-top: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-right: 8px solid #D46142;
+  left: -10px;
+  top: -10px;
+  position: absolute;
+}
+.project-content .class-wrap .class-item .schedule {
+  position: absolute;
+  width: 100%;
+  right: -15px;
+  bottom: 15px;
+}
+.project-content .class-wrap .class-item .schedule::before {
+  content: "";
+  border-top: 10px solid transparent;
+  border-left: 9px solid #dc3545;
+  border-right: 7px solid transparent;
+  right: -3px;
+  top: -10px;
+  position: absolute;
+}
+.project-content .class-wrap .class-item .schedule .list {
+  display: flex;
+  flex-grow: 1;
+  width: 100%;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  overflow: hidden;
+}
+.project-content .class-wrap .class-item .schedule .list a {
+  width: 33%;
+  padding: 7px 10px;
+  color: #fff;
+  font-size: 0.9rem;
+  text-align: center;
+  font-weight: 600;
+}
+.project-content .class-wrap .class-item .schedule .list a.right-radius {
+  border-bottom-right-radius: 5px;
+}
+
+.programm-schedule {
+  font-size: 1.1rem;
+}
+.programm-schedule .schedule-button {
+  position: relative;
+  bottom: -20px;
+  z-index: 1;
+}
+.programm-schedule .schedule-button .btn-outline-primary {
+  background-color: #fff;
+}
+.programm-schedule .schedule-button .btn-outline-primary.active {
+  background-color: #D46142;
+  border-color: #D46142;
+}
+.programm-schedule .schedule-button .btn-outline-primary:hover {
+  background-color: #D46142;
+}
+.programm-schedule .dataTables_length {
+  margin-bottom: 10px;
+}
+.programm-schedule label {
+  font-weight: 600;
+}
+.programm-schedule table.dataTable {
+  margin-top: 20px;
+  border-top: 1px solid #ced4da;
+}
+.programm-schedule table thead tr {
+  color: #D46142;
+  font-family: "Raleway", sans-serif;
+}
+.programm-schedule .dataTables_wrapper .dataTables_info {
+  padding: 0;
+  margin-top: 20px;
+  font-weight: 600;
+}
+.programm-schedule .dataTables_wrapper .dataTables_paginate {
+  padding: 0;
+  margin-top: 20px;
+}
+.programm-schedule .dataTables_wrapper .dataTables_paginate .paginate_button {
+  border: 1px solid #adb5bd !important;
+}
+.programm-schedule .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+  background: #D46142 !important;
+  color: #fff !important;
 }
 
 .footer {

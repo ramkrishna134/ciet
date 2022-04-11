@@ -4,6 +4,8 @@ $(document).ready(function (){
 
   initMap();
 
+  $('#sheduleTable').DataTable();
+
     $('.home-slider').slick({
         dots: true,
         infinite: true,

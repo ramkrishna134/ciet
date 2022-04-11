@@ -74,7 +74,7 @@
                                 </div>
                                 <div class="col-sm-7">
                                     <div class="form-wrap">
-                                        <h2 class="heading text-primary">Have you any Query or Feedback?</h2>
+                                        <h2 class="heading text-primary">Do you have you any Query or Feedback?</h2>
         
                                         <h6 class="mb-4">Please fill up the form and submit.</h6>
         

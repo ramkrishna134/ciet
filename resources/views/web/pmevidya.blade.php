@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
-@section('title')
-    PMeVidya |
-@endsection
+@section('title')PMeVidya |@endsection
 @section('description')
     PM eVidya is an innovative and unique initiative by the Ministry of Education, Government of India to facilitate
     learning and teaching at school level. It offers multifarious educational resources in multi-platform mode viz.
@@ -87,83 +85,214 @@
             </div>
 
 
-            <div class="class-wrap">
+            <div class="class-wrap mt-3">
                 <div class="row">
                     <div class="col-sm-3">
-                        <div class="class-item" style="background-image:url('/images/web/tv-icon.png')">
+                        <div class="class-item" style="background-image: url('/images/web/channel.jpeg')">
+                            <div class="layer"></div>
                             <div class="class-name">
                                 Class 1
+                            </div>
+
+                            <div class="channel">CHANNEL No: 23</div>
+
+                            <div class="schedule">
+                                <div class="list">
+                                    <a href="{{ route('pmevidya.schedule', ['class'=> 1,'channel' => 23, 'category' => 'current']) }}" class="btn-success">Current</a>
+                                    <a href="{{ route('pmevidya.schedule', ['class'=> 1, 'channel' => 23, 'category' => 'upcoming']) }}" class="bg-primary">Upcoming</a>
+                                    <a href="{{ route('pmevidya.schedule', ['class'=> 1, 'channel' => 23, 'category' => 'archive']) }}" class="btn-danger right-radius">Archive</a>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-sm-3">
-                        <div class="class-item" style="background-image:url('/images/web/tv-icon.png')">
-                            
+                        <div class="class-item" style="background-image: url('/images/web/channel.jpeg')">
+                            <div class="layer"></div>
+                            <div class="class-name">
+                                Class 2
+                            </div>
+                            <div class="channel">CHANNEL: 24</div>
+                            <div class="schedule">
+                                <div class="list">
+                                    <a href="{{ route('pmevidya.schedule', ['class'=> 2,'channel' => 24, 'category' => 'current']) }}" class="btn-success">Current</a>
+                                    <a href="{{ route('pmevidya.schedule', ['class'=> 2, 'channel' => 24, 'category' => 'upcoming']) }}" class="bg-primary">Upcoming</a>
+                                    <a href="{{ route('pmevidya.schedule', ['class'=> 2, 'channel' => 24, 'category' => 'archive']) }}" class="btn-danger right-radius">Archive</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="col-sm-3">
-                        <div class="class-item" style="background-image:url('/images/web/tv-icon.png')">
-                            
-                        </div>
-                    </div>
-
-
-                    <div class="col-sm-3">
-                        <div class="class-item" style="background-image:url('/images/web/tv-icon.png')">
-                            
-                        </div>
-                    </div>
-
-                    <div class="col-sm-3">
-                        <div class="class-item" style="background-image:url('/images/web/tv-icon.png')">
-                            
-                        </div>
-                    </div>
-
-                    <div class="col-sm-3">
-                        <div class="class-item" style="background-image:url('/images/web/tv-icon.png')">
-                            
+                        <div class="class-item" style="background-image: url('/images/web/channel.jpeg')">
+                            <div class="layer"></div>
+                            <div class="class-name">
+                                Class 3
+                            </div>
+                            <div class="channel">CHANNEL: 25</div>
+                            <div class="schedule">
+                                <div class="list">
+                                    <a href="" class="btn-success">Current</a>
+                                    <a href="" class="bg-primary">Upcoming</a>
+                                    <a href="" class="btn-danger right-radius">Archive</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="col-sm-3">
-                        <div class="class-item" style="background-image:url('/images/web/tv-icon.png')">
-                            
-                        </div>
-                    </div>
-
-
-                    <div class="col-sm-3">
-                        <div class="class-item" style="background-image:url('/images/web/tv-icon.png')">
-                            
-                        </div>
-                    </div>
-
-                    <div class="col-sm-3">
-                        <div class="class-item" style="background-image:url('/images/web/tv-icon.png')">
-                            
-                        </div>
-                    </div>
-
-                    <div class="col-sm-3">
-                        <div class="class-item" style="background-image:url('/images/web/tv-icon.png')">
-                            
+                        <div class="class-item" style="background-image: url('/images/web/channel.jpeg')">
+                            <div class="layer"></div>
+                            <div class="class-name">
+                                Class 4
+                            </div>
+                            <div class="channel">CHANNEL: 26</div>
+                            <div class="schedule">
+                                <div class="list">
+                                    <a href="" class="btn-success">Current</a>
+                                    <a href="" class="bg-primary">Upcoming</a>
+                                    <a href="" class="btn-danger right-radius">Archive</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="col-sm-3">
-                        <div class="class-item" style="background-image:url('/images/web/tv-icon.png')">
-                            
+                        <div class="class-item" style="background-image: url('/images/web/channel.jpeg')">
+                            <div class="layer"></div>
+                            <div class="class-name">
+                                Class 5
+                            </div>
+                            <div class="channel">CHANNEL: 27</div>
+                            <div class="schedule">
+                                <div class="list">
+                                    <a href="" class="btn-success">Current</a>
+                                    <a href="" class="bg-primary">Upcoming</a>
+                                    <a href="" class="btn-danger right-radius">Archive</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="col-sm-3">
-                        <div class="class-item" style="background-image:url('/images/web/tv-icon.png')">
-                            
+                        <div class="class-item" style="background-image: url('/images/web/channel.jpeg')">
+                            <div class="layer"></div>
+                            <div class="class-name">
+                                Class 6
+                            </div>
+                            <div class="channel">CHANNEL: 28</div>
+                            <div class="schedule">
+                                <div class="list">
+                                    <a href="" class="btn-success">Current</a>
+                                    <a href="" class="bg-primary">Upcoming</a>
+                                    <a href="" class="btn-danger right-radius">Archive</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
+                    <div class="col-sm-3">
+                        <div class="class-item" style="background-image: url('/images/web/channel.jpeg')">
+                            <div class="layer"></div>
+                            <div class="class-name">
+                                Class 7
+                            </div>
+                            <div class="channel">CHANNEL: 29</div>
+                            <div class="schedule">
+                                <div class="list">
+                                    <a href="" class="btn-success">Current</a>
+                                    <a href="" class="bg-primary">Upcoming</a>
+                                    <a href="" class="btn-danger right-radius">Archive</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="class-item" style="background-image: url('/images/web/channel.jpeg')">
+                            <div class="layer"></div>
+                            <div class="class-name">
+                                Class 8
+                            </div>
+                            <div class="channel">CHANNEL: 30</div>
+                            <div class="schedule">
+                                <div class="list">
+                                    <a href="" class="btn-success">Current</a>
+                                    <a href="" class="bg-primary">Upcoming</a>
+                                    <a href="" class="btn-danger right-radius">Archive</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="class-item" style="background-image: url('/images/web/channel.jpeg')">
+                            <div class="layer"></div>
+                            <div class="class-name">
+                                Class 9
+                            </div>
+                            <div class="channel">CHANNEL: 31</div>
+                            <div class="schedule">
+                                <div class="list">
+                                    <a href="" class="btn-success">Current</a>
+                                    <a href="" class="bg-primary">Upcoming</a>
+                                    <a href="" class="btn-danger right-radius">Archive</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="class-item" style="background-image: url('/images/web/channel.jpeg')">
+                            <div class="layer"></div>
+                            <div class="class-name">
+                                Class 10
+                            </div>
+                            <div class="channel">CHANNEL: 32</div>
+                            <div class="schedule">
+                                <div class="list">
+                                    <a href="" class="btn-success">Current</a>
+                                    <a href="" class="bg-primary">Upcoming</a>
+                                    <a href="" class="btn-danger right-radius">Archive</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="class-item" style="background-image: url('/images/web/channel.jpeg')">
+                            <div class="layer"></div>
+                            <div class="class-name">
+                                Class 11
+                            </div>
+                            <div class="channel">CHANNEL: 33</div>
+                            <div class="schedule">
+                                <div class="list">
+                                    <a href="" class="btn-success">Current</a>
+                                    <a href="" class="bg-primary">Upcoming</a>
+                                    <a href="" class="btn-danger right-radius">Archive</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="class-item" style="background-image: url('/images/web/channel.jpeg')">
+                            <div class="layer"></div>
+                            <div class="class-name">
+                                Class 12
+                            </div>
+                            <div class="channel">CHANNEL: 34</div>
+                            <div class="schedule">
+                                <div class="list">
+                                    <a href="" class="btn-success">Current</a>
+                                    <a href="" class="bg-primary">Upcoming</a>
+                                    <a href="" class="btn-danger right-radius">Archive</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
