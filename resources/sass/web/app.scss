@@ -26,8 +26,37 @@ body{
 
 @import 'project';
 
+@import 'websites';
+
+@import 'newsletter';
+
 // Footer
 @import 'footer';
+
+.go-top-arrow{
+    position: fixed;
+    right: 20px;
+    bottom: 7px;
+    font-size: 1.5rem;
+    background-color: $primary;
+    color: $white;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    display: block;
+    text-align: center;
+    line-height: 37px;
+    transition: all 350ms;
+    opacity: 0;
+
+    &:hover{
+        color: $white;
+    }
+
+    &.active{
+        opacity: 1;
+    }
+}
 
 .page-content{
     padding: 30px 0;
@@ -64,6 +93,123 @@ body{
 
     a{
         color: $primary;
+    }
+
+    .table{
+        border-radius: 10px;
+        overflow: hidden;
+
+        &.webiner{
+            a{
+                font-size: 1.2rem;
+            }
+        }
+
+        thead{
+            tr{
+                color: $white;
+                background-color: #94AD78;
+                font-family: $font-family-heading;
+                
+            }
+        }
+
+        tbody{
+            th{
+                border: 5px solid $white;
+                background-color: $white;
+                border-radius: 5px;
+                // border-color: $gray-500;
+
+            }
+
+            td{
+                border: 5px solid $white;
+                background-color: $white;
+                border-radius: 5px;
+                // border-color: $gray-500;
+            }
+        }
+    }
+}
+
+.archive-webiner{
+
+    .table{
+        border-radius: 10px;
+        overflow: hidden;
+
+        &.webiner{
+            a{
+                font-size: 1.2rem;
+            }
+        }
+
+        thead{
+            tr{
+                color: $white;
+                background-color: #94AD78;
+                font-family: $font-family-heading;
+                
+            }
+        }
+
+        tbody{
+            th{
+                border: 5px solid $white;
+                background-color: $white;
+                border-radius: 5px;
+                // border-color: $gray-500;
+
+            }
+
+            td{
+                border: 5px solid $white;
+                background-color: $white;
+                border-radius: 5px;
+                // border-color: $gray-500;
+            }
+        }
+    }
+
+}
+
+.upcoming-webiner{
+    .table{
+        border-radius: 10px;
+        overflow: hidden;
+
+        &.webiner{
+            a{
+                font-size: 1.2rem;
+            }
+        }
+
+        thead{
+            tr{
+                color: $white;
+                background-color: #94AD78;
+                font-family: $font-family-heading;
+                
+            }
+        }
+
+        tbody{
+            th{
+                border: 5px solid $white;
+                background-color: $white;
+                border-radius: 5px;
+                // border-color: $gray-500;
+
+            }
+
+            td{
+                border: 5px solid $white;
+                background-color: $white;
+                border-radius: 5px;
+                // border-color: $gray-500;
+            }
+        }
     }
 }
 

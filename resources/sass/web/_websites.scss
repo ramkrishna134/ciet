@@ -1,0 +1,62 @@
+.websites{
+    font-family: $font-family-heading;
+    background-color: $light;
+    .web-wrap{
+        padding: 40px 0;
+
+        .web-item{
+            border-bottom: 1px solid $gray-500;
+            padding: 25px 0;
+
+            &:last-child{
+                border-bottom: none;
+            }
+
+            &:nth-child(even){
+                .image-wrap{
+                    order: 2;
+                }
+
+                .details-wrap{
+                    order: 1;
+                    text-align: right;
+                }
+            }
+
+            .image{
+                height: 200px;
+                width: 200px;
+                padding: 20px;
+                border-radius: 50%;
+                border: 4px solid $primary;
+                line-height: 150px;
+                @extend .shadow;
+                display: inline-block;
+                background-color: $white;
+                overflow: hidden;
+            }
+
+            .details{
+                .title{
+                    font-size: 1.7rem;
+                    font-weight: 700;
+                    margin-bottom: 15px;
+                }
+
+                .icons{
+
+                    .item{
+                        height: 35px;
+                        width: 35px;
+                        border-radius: 50%;
+                        display: inline-block;
+                        margin: 0 5px;
+                        line-height: 35px;
+                        text-align: center;
+                        color: $white;
+                    }
+                }
+            }
+        }
+    }
+}

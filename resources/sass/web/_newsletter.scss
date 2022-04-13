@@ -1,0 +1,64 @@
+.newsletter-wrap{
+    
+    .newsletter{
+        background-color: $light;
+        margin-bottom: 25px;
+        position: relative;
+
+        .latest{
+            position: absolute;
+            background-color: $success;
+            color: $white;
+            font-family: $font-family-heading;
+            font-weight: 600;
+            padding: 2px 5px;
+            top: 0;
+            right: 0;
+        }
+
+        .image{
+            height: 250px;
+            width: 100%;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            overflow: hidden;
+
+
+            img{
+                height: 100%;
+                width: 100%;
+            }
+        }
+
+        .title{
+            font-family: $font-family-heading;
+            font-weight: 600;
+            color: $black;
+            font-size: 1.1rem;
+            line-height: 1;
+            padding: 5px 10px;
+        }
+
+        .date{
+            padding: 5px 10px;
+            color: $primary;
+            font-family: $font-family-base;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .button{
+            padding: 10px 10px;
+            width: 100%;
+            display: block;
+            background-color: $primary;
+            color: $white;
+            text-align: center;
+            font-weight: 600;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+    }
+
+    
+}

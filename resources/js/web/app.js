@@ -1,8 +1,87 @@
 require('./bootstrap');
 
+
+function ScrollInView( options ){
+
+    var self = this;
+
+    this.$win = $(window);
+    this.$doc = $(document);
+    this.$elements = null;
+
+    this.options = $.extend({}, {
+        selector: '.scroll-in-view',
+        offset: 100
+    }, options);
+
+    // this.offset = 200;
+
+    this.setup = function(){
+        self.$elements = $( self.options.selector );
+    };
+
+
+
+    this.run = function () {
+        if( !self.$elements ) return;
+        self.$elements.each( detect );
+    };
+
+
+    function detect() {
+
+        $element = $( this );
+
+        if( !$element.hasClass('in-view') ){
+
+            var v_top = self.$win.scrollTop();
+            var v_bottom = v_top + self.$win.height() - self.options.offset;
+
+            var e_top = $element.offset().top;
+
+
+
+            if( e_top <= v_bottom ){
+                $element.addClass('in-view');
+            }
+        }
+    }
+
+
+
+    this.$doc.ready( function () {
+        self.setup();
+        self.run();
+    } );
+
+    this.$win.scroll( this.run );
+
+
+}
+
+ScrollInView.initialize = function( options ){
+    new ScrollInView( options );
+};
+
+
+ScrollInView.initialize({
+    // selector: '.scroll-into',
+    offset: 150
+});
+
+
+
+
 $(document).ready(function (){
 
   initMap();
+
+  smoothScroll();
+
+//   var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+//     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+//     return new bootstrap.Tooltip(tooltipTriggerEl)
+//   })
 
   $('#sheduleTable').DataTable({
         dom: 'Bfrtip',
@@ -17,6 +96,7 @@ $(document).ready(function (){
     });
 
     $('.home-slider').slick({
+        lazyLoad: 'ondemand',
         dots: true,
         infinite: true,
         speed: 300,
@@ -112,12 +192,17 @@ $(document).ready(function (){
 $(window).scroll(function () {
 
     var $header = $('.header');
+    var $top_arrow = $('.go-top-arrow');
     var height = $('.count-height').height();
+    // var height = 600;
 
     var top = $(window).scrollTop();
 
     if (top >= height){
 
+        if( !$top_arrow.hasClass('active') ){
+            $top_arrow.addClass('active')
+        }
         if( !$header.hasClass('active') ){
             $header.addClass('active')
         }
@@ -126,11 +211,40 @@ $(window).scroll(function () {
         if( $header.hasClass('active') ){
             $header.removeClass('active')
         }
+
+        if( $top_arrow.hasClass('active') ){
+            $top_arrow.removeClass('active')
+        }
     }
 
 
 
 });
+
+function smoothScroll(){
+    $('.smooth-scroll').each(function (i, e) {
+        var $a = $(e);
+
+        $a.click(function (e) {
+            e.preventDefault();
+
+            var $link = $(this);
+            var target = $link.attr('href');
+            const element = document.getElementById(target);
+
+            const top = element.offsetTop;
+
+            // console.log(top);
+
+
+            $('html,body').animate({
+                scrollTop: top
+            });
+
+        });
+    });
+
+}
 
 function initMap() {
 

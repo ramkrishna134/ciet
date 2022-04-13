@@ -22,7 +22,7 @@
         </div>
     </section>
 
-    <section class="page-content">
+    <section class="page-content" id="main-content">
         <div class="container">
             <div class="row justify-content-content">
                 <div class="col-sm-11">

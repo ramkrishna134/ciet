@@ -16,7 +16,7 @@
 
     {{-- About CIET --}}
 
-    <section class="about-us">
+    <section class="about-us" id="main-content">
         <div class="container">
             <div class="col-lg-6 col-sm-12">
 
@@ -56,7 +56,7 @@
                         Digital education initiatives
                     </div>
         
-                    <div class="digital-slider">
+                    <div class="digital-slider scroll-in-view">
         
                         <a href="#" class="slide-item">
                             <div class="image">
@@ -98,7 +98,7 @@
                         </a>
                     </div>
         
-                    <a href="" class="btn btn-primary mt-5">View More</a>
+                    <a href="{{ route('initiative') }}" class="btn btn-primary mt-5">View More</a>
                 </div>
             </div>
         </div>
@@ -107,7 +107,7 @@
 
     {{-- Ongoing Events --}}
 
-    <section class="ongoing-events">
+    <section class="ongoing-events scroll-in-view">
 
         <div class="container">
 
@@ -117,7 +117,7 @@
                         Ongoing Events
                     </div>
         
-                    <div class="ongoing-slider">
+                    <div class="ongoing-slider scroll-in-view">
                         <a href="" class="slide-item">
                             <div class="image">
                                 <img class="img-fluid" src="/images/web/ciet-event-1.jpg" alt="">
@@ -184,7 +184,7 @@
         
                             <div class="col-lg-4 col-sm-6">
                                 <a href="" class="department-item primary">
-                                    <div class="content">
+                                    <div class="content scroll-in-view">
                                         <div class="title">our <i class="fas fa-arrow-right"></i> <br> constituents</div>
                                     </div>
                                 </a>
@@ -193,7 +193,7 @@
                             <div class="col-lg-4 col-sm-6">
                                 <a href="" class="department-item">
                                     <div class="over-layer"></div>
-                                    <div class="content">
+                                    <div class="content scroll-in-view">
                                         <div class="image">
                                             <img class="img-fluid" src="/images/web/dict.png" alt="DICT">
                                         </div>
@@ -207,7 +207,7 @@
                             <div class="col-lg-4 col-sm-6">
                                 <a href="" class="department-item">
                                     <div class="over-layer"></div>
-                                    <div class="content">
+                                    <div class="content scroll-in-view">
                                         <div class="image">
                                             <img class="img-fluid" src="/images/web/mpd.png" alt="DICT">
                                         </div>
@@ -221,7 +221,7 @@
                             <div class="col-lg-4 col-sm-6">
                                 <a href="" class="department-item">
                                     <div class="over-layer"></div>
-                                    <div class="content">
+                                    <div class="content scroll-in-view">
                                         <div class="image">
                                             <img class="img-fluid" src="/images/web/prd.png" alt="DICT">
                                         </div>
@@ -235,7 +235,7 @@
                             <div class="col-lg-4 col-sm-6">
                                 <a href="" class="department-item">
                                     <div class="over-layer"></div>
-                                    <div class="content">
+                                    <div class="content scroll-in-view">
                                         <div class="image">
                                             <img class="img-fluid" src="/images/web/ed.png" alt="DICT">
                                         </div>
@@ -249,7 +249,7 @@
                             <div class="col-lg-4 col-sm-6">
                                 <a href="" class="department-item">
                                     <div class="over-layer"></div>
-                                    <div class="content">
+                                    <div class="content scroll-in-view">
                                         <div class="image">
                                             <img class="img-fluid" src="/images/web/ac.png" alt="DICT">
                                         </div>
@@ -282,7 +282,7 @@
                         <div class="col-lg-2 col-sm-4 col-6">
                             <a href="" class="item">
                                 <div class="shape" style="background-image: url('/images/web/rhombas.png')"></div>
-                                <div class="content">
+                                <div class="content scroll-in-view">
                                     <img class="img-fluid" src="/images/web/books.png" alt="">
                                     <div class="title">Resources</div>
                                 </div>
@@ -292,7 +292,7 @@
                         <div class="col-lg-2 col-sm-4 col-6">
                             <a href="" class="item">
                                 <div class="shape" style="background-image: url('/images/web/rhombas.png')"></div>
-                                <div class="content">
+                                <div class="content scroll-in-view">
                                     <img class="img-fluid" src="/images/web/books.png" alt="">
                                     <div class="title">Library</div>
                                 </div>
@@ -302,7 +302,7 @@
                         <div class="col-lg-2 col-sm-4 col-6">
                             <a href="" class="item">
                                 <div class="shape" style="background-image: url('/images/web/rhombas.png')"></div>
-                                <div class="content">
+                                <div class="content scroll-in-view">
                                     <img class="img-fluid" src="/images/web/studio_1.png" alt="">
                                     <div class="title">studio</div>
                                 </div>
@@ -312,7 +312,7 @@
                         <div class="col-lg-2 col-sm-4 col-6">
                             <a href="" class="item">
                                 <div class="shape" style="background-image: url('/images/web/rhombas.png')"></div>
-                                <div class="content">
+                                <div class="content scroll-in-view">
                                     <img class="img-fluid" src="/images/web/edusat_1.png" alt="">
                                     <div class="title">satellite network</div>
                                 </div>
@@ -336,7 +336,7 @@
                         <div class="col-lg-2 col-sm-4 col-6">
                             <a href="" class="item">
                                 <div class="shape" style="background-image: url('/images/web/rhombas.png')"></div>
-                                <div class="content">
+                                <div class="content scroll-in-view">
                                     <img class="img-fluid" src="/images/web/edusat_1.png" alt="">
                                     <div class="title">satellite network</div>
                                 </div>
@@ -346,7 +346,7 @@
                         <div class="col-lg-2 col-sm-4 col-6">
                             <a href="" class="item">
                                 <div class="shape" style="background-image: url('/images/web/rhombas.png')"></div>
-                                <div class="content">
+                                <div class="content scroll-in-view">
                                     <img class="img-fluid" src="/images/web/edusat_1.png" alt="">
                                     <div class="title">satellite network</div>
                                 </div>
@@ -356,7 +356,7 @@
                         <div class="col-lg-2 col-sm-4 col-6">
                             <a href="" class="item">
                                 <div class="shape" style="background-image: url('/images/web/rhombas.png')"></div>
-                                <div class="content">
+                                <div class="content scroll-in-view">
                                     <img class="img-fluid" src="/images/web/edusat_1.png" alt="">
                                     <div class="title">satellite network</div>
                                 </div>
@@ -366,7 +366,7 @@
                         <div class="col-lg-2 col-sm-4 col-6">
                             <a href="" class="item">
                                 <div class="shape" style="background-image: url('/images/web/rhombas.png')"></div>
-                                <div class="content">
+                                <div class="content scroll-in-view">
                                     <img class="img-fluid" src="/images/web/edusat_1.png" alt="">
                                     <div class="title">satellite network</div>
                                 </div>

@@ -35,6 +35,18 @@ Route::get('/event-calender', function () {
     return view('web.event-calender');
 })->name('event-calender');
 
+Route::get('/initiatives', function () {
+    return view('web.initiative');
+})->name('initiative');
+
+Route::get('/webiners', function () {
+    return view('web.webiner');
+})->name('webiner');
+
+Route::get('/newsletter', function () {
+    return view('web.newsletter');
+})->name('newsletter');
+
 Route::get('/pmevidya','App\Http\Controllers\Pmevidya@index')->name('pmevidya');
 Route::get('/pmevidya/{class}/{channel}/{category}','App\Http\Controllers\Pmevidya@schedule')->name('pmevidya.schedule');
 

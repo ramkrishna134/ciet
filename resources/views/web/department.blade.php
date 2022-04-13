@@ -8,7 +8,7 @@
 @section('keyword'){{ json_decode($page->key_word) }}@endsection --}}
 
 @section('content')
-    <section class="department-hero" style="background-image: url('images/web/depart-hero.jpg')">
+    <section class="department-hero" style="background-image: url('/images/web/depart-hero.jpg')">
         <div class="content">
             <div class="container">
                 <div class="row">
@@ -27,7 +27,7 @@
         </div>
     </section>
 
-    <section class="about-department">
+    <section class="about-department" id="main-content">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-sm-7">

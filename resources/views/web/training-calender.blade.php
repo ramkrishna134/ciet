@@ -25,7 +25,7 @@
     </section>
 
 
-    <section class="ongoing-calender">
+    <section class="ongoing-calender" id="main-content">
         <div class="container">
             <div class="heading text-center mb-4">Ongoing Trainings</div>
 

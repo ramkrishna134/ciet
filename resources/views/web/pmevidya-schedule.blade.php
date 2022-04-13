@@ -28,7 +28,7 @@
 </section>
 
 
-<section class="page-content programm-schedule">
+<section class="page-content programm-schedule" id="main-content">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-sm-10">

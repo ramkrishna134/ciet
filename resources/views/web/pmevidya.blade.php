@@ -38,7 +38,7 @@
         </div>
     </section>
 
-    <section class="project-content">
+    <section class="project-content" id="main-content">
 
         <div class="container">
             <div class="row justify-content-center">
@@ -85,7 +85,7 @@
             </div>
 
 
-            <div class="class-wrap mt-3">
+            <div class="class-wrap mt-3 mb-4">
                 <div class="row">
                     {{-- <div class="col-sm-3">
                         <div class="class-item" style="background-image: url('/images/web/channel.jpeg')">
@@ -319,8 +319,14 @@
                         </div>
                     </div> --}}
 
+                    
+
                 </div>
+
             </div>
+
+            <p class="h6 fw-bold text-center">Give your feedback on 12 eVidya channels on Toll Free number- 8800440559
+                You can also send your feedback by email- <a href="#">Click here for class-wise Email ID</a></p>
         </div>
 
     </section>

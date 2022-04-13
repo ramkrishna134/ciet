@@ -47,7 +47,7 @@
 <body>
     <div id="app">
 
-        <header class="header sticky-top shadow">
+        <header class="header sticky-top shadow" id="header">
           <div class="top-head">
             <div class="container">
               <div class="row">
@@ -59,8 +59,8 @@
                 </div>
                 <div class="col-lg-9">
                   <ul class="accessibility-menu">
-                    <li><a href="">Skip to main content</a></li>
-                    <li><a href="">Skip to navigation</a></li>
+                    <li><a class="smooth-scroll" href="main-content">Skip to main content</a></li>
+                    <li><a class="smooth-scroll" href="navigation">Skip to navigation</a></li>
                     <li><a href="">Screen Reader Access</a></li>
                     <li>Text Size: <a href="">A-</a> <a href="">A</a> <a href="">A+</a></li>
                     <li class="dropdown">
@@ -83,7 +83,7 @@
             </div>
           </div>
 
-          <nav class="navbar navbar-expand-lg shadow menu-container">
+          <nav class="navbar navbar-expand-lg shadow menu-container" id="navigation">
             <div class="container">
               <a class="navbar-brand" href="{{ route('home') }}">
                 <div class="logo">
@@ -149,7 +149,7 @@
                       <li><a class="dropdown-item" href="{{ route('training-calender') }}">Training Calender</a></li>
                       <li><a class="dropdown-item" href="#">NISHTHA Online</a></li>
                       <li><a class="dropdown-item" href="#">MOOC's</a></li>
-                      <li><a class="dropdown-item" href="#">Webiner</a></li>
+                      <li><a class="dropdown-item" href="{{ route('webiner') }}">Webiner</a></li>
                       <li><a class="dropdown-item" href="#">Online Training</a></li>
                       <li><a class="dropdown-item" href="#">Offline Training</a></li>
                       <li><a class="dropdown-item" href="#">Action Research</a></li>   
@@ -288,6 +288,10 @@
                   <a href="" class="youtube"><i class="fab fa-youtube"></i></a>
                 </div>
 
+                <div class="counter">
+                  Total Visitor: 987563214
+                </div>
+
               </div>
             </div>
           </div>
@@ -308,6 +312,8 @@
             </div>
           </div>
         </section>
+
+        <a href="header" class="go-top-arrow smooth-scroll"><i class="fas fa-angle-up"></i></a>
 
 
         {{-- Searbox Modal --}}
@@ -333,6 +339,7 @@
 
 
     <!-- Scripts -->
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
@@ -343,6 +350,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.5.0-beta.2/lightgallery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.5.0-beta.2/plugins/thumbnail/lg-thumbnail.min.js"></script>
     <script src="{{ asset('js/web/app.js') }}" defer></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script> --}}
+
 
 
     {{-- Search Box --}}

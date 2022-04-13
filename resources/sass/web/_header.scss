@@ -6,8 +6,9 @@
 }
 
 body{
+  background-color: $white;
   a{
-    color: $white;
+    color: $primary;
     transition: all 350ms;
     text-decoration: none;
 
@@ -22,6 +23,14 @@ body{
   background-color: $white;
   font-family: $font-family-heading;
   position: relative;
+
+  // .dropdown{
+  //   &:hover{
+  //     .dropdown-menu{
+  //       display: block;
+  //     }
+  //   }
+  // }
 
 
   &.active{
@@ -244,6 +253,10 @@ body{
   .search-box .result a{
     display: block;
     color: black
+  }
+
+  .search-box .result a:hover{
+    color: $primary;
   }
 
 

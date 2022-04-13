@@ -88,6 +88,7 @@
     height: auto;
     width: 100%;
     position: relative;
+    height: 490px;
 
     .slide-item{
         width: 100px;
@@ -217,6 +218,15 @@
 
     .digital-slider{
         padding: 40px 0;
+        position: relative;
+        opacity: 0;
+        bottom: -100px;
+        transition: all 350ms;
+
+        &.in-view{
+            opacity: 1;
+            bottom: 0;
+        }
 
         .slide-item{
         text-align: center;
@@ -329,6 +339,14 @@
 
     .ongoing-slider{
         padding: 40px 0;
+        position: relative;
+        bottom: -100px;
+        transition: all 350ms;
+
+        &.in-view{
+            opacity: 1;
+            bottom: 0;
+        }
 
         .slide-item{
             width: 100%;
@@ -483,6 +501,7 @@
             display: block;
             margin-bottom: 20px;
             position: relative;
+            overflow: hidden;
 
             &:hover{
                 @extend.shadow;
@@ -509,11 +528,21 @@
             .content{
                 position: absolute;
                 top: 50%;
-                transform: translateY(-50%);
+                transform: translateY(-10%);
                 text-align: center;
                 color: white;
                 left: 20px;
                 right: 20px;
+                // position: relative;
+                top: -50px;
+                opacity: 0;
+                transition: all 350ms;
+
+                &.in-view{
+                    top: 50%;
+                    transform: translateY(-50%);
+                    opacity: 1;
+                }
 
                 .image{
                     display: inline-block;
@@ -559,12 +588,13 @@
 
             .shape{
                 position: absolute;
-                top: 0;
+                top: 0px;
                 left: 0;
                 bottom: 0;
                 right: 0;
                 background-repeat: no-repeat;
                 transition: all 350ms;
+                
                 
             }
 
@@ -572,10 +602,17 @@
             .content{
                 left: 50%;
                 top: 50%;
-                transform: translateX(-50%) translateY(-50%);
+                transform: translateX(-50%) translateY(-10%);
                 position: absolute;
                 transition: all 350ms;
                 line-height: 1;
+                opacity: 0;
+
+                &.in-view{
+                    top: 50%;
+                    transform: translateX(-50%) translateY(-50%);
+                    opacity: 1;
+                }
 
 
                 img{
