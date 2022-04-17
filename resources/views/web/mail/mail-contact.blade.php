@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>New Request Email</title>
+    <title>New Feedback Email</title>
 </head>
 
 <style>
@@ -68,49 +68,63 @@
         footer a{
             color: #343a40;
         }
-        
-        .success{
-            padding: 3px 5px;
-            color: white;
-            background-color: green;
-            border-radius: 3px;
-        }
-
-        .danger{
-            padding: 3px 5px;
-            color: white;
-            background-color: red;
-            border-radius: 3px;
-        }
 
 
 </style>
 
 <body>
-
     <div class="container">
         
+
         <div class="mail">
             <header>
                 <a href="{{ url('/') }}"><img class="logo" src="{{ $message->embed( public_path('images/ciet-full-logo.jpg') ) }}" alt="CIET"></a>
+                {{-- <a href="{{ url('/') }}"><img class="logo" src="images/ciet-full-logo.jpg" alt="CIET"></a> --}}
+
+                <div class="date">{{ $feedback->created_at->format('d/m/Y') }}</div>
             </header>
             <div class="feedback">
-                <h3 class="subject">Status updated for Request id <a href="{{ route('message.show', $id) }}">#{{ $id }}</a>.</h3>
-                
-                Dear {{ $name }},
-    
-                    <p>Your Request "{{ $title }}", has been @if($status == 1) <span class="success">Approved</span> @elseif($status == 2) <span class="danger">Declined</span> @endif by Admin.
-                        Please contact at <a href="mailto:admin@ciet.nic.in">admin@ciet.nic.in</a> for more details.</p>
+                <h3 class="subject">{{ $feedback->subject }}</h3>
+
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Name:</th>
+                            <td>{{ $feedback->name }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Email:</th>
+                            <td>{{ $feedback->email }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Phone:</th>
+                            <td>{{ $feedback->phone }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Message:</th>
+                            <td>{{ $feedback->message }}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
+            <p style="width: 70%;">
+                <small><strong>Hi, Admin</strong></small><br>
+                <small>You recieve this mail because a user fill-up Feedback form in CIET Website.</small>
+            </p>
+
             <hr>
-        
+
             <footer>
                 <small>&#169; {{ date('Y') }}. All rights reserved to <a href="{{ url('/') }}">Central Institute of Educational Technology, NCERT</a></small>
             </footer>
         </div>
     
-    </div>
+        
     
+    </div>
 </body>
 </html>

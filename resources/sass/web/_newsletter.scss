@@ -4,16 +4,32 @@
         background-color: $light;
         margin-bottom: 25px;
         position: relative;
+        border-radius: 10px;
 
         .latest{
             position: absolute;
-            background-color: $success;
+            background: linear-gradient(100.48deg, #1ab563 0%, #2fff49 100%);
             color: $white;
-            font-family: $font-family-heading;
+            font-family: "Raleway", sans-serif;
             font-weight: 600;
-            padding: 2px 5px;
-            top: 0;
-            right: 0;
+            padding: 2px 23px;
+            top: 16px;
+            right: -10px;
+            transform-origin: center;
+            font-size: 0.9rem;
+            border-bottom-left-radius: 5px;
+            border-top-right-radius: 5px;
+            border-top-left-radius: 5px;
+
+            &::after{
+                content: "";
+                border-top: 10px solid $success;
+                border-right: 10px solid transparent;
+                right: 0px;
+                bottom: -10px;
+                position: absolute;
+            }
+
         }
 
         .image{
@@ -36,11 +52,11 @@
             color: $black;
             font-size: 1.1rem;
             line-height: 1;
-            padding: 5px 10px;
+            padding: 20px 10px 0px 10px;
         }
 
         .date{
-            padding: 5px 10px;
+            padding: 10px;
             color: $primary;
             font-family: $font-family-base;
             font-weight: 600;

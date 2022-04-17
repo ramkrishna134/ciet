@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title')Digital education initiatives |@endsection
+@section('title')Digital education initiatives | @endsection
 {{-- @section('description'){{ $page->description }}@endsection
 @section('image'){{ $page->featured_icon }}@endsection
 @section('keyword'){{ json_decode($page->key_word) }}@endsection --}}
@@ -28,32 +28,10 @@
 
             <div class="heading text-center text-primary">Access and use of Digital initiatives of NCERT under the aegis of MoE-Govt. of India</div>
             
-            <div class="row justify-content-center">
+            <div class="row justify-content-center mt-3">
                 <div class="col-sm-10">
 
-                    <div class="row web-item align-items-center">
-                        <div class="col-sm-3 image-wrap text-center">
-                            <div class="image">
-                                <img class="img-fluid" src="/images/web/1-03.png" alt="ePathshala">
-                            </div>
-                        </div>
-
-                        <div class="col-sm-9 details-wrap">
-                            <div class="details">
-                                <div class="title">ePathshala</div>
-                                <p>The National Council of Educational Research and Training (NCERT) is an autonomous organization set up in 1961 by the Government of India to assist and advise the Central and State Governments on policies and programmes for qualitative improvement in school education.</p>
-
-                                <div class="icons">
-                                    <a href="" class="item bg-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Visit Website"><i class="fas fa-globe"></i></a>
-                                    <a href="" class="item bg-success" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Get it on Play Store"><i class="fab fa-google-play"></i></a>
-                                    <a href="" class="item bg-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Get it on Apple Store"><i class="fab fa-apple"></i></a>
-                                    <a href="" class="item bg-info" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Get it on Windows Store"><i class="fab fa-windows"></i></a>
-
-                                   
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
 
                     <div class="row web-item align-items-center">
                         <div class="col-sm-3 image-wrap text-center">

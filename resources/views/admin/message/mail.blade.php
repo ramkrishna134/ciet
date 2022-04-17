@@ -11,41 +11,44 @@
     body{
             font-family: sans-serif;
         }
-        .container{ width: 90%; max-width: 640px; margin: 0 auto}
-        .mail{background: #fafafa; color: #1b1e21;  padding: 30px; min-height: 350px;
+        .container{ width: 90%; max-width: 640px; margin: 0 auto; background-color: #f5f3f3; padding: 10px;}
+        .mail{background: white; color: #1b1e21;  padding: 20px; min-height: 350px;
             -webkit-box-shadow:  0px 1px 5px rgba(0, 0, 0, 0.5);
             -moz-box-shadow:  0px 1px 5px  rgba(0, 0, 0, 0.5);
-            box-shadow:  0px 1px 5px  rgba(0, 0, 0, 0.5);}
+            box-shadow:  0px 1px 5px  rgba(0, 0, 0, 0.5); 
+            border: 4px solid #D46142; border-radius: 10px;}
             
         .logo{ display: inline-block; margin: 0 auto; width: 250px; height: auto; max-width: 100%;}
         .bold{
             font-weight: 600;
         }
         header{
-            padding: 10px;
-            background-color: #fff;
-            text-align: center;
-            box-shadow:  0px 1px 5px  rgba(0, 0, 0, 0.5);
-            border-top-right-radius: 6px;
-            border-top-left-radius: 6px;
-            -webkit-box-shadow:  0px 1px 5px rgba(0, 0, 0, 0.5);
-            -moz-box-shadow:  0px 1px 5px  rgba(0, 0, 0, 0.5);
-            box-shadow:  0px 1px 5px  rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        header a{
-
+        .subject{
+            padding: 0 14px;
+            margin: 10px 0;
         }
-        .table{ border-collapse: collapse; width: 100%;}
-        .table td, .table th{ padding: 14px; border-bottom: #f0f0f0 solid 1px; text-align: left; vertical-align: top }
+
+
+
+        header .date{
+            color: #343a40;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+        .table{ border-collapse: collapse; width: 100%; font-size: 0.8rem; overflow: auto;}
+        .table td, .table th{ padding: 14px; border-bottom: #343a40 solid 1px; text-align: left; vertical-align: top }
         .table tr:last-child td, .table tr:last-child th{border-bottom: none;}
 
-        .heading{
+        .feedback{
             padding: 10px;
-            background-color: #343a40 ;
-            text-align: center;
-            color: #ffffff;
-            box-shadow:  0px 1px 5px  rgba(0, 0, 0, 0.5);
+            background-color: #f5f3f3 ;
+            border-radius: 10px;
+            margin: 30px 0;
 
         }
 
@@ -58,17 +61,14 @@
         }
 
         footer{
-            padding: 10px;
-            background-color: #343a40 ;
             text-align: center;
-            color: #ffffff;
-            box-shadow:  0px 1px 5px  rgba(0, 0, 0, 0.5);
-            text-align: center;
-            border-bottom-right-radius: 6px;
-            border-bottom-left-radius: 6px;
-            box-shadow:  0px 1px 5px  rgba(0, 0, 0, 0.5);
-
+            color: #343a40;
         }
+
+        footer a{
+            color: #343a40;
+        }
+
 
 
 </style>
@@ -76,22 +76,27 @@
 <body>
 
     <div class="container">
-        <header>
-            <a href="{{ url('/') }}"><img class="logo" src="{{ $message->embed( public_path('images/ciet-full-logo.jpg') ) }}" alt="CIET"></a>
-        </header>
-        <div class="heading">
-            Below are the details of Request by {{ $name }}.
-        </div>
-
+        
         <div class="mail">
-            <h4>{{ $title }}</h4>
 
-            {!! $message_text !!}
-        </div>
+            <header>
+                <a href="{{ url('/') }}"><img class="logo" src="{{ $message->embed( public_path('images/ciet-full-logo.jpg') ) }}" alt="CIET"></a>
+            </header>
+            <div class="feedback">
+                <h3 class="subject">{{ $title }}</h3>
+
+                {!! $message_text !!}
+            </div>
     
-        <footer>
-            <small>&#169; {{ date('Y') }}. All rights reserved to <a href="{{ url('/') }}" style="color: #ffffff">Central Institute of Educational Technology, NCERT</a></small>
-        </footer>
+            
+        
+            <hr>
+
+            <footer>
+                <small>&#169; {{ date('Y') }}. All rights reserved to <a href="{{ url('/') }}">Central Institute of Educational Technology, NCERT</a></small>
+            </footer>
+
+        </div>
     
     </div>
     

@@ -1,15 +1,24 @@
+@php $lang = $lang ?? null; @endphp
+
 @extends('layouts.app')
 
-@section('title')Contact |@endsection
+@section('title')
+    @if(empty($lang) OR $lang === 'en')
+    Contact Us |
+    @elseif($lang === 'hi')
+    संपर्क करें |
+    @endif  
+@endsection
 {{-- @section('description'){{ $page->description }}@endsection
 @section('image'){{ $page->featured_icon }}@endsection
 @section('keyword'){{ json_decode($page->key_word) }}@endsection --}}
-
 @section('content')
-    <section class="hero-section count-height" style="background-image: url('images/web/hero.png')">
+{{----------- English Content -----------}}
+    @if(empty($lang) OR $lang === 'en')
+    <section class="hero-section count-height" style="background-image: url('/images/web/hero.png')">
         <div class="container">
             <div class="content">
-                <h1 class="title">Contact Us</h1>
+                <h1 class="title">Contact us</h1>
 
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center mb-0">
@@ -18,10 +27,29 @@
                     </ol>
                 </nav>
             </div>
-
         </div>
     </section>
 
+{{----------- Hindi Content -----------}}
+    @elseif($lang === 'hi')
+    <section class="hero-section count-height" style="background-image: url('/images/web/hero.png')">
+        <div class="container">
+            <div class="content">
+                <h1 class="title">संपर्क करें</h1>
+
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center mb-0">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">संपर्क करें</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    @endif
+
+{{----------- English Content -----------}}
     <section class="page-content" id="main-content">
         <div class="container">
             <div class="row justify-content-content">
@@ -33,14 +61,27 @@
                                 <div class="col-sm-5">
         
                                     <div class="address">
+                                        @if(empty($lang) OR $lang === 'en')
                                         <h2 class="heading text-light">Central Institute of Educational Technology (NCERT)</h2>
+                                        @elseif($lang === 'hi')
+                                        <h2 class="heading text-light">केंद्रीय शैक्षिक प्रौद्योगिकी संस्थान (एनसीईआरटी)</h2>
+                                        @endif
                                         <hr>
+                                        @if(empty($lang) OR $lang === 'en')
                                         <p>
                                             Chacha Neheru Bhaban <br>
                                             National Council of Educational Research and Training, <br>
                                             Sri Arobinda Marg, New Delhi, <br>
                                             Delhi 110016
                                         </p>
+                                        @elseif($lang === 'hi')
+                                        <p>
+                                            चाचा नेहरू भवन <br>
+                                            राष्ट्रीय शैक्षिक अनुसंधान और प्रशिक्षण परिषद, <br>
+                                            श्री अरबिंद मार्ग, नई दिल्ली, <br>
+                                            दिल्ली 110016
+                                        </p>
+                                        @endif
         
                                         <div class="address-item mb-3">
                                             <div class="icon"><i class="fas fa-phone-alt"></i></div>
@@ -74,17 +115,46 @@
                                 </div>
                                 <div class="col-sm-7">
                                     <div class="form-wrap">
-                                        <h2 class="heading text-primary">Do you have you any Query or Feedback?</h2>
+                                        @if(empty($lang) OR $lang === 'en')
+
+                                        <h2 class="heading text-primary">Do you have any Query or Feedback?</h2>
+                                        <h6 class="mb-4">Please fill-up the form and submit.</h6>
+
+                                        @elseif($lang === 'hi')
+
+                                        <h2 class="heading text-primary">क्या आपके पास कोई प्रश्न या प्रतिक्रिया है?</h2>
+                                        <h6 class="mb-4">कृपया फॉर्म भरें और सबमिट करें।</h6>
+
+                                        @endif
+
+                                        @if (session('status'))
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                            <i class="fas fa-check mr-1"></i> {{ session('status') }}
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                        @endif
+
+                                        @if (session('error'))
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            <i class="fas fa-exclamation-triangle"></i> {{ session('error') }}
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                        @endif
         
-                                        <h6 class="mb-4">Please fill up the form and submit.</h6>
-        
-                                        <form action="">
+                                        <form action="{{ route('feedback') }}" method="POST">
+                                            @csrf
+                                            @method('post')
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <div class="mb-3">
                                                         <label for="name" class="form-label">Full Name</label>
                                                         <input type="text" class="form-control" name="name" id="name"
                                                             placeholder="Full Name">
+                                                        @error('name')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
                                                     </div>
                                                 </div>
         
@@ -93,6 +163,11 @@
                                                         <label for="phone" class="form-label">Phone</label>
                                                         <input type="tel" class="form-control" name="phone" id="phone"
                                                             placeholder="Phone No.">
+                                                        @error('phone')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
                                                     </div>
                                                 </div>
         
@@ -101,6 +176,12 @@
                                                         <label for="email" class="form-label">Email</label>
                                                         <input type="email" class="form-control" name="email" id="email"
                                                             placeholder="Email ID">
+
+                                                        @error('email')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
                                                     </div>
                                                 </div>
         
@@ -109,6 +190,12 @@
                                                         <label for="subject" class="form-label">Subject</label>
                                                         <input type="text" class="form-control" name="subject" id="subject"
                                                             placeholder="Subject">
+
+                                                        @error('subject')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
                                                     </div>
                                                 </div>
         
@@ -116,6 +203,11 @@
                                                     <div class="mb-3">
                                                         <label for="message" class="form-label">Message</label>
                                                         <textarea name="message" id="message" class="form-control"></textarea>
+                                                        @error('message')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
                                                     </div>
                                                 </div>
         
@@ -124,6 +216,8 @@
         
                                             <button type="submit" class="btn btn-primary">Send Message</button>
                                         </form>
+
+                                       
                                     </div>
                                 </div>
                             </div>

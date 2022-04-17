@@ -40,20 +40,26 @@
     <link href="{{ asset('css/web/app.css') }}" rel="stylesheet">
 </head>
 
-<style>
-  
-</style>
-
 <body>
+
+  {{---------------- Loading Image ------------------------}}
+
+  <div class="loading-bar active">
+    <div class="image">
+      <img class="img-fluid" src="/images/ciet-logo-black.png" alt="Loading Image">
+    </div>
+  </div>
+
     <div id="app">
 
+      {{--------------- Top Header -----------------------}}
         <header class="header sticky-top shadow" id="header">
           <div class="top-head">
             <div class="container">
               <div class="row">
                 <div class="col-lg-3">
                   <div class="time-date">
-                    <div class="time me-3"><i class="fas fa-clock"></i> 10:00 AM</div>
+                    <div class="time me-3"><i class="fas fa-clock"></i> <span id="current-time"></span></div>
                     <div class="date"><i class="fas fa-calendar-day"></i> {{ date('d/m/Y') }}</div>
                   </div>
                 </div>
@@ -68,11 +74,11 @@
                         Language
                       </a>
                       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">English</a></li>
-                        <li><a class="dropdown-item" href="#">Hindi</a></li>      
+                        <li><a class="dropdown-item" href="?lang=en">English</a></li>
+                        <li><a class="dropdown-item" href="?lang=hi">Hindi</a></li>      
                       </ul>
                     </li>
-                    <li><a href=""><i class="fas fa-adjust"></i></a></li>
+                    <li><a href="" class="dark-mode"><i class="fas fa-adjust"></i></a></li>
                 </div>
               </div>
 
@@ -83,6 +89,7 @@
             </div>
           </div>
 
+          {{----------------- Main Header ------------------}}
           <nav class="navbar navbar-expand-lg shadow menu-container" id="navigation">
             <div class="container">
               <a class="navbar-brand" href="{{ route('home') }}">
@@ -214,6 +221,7 @@
         </main>
 
 
+        {{------------------- Main footer -------------------}}
         <footer class="footer">
           <div class="container">
             <div class="row">
@@ -243,8 +251,6 @@
                   <li><a href=""><i class="fas fa-angle-double-right"></i> Feedback</a></li>
                   <li><a href=""><i class="fas fa-angle-double-right"></i> Advisory Board</a></li>
                   <li><a href=""><i class="fas fa-angle-double-right"></i> CIET in News</a></li>
-                  {{-- <li><a href=""><i class="fas fa-angle-double-right"></i> MoE</a></li>
-                  <li><a href=""><i class="fas fa-angle-double-right"></i> MyGov</a></li> --}}
                 </ul>
               </div>
               <div class="col-lg-5 col-sm-12 mb-lg-0 mb-sm-4 mb-4">
@@ -297,6 +303,7 @@
           </div>
         </footer>
 
+        {{------------------- Bottom footer -------------------}}
         <section class="foot-line">
           <div class="container">
             <div class="row">
@@ -313,10 +320,11 @@
           </div>
         </section>
 
+        {{------------------- Go to top Arrow -------------------}}
         <a href="header" class="go-top-arrow smooth-scroll"><i class="fas fa-angle-up"></i></a>
 
 
-        {{-- Searbox Modal --}}
+        {{----------------------- Searbox Modal --------------------}}
 
         <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="Search Accross the CIET Website" aria-hidden="true">
           <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -324,7 +332,10 @@
               <div class="modal-body shadow">
 
                 <form class="search-box">
-                  <input id="txtSearch" class="form-control"type="search" placeholder="Type anything to Search ...." aria-label="Search">
+                  <div class="search-element">
+                    <input id="txtSearch" class="form-control"type="search" placeholder="Type anything to Search ...." aria-label="Search accross the website">
+                    <i class="fas fa-search"></i>
+                  </div>
 
                   {{ csrf_field() }}
                   <div id="search-result" class="result shadow">
@@ -348,40 +359,31 @@
     <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.5.0-beta.2/lightgallery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.5.0-beta.2/plugins/thumbnail/lg-thumbnail.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.5.0-beta.2/plugins/thumbnail/lg-thumbnail.min.js"></script> --}}
     <script src="{{ asset('js/web/app.js') }}" defer></script>
     {{-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script> --}}
-
 
 
     {{-- Search Box --}}
 
     <script type="text/javascript">
+    
+      window.addEventListener('load', (event) => {
+        $('.loading-bar').removeClass('active');
+      });
 
     $(document).ready(function (){
-      mobileMenu();
+
       searchbox();
-      topHead();
+      time();
+
     })
 
-    function mobileMenu() {
-      $('.navbar-toggle').click(function(e){
-        e.preventDefault();
-        $('.navbar-collapse').addClass('active');
-      })
-
-      $('.cross-icon').click(function(e){
-        e.preventDefault();
-        $('.navbar-collapse').removeClass('active');
-      })
+    function time(){
+      setInterval ("document.getElementById ('current-time').innerHTML = new Date().toLocaleTimeString()", 50)
     }
 
-    function topHead() {
-      $('#topHeadToggler').click(function(e){
-        e.preventDefault();
-        $('.top-head .row').slideToggle();
-      })
-    }
+    
 
     
     function searchbox() {
@@ -463,11 +465,17 @@
                 $('#search-result').append(html);
 
               })
+              
             });
 
+            const numb = document.getElementById("search-result").children.length;
+            if(numb == 0){
+              var html = ('<strong>No result found ...</strong>');
+              $('#search-result').append(html);
+            }
             
 
-            // console.log(data);
+            
             
         }
 

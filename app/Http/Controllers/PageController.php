@@ -95,13 +95,25 @@ class PageController extends Controller
      * @param  \App\Models\Page  $page
      * @return \Illuminate\Http\Response
      */
-    public function show(Page $page, $slug, $local = null)
+    public function show(Page $page, $slug)
     {
-        if(!empty($local)){
-            $page = Page::where('slug', $slug)->where('lang', $local)->where('status', 1)->first();
+
+        $lang = $_GET['lang'] ?? null;
+        if(!empty($lang)){
+            if($lang == 'en' OR $lang == 'hi'){
+                $page = Page::where('slug', $slug)->where('lang', $lang)->where('status', 1)->first();
+            }else{
+                abort(404);
+            }
         }else{
             $page = Page::where('slug', $slug)->where('lang', 'en')->where('status', 1)->first();
-        };
+        }
+
+        // if(!empty($local)){
+        //     $page = Page::where('slug', $slug)->where('lang', $local)->where('status', 1)->first();
+        // }else{
+        //     $page = Page::where('slug', $slug)->where('lang', 'en')->where('status', 1)->first();
+        // };
         
         if(empty($page)){
             return abort(404);
@@ -216,10 +228,20 @@ class PageController extends Controller
             return response()->json($datas);
         }
         
-        // $text = $request->input('text');
-    
-        // $patients = DB::table('pages')->where('key_word', 'Like', "$text")->get();
-    
-        // return response()->json($patients);
+    }
+
+    // Contact us page function =================
+    public function contact(Request $request){
+        $lang = $_GET['lang'] ?? null;
+        if(!empty($lang)){
+            if($lang == 'en' OR $lang == 'hi'){
+                return view('web.contact', compact('lang'));
+            }else{
+                abort(404);
+            }
+        }else{
+            return view('web.contact');
+        }
+        
     }
 }

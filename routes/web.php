@@ -19,9 +19,8 @@ Route::get('/', function () {
     return view('web.home');
 })->name('home');
 
-Route::get('/contact', function () {
-    return view('web.contact');
-})->name('contact');
+Route::get('/contact','App\Http\Controllers\PageController@contact')->name('contact');
+Route::post('/contact','App\Http\Controllers\FeedbackController@store')->name('feedback');
 
 Route::get('/dict', function () {
     return view('web.department');
@@ -46,6 +45,10 @@ Route::get('/webiners', function () {
 Route::get('/newsletter', function () {
     return view('web.newsletter');
 })->name('newsletter');
+
+Route::get('/feedback-mail', function () {
+    return view('web.mail.mail-contact');
+})->name('feedback-mail');
 
 Route::get('/pmevidya','App\Http\Controllers\Pmevidya@index')->name('pmevidya');
 Route::get('/pmevidya/{class}/{channel}/{category}','App\Http\Controllers\Pmevidya@schedule')->name('pmevidya.schedule');
@@ -173,7 +176,7 @@ Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () 
 
 // Web Routes ==============================
 
-Route::get('/{slug}/{local?}','App\Http\Controllers\PageController@show')->name('page.show');
+Route::get('/{slug}','App\Http\Controllers\PageController@show')->name('page.show');
 
 
 

@@ -24,12 +24,52 @@
     </div>
 </section>
 
-<section class="page-content">
+<section class="page-content" id="main-content">
 
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-sm-10">
-                <div class="newsletter-wrap my-5">
+
+                <form action="">
+                    <div class="row justify-content-center">
+                        <div class="col-sm-8">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <select name="month" id="month" class="form-control">
+                                                <option value="">-- Select Month ---</option>
+                                                @for($i=1; $i<=12; $i++): 
+                                                    @php $month = date('F', mktime(0, 0, 0, $i, 10));@endphp
+                                                    <option value="">{{ $month }}</option>
+                                                @endfor
+                                                
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <select name="year" id="year" class="form-control">
+                                                <option value="">-- Select Year ---</option>
+                                                @php
+                                                    $latest_year = date('Y');
+                                                    $earliest_year = 2015;
+                                                    foreach ( range( $latest_year, $earliest_year ) as $i ):
+                                                @endphp
+                                                <option value="{{ $i }}">{{ $i }}</option>
+        
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <button type="submit" class="btn btn-primary w-100 py-1"><i class="fas fa-filter"></i> Filter</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="newsletter-wrap mt-4">
                     <div class="row justify-content-center">
                         <div class="col-sm-3">
                             <div class="newsletter shadow">
@@ -40,7 +80,7 @@
                                     <img class="img-fluid" src="/images/web/newsletter.png" alt="Newsletter">
                                 </div>
                                 <div class="title">Volume V, Issue 4, 1 October - 31 December 2021</div>
-                                <div class="date"><i class="fas fa-calendar-day"></i> 31/12/2022</div>
+                                <div class="date"><i class="fas fa-calendar-day"></i> 31st December 2022</div>
                                 <a href="" class="button"><i class="fas fa-eye"></i> View</a>
                             </div>
                         </div>
@@ -51,7 +91,7 @@
                                     <img class="img-fluid" src="/images/web/newsletter.png" alt="Newsletter">
                                 </div>
                                 <div class="title">Volume V, Issue 4, 1 October - 31 December 2021</div>
-                                <div class="date"><i class="fas fa-calendar-day"></i> 31/12/2022</div>
+                                <div class="date"><i class="fas fa-calendar-day"></i> 31st December 2022</div>
                                 <a href="" class="button"><i class="fas fa-eye"></i> View</a>
                             </div>
                         </div>
@@ -62,7 +102,19 @@
                                     <img class="img-fluid" src="/images/web/newsletter.png" alt="Newsletter">
                                 </div>
                                 <div class="title">Volume V, Issue 4, 1 October - 31 December 2021</div>
-                                <div class="date"><i class="fas fa-calendar-day"></i> 31/12/2022</div>
+                                <div class="date"><i class="fas fa-calendar-day"></i> 31st December 2022</div>
+                                <a href="" class="button"><i class="fas fa-eye"></i> View</a>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="newsletter shadow">
+                            
+                                <div class="image">
+                                    <img class="img-fluid" src="/images/web/newsletter.png" alt="Newsletter">
+                                </div>
+                                <div class="title">Volume V, Issue 4, 1 October - 31 December 2021</div>
+                                <div class="date"><i class="fas fa-calendar-day"></i> 31st December 2022</div>
                                 <a href="" class="button"><i class="fas fa-eye"></i> View</a>
                             </div>
                         </div>
@@ -73,18 +125,7 @@
                                     <img class="img-fluid" src="/images/web/newsletter.png" alt="Newsletter">
                                 </div>
                                 <div class="title">Volume V, Issue 4, 1 October - 31 December 2021</div>
-                                <div class="date"><i class="fas fa-calendar-day"></i> 31/12/2022</div>
-                                <a href="" class="button"><i class="fas fa-eye"></i> View</a>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-3">
-                            <div class="newsletter shadow">
-                                <div class="image">
-                                    <img class="img-fluid" src="/images/web/newsletter.png" alt="Newsletter">
-                                </div>
-                                <div class="title">Volume V, Issue 4, 1 October - 31 December 2021</div>
-                                <div class="date"><i class="fas fa-calendar-day"></i> 31/12/2022</div>
+                                <div class="date"><i class="fas fa-calendar-day"></i> 31st December 2022</div>
                                 <a href="" class="button"><i class="fas fa-eye"></i> View</a>
                             </div>
                         </div>

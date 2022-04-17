@@ -20,17 +20,44 @@
     padding: 7px 20px;
     font-size: 1.1rem;
     border: 2px solid $primary;
+    overflow: hidden;
 
 }
 
 .btn-primary{
     background-color: $primary;
     border-color: $primary;
+    position: relative;
+    
+
+    &::after{
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 25%;
+        height: 100%;
+        width: 50%;
+        background-color: #000;
+        border-radius: 50%;
+        opacity: 0;
+        pointer-events: none;
+        transition: all ease-in-out 1s;
+        transform: scale(5, 5);
+    }
 
     &:hover{
         color: $primary;
         background-color: $white;
         border: 2px solid $primary;
+
+        &::after{
+            padding: 0;
+            margin: 0;
+            opacity: .2;
+            transition: 0s;
+            transform: scale(0, 0);
+        }
     }
 }
 
@@ -88,7 +115,7 @@
     height: auto;
     width: 100%;
     position: relative;
-    height: 490px;
+    // height: 490px;
 
     .slide-item{
         width: 100px;
@@ -166,6 +193,27 @@
     font-family: $font-family-heading;
     position: relative;
 
+    // Darkmode Css ===========
+
+    &.dark-mode{
+        background-color: $dark-mode;
+        color: $white;
+
+        .heading{
+            color: $white;;
+        }
+
+        .head-message{
+            background-color: $dark-mode;
+
+            .message-wrap{
+                background-color: #333840;
+            }
+        }
+    }
+
+    //========================
+
     p{
         text-align: justify;
     }
@@ -210,11 +258,34 @@
 }
 
 
+// Digital Education ====================
+
 .digital-education{
     padding: 30px 0;
     text-align: center;
     background-color: $pink;
     font-family: $font-family-heading;
+
+    // Darkmode Css ===========
+
+    &.dark-mode{
+        background-color: $dark-mode;
+        border-top: 1px solid $gray-500;
+
+        .heading{
+            color: $white;
+        }
+
+        .digital-slider{
+            .slide-item{
+                .title{
+                    color: $white;
+                }
+            }
+        }
+    }
+
+    //=======================
 
     .digital-slider{
         padding: 40px 0;
@@ -336,6 +407,27 @@
     padding: 50px 0;
     text-align: center;
     font-family: $font-family-heading;
+
+    // Darkmode Css ===========
+
+    &.dark-mode{
+        background-color: $dark-mode;
+        color: $white;
+        border-top: 1px solid $gray-500;
+
+        .heading{
+            color: $white;
+        }
+
+        .ongoing-slider{
+            .slide-item{
+                .title{
+                    color: $white;
+                }
+            }
+        }
+    }
+    //=========================
 
     .ongoing-slider{
         padding: 40px 0;
@@ -484,11 +576,28 @@
     background-color: #F2F2F2;
     position: relative;
 
+     // Darkmode Css ===============
+
+     &.dark-mode{
+         background-color: $dark-mode;
+         border-top: 1px solid $gray-500;
+
+         .layer{
+             display: none;
+         }
+     }
+
+     // ============================
+
     .layer{
         position: absolute;
         bottom: 0;
         left: 0;
         right: 0;
+
+        img{
+            width: 100%;
+        }
     }
 
     .department-wrap{
@@ -575,6 +684,27 @@
     background-size: contain;
     background-repeat: repeat-x;
 
+    // Darkmode Css ===============
+
+    &.dark-mode{
+        background-color: $dark-mode;
+        border-top: 1px solid $gray-500;
+
+        .heading{
+            color: $white;
+        }
+
+        .infrastructure-wrap{
+            .item {
+                .title{
+                    color: $white;
+                }
+            }
+        }
+    }
+
+    // ============================
+
     .infrastructure-wrap{
         padding: 40px 0;
 
@@ -660,6 +790,30 @@
     padding: 70px 0;
     background-color: #F2F2F2;
 
+    // Darkmode Css ===============
+
+    &.dark-mode{
+        background-color: $dark-mode;
+        border-top: 1px solid $gray-500;
+
+        .heading{
+            color: $white;
+        }
+
+        .announcement-wrap{
+            .tab-content{
+                background-color: #333840;
+                li{
+                    a{
+                        color: $white;
+                    }
+                }
+            }
+        }
+    }
+
+    // ============================
+
     .announcement-wrap{
 
         .nav{
@@ -742,6 +896,15 @@
 .partner{
     padding: 50px 0;
     background-color: $light;
+
+    // Darkmode Css ===============
+
+    &.dark-mode{
+        background-color: $dark-mode;
+        border-top: 1px solid $gray-500;
+    }
+
+    // ============================
 
     .partner-slider{
 
@@ -861,6 +1024,10 @@
 // Braekpoint Mobile scss ===============================
 
 @media only screen and (max-width: $tablet-width){
+
+    .heading{
+        font-size: 1.5rem;
+    }
 
     .about-us{
         .head-message{

@@ -101,6 +101,16 @@ body{
             text-decoration: underline;
           }
         }
+
+        .dark-mode{
+          &.active{
+            i{
+              color: $dark-mode;
+              background-color: $white;
+              border-radius: 50%;
+            }
+          }
+        }
       }
     }
 
@@ -110,7 +120,7 @@ body{
   }
 
   .logo{
-    width: 400px;
+    width: 350px;
 
     &.logo-sm{
       width: 300px;
@@ -195,6 +205,11 @@ body{
         background-color: $primary;
         color: $white;
       }
+
+      &.active{
+       background-color: $primary;
+       color: $white;       
+      }
     }
   }
 }
@@ -215,14 +230,14 @@ body{
 
   #txtSearch{
     border-radius: 30px;
-    padding: 15px;
+    padding: 15px 15px 15px 35px;
     color: $black;
     font-size: 1rem;
   }
 
   #txtSearch.active{
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%) !important;
@@ -230,24 +245,60 @@ body{
 
   #txtSearch:focus{
     border: none;
+    box-shadow: none;
   }
 
+  #txtSearch::-webkit-search-cancel-button{
+    position:relative;
+    right:10px;
+    height: 15px;
+    width: 15px;
+    color: $gray-500;
+    background-color: $black;
+    cursor: pointer; 
+}
+
   .search-box{
-    position: relative
+    position: relative;
+
+    .search-element{
+      position: relative;
+      i{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        color: $gray-600;
+        left: 14px;
+  
+      }
+    }
+
+   
   }
 
   .search-box .result{
     position: absolute;
-    top: 100%;
+    top: 99%;
     left: 0;
     right: 0;
-    background: white;
+    background: $white;
     padding: 10px;
     display: none;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+
+    &::before{
+      position: absolute;
+      content: "";
+      height: 1px;
+      left: 20px;
+      right: 20px;
+      width: auto;
+      background-color: $gray-300;
+      top: 0;
+    }
   }
 
   .search-box .result a{
@@ -356,13 +407,17 @@ body{
   // Braekpoint Mobile scss ===============================
   @media only screen and (max-width: $mobile-width){
 
+    #txtSearch{
+      padding: 8px 15px 8px 35px;
+    }
+
     .header{
 
       .logo{
-        width: 200px;
+        width: 180px;
 
         &.logo-sm{
-          width: 200px;
+          width: 180px;
         }
 
       }

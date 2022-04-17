@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title')PMeVidya |@endsection
+@section('title')PMeVidya | @endsection
 @section('description')
     PM eVidya is an innovative and unique initiative by the Ministry of Education, Government of India to facilitate
     learning and teaching at school level. It offers multifarious educational resources in multi-platform mode viz.

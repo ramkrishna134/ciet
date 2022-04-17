@@ -1,11 +1,13 @@
 .websites{
     font-family: $font-family-heading;
-    background-color: $light;
+    background-color: $white;
     .web-wrap{
         padding: 40px 0;
 
         .web-item{
-            border-bottom: 1px solid $gray-500;
+            margin-bottom: 5px;
+            background-color: #e6eaedc9;
+            border-radius: 10px;
             padding: 25px 0;
 
             &:last-child{

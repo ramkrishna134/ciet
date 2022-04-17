@@ -172,9 +172,9 @@
 
     <section class="department">
 
-        {{-- <div class="layer">
-            <img class="img-fluid" src="/images/web/gray-wave.svg" alt="Gray wave design">
-        </div> --}}
+        <div class="layer">
+            <img class="img-fluid" src="/images/web/gray-wave.png" alt="Gray wave design">
+        </div>
 
         <div class="container">
             <div class="row justify-content-center">
@@ -337,8 +337,8 @@
                             <a href="" class="item">
                                 <div class="shape" style="background-image: url('/images/web/rhombas.png')"></div>
                                 <div class="content scroll-in-view">
-                                    <img class="img-fluid" src="/images/web/edusat_1.png" alt="">
-                                    <div class="title">satellite network</div>
+                                    <img class="img-fluid" src="/images/web/diksha.png" alt="">
+                                    <div class="title">Diksha CCC</div>
                                 </div>
                             </a>
                         </div>
@@ -357,18 +357,18 @@
                             <a href="" class="item">
                                 <div class="shape" style="background-image: url('/images/web/rhombas.png')"></div>
                                 <div class="content scroll-in-view">
-                                    <img class="img-fluid" src="/images/web/edusat_1.png" alt="">
-                                    <div class="title">satellite network</div>
+                                    <img class="img-fluid" src="/images/web/oer.png" alt="">
+                                    <div class="title">journal</div>
                                 </div>
                             </a>
                         </div>
 
                         <div class="col-lg-2 col-sm-4 col-6">
-                            <a href="" class="item">
+                            <a href="{{ route('newsletter') }}" class="item">
                                 <div class="shape" style="background-image: url('/images/web/rhombas.png')"></div>
                                 <div class="content scroll-in-view">
-                                    <img class="img-fluid" src="/images/web/edusat_1.png" alt="">
-                                    <div class="title">satellite network</div>
+                                    <img class="img-fluid" src="/images/web/oer.png" alt="">
+                                    <div class="title">Newsletter</div>
                                 </div>
                             </a>
                         </div>
