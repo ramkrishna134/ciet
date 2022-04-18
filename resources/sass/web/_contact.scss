@@ -82,3 +82,57 @@
 
     
 }
+
+.people-wrap{
+    .nav{
+        justify-content: center;
+    }
+
+    .nav-link{
+        border-radius: 30px;
+        font-family: $font-family-heading;
+        font-weight: 600;
+        padding: 10px 30px;
+        font-size: 1.2rem;
+        border: none;
+        margin: 0 10px;
+        background-color: $white;
+        color: $black;
+        text-transform: uppercase;
+        position: relative;
+        border: 1px solid gray;
+
+        &.active{
+            background-color: $primary;
+            color: $white;
+            border: none;
+
+            &::after{
+                position: absolute;
+                content: "";
+                width: 0; 
+                height: 0; 
+                border-left: 15px solid transparent;
+                border-right: 15px solid transparent;
+                border-top: 15px solid $primary;
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        &:hover{
+            background-color: $primary;
+            color: $white;
+        }
+    }
+
+
+    .tab-content{
+        padding: 40px;
+        border-radius: 15px;
+        background-color: $light;
+        overflow: auto;
+
+    }
+}

@@ -182,7 +182,7 @@
                     <ul class="dropdown-menu mega-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                       <div class="row">
                         <div class="col-sm-6">
-                          <li><a class="dropdown-item" href="">People</a></li>
+                          <li><a class="dropdown-item { (request()->is('people')) ? 'active' : '' }}" href="{{ route('people') }}">People</a></li>
                           <li><a class="dropdown-item {{ (request()->is('contact')) ? 'active' : '' }}" href="{{ route('contact') }}">Contact us</a></li>
                           <li><a class="dropdown-item" href="#">Media Production Division</a></li>
                           <li><a class="dropdown-item" href="#">Planning and Research Division</a></li>

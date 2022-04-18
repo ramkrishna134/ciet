@@ -61,7 +61,7 @@
                                     @if($category != 'archive')
                                     <th width="150px">Telecast Date</th>
                                     <th>Day</th>
-                                    <th>Time</th>
+                                    <th>Duration</th>
                                     @else
                                     <th>Content Link</th>
                                     @endif

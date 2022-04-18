@@ -47,6 +47,8 @@ class ArticalController extends Controller
             'icon' =>'required',
             'url' =>'required',
             'date' =>'required',
+            'month' => 'required',
+            'year' => 'required',
             'lang' =>'required',
             'status' =>'required',     
         ];
@@ -113,6 +115,8 @@ class ArticalController extends Controller
             'icon' =>'required',
             'url' =>'required',
             'date' =>'required',
+            'month' => 'required',
+            'year' => 'required',
             'lang' =>'required',
             'status' =>'required',     
         ];
@@ -130,10 +134,10 @@ class ArticalController extends Controller
                 $artical->fill($data);
                 $artical->user_id = $user->id; 
                 $artical->save();
-                return redirect(route('artical.index'))->with('status',"Artical updated successfully");
+                return back()->with('status',"Artical updated successfully");
 
             }
-            catch(Exception $e){  
+            catch(Exception $e){
                 return back()->with('failed',"Operation failed");
             }
         }

@@ -15,6 +15,8 @@ class Artical extends Model
         'icon',
         'url',
         'date',
+        'month',
+        'year',
         'user_id',
         'lang',
         'status',

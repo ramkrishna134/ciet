@@ -43,7 +43,7 @@
                     </div>
     
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-3">
                             <div class="mb-3">
                                 <label class="form-label" for="category">Category</label>
                                 <select name="category" id="category" class="form-control">
@@ -58,12 +58,45 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-6">
+
+                        <div class="col-sm-3">
                             <div class="mb-3">
                                 <label class="form-label" for="date">Date</label>
                                 <input type="date" class="form-control" id="date" name="date" value="{{ $artical->date ?? old('date') }}">
                             </div>
                         </div>
+
+                        <div class="col-sm-3">
+                            <div class="mb-3">
+                                <label class="form-label" for="month">Month</label>
+                                <select name="month" id="month" class="form-control">
+                                    <option value="">-- Select Month ---</option>
+                                    @for($i=1; $i<=12; $i++): 
+                                        @php $month = date('F', mktime(0, 0, 0, $i, 10));@endphp
+                                        <option value="{{ $month }}">{{ $month }}</option>
+                                    @endfor
+                                    
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="mb-3">
+                                <label class="form-label" for="year">Year</label>
+                                <select name="year" id="year" class="form-control">
+                                    <option value="">-- Select Year ---</option>
+                                    @php
+                                        $latest_year = date('Y');
+                                        $earliest_year = 2015;
+                                        foreach ( range( $latest_year, $earliest_year ) as $i ):
+                                    @endphp
+                                    <option value="{{ $i }}">{{ $i }}</option>
+
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        
                     </div>
     
                     <div class="mb-3">

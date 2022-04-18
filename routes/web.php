@@ -53,9 +53,9 @@ Route::get('/feedback-mail', function () {
 Route::get('/pmevidya','App\Http\Controllers\Pmevidya@index')->name('pmevidya');
 Route::get('/pmevidya/{class}/{channel}/{category}','App\Http\Controllers\Pmevidya@schedule')->name('pmevidya.schedule');
 
-// Route::get('/pmevidya', function () {
-//     return view('web.pmevidya');
-// })->name('pmevidya');
+Route::get('/people', function () {
+    return view('web.people');
+})->name('people');
 
 Auth::routes();
 

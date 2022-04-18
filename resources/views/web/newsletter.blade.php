@@ -129,6 +129,30 @@
                                 <a href="" class="button"><i class="fas fa-eye"></i> View</a>
                             </div>
                         </div>
+
+                        <div class="col-sm-3">
+                            <div class="newsletter shadow">
+                                <div class="image">
+                                    <img class="img-fluid" src="/images/web/newsletter.png" alt="Newsletter">
+                                </div>
+                                <div class="title">Volume V, Issue 4, 1 October - 31 December 2021</div>
+                                <div class="date"><i class="fas fa-calendar-day"></i> 31st December 2022</div>
+                                <a href="" class="button"><i class="fas fa-eye"></i> View</a>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="newsletter shadow">
+                                <div class="image">
+                                    <img class="img-fluid" src="/images/web/newsletter.png" alt="Newsletter">
+                                </div>
+                                <div class="title">Volume V, Issue 4, 1 October - 31 December 2021</div>
+                                <div class="date"><i class="fas fa-calendar-day"></i> 31st December 2022</div>
+                                <a href="" class="button"><i class="fas fa-eye"></i> View</a>
+                            </div>
+                        </div>
+
+                        
                     </div>
                 </div>
             </div>
