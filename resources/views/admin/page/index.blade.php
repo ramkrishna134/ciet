@@ -11,7 +11,7 @@ All Pages
         {{-- <div class="col-sm-8">
             <h3>All Pages</h3>
         </div> --}}
-        <div class="col-sm-4">
+        <div class="col-sm-8">
             <a href="{{ route('page.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add New Custom Page</a>
 
             <a href="{{ route('page.create.general') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add New General Page</a>

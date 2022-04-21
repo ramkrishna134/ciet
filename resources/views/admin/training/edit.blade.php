@@ -181,6 +181,22 @@
                             @endif
                         </select>
                     </div>
+
+                    <div class="mb-3">
+                        <label for="type" class="form-label">Type</label>
+                        <select name="type" id="type" class="form-control">
+                            <option value="">-- Select Type ---</option>
+
+                            @if(!empty($training))
+
+                            <option value="Upcoming" @if($training->type === 'online') selected @endif>Online</option>
+                            <option value="Ongoing" @if($training->type === 'offline') selected @endif>Offline</option>                            
+                            @else
+                            <option value="online">Online</option>
+                            <option value="offline">Offline</option>
+                            @endif
+                        </select>
+                    </div>
                    
 
                     @if(!empty($training))

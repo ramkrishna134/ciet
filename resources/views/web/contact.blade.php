@@ -104,10 +104,11 @@
                                         <h5 class="text-light fw-bold">Follow Us</h5>
         
                                         <div class="foot-icon-wrap">
-                                            <a href="" class="facebook"><i class="fab fa-facebook-f"></i></a>
-                                            <a href="" class="instagram"><i class="fab fa-instagram"></i></a>
-                                            <a href="" class="twitter"><i class="fab fa-twitter"></i></a>
-                                            <a href="" class="youtube"><i class="fab fa-youtube"></i></a>
+                                            <a href="{{ setting('facebook') }}" target="_blank" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                                            <a href="{{ setting('instagram') }}" class="instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                                            <a href="{{ setting('twitter') }}" class="twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+                                            <a href="{{ setting('youtube') }}" class="youtube" target="_blank"><i class="fab fa-youtube"></i></a>
+                                            <a href="{{ setting('linkedin') }}" class="linkedin" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                                         </div>
         
                                     </div>

@@ -19,6 +19,7 @@ class Training extends Model
         'start_date',
         'end_date',
         'category',
+        'type',
         'featured_image',
         'icon',
         'key_word',

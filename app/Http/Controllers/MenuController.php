@@ -14,13 +14,50 @@ class MenuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+
         $menus = Menu::all();
-        $items = MenuItem::paginate(15);
+        $params = $this->validate($request, [
+            'label' => 'nullable',
+            'parent_id' => 'nullable',
+            'lang' => 'nullable',
+            'status' => 'nullable',
+        ]);
+
+        $query = MenuItem::orderByDesc('id');
+        $params['label'] = trim( $params['label'] ?? '' );
+        $params['parent_id'] = $params['parent_id'] ?? '';
+        $params['lang'] = $params['lang'] ?? '';
+        $params['status'] = $params['status'] ?? '';
+
+        if( !empty( $params['label'] ) ){
+            $query->where(function( $query ) use ($params) {
+                /** @var Builder $query */
+                $query->where('label', 'like', '%' . $params['label'] . '%' );
+            });
+        }
+
+        if( !empty( $params['parent_id'] ) ){
+            $query->where('parent_id', $params['parent_id']);
+        }
+
+        if( !empty( $params['lang'] ) ){
+            $query->where('lang', $params['lang']);
+        }
+
+        if( !empty( $params['status'] ) ){
+            $query->where('status', $params['status']);
+        }
+
+        $items = $query->paginate();
         $menu_links = MenuItem::query()->where('parent_id', NULL)->get();
-        return view('admin.menu.index', compact('menus', 'items', 'menu_links'));
+        return view('admin.menu.index')->with([
+            'menus' => $menus,
+            'items' => $items,
+            'params' => $params
+        ]);
     }
 
     /**

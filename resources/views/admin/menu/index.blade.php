@@ -1,3 +1,7 @@
+@php
+    $menuItems = DB::table('menu_items')->where('status', 1)->get();
+@endphp
+
 @extends('layouts.sidebar')
 
 @section('title')
@@ -88,7 +92,7 @@ Menu Builder
     </div>
 
     <div class="col-sm-9">
-        <div class="card">
+        <div class="card mb-3">
             <div class="card-body">
 
                 <form action="{{ route('menuItem.store') }}" method="post">
@@ -128,7 +132,7 @@ Menu Builder
                                     <div class="mb-3">
                                         <select name="parent_id" id="parent_id" class="form-control">
                                             <option value="">-- Select Parent Menu --</option>
-                                            @foreach ($items as $item)
+                                            @foreach ($menuItems as $item)
                                                 <option value="{{ $item->id }}">{{ $item->label }}</option>
                                             @endforeach
                                         </select>
@@ -200,79 +204,156 @@ Menu Builder
                     </div>
 
                 </form>
-
-                <hr>
-                {{-- List of Menu items --}}
-                <strong>Your Menu Items</strong>
-
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Label</th>
-                            <th>Menu</th>
-                            <th>Link</th>
-                            <th>Parent</th>
-                            <th>Class</th>
-                            <th>Depth</th>
-                            <th>Has Child</th>
-                            <th>Target</th>
-                            <th>Language</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    @foreach ($items as $item)
-                        <tr class="menu-item menu-list">
-                            <th class="id">{{ $item->id }}</th>
-                            <td class="label">{{ $item->label }}</td>
-                            <td class="menu" data-menu={{ $item->menu_id }}>{{ $item->menu->name }}</td>
-                            <td class="link" data-link="{{ $item->link }}"><a href="{{ url($item->link, $item->lang) }}" target="_blank">{{ $item->link }}</a></td>
-                            <td class="parent" data-parent={{ $item->parent_id }}>{{ $item->parent->label ?? '' }}</td>
-                            <td class="class">{{ $item->class ?? '' }}</td>
-                            <td class="depth">{{ $item->depth }}</td>
-                            <td class="has_child" data-child="{{ $item->has_child }}">
-                                @if($item->has_child == 0)
-                                    No
-                                @elseif($item->has_child == 1)
-                                    Yes
-                                @endif
-                            </td>
-                            <td class="target" data-target="{{ $item->target }}">
-                                @if($item->target == 0)
-                                <small>Same Window</small>
-                                @else
-                                <small>Open in New Window</small>
-                                @endif
-                            </td>
-
-                            <td class="lang" data-lang="{{ $item->lang }}"> @if($item->lang === 'en')
-                                <i class="fas fa-language"></i> English
-                                @elseif($item->lang === 'hi')
-                                <i class="fas fa-language"></i> Hindi
-                                @endif
-                            </td>
-
-                            <td class="status" data-status="{{ $item->status }}">
-                                @if($item->status == 0)
-                                    <span class="badge bg-warning">Darft</span>
-                                @elseif($item->status == 1)
-                                    <span class="badge bg-primary">Published</span>
-                                @endif
-                            </td>
-
-                            <td>
-                                <a href="" data-bs-toggle="modal" data-bs-target="#editMenuItem" class="btn btn-info btn-sm mb-1"><i class="fas fa-edit"></i></a>
-                                <a href="{{ route('menuItem.destroy', $item) }}" class="btn btn-danger btn-sm mb-1"><i class="fas fa-trash-alt"></i></a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </table>
-
-                {!! $items->links() !!}
             </div>
         </div>
     </div>
+
+    <hr>
+
+    <div class="card">
+        <div class="card-body">
+
+            <div class="col-sm-12">
+
+                
+                <form action="{{ route('menu') }}">
+
+                    {{-- List of Menu items --}}
+                <strong>Your Menu Items</strong>
+
+                <div class="table-responsive">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" name="label" placeholder="Type Label" value="{{ $params['label'] ?? '' }}">
+                        </div>
+                        <div class="col-sm-3">
+                            <select name="parent_id" id="parent_id" class="form-control">
+                                <option value="">-- Select Parent Menu --</option>
+                                
+                                @if(!empty($params['parent_id']))
+
+                                @foreach ($menuItems as $menu)
+                                <option value="{{ $menu->id }}" @if($menu->id == $params['parent_id']) selected @endif>{{ $menu->label}}</option>   
+                                @endforeach
+
+                                @else
+
+                                @foreach ($menuItems as $menu)
+                                <option value="{{ $menu->id }}">{{ $menu->label}}</option>
+                                @endforeach
+
+                                @endif
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <select name="lang" id="lang" class="form-control">
+                                <option value="">-- Select Language --</option>
+
+                                @if(!empty($params['lang']))
+                                <option @if($params['lang'] === 'en') selected @endif value="en">English</option>
+                                <option @if($params['lang'] === 'hi') selected @endif value="hi">Hindi</option>
+                                <option @if($params['lang'] === 'ur') selected @endif value="ur">Urdu</option>
+                                @else
+                                <option value="en">English</option>
+                                <option value="hi">Hindi</option>
+                                <option value="ur">Urdu</option>
+                                @endif
+                                
+                            </select>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <select name="status" id="status" class="form-control">
+                                <option value="">-- Select Status --</option>
+
+                                @if(!empty($params['status']))
+                                <option @if($params['status'] == '0') selected @endif value="0">Darft</option>
+                                <option @if($params['status'] == '1') selected @endif value="1">Published</option>
+                                @else
+                                <option value="0">Darft</option>
+                                <option value="1">Published</option>
+                                @endif
+                            </select>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <button type="submit" class="btn btn-primary form-control">Filter</button>
+                        </div>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Label</th>
+                                <th>Menu</th>
+                                <th>Link</th>
+                                <th>Parent</th>
+                                <th>Class</th>
+                                <th>Depth</th>
+                                <th>Has Child</th>
+                                <th>Target</th>
+                                <th>Language</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        @foreach ($items as $item)
+                            <tr class="menu-item menu-list">
+                                <th class="id">{{ $item->id }}</th>
+                                <td class="label">{{ $item->label }}</td>
+                                <td class="menu" data-menu={{ $item->menu_id }}>{{ $item->menu->name }}</td>
+                                <td class="link" data-link="{{ $item->link }}"><a href="{{ url($item->link, $item->lang) }}" target="_blank">{{ $item->link }}</a></td>
+                                <td class="parent" data-parent={{ $item->parent_id }}>{{ $item->parent->label ?? '' }}</td>
+                                <td class="class">{{ $item->class ?? '' }}</td>
+                                <td class="depth">{{ $item->depth }}</td>
+                                <td class="has_child" data-child="{{ $item->has_child }}">
+                                    @if($item->has_child == 0)
+                                        No
+                                    @elseif($item->has_child == 1)
+                                        Yes
+                                    @endif
+                                </td>
+                                <td class="target" data-target="{{ $item->target }}">
+                                    @if($item->target == 0)
+                                    <small>Same Window</small>
+                                    @else
+                                    <small>Open in New Window</small>
+                                    @endif
+                                </td>
+    
+                                <td class="lang" data-lang="{{ $item->lang }}"> @if($item->lang === 'en')
+                                    <i class="fas fa-language"></i> English
+                                    @elseif($item->lang === 'hi')
+                                    <i class="fas fa-language"></i> Hindi
+                                    @endif
+                                </td>
+    
+                                <td class="status" data-status="{{ $item->status }}">
+                                    @if($item->status == 0)
+                                        <span class="badge bg-warning">Darft</span>
+                                    @elseif($item->status == 1)
+                                        <span class="badge bg-primary">Published</span>
+                                    @endif
+                                </td>
+    
+                                <td>
+                                    <a href="" data-bs-toggle="modal" data-bs-target="#editMenuItem" class="btn btn-info btn-sm mb-1"><i class="fas fa-edit"></i></a>
+                                    <a href="{{ route('menuItem.destroy', $item) }}" class="btn btn-danger btn-sm mb-1"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </table>
+                </div>
+
+                </form>
+
+                {!! $items->links() !!}
+        
+            </div>
+
+        </div>
+    </div>
+    
 </div>
 
 {{-- Edit Menu Item Modal --}}
@@ -298,8 +379,8 @@ Menu Builder
                         <div class="mb-3">
                             <select name="menu_id" id="menu_id" class="form-control">
                                 <option value="">-- Select Menu --</option>
-                                @foreach ($menus as $menu)
-                                    <option value="{{ $menu->id }}">{{ $menu->name}}</option>
+                                @foreach ($menuItems as $menu)
+                                    <option value="{{ $menu->id }}">{{ $menu->label}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -357,7 +438,6 @@ Menu Builder
                     <div class="col-sm-6">
                         <div class="mb-3">
                             <select name="has_child" id="has_child" class="form-control">
-                                <option value="0">-- Menu has Submenu --</option>
                                 <option value="0">No</option>
                                 <option value="1">Yes</option>
                             </select>
@@ -437,7 +517,7 @@ Menu Builder
         modal.find('#link').val(link);
         modal.find('#parent_id').val(parent_id);
         modal.find('#depth').val(depth);
-        modal.find('#depth').val(child);
+        modal.find('#has_child').val(child);
         modal.find('#status').val(status);
         modal.find('#lang').val(lang);
 

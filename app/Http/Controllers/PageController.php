@@ -102,6 +102,7 @@ class PageController extends Controller
         if(!empty($lang)){
             if($lang == 'en' OR $lang == 'hi'){
                 $page = Page::where('slug', $slug)->where('lang', $lang)->where('status', 1)->first();
+                
             }else{
                 abort(404);
             }

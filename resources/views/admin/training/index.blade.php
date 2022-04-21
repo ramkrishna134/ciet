@@ -40,6 +40,7 @@ Trainings
                             <tr>
                                 <th>ID</th>
                                 <th width=250>Title</th>
+                                <th>Type</th>
                                 <th>Start date</th>
                                 <th>End date</th>
                                 <th>Author</th>
@@ -63,6 +64,7 @@ Trainings
                                         <a href="" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
                                     </div>
                                 </td>
+                                <td>{{ $training->type }}</td>
                                 <td>{{ $training->start_date }}</td>
                                 <td>{{ $training->end_date }}</td>
                                 <td>{{ $training->user->name }}</td>

@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.5deb2
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Apr 21, 2022 at 05:25 PM
--- Server version: 8.0.28-0ubuntu0.20.04.3
--- PHP Version: 7.4.3
+-- Host: 127.0.0.1
+-- Generation Time: Apr 21, 2022 at 06:44 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -29,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `articals` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `category` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -37,9 +36,9 @@ CREATE TABLE `articals` (
   `date` date NOT NULL,
   `month` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `year` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id` int NOT NULL,
+  `user_id` int(11) NOT NULL,
   `lang` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` int NOT NULL,
+  `status` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -58,19 +57,19 @@ INSERT INTO `articals` (`id`, `title`, `category`, `icon`, `url`, `date`, `month
 --
 
 CREATE TABLE `departments` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `icon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `featured_image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `gallery` json DEFAULT NULL,
+  `icon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `featured_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `gallery` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`gallery`)),
   `description` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `head_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `head_message` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `lang` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id` int NOT NULL,
-  `status` int NOT NULL,
-  `key_word` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  `key_word` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -92,21 +91,21 @@ INSERT INTO `departments` (`id`, `title`, `slug`, `icon`, `featured_image`, `gal
 --
 
 CREATE TABLE `events` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `featured_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `category` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `content` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
-  `user_id` int NOT NULL,
-  `department_id` int NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `department_id` int(11) NOT NULL,
   `lang` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `key_word` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` int NOT NULL,
+  `status` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -125,7 +124,7 @@ INSERT INTO `events` (`id`, `title`, `slug`, `icon`, `featured_image`, `category
 --
 
 CREATE TABLE `faculties` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `post` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -133,8 +132,8 @@ CREATE TABLE `faculties` (
   `number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `profile` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `category` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `department_id` int NOT NULL,
-  `status` int NOT NULL,
+  `department_id` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
   `lang` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -156,13 +155,13 @@ INSERT INTO `faculties` (`id`, `name`, `image`, `post`, `subject`, `number`, `pr
 --
 
 CREATE TABLE `failed_jobs` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -172,7 +171,7 @@ CREATE TABLE `failed_jobs` (
 --
 
 CREATE TABLE `feedback` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -197,7 +196,7 @@ INSERT INTO `feedback` (`id`, `name`, `phone`, `email`, `subject`, `message`, `c
 --
 
 CREATE TABLE `languages` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -211,7 +210,7 @@ CREATE TABLE `languages` (
 --
 
 CREATE TABLE `menus` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `location` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -233,16 +232,16 @@ INSERT INTO `menus` (`id`, `name`, `location`, `created_at`, `updated_at`) VALUE
 --
 
 CREATE TABLE `menu_items` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `label` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `link` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `menu_id` int NOT NULL,
-  `parent_id` int DEFAULT NULL,
-  `has_child` int DEFAULT '0',
+  `menu_id` int(11) NOT NULL,
+  `parent_id` int(11) DEFAULT NULL,
+  `has_child` int(11) DEFAULT 0,
   `class` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `depth` int NOT NULL,
-  `target` int NOT NULL DEFAULT '0',
-  `status` int NOT NULL,
+  `depth` int(11) NOT NULL,
+  `target` int(11) NOT NULL DEFAULT 0,
+  `status` int(11) NOT NULL,
   `lang` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -254,12 +253,39 @@ CREATE TABLE `menu_items` (
 
 INSERT INTO `menu_items` (`id`, `label`, `link`, `menu_id`, `parent_id`, `has_child`, `class`, `depth`, `target`, `status`, `lang`, `created_at`, `updated_at`) VALUES
 (1, 'Home', '/', 1, NULL, 0, NULL, 0, 0, 1, 'en', '2022-03-06 22:22:32', '2022-03-06 22:22:52'),
-(4, 'About', '/about', 1, NULL, 0, NULL, 0, 0, 1, 'en', '2022-04-21 09:55:04', '2022-04-21 09:55:04'),
+(4, 'About', 'about', 1, NULL, 0, NULL, 0, 0, 1, 'en', '2022-04-21 09:55:04', '2022-04-21 14:11:10'),
 (8, 'Department of ICT & Training', '/dict', 1, 7, 0, NULL, 1, 0, 1, 'en', '2022-04-21 11:19:44', '2022-04-21 11:19:44'),
 (9, 'Initatives', '#', 1, NULL, 1, NULL, 0, 0, 1, 'en', '2022-04-21 11:50:50', '2022-04-21 11:50:50'),
 (10, 'DIKSHA', 'https://diksha.gov.in/', 1, 9, 0, NULL, 1, 1, 1, 'en', '2022-04-21 11:51:46', '2022-04-21 11:52:12'),
 (11, 'Constituents', '#', 1, NULL, 1, NULL, 0, 0, 1, 'en', '2022-04-21 11:53:42', '2022-04-21 11:53:42'),
-(12, 'http://localhost:8000/dict', '/dict', 1, 11, 0, NULL, 1, 0, 1, 'en', '2022-04-21 11:54:14', '2022-04-21 11:54:14');
+(12, 'Department of ICT &amp; Training', '/dict', 1, 11, 0, NULL, 1, 0, 1, 'en', '2022-04-21 11:54:14', '2022-04-21 12:39:16'),
+(13, 'Trainings', '#', 1, NULL, 1, NULL, 0, 0, 1, 'en', '2022-04-21 12:41:56', '2022-04-21 12:46:13'),
+(14, 'Training Calendar', '/training-calender', 1, 13, 0, NULL, 1, 0, 1, 'en', '2022-04-21 12:46:54', '2022-04-21 12:46:54'),
+(15, 'Events', '#', 1, NULL, 1, NULL, 0, 0, 1, 'en', '2022-04-21 12:47:45', '2022-04-21 12:48:40'),
+(16, 'Event Calendar', '/event-calender', 1, 15, 0, NULL, 1, 0, 1, 'en', '2022-04-21 12:49:26', '2022-04-21 12:49:26'),
+(17, 'More', '#', 1, NULL, 1, NULL, 0, 0, 1, 'en', '2022-04-21 12:50:16', '2022-04-21 12:50:16'),
+(18, 'Contact us', '/contact', 1, 17, 0, NULL, 1, 0, 1, 'en', '2022-04-21 12:51:29', '2022-04-21 12:51:49'),
+(19, 'People', '/people', 1, 17, 0, NULL, 1, 0, 1, 'en', '2022-04-21 12:52:29', '2022-04-21 12:52:45'),
+(20, 'RTI', '#', 1, 17, 0, NULL, 1, 0, 1, 'en', '2022-04-21 12:53:20', '2022-04-21 12:53:20'),
+(21, 'Media Production Division', '/mpd', 1, 11, 0, NULL, 1, 0, 1, 'en', '2022-04-21 12:54:23', '2022-04-21 12:54:23'),
+(22, 'Planning & Research Division', '/prd', 1, 11, 0, NULL, 1, 0, 1, 'en', '2022-04-21 12:55:22', '2022-04-21 12:55:22'),
+(23, 'Engineering Division', '/ed', 1, 11, 0, NULL, 1, 0, 1, 'en', '2022-04-21 12:56:40', '2022-04-21 12:56:40'),
+(24, 'Administration & Accounts', '/aac', 1, 11, 0, NULL, 1, 0, 1, 'en', '2022-04-21 12:57:49', '2022-04-21 12:57:49'),
+(25, 'NISHTHA', 'https://itpd.ncert.gov.in//', 1, 9, 0, NULL, 1, 1, 1, 'en', '2022-04-21 12:59:07', '2022-04-21 13:18:27'),
+(26, 'ePathshala', 'https://epathshala.nic.in/', 1, 9, 0, NULL, 1, 1, 1, 'en', '2022-04-21 12:59:55', '2022-04-21 13:17:59'),
+(27, 'PMeVidya', '/pmevidya', 1, 9, 0, NULL, 1, 0, 1, 'en', '2022-04-21 13:00:50', '2022-04-21 13:00:50'),
+(28, 'Radio Broadcasting', '#', 1, 9, 0, NULL, 1, 0, 1, 'en', '2022-04-21 13:07:27', '2022-04-21 13:07:27'),
+(29, 'ICT Curriculam', 'https://ictcurriculum.gov.in/', 1, 9, 0, NULL, 1, 1, 1, 'en', '2022-04-21 13:08:12', '2022-04-21 13:08:52'),
+(30, 'NCF Tech Platform', 'https://ncf.ncert.gov.in/', 1, 9, 0, NULL, 1, 1, 1, 'en', '2022-04-21 13:09:44', '2022-04-21 13:09:44'),
+(31, 'ICT@Schools', 'https://ictschools.ncert.gov.in/', 1, 9, 0, NULL, 1, 1, 1, 'en', '2022-04-21 13:13:27', '2022-04-21 13:15:37'),
+(32, 'Webinar', '/webiners', 1, 13, 0, NULL, 1, 0, 1, 'en', '2022-04-21 13:51:49', '2022-04-21 13:51:49'),
+(33, 'होम', '/', 1, NULL, 0, NULL, 0, 0, 1, 'hi', '2022-04-21 13:56:15', '2022-04-21 13:56:15'),
+(34, 'हमारे बारे में', 'about', 1, NULL, 0, NULL, 0, 0, 1, 'hi', '2022-04-21 13:57:04', '2022-04-21 14:11:52'),
+(35, 'Online Training', '#', 1, 13, 0, NULL, 1, 0, 1, 'en', '2022-04-21 14:13:53', '2022-04-21 14:13:53'),
+(36, 'Offline Training', '#', 1, 13, 0, NULL, 1, 0, 1, 'en', '2022-04-21 14:14:47', '2022-04-21 14:14:47'),
+(37, 'ICT Award', 'https://ictaward.ncert.gov.in/', 1, 15, 0, NULL, 1, 1, 1, 'en', '2022-04-21 14:16:31', '2022-04-21 14:16:31'),
+(38, 'AICEAVF ICT Mela', '#', 1, 15, 0, NULL, 1, 0, 1, 'en', '2022-04-21 14:22:51', '2022-04-21 14:22:51'),
+(39, 'Summer Camp', '#', 1, 15, 0, NULL, 1, 0, 1, 'en', '2022-04-21 14:23:16', '2022-04-21 14:23:16');
 
 -- --------------------------------------------------------
 
@@ -268,12 +294,12 @@ INSERT INTO `menu_items` (`id`, `label`, `link`, `menu_id`, `parent_id`, `has_ch
 --
 
 CREATE TABLE `messages` (
-  `id` bigint UNSIGNED NOT NULL,
-  `user_id` int NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` int(11) NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `message` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `assign_to` int NOT NULL,
-  `status` int NOT NULL,
+  `assign_to` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -294,11 +320,11 @@ INSERT INTO `messages` (`id`, `user_id`, `title`, `message`, `assign_to`, `statu
 --
 
 CREATE TABLE `metas` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `value` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `model_id` int UNSIGNED NOT NULL,
+  `model_id` int(10) UNSIGNED NOT NULL,
   `lang` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -316,9 +342,9 @@ INSERT INTO `metas` (`id`, `key`, `value`, `model_type`, `model_id`, `lang`) VAL
 --
 
 CREATE TABLE `migrations` (
-  `id` int UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int NOT NULL
+  `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -363,12 +389,12 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `pages` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `title` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(550) COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` longtext COLLATE utf8mb4_unicode_ci,
-  `content` longtext COLLATE utf8mb4_unicode_ci,
+  `description` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `content` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `featured_icon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_id` decimal(8,2) NOT NULL,
   `status` decimal(8,2) NOT NULL,
@@ -387,7 +413,8 @@ INSERT INTO `pages` (`id`, `title`, `slug`, `type`, `description`, `content`, `f
 (4, 'Orientation of State Resource Groups (SRGs)', 'srg', 'custom', 'Helloy', '<!-- wp:columns {\"align\":\"full\"} -->\r\n<div class=\"wp-block-columns alignfull\"><!-- wp:column -->\r\n<div class=\"wp-block-column\"><!-- wp:image {\"align\":\"full\",\"sizeSlug\":\"large\"} -->\r\n<figure class=\"wp-block-image alignfull size-large\"><img src=\"http://localhost:8000/storage/photos/1/Bhasha Sangam-Social Media Banner (1).jpg\" alt=\"\"/></figure>\r\n<!-- /wp:image --></div>\r\n<!-- /wp:column -->\r\n\r\n<!-- wp:column -->\r\n<div class=\"wp-block-column\"><!-- wp:image {\"sizeSlug\":\"large\"} -->\r\n<figure class=\"wp-block-image size-large\"><img src=\"http://localhost:8000/storage/photos/1/Cover_page-0002.jpg\" alt=\"\"/></figure>\r\n<!-- /wp:image --></div>\r\n<!-- /wp:column --></div>\r\n<!-- /wp:columns -->\r\n\r\n<!-- wp:paragraph -->\r\n<p>Government of India has brought in several initiatives for dissemination of eContent such as DIKSHA (One Nation One Platform), PMeVIDYA (One Class One Channel), MOOCs on SWAYAM, ePathshala, etc and DIKSHA has been sought as a one stop solution for School Education. The Ministry of Education has launched NIPUN Bharat Mission for Foundational Literacy and Numeracy (FLN) and Adult Education as special verticals on the DIKSHA platform. Besides, several other verticals i.e. DIVYANG/ CWSN, CPD for educating educators, administrators, vocational education etc are also being created on DIKSHA portal. These verticals aim to nurture skills, special abilities and help increase the quality of life of an individual by enabling them to pursue their livelihood, be aware of their rights and responsibilities. The National Education Policy - 2020 (NEP- 2020), unveiled by the Ministry of Education emphasises for the development of quality eContent in varied forms in all regional languages for a diverse group of learners including DIVYANG and to empower students and teacher communities across India. eContent augments the learning experience by deploying various resources for visualization and explanation of abstract ideas. Keeping in view the diverse needs of learners, now use of eContent has become an essential component of the teaching and learning processes. eContent is available in large numbers through various sources, but few of them are found to have the desired quality in terms of content, pedagogy as well as technical aspects. Copyright violations are rampant thereby restricting the scope of customising the eContent according to the local needs. Also with a plethora of smart and mobile devices, teacher and student driven eContents are available in abundance in the market. NEP -2020 further emphasises on development of eContent by NCERT-CIET, CBSE, NIOS, and other bodies/ institutions, which will be uploaded on to the DIKSHA platform and also use the platform for teacher professional development. eContents have to be created for DIKSHA and its other verticals based on the quality parameters and learning outcomes. NEP-2020 also puts emphasis that each teacher and school principals will be expected to participate in at least 50 hours per annum Continuous Professional Development (CPD) activities. Therefore, CIET- NCERT is organising a series of virtual training programmes to familiarise the SRGs on development of eContent, process of developing quality eContent and curation of eContent and its dissemination through multiple modes -online/ offline/ on air/ web portals /apps etc and contribute in bridging the digital divide.</p>\r\n<!-- /wp:paragraph -->\r\n\r\n<!-- wp:table {\"hasFixedLayout\":true,\"backgroundColor\":\"subtle-pale-green\"} -->\r\n<figure class=\"wp-block-table\"><table class=\"has-subtle-pale-green-background-color has-fixed-layout has-background\"><thead><tr><th>Name</th><th>Email</th></tr></thead><tbody><tr><td>dfjhdfjds</td><td>gfhgfhf</td></tr><tr><td>gfhgfh</td><td>jhgjhgj</td></tr></tbody></table></figure>\r\n<!-- /wp:table -->\r\n\r\n<!-- wp:group -->\r\n<div class=\"wp-block-group\"><div class=\"wp-block-group__inner-container\"><!-- wp:group -->\r\n<div class=\"wp-block-group\"><div class=\"wp-block-group__inner-container\"><!-- wp:gallery {\"ids\":[null],\"className\":\"columns-1\"} -->\r\n<figure class=\"wp-block-gallery columns-1 is-cropped\"><ul class=\"blocks-gallery-grid\"><li class=\"blocks-gallery-item\"><figure><img src=\"http://localhost:8000/storage/photos/1/Nishtha 3.0 Website banner (2)-03.jpg\" data-id=\"\"/></figure></li>\r\n<li class=\"blocks-gallery-item\"><figure><img src=\"http://localhost:8000/storage/photos/1/Nishtha 3.0 Website banner (2)-03.jpg\" data-id=\"\"/></figure></li>\r\n</ul></figure>\r\n<!-- /wp:gallery --></div></div>\r\n<!-- /wp:group --></div></div>\r\n<!-- /wp:group -->', 'http://localhost:8000/storage/photos/1/Nishtha 3.0 Website banner (2)-03.jpg', '1.00', '1.00', 'en', 'SRg,Diksha,CIET', '2022-03-03 02:57:16', '2022-03-24 10:04:19'),
 (6, 'About', 'about', 'general', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque auctor at ex vitae porttitor. Donec id enim sed massa malesuada placerat. Donec hendrerit ante eu congue dignissim.', '<h2 style=\"margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px;\">Heading1</h2><p style=\"text-align: justify; margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque auctor at ex vitae porttitor. Donec id enim sed massa malesuada placerat. Donec hendrerit ante eu congue dignissim. Suspendisse potenti. <a href=\"https://kenwheeler.github.io/slick/\" target=\"_blank\">Quisque tempus interdum nibh sed ornare.</a> Pellentesque cursus faucibus nulla, at malesuada massa tristique ut. Pellentesque ut accumsan risus. Pellentesque et eros sapien. Vestibulum auctor mollis hendrerit. Donec ac tristique enim. Sed feugiat sapien ut sem imperdiet, vel laoreet odio consequat. Suspendisse ex enim, laoreet eu libero quis, blandit vulputate elit.</p><h3 style=\"margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px;\">Heading2</h3><p style=\"text-align: justify; margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px;\">Ut imperdiet libero at elit luctus, quis fermentum ligula pretium. Donec sodales dui vitae sem euismod, in luctus erat imperdiet. Pellentesque mattis justo nec nisl tempor fermentum. Praesent purus nulla, ornare eu ultrices vel, congue quis diam. Fusce lacinia, tortor vel pretium efficitur, dolor est ultricies sapien, ut volutpat augue orci eget ante. Nulla libero dui, malesuada in molestie vitae, congue sit amet tellus. Suspendisse purus risus, scelerisque quis turpis dignissim, faucibus aliquet odio. Proin malesuada, metus sed egestas tempor, diam tellus elementum ex, vel sollicitudin quam nisi eget lorem. Integer volutpat nisl nec lectus ultrices pulvinar. Pellentesque gravida mi eget eros iaculis, quis mollis tellus accumsan. Duis non mi quis arcu aliquet elementum in varius leo. Vestibulum sit amet nunc accumsan, vehicula est vitae, ultrices mi. Curabitur consectetur dui vitae pellentesque aliquam. Phasellus id ipsum elit.</p><h4 style=\"margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px;\">Heading3</h4><p style=\"text-align: justify; margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px;\">Maecenas sed tincidunt augue. Nullam vitae commodo quam, id tempor metus. Pellentesque a turpis ut tellus egestas lobortis ultrices ac magna. Aliquam quis tincidunt augue. Donec dictum euismod posuere. Integer eu vulputate mauris. Aliquam vel nunc diam. Maecenas ut consectetur ex, vel mattis eros. Proin ac bibendum risus. Morbi aliquet felis leo, faucibus faucibus nisi tristique quis. Duis consequat massa est, vel tempus ante sollicitudin facilisis.</p><p style=\"text-align: justify; margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px;\">Cras venenatis ultricies est ac porta. Mauris faucibus justo eu mi mattis, sed laoreet elit sodales. Etiam faucibus rutrum ligula, sit amet condimentum massa. Ut vulputate est eu nisi dictum laoreet. Donec maximus bibendum odio id ullamcorper. Curabitur faucibus sem at magna lobortis tempus. Fusce cursus ex nec est finibus condimentum. Proin malesuada lacus sit amet magna maximus, et viverra dui molestie. Nam convallis tortor vel sapien venenatis, sed suscipit lectus eleifend. In auctor sapien id velit porttitor rhoncus. Aliquam vel lacinia tellus. Nullam vitae tortor lectus. Duis sit amet nibh ac nisi sagittis aliquam. Sed non tortor in sem iaculis sodales.</p><p style=\"text-align: justify; margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px;\">Curabitur accumsan nulla dignissim viverra sollicitudin. Nulla rhoncus, odio vitae ullamcorper vestibulum, velit sapien elementum dolor, a porta mi ligula dictum lorem. Etiam aliquet metus sed suscipit pulvinar. Aliquam erat volutpat. Donec et est id mi semper rutrum. Morbi ipsum est, fermentum ac sagittis eget, fermentum ac magna. Nunc accumsan ex mattis erat condimentum, convallis varius augue eleifend. Integer aliquet convallis neque, et bibendum leo efficitur quis. Etiam nec nisi in quam molestie imperdiet a quis neque. Vestibulum vestibulum, lacus vitae fringilla rutrum, mi nisi interdum mi, vitae porta neque eros eu massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque a sem sollicitudin, commodo libero sit amet, commodo mi. Aliquam in gravida velit, quis faucibus risus. Sed quam quam, elementum semper facilisis et, tincidunt nec odio. Vestibulum eget orci sed orci dignissim pretium vel non erat.</p>', 'http://localhost:8000/storage/photos/1/hero.png', '1.00', '1.00', 'en', 'about,About Ciet,About CIET,CIET', '2022-04-06 03:59:55', '2022-04-13 07:14:28'),
 (7, 'General', 'general', 'custom', 'Ut imperdiet libero at elit luctus, quis fermentum ligula pretium. Donec sodales dui vitae sem euismod, in luctus erat imperdiet. Pellentesque mattis justo nec nisl tempor fermentum. Praesent purus nulla,', '<!-- wp:columns {\"align\":\"full\"} -->\r\n<div class=\"wp-block-columns alignfull\"><!-- wp:column -->\r\n<div class=\"wp-block-column\"><!-- wp:heading -->\r\n<h2>Mission</h2>\r\n<!-- /wp:heading -->\r\n\r\n<!-- wp:paragraph -->\r\n<p>Ut imperdiet libero at elit luctus, quis fermentum ligula pretium. Donec sodales dui vitae sem euismod, in luctus erat imperdiet. Pellentesque mattis justo nec nisl tempor fermentum. Praesent purus nulla, ornare eu ultrices vel, congue quis diam. Fusce lacinia, tortor vel pretium efficitur, dolor est ultricies sapien, ut volutpat augue orci eget ante. Nulla libero dui, malesuada in molestie vitae, congue sit amet tellus. Suspendisse purus risus, scelerisque quis turpis dignissim, faucibus aliquet odio. Proin malesuada, metus sed egestas tempor, diam tellus elementum ex, vel sollicitudin quam nisi eget lorem. Integer volutpat nisl nec lectus ultrices pulvinar. Pellentesque gravida mi eget eros iaculis, quis mollis tellus accumsan. Duis non mi quis arcu aliquet elementum in varius leo. Vestibulum sit amet nunc accumsan, vehicula est vitae, ultrices mi. Curabitur consectetur dui vitae pellentesque aliquam. Phasellus id ipsum elit.</p>\r\n<!-- /wp:paragraph --></div>\r\n<!-- /wp:column -->\r\n\r\n<!-- wp:column -->\r\n<div class=\"wp-block-column\"><!-- wp:heading -->\r\n<h2>Vision</h2>\r\n<!-- /wp:heading -->\r\n\r\n<!-- wp:paragraph -->\r\n<p>Ut imperdiet libero at elit luctus, quis fermentum ligula pretium. Donec sodales dui vitae sem euismod, in luctus erat imperdiet. Pellentesque mattis justo nec nisl tempor fermentum. Praesent purus nulla, ornare eu ultrices vel, congue quis diam. Fusce lacinia, tortor vel pretium efficitur, dolor est ultricies sapien, ut volutpat augue orci eget ante. Nulla libero dui, malesuada in molestie vitae, congue sit amet tellus. Suspendisse purus risus, scelerisque quis turpis dignissim, faucibus aliquet odio. Proin malesuada, metus sed egestas tempor, diam tellus elementum ex, vel sollicitudin quam nisi eget lorem. Integer volutpat nisl nec lectus ultrices pulvinar. Pellentesque gravida mi eget eros iaculis, quis mollis tellus accumsan. Duis non mi quis arcu aliquet elementum in varius leo. Vestibulum sit amet nunc accumsan, vehicula est vitae, ultrices mi. Curabitur consectetur dui vitae pellentesque aliquam. Phasellus id ipsum elit.</p>\r\n<!-- /wp:paragraph --></div>\r\n<!-- /wp:column --></div>\r\n<!-- /wp:columns -->\r\n\r\n<!-- wp:paragraph -->\r\n<p></p>\r\n<!-- /wp:paragraph -->', 'http://localhost:8000/storage/photos/1/hero.png', '1.00', '1.00', 'en', 'CIET,SRG', '2022-04-06 04:19:34', '2022-04-07 09:53:06'),
-(8, 'Online Training on Social Media for Education', 'online-training-sme', 'custom', 'Social media in education states the drill of using social media platforms as an approach to augment the learning of students. Technology incorporation can be...', '<!-- wp:columns {\"align\":\"full\"} -->\r\n<div class=\"wp-block-columns alignfull\"><!-- wp:column -->\r\n<div class=\"wp-block-column\"><!-- wp:paragraph {\"align\":\"left\"} -->\r\n<p class=\"has-text-align-left\">Social media in education states the drill of using social media platforms as an approach to augment the learning of students. Technology incorporation can be defined as encompassing students’ needs rather than revolving around the needs of teachers. In a teaching space with a whiteboard and a computer, the education will spin around the instructor. With the use of technology, the learning environment can be expanded. This is another way that social media and the classroom can come together by shifting the approach to educating through social media to make it easier for both the teacher and the student to comprehend. As an effort to orient various stakeholders in the exploration and implementation of social media.</p>\r\n<!-- /wp:paragraph -->\r\n\r\n<!-- wp:heading {\"level\":3,\"textColor\":\"white\",\"style\":{\"color\":{\"background\":\"#d46142\"},\"typography\":{\"lineHeight\":\"0.5\"}}} -->\r\n<h3 class=\"has-white-color has-text-color has-background\" style=\"line-height:0.5;background-color:#d46142\">Overview</h3>\r\n<!-- /wp:heading -->\r\n\r\n<!-- wp:paragraph {\"style\":{\"color\":{\"background\":\"#f5f5f5\"}}} -->\r\n<p class=\"has-background\" style=\"background-color:#f5f5f5\">teaching space with a whiteboard and a computer, the education will spin around the instructor. With the use of technology, the learning environment can be expanded. This is another way that social media and the classroom can come together by shifting the approach to educating through social media to make it easier for both the teacher and the student to comprehend. </p>\r\n<!-- /wp:paragraph --></div>\r\n<!-- /wp:column -->\r\n\r\n<!-- wp:column -->\r\n<div class=\"wp-block-column\"><!-- wp:image {\"sizeSlug\":\"large\",\"className\":\"is-style-default\"} -->\r\n<figure class=\"wp-block-image size-large is-style-default\"><img src=\"http://localhost:8000/storage/photos/1/sme.jpg\" alt=\"\"/></figure>\r\n<!-- /wp:image --></div>\r\n<!-- /wp:column --></div>\r\n<!-- /wp:columns -->\r\n\r\n<!-- wp:columns {\"align\":\"full\"} -->\r\n<div class=\"wp-block-columns alignfull\"><!-- wp:column -->\r\n<div class=\"wp-block-column\"><!-- wp:heading {\"align\":\"center\",\"level\":3,\"textColor\":\"white\",\"style\":{\"color\":{\"background\":\"#d46142\"},\"typography\":{\"lineHeight\":\"0.5\"}}} -->\r\n<h3 class=\"has-text-align-center has-white-color has-text-color has-background\" style=\"line-height:0.5;background-color:#d46142\">अवकाश लेने का उद्देश्‍य</h3>\r\n<!-- /wp:heading -->\r\n\r\n<!-- wp:table {\"className\":\"is-style-stripes\"} -->\r\n<figure class=\"wp-block-table is-style-stripes\"><table><thead><tr><th>Date</th><th>Topic</th><th><strong>Resource Persons</strong></th><th>Presentation</th><th><strong>Video Link</strong></th></tr></thead><tbody><tr><td>08/03/2022</td><td>Topic Title</td><td>Ramkrishna Pal</td><td><a rel=\"noreferrer noopener\" href=\"http://localhost:8000/training-calender\" target=\"_blank\"><strong>Click Here</strong></a></td><td><a rel=\"noreferrer noopener\" href=\"http://localhost:8000/training-calender\" target=\"_blank\"><strong>Click Here</strong></a></td></tr><tr><td>10/03/2022</td><td>Topic title</td><td>Ramkrishna Pal</td><td><a rel=\"noreferrer noopener\" href=\"http://localhost:8000/training-calender\" target=\"_blank\"><strong>Click Here</strong></a></td><td><a rel=\"noreferrer noopener\" href=\"http://localhost:8000/training-calender\" target=\"_blank\"><strong>Click Here</strong></a></td></tr><tr><td>11/03/2022</td><td>Topic Title</td><td>अवकाश लेने का उद्देश्‍य</td><td><a rel=\"noreferrer noopener\" href=\"http://localhost:8000/training-calender\" target=\"_blank\"><strong>Click Here</strong></a></td><td><a rel=\"noreferrer noopener\" href=\"http://localhost:8000/training-calender\" target=\"_blank\"><strong>Click Here</strong></a></td></tr></tbody></table></figure>\r\n<!-- /wp:table -->\r\n\r\n<!-- wp:paragraph -->\r\n<p></p>\r\n<!-- /wp:paragraph --></div>\r\n<!-- /wp:column --></div>\r\n<!-- /wp:columns -->', 'http://localhost:8000/storage/photos/1/hero.png', '1.00', '1.00', 'en', 'Online Training on Social Media for Education,अवकाश लेने का उद्देश्‍य', '2022-04-07 09:48:09', '2022-04-08 06:22:52');
+(8, 'Online Training on Social Media for Education', 'online-training-sme', 'custom', 'Social media in education states the drill of using social media platforms as an approach to augment the learning of students. Technology incorporation can be...', '<!-- wp:columns {\"align\":\"full\"} -->\r\n<div class=\"wp-block-columns alignfull\"><!-- wp:column -->\r\n<div class=\"wp-block-column\"><!-- wp:paragraph {\"align\":\"left\"} -->\r\n<p class=\"has-text-align-left\">Social media in education states the drill of using social media platforms as an approach to augment the learning of students. Technology incorporation can be defined as encompassing students’ needs rather than revolving around the needs of teachers. In a teaching space with a whiteboard and a computer, the education will spin around the instructor. With the use of technology, the learning environment can be expanded. This is another way that social media and the classroom can come together by shifting the approach to educating through social media to make it easier for both the teacher and the student to comprehend. As an effort to orient various stakeholders in the exploration and implementation of social media.</p>\r\n<!-- /wp:paragraph -->\r\n\r\n<!-- wp:heading {\"level\":3,\"textColor\":\"white\",\"style\":{\"color\":{\"background\":\"#d46142\"},\"typography\":{\"lineHeight\":\"0.5\"}}} -->\r\n<h3 class=\"has-white-color has-text-color has-background\" style=\"line-height:0.5;background-color:#d46142\">Overview</h3>\r\n<!-- /wp:heading -->\r\n\r\n<!-- wp:paragraph {\"style\":{\"color\":{\"background\":\"#f5f5f5\"}}} -->\r\n<p class=\"has-background\" style=\"background-color:#f5f5f5\">teaching space with a whiteboard and a computer, the education will spin around the instructor. With the use of technology, the learning environment can be expanded. This is another way that social media and the classroom can come together by shifting the approach to educating through social media to make it easier for both the teacher and the student to comprehend. </p>\r\n<!-- /wp:paragraph --></div>\r\n<!-- /wp:column -->\r\n\r\n<!-- wp:column -->\r\n<div class=\"wp-block-column\"><!-- wp:image {\"sizeSlug\":\"large\",\"className\":\"is-style-default\"} -->\r\n<figure class=\"wp-block-image size-large is-style-default\"><img src=\"http://localhost:8000/storage/photos/1/sme.jpg\" alt=\"\"/></figure>\r\n<!-- /wp:image --></div>\r\n<!-- /wp:column --></div>\r\n<!-- /wp:columns -->\r\n\r\n<!-- wp:columns {\"align\":\"full\"} -->\r\n<div class=\"wp-block-columns alignfull\"><!-- wp:column -->\r\n<div class=\"wp-block-column\"><!-- wp:heading {\"align\":\"center\",\"level\":3,\"textColor\":\"white\",\"style\":{\"color\":{\"background\":\"#d46142\"},\"typography\":{\"lineHeight\":\"0.5\"}}} -->\r\n<h3 class=\"has-text-align-center has-white-color has-text-color has-background\" style=\"line-height:0.5;background-color:#d46142\">अवकाश लेने का उद्देश्‍य</h3>\r\n<!-- /wp:heading -->\r\n\r\n<!-- wp:table {\"className\":\"is-style-stripes\"} -->\r\n<figure class=\"wp-block-table is-style-stripes\"><table><thead><tr><th>Date</th><th>Topic</th><th><strong>Resource Persons</strong></th><th>Presentation</th><th><strong>Video Link</strong></th></tr></thead><tbody><tr><td>08/03/2022</td><td>Topic Title</td><td>Ramkrishna Pal</td><td><a rel=\"noreferrer noopener\" href=\"http://localhost:8000/training-calender\" target=\"_blank\"><strong>Click Here</strong></a></td><td><a rel=\"noreferrer noopener\" href=\"http://localhost:8000/training-calender\" target=\"_blank\"><strong>Click Here</strong></a></td></tr><tr><td>10/03/2022</td><td>Topic title</td><td>Ramkrishna Pal</td><td><a rel=\"noreferrer noopener\" href=\"http://localhost:8000/training-calender\" target=\"_blank\"><strong>Click Here</strong></a></td><td><a rel=\"noreferrer noopener\" href=\"http://localhost:8000/training-calender\" target=\"_blank\"><strong>Click Here</strong></a></td></tr><tr><td>11/03/2022</td><td>Topic Title</td><td>अवकाश लेने का उद्देश्‍य</td><td><a rel=\"noreferrer noopener\" href=\"http://localhost:8000/training-calender\" target=\"_blank\"><strong>Click Here</strong></a></td><td><a rel=\"noreferrer noopener\" href=\"http://localhost:8000/training-calender\" target=\"_blank\"><strong>Click Here</strong></a></td></tr></tbody></table></figure>\r\n<!-- /wp:table -->\r\n\r\n<!-- wp:paragraph -->\r\n<p></p>\r\n<!-- /wp:paragraph --></div>\r\n<!-- /wp:column --></div>\r\n<!-- /wp:columns -->', 'http://localhost:8000/storage/photos/1/hero.png', '1.00', '1.00', 'en', 'Online Training on Social Media for Education,अवकाश लेने का उद्देश्‍य', '2022-04-07 09:48:09', '2022-04-08 06:22:52'),
+(9, 'हमारे बारे में', 'about', 'general', 'About', '<h2 style=\"margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px;\">Heading1</h2><p style=\"margin-right: 0px; margin-bottom: 15px; margin-left: 0px; text-align: justify; padding: 0px;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque auctor at ex vitae porttitor. Donec id enim sed massa malesuada placerat. Donec hendrerit ante eu congue dignissim. Suspendisse potenti.&nbsp;<a href=\"https://kenwheeler.github.io/slick/\" target=\"_blank\">Quisque tempus interdum nibh sed ornare.</a>&nbsp;Pellentesque cursus faucibus nulla, at malesuada massa tristique ut. Pellentesque ut accumsan risus. Pellentesque et eros sapien. Vestibulum auctor mollis hendrerit. Donec ac tristique enim. Sed feugiat sapien ut sem imperdiet, vel laoreet odio consequat. Suspendisse ex enim, laoreet eu libero quis, blandit vulputate elit.</p><h3 style=\"margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px;\">Heading2</h3><p style=\"margin-right: 0px; margin-bottom: 15px; margin-left: 0px; text-align: justify; padding: 0px;\">Ut imperdiet libero at elit luctus, quis fermentum ligula pretium. Donec sodales dui vitae sem euismod, in luctus erat imperdiet. Pellentesque mattis justo nec nisl tempor fermentum. Praesent purus nulla, ornare eu ultrices vel, congue quis diam. Fusce lacinia, tortor vel pretium efficitur, dolor est ultricies sapien, ut volutpat augue orci eget ante. Nulla libero dui, malesuada in molestie vitae, congue sit amet tellus. Suspendisse purus risus, scelerisque quis turpis dignissim, faucibus aliquet odio. Proin malesuada, metus sed egestas tempor, diam tellus elementum ex, vel sollicitudin quam nisi eget lorem. Integer volutpat nisl nec lectus ultrices pulvinar. Pellentesque gravida mi eget eros iaculis, quis mollis tellus accumsan. Duis non mi quis arcu aliquet elementum in varius leo. Vestibulum sit amet nunc accumsan, vehicula est vitae, ultrices mi. Curabitur consectetur dui vitae pellentesque aliquam. Phasellus id ipsum elit.</p><h4 style=\"margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px;\">Heading3</h4><p style=\"margin-right: 0px; margin-bottom: 15px; margin-left: 0px; text-align: justify; padding: 0px;\">Maecenas sed tincidunt augue. Nullam vitae commodo quam, id tempor metus. Pellentesque a turpis ut tellus egestas lobortis ultrices ac magna. Aliquam quis tincidunt augue. Donec dictum euismod posuere. Integer eu vulputate mauris. Aliquam vel nunc diam. Maecenas ut consectetur ex, vel mattis eros. Proin ac bibendum risus. Morbi aliquet felis leo, faucibus faucibus nisi tristique quis. Duis consequat massa est, vel tempus ante sollicitudin facilisis.</p><p style=\"margin-right: 0px; margin-bottom: 15px; margin-left: 0px; text-align: justify; padding: 0px;\">Cras venenatis ultricies est ac porta. Mauris faucibus justo eu mi mattis, sed laoreet elit sodales. Etiam faucibus rutrum ligula, sit amet condimentum massa. Ut vulputate est eu nisi dictum laoreet. Donec maximus bibendum odio id ullamcorper. Curabitur faucibus sem at magna lobortis tempus. Fusce cursus ex nec est finibus condimentum. Proin malesuada lacus sit amet magna maximus, et viverra dui molestie. Nam convallis tortor vel sapien venenatis, sed suscipit lectus eleifend. In auctor sapien id velit porttitor rhoncus. Aliquam vel lacinia tellus. Nullam vitae tortor lectus. Duis sit amet nibh ac nisi sagittis aliquam. Sed non tortor in sem iaculis sodales.</p><p style=\"margin-right: 0px; margin-bottom: 15px; margin-left: 0px; text-align: justify; padding: 0px;\">Curabitur accumsan nulla dignissim viverra sollicitudin. Nulla rhoncus, odio vitae ullamcorper vestibulum, velit sapien elementum dolor, a porta mi ligula dictum lorem. Etiam aliquet metus sed suscipit pulvinar. Aliquam erat volutpat. Donec et est id mi semper rutrum. Morbi ipsum est, fermentum ac sagittis eget, fermentum ac magna. Nunc accumsan ex mattis erat condimentum, convallis varius augue eleifend. Integer aliquet convallis neque, et bibendum leo efficitur quis. Etiam nec nisi in quam molestie imperdiet a quis neque. Vestibulum vestibulum, lacus vitae fringilla rutrum, mi nisi interdum mi, vitae porta neque eros eu massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque a sem sollicitudin, commodo libero sit amet, commodo mi. Aliquam in gravida velit, quis faucibus risus. Sed quam quam, elementum semper facilisis et, tincidunt nec odio. Vestibulum eget orci sed orci dignissim pretium vel non erat.</p>', 'http://localhost:8000/storage/photos/1/hero.png', '1.00', '1.00', 'hi', NULL, '2022-04-21 13:58:57', '2022-04-21 13:58:57');
 
 -- --------------------------------------------------------
 
@@ -415,7 +442,7 @@ INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
 --
 
 CREATE TABLE `permissions` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `display_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -505,8 +532,8 @@ INSERT INTO `permissions` (`id`, `name`, `display_name`, `description`, `created
 --
 
 CREATE TABLE `permission_role` (
-  `permission_id` bigint UNSIGNED NOT NULL,
-  `role_id` bigint UNSIGNED NOT NULL
+  `permission_id` bigint(20) UNSIGNED NOT NULL,
+  `role_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -515,6 +542,8 @@ CREATE TABLE `permission_role` (
 
 INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (3, 1),
+(3, 2),
+(3, 4),
 (4, 1),
 (5, 1),
 (6, 1),
@@ -532,7 +561,9 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (18, 1),
 (19, 1),
 (20, 1),
+(20, 2),
 (21, 1),
+(21, 2),
 (22, 1),
 (23, 1),
 (24, 1),
@@ -565,8 +596,11 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (51, 1),
 (52, 1),
 (53, 1),
+(53, 2),
 (54, 1),
+(54, 2),
 (55, 1),
+(55, 2),
 (56, 1),
 (57, 1),
 (58, 1),
@@ -575,6 +609,7 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (61, 1),
 (62, 1),
 (63, 1),
+(63, 5),
 (64, 1),
 (65, 1),
 (66, 1),
@@ -582,15 +617,7 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (68, 1),
 (69, 1),
 (70, 1),
-(71, 1),
-(3, 2),
-(20, 2),
-(21, 2),
-(53, 2),
-(54, 2),
-(55, 2),
-(3, 4),
-(63, 5);
+(71, 1);
 
 -- --------------------------------------------------------
 
@@ -599,8 +626,8 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 --
 
 CREATE TABLE `permission_user` (
-  `permission_id` bigint UNSIGNED NOT NULL,
-  `user_id` bigint UNSIGNED NOT NULL,
+  `permission_id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
   `user_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -611,12 +638,12 @@ CREATE TABLE `permission_user` (
 --
 
 CREATE TABLE `personal_access_tokens` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tokenable_id` bigint UNSIGNED NOT NULL,
+  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -629,7 +656,7 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 CREATE TABLE `roles` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `display_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -655,8 +682,8 @@ INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `created_at`, 
 --
 
 CREATE TABLE `role_user` (
-  `role_id` bigint UNSIGNED NOT NULL,
-  `user_id` bigint UNSIGNED NOT NULL,
+  `role_id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
   `user_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -666,8 +693,8 @@ CREATE TABLE `role_user` (
 
 INSERT INTO `role_user` (`role_id`, `user_id`, `user_type`) VALUES
 (1, 1, 'App\\Models\\User'),
-(1, 2, 'App\\Models\\User'),
 (2, 1, 'App\\Models\\User'),
+(1, 2, 'App\\Models\\User'),
 (2, 3, 'App\\Models\\User'),
 (4, 4, 'App\\Models\\User'),
 (5, 5, 'App\\Models\\User');
@@ -679,7 +706,7 @@ INSERT INTO `role_user` (`role_id`, `user_id`, `user_type`) VALUES
 --
 
 CREATE TABLE `settings` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `value` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -716,16 +743,16 @@ INSERT INTO `settings` (`id`, `key`, `value`, `created_at`, `updated_at`) VALUES
 --
 
 CREATE TABLE `sliders` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `alt` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `lang` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `order` int DEFAULT NULL,
-  `default` int NOT NULL,
-  `status` int NOT NULL,
-  `user_id` int NOT NULL,
+  `order` int(11) DEFAULT NULL,
+  `default` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -744,23 +771,31 @@ INSERT INTO `sliders` (`id`, `title`, `alt`, `image`, `url`, `lang`, `order`, `d
 --
 
 CREATE TABLE `trainings` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `featured_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `category` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `content` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
-  `user_id` int NOT NULL,
+  `user_id` int(11) NOT NULL,
   `key_word` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
   `lang` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` int NOT NULL,
+  `status` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `trainings`
+--
+
+INSERT INTO `trainings` (`id`, `title`, `slug`, `icon`, `featured_image`, `category`, `type`, `description`, `content`, `start_date`, `end_date`, `user_id`, `key_word`, `lang`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Online Training on “Open Educational Resources (OER) and Licenses”', 'oerl', 'http://localhost:8000/storage/photos/1/qrsocialmediaforeducationbanner.jpg', 'http://localhost:8000/storage/photos/1/qrsocialmediaforeducationbanner.jpg', 'Upcoming', 'online', 'Online Training on “Open Educational Resources (OER) and Licenses”', '<!-- wp:paragraph -->\r\n<p>Open Educational Resources (OER) offer opportunities for sustainable growth in improving the access and quality of education, by enabling the use of learning materials that are free, easily accessible and hold high quality. Keeping in view the diverse needs of learners, now use of eContent has become an essential component of the teaching and learning processes. Impact of COVID-19 in the education sector has shown a major shift to the development of digital content in teaching-learning procedures, wherein the platform of DIKSHA has played a crucial role. As an effort to orient various stakeholders in the exploration and implementation of Open Educational Resources and Licensing, CIET-NCERT in collaboration with CEMCA-COL, is organizing a five-day online training on “Open Educational Resources (OER) and Licenses” from April 25-29, 2022, as part of the online training series.</p>\r\n<!-- /wp:paragraph -->\r\n\r\n<!-- wp:paragraph -->\r\n<p>CEMCA-COL focuses on assisting governments and institutions to expand the scale, efficiency and quality of learning by using multiple media in open, distance and technology-enhanced learning. The strategic objective of CEMCA is to promote cooperation and collaboration in the use of electronic media resources for distance education. CEMCA publishes all its new learning resources as Open Educational Resources (OER). OER performs vitally in the expansion of eContent, hence fostering the growth of the education sector.</p>\r\n<!-- /wp:paragraph -->', '2022-04-25', '2022-04-29', 1, '\"Online Training on \\u201cOpen Educational Resources (OER) and Licenses\\u201d,OER\"', 'en', 1, '2022-04-21 16:33:11', '2022-04-21 16:33:11');
 
 -- --------------------------------------------------------
 
@@ -769,7 +804,7 @@ CREATE TABLE `trainings` (
 --
 
 CREATE TABLE `users` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
@@ -956,121 +991,121 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `articals`
 --
 ALTER TABLE `articals`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `faculties`
 --
 ALTER TABLE `faculties`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `languages`
 --
 ALTER TABLE `languages`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `menus`
 --
 ALTER TABLE `menus`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `menu_items`
 --
 ALTER TABLE `menu_items`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `metas`
 --
 ALTER TABLE `metas`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `pages`
 --
 ALTER TABLE `pages`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `sliders`
 --
 ALTER TABLE `sliders`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `trainings`
 --
 ALTER TABLE `trainings`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables

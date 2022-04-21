@@ -153,14 +153,14 @@ foreach ($headerMenus as $item) {
                       </ul>
                     </li> --}}
                     <li class="nav-item @if($item->has_child == 1) dropdown @endif">
-                      <a class="nav-link @if($item->has_child == 1) dropdown-toggle @endif  {{ (request()->is($item->link)) ? 'active' : '' }}" href="{{ $item->link }}" id="@if($item->has_child == 1) navbarDropdown @endif " @if($item->has_child == 1) role="button" data-bs-toggle="dropdown" aria-expanded="false" @endif>
+                      <a class="nav-link {{ (request()->is($item->link)) ? 'active' : '' }} @if($item->has_child == 1) dropdown-toggle @endif" href="{{ $item->link }}@if($lang !=null)?lang={{ $lang }}@endif" id="@if($item->has_child == 1) navbarDropdown @endif " @if($item->has_child == 1) role="button" data-bs-toggle="dropdown" aria-expanded="false" @endif @if($item->target == 1) target="_blank" @endif>
                         {{ $item->label }}
                       </a>
 
                       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         @foreach($subMenus as $submenu)
                           @if($item->id == $submenu->parent_id)
-                            <li><a class="dropdown-item {{ (request()->is($submenu->link)) ? 'active' : '' }}" href="{{ $submenu->link }}">{{ $submenu->label }}</a></li>
+                            <li><a class="dropdown-item {{ (request()->is($submenu->link)) ? 'active' : '' }}" href="{{ $submenu->link }}" @if($submenu->target == 1) target="_blank" @endif>{{ $submenu->label }}</a></li>
                           @endif
                         @endforeach
                         
@@ -342,10 +342,11 @@ foreach ($headerMenus as $item) {
                 <h5 class="footer-heading">Follow Us</h5>
 
                 <div class="foot-icon-wrap">
-                  <a href="" class="facebook"><i class="fab fa-facebook-f"></i></a>
-                  <a href="" class="instagram"><i class="fab fa-instagram"></i></a>
-                  <a href="" class="twitter"><i class="fab fa-twitter"></i></a>
-                  <a href="" class="youtube"><i class="fab fa-youtube"></i></a>
+                  <a href="{{ setting('facebook') }}" target="_blank" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                  <a href="{{ setting('instagram') }}" class="instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                  <a href="{{ setting('twitter') }}" class="twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+                  <a href="{{ setting('youtube') }}" class="youtube" target="_blank"><i class="fab fa-youtube"></i></a>
+                  <a href="{{ setting('linkedin') }}" class="linkedin" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                 </div>
 
                 <div class="counter">

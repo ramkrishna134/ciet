@@ -13410,6 +13410,9 @@ body a:hover {
 .foot-icon-wrap a.youtube {
   background-color: #ff0000;
 }
+.foot-icon-wrap a.linkedin {
+  background-color: #0077b5;
+}
 
 .foot-line {
   background-color: #000;

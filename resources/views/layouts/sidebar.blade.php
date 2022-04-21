@@ -146,7 +146,7 @@
                                 </li>
                                 <li class="nav-item dropdown border rounded account-menu ms-2">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        <img width="30" class="rounded-circle" src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}&background=0D8ABC&color=fff" alt="Profile Image">
+                                        <img width="25" class="rounded-circle" src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}&background=0D8ABC&color=fff" alt="Profile Image">
                                         {{ Auth::user()->name }} <span class="badge bg-primary">{{ Auth::user()->role }}</span>
                                     </a>
 

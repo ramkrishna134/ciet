@@ -92,13 +92,13 @@
                         </a>
                         <a href="#" class="slide-item">
                             <div class="image">
-                                <img class="img-fluid" src="/images/web/1-02.png" alt="">
+                                <img class="img-fluid" src="/images/web/ncf.png" alt="">
                             </div>
-                            <div class="title">NISHTHA</div>
+                            <div class="title">NCF Tech Platform</div>
                         </a>
                     </div>
         
-                    <a href="{{ route('initiative') }}" class="btn btn-primary mt-5">View More</a>
+                    <a href="{{ route('initiative') }}" class="btn btn-primary mt-3">View More</a>
                 </div>
             </div>
         </div>
