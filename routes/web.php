@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('web.home');
-})->name('home');
+Route::get('/','App\Http\Controllers\HomeController@index')->name('home');
 
 Route::get('/contact','App\Http\Controllers\PageController@contact')->name('contact');
 Route::post('/contact','App\Http\Controllers\FeedbackController@store')->name('feedback');
@@ -56,6 +54,10 @@ Route::get('/pmevidya/{class}/{channel}/{category}','App\Http\Controllers\Pmevid
 Route::get('/people', function () {
     return view('web.people');
 })->name('people');
+
+Route::get('/announcement', function () {
+    return view('web.announcement');
+})->name('announcement');
 
 Auth::routes();
 

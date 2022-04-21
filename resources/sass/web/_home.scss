@@ -849,6 +849,11 @@
             height: 400px;
             overflow: auto;
 
+            &.no-height{
+                min-height: 400px;
+                height: auto;
+            }
+
             li{
                 font-size: 1.15rem;
                 margin-bottom: 5px;

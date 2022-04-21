@@ -51,7 +51,7 @@
                     <div class="head-message">
                         <div class="message-wrap d-flex">
                             <div class="image">
-                                <img class="img-fluid" src="/images/web/jd-message.jpg" alt="JD CIET">
+                                <img class="img-fluid" src="/images/web/head-dict.png" alt="Head DICT">
                             </div>
                             <div class="message">
                                 <h4 class="heading">FORM THE desk of Head DICT</h4>

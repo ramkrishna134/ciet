@@ -163,6 +163,16 @@ Menu Builder
 
                                 <div class="col-sm-3">
                                     <div class="mb-3">
+                                        <select name="has_child" id="has_child" class="form-control">
+                                            <option value="0">-- Menu has Submenu --</option>
+                                            <option value="0">No</option>
+                                            <option value="1">Yes</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div class="mb-3">
                                         <select name="status" id="status" class="form-control">
                                             <option value="0">Darft</option>
                                             <option value="1">Published</option>
@@ -205,6 +215,7 @@ Menu Builder
                             <th>Parent</th>
                             <th>Class</th>
                             <th>Depth</th>
+                            <th>Has Child</th>
                             <th>Target</th>
                             <th>Language</th>
                             <th>Status</th>
@@ -220,7 +231,14 @@ Menu Builder
                             <td class="parent" data-parent={{ $item->parent_id }}>{{ $item->parent->label ?? '' }}</td>
                             <td class="class">{{ $item->class ?? '' }}</td>
                             <td class="depth">{{ $item->depth }}</td>
-                            <td class="target" data-target={{ $item->target }}>
+                            <td class="has_child" data-child="{{ $item->has_child }}">
+                                @if($item->has_child == 0)
+                                    No
+                                @elseif($item->has_child == 1)
+                                    Yes
+                                @endif
+                            </td>
+                            <td class="target" data-target="{{ $item->target }}">
                                 @if($item->target == 0)
                                 <small>Same Window</small>
                                 @else
@@ -335,6 +353,16 @@ Menu Builder
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-sm-6">
+                        <div class="mb-3">
+                            <select name="has_child" id="has_child" class="form-control">
+                                <option value="0">-- Menu has Submenu --</option>
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                        </div>
+                    </div>
     
                     <div class="col-sm-6">
                         <div class="mb-3">
@@ -393,6 +421,7 @@ Menu Builder
         var parent_id = parent.children('.parent').attr('data-parent');
         var depth = parent.children('.depth').html();
         var status = parent.children('.status').attr('data-status');
+        var child = parent.children('.has_child').attr('data-child');
         var lang = parent.children('.lang').attr('data-lang');
         var target = parent.children('.target').attr('data-target');
         
@@ -408,6 +437,7 @@ Menu Builder
         modal.find('#link').val(link);
         modal.find('#parent_id').val(parent_id);
         modal.find('#depth').val(depth);
+        modal.find('#depth').val(child);
         modal.find('#status').val(status);
         modal.find('#lang').val(lang);
 

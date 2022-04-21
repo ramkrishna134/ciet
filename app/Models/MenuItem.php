@@ -16,6 +16,7 @@ class MenuItem extends Model
         'parent_id',
         'class',
         'depth',
+        'has_child',
         'target',
         'status',
         'lang'

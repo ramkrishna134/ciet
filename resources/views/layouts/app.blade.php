@@ -1,3 +1,31 @@
+@php
+$lang = $_GET['lang'] ?? null;
+if(!empty($lang)){
+    if($lang == 'en' OR $lang == 'hi'){
+        $headerMenus = DB::table('menu_items')->where('menu_id', 1)->where('lang', $lang)->where('status', 1)->get();
+    }else{
+        abort(404);
+    }
+}else{
+    $headerMenus = DB::table('menu_items')->where('menu_id', 1)->where('lang', 'en')->where('status', 1)->get();
+}
+
+
+$mainMenus = [];
+$subMenus = [];
+foreach ($headerMenus as $item) {
+  if($item->depth == 0){
+    array_push($mainMenus, $item);
+  }elseif($item->depth == 1){
+    array_push($subMenus, $item);
+  }
+}
+
+
+
+// dd($subMenus);
+@endphp
+
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -37,6 +65,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.5.0-beta.2/css/lightgallery-bundle.min.css"/>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
+    <link href="{{ asset('js/web/multi-level-dropdown/bootstrap5-dropdown-ml-hack-hover.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/web/app.css') }}" rel="stylesheet">
 </head>
 
@@ -51,7 +80,7 @@
   </div>
 
     <div id="app">
-
+  {{-- @dd($headerMenus); --}}
       {{--------------- Top Header -----------------------}}
         <header class="header sticky-top shadow" id="header">
           <div class="top-head">
@@ -110,7 +139,37 @@
                 </a>
 
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
+
+                  @foreach($mainMenus as $item)
+                    {{-- <li class="nav-item @if($item->has_child == 1) dropdown @endif">
+                      <a class="nav-link {{ (request()->is($item->link)) ? 'active' : '' }} @if($item->has_child == 1) dropdown-toggle @endif" aria-current="page" href="{{ $item->link }}">{{ $item->label }}</a>
+
+                      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        @foreach($subMenus as $submenu)
+                        @if($item->id == $submenu->parent_id)
+                          <li><a class="dropdown-item" href="#">DIKSHA</a></li>
+                        @endif
+                      @endforeach
+                      </ul>
+                    </li> --}}
+                    <li class="nav-item @if($item->has_child == 1) dropdown @endif">
+                      <a class="nav-link @if($item->has_child == 1) dropdown-toggle @endif  {{ (request()->is($item->link)) ? 'active' : '' }}" href="{{ $item->link }}" id="@if($item->has_child == 1) navbarDropdown @endif " @if($item->has_child == 1) role="button" data-bs-toggle="dropdown" aria-expanded="false" @endif>
+                        {{ $item->label }}
+                      </a>
+
+                      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        @foreach($subMenus as $submenu)
+                          @if($item->id == $submenu->parent_id)
+                            <li><a class="dropdown-item {{ (request()->is($submenu->link)) ? 'active' : '' }}" href="{{ $submenu->link }}">{{ $submenu->label }}</a></li>
+                          @endif
+                        @endforeach
+                        
+                           
+                      </ul>
+                    </li>
+                  @endforeach
+
+                  {{-- <li class="nav-item">
                     <a class="nav-link {{ (request()->is('/')) ? 'active' : '' }}" aria-current="page" href="{{ route('home') }}">Home</a>
                   </li>
 
@@ -140,7 +199,7 @@
                       Contituents
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item" href="#">Department of ICT & Training</a></li>
+                      <li><a class="dropdown-item" href="/dict">Department of ICT & Training</a></li>
                       <li><a class="dropdown-item" href="#">Media Production Division</a></li>
                       <li><a class="dropdown-item" href="#">Planning and Research Division</a></li>
                       <li><a class="dropdown-item" href="#">Engineering Division</a></li>
@@ -179,27 +238,22 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       More
                     </a>
-                    <ul class="dropdown-menu mega-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                      <div class="row">
-                        <div class="col-sm-6">
-                          <li><a class="dropdown-item { (request()->is('people')) ? 'active' : '' }}" href="{{ route('people') }}">People</a></li>
-                          <li><a class="dropdown-item {{ (request()->is('contact')) ? 'active' : '' }}" href="{{ route('contact') }}">Contact us</a></li>
-                          <li><a class="dropdown-item" href="#">Media Production Division</a></li>
-                          <li><a class="dropdown-item" href="#">Planning and Research Division</a></li>
-                          <li><a class="dropdown-item" href="#">Engineering Division</a></li>
-                          <li><a class="dropdown-item" href="#">Administration & Accounts</a></li>
-                        </div>
-                        <div class="col-sm-6">
-                          <li><a class="dropdown-item" href="#">Department of ICT & Training</a></li>
-                          <li><a class="dropdown-item" href="#">Media Production Division</a></li>
-                          <li><a class="dropdown-item" href="#">Planning and Research Division</a></li>
-                          <li><a class="dropdown-item" href="#">Engineering Division</a></li>
-                          <li><a class="dropdown-item" href="#">Administration & Accounts</a></li>
-                        </div>
-                      </div>
-                           
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
+                      <li class="dropdown dropdown-submenu dropend">
+                        <a class="dropdown-item submenu dropdown-toggle" href="#">New dropdown</span></a>
+                        <ul class="dropdown-menu submenu">
+                          <li><a class="dropdown-item" href="#">2nd level dropdown</a></li>
+                          <li><a class="dropdown-item" href="#">2nd level dropdown</a></li>
+                        </ul>
+                      </li>
+
+                      <li><a class="dropdown-item { (request()->is('people')) ? 'active' : '' }}" href="{{ route('people') }}">People</a></li>
+                      <li><a class="dropdown-item" href="{{ route('announcement') }}">Announcements</a></li>
+                      <li><a class="dropdown-item" href="#">RTI</a></li>
+                      <li><a class="dropdown-item {{ (request()->is('contact')) ? 'active' : '' }}" href="{{ route('contact') }}">Contact us</a></li> 
                     </ul>
-                  </li>
+                  </li> --}}
                 </ul>
                 </div>
 
@@ -359,7 +413,8 @@
     <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.5.0-beta.2/lightgallery.min.js"></script>
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.5.0-beta.2/plugins/thumbnail/lg-thumbnail.min.js"></script> --}}
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.js"></script> --}}
+    {{-- <script src="{{ asset('js/web/multi-level-dropdown/bootstrap5-dropdown-ml-hack.js') }}"></script> --}}
     <script src="{{ asset('js/web/app.js') }}" defer></script>
     {{-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script> --}}
 

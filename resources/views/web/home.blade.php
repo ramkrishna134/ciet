@@ -367,7 +367,7 @@
                             <a href="{{ route('newsletter') }}" class="item">
                                 <div class="shape" style="background-image: url('/images/web/rhombas.png')"></div>
                                 <div class="content scroll-in-view">
-                                    <img class="img-fluid" src="/images/web/oer.png" alt="">
+                                    <img class="img-fluid" src="/images/web/journal.png" alt="">
                                     <div class="title">Newsletter</div>
                                 </div>
                             </a>

@@ -79,6 +79,12 @@ $(document).ready(function (){
   smoothScroll();
   darkMode();
 
+  $('.dropdown-submenu a.submenu').on("click", function(e){
+    $(this).next('ul').toggle();
+    e.stopPropagation();
+    e.preventDefault();
+  });
+
   $('#sheduleTable').DataTable({
         dom: 'Bfrtip',
         lengthMenu: [
@@ -90,6 +96,10 @@ $(document).ready(function (){
         ]
         
     });
+
+    $('.dropdown-toggle').click(function(e){
+      e.preventDefault();
+    })
 
     $('.home-slider').slick({
         dots: true,
