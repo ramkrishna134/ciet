@@ -11779,6 +11779,28 @@ body a:hover {
   font-weight: 400;
 }
 
+.home-slider-wrap {
+  position: relative;
+}
+.home-slider-wrap .play-button {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: block;
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  border: 5px solid white;
+  color: #fff;
+  text-align: center;
+  box-shadow: 2px -1px 9px #0000005e;
+  bottom: -44px;
+  font-size: 2rem;
+  line-height: 68px;
+  background: linear-gradient(141.79deg, #df2027 0%, #ff0060 100%);
+  z-index: 1;
+}
+
 .home-slider {
   height: auto;
   width: 100%;
@@ -12226,7 +12248,7 @@ body a:hover {
   color: #fff;
 }
 .infrastructure .infrastructure-wrap {
-  padding: 40px 0;
+  padding-top: 40px;
 }
 .infrastructure .infrastructure-wrap .item {
   width: 100%;

@@ -54,7 +54,7 @@
                                 <img class="img-fluid" src="/images/web/head-dict.png" alt="Head DICT">
                             </div>
                             <div class="message">
-                                <h4 class="heading">FORM THE desk of Head DICT</h4>
+                                <h4 class="heading">FORM THE desk of The Head </h4>
                                 <p>"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam amet ad omnis debitis
                                     sunt velit
                                     Totam amet ad omnis debitis"</p>
@@ -212,12 +212,12 @@
                             <div class="col-sm-3">
                                 <div class="single-item">
                                     <div class="image">
-                                        <img class="img-fluid" src="/images/web/DrRejaulKarimBarbhuiya.jpg" alt="">
+                                        <img class="img-fluid" src="https://ciet.nic.in/img/contact/DrAngelRathnabaiS.JPG" alt="">
                                     </div>
-                                    <div class="name">Dr. Rejaul Karim Barbhuiya</div>
+                                    <div class="name">Dr. Angel Rathnabai S</div>
                                     <div class="post">Assistant Professor</div>
                                     <div class="extn"><i>Extn. Number</i></div>
-                                    <div class="number">+91-11-26864801-10 (237)</div>
+                                    <div class="number">+91-11-26864801-10 (247)</div>
 
                                     <a href="" class="profile">View Profile</a>
         

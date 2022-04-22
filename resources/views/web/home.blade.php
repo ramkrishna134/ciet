@@ -2,16 +2,21 @@
 
 @section('content')
     {{-- Home Slider --}}
-    <section class="home-slider count-height">
-        <a href="#" class="slide-item">
-            <img class="img-fluid" src="/images/web/ncert-collage.png" alt="">
-        </a>
-        <a href="#" class="slide-item">
-            <img class="img-fluid" src="/images/web/Diksha_Web_Banner.jpg" alt="">
-        </a>
-        <a href="#" class="slide-item">
-            <img class="img-fluid" src="/images/web/BhashaSangambanner.jpg" alt="">
-        </a>
+    
+    <section class="home-slider-wrap count-height">
+        <div class="home-slider">
+            <a href="#" class="slide-item">
+                <img class="img-fluid" src="/images/web/ncert-collage.png" alt="">
+            </a>
+            <a href="#" class="slide-item">
+                <img class="img-fluid" src="/images/web/Diksha_Web_Banner.jpg" alt="">
+            </a>
+            <a href="#" class="slide-item">
+                <img class="img-fluid" src="/images/web/BhashaSangambanner.jpg" alt="">
+            </a>
+        </div>
+
+        <a href="" class="play-button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#campusModal"><i class="fas fa-play ms-1"></i></a>
     </section>
 
     {{-- About CIET --}}
@@ -525,6 +530,24 @@
             </div>
         </div>
     </section>
+
+
+    {{-- Campus Tour Video --}}
+    <!-- Modal -->
+  <div class="modal fade" id="campusModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title p-2" id="exampleModalLabel">Campus Tour</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-1">
+            <iframe width="100%" height="500" src="https://www.youtube.com/embed/ZBqJ_GeLPok" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        
+      </div>
+    </div>
+  </div>
 
 
 @endsection

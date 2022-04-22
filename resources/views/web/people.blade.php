@@ -57,6 +57,20 @@
                                 <div class="col-sm-3">
                                     <div class="single-item bg-white">
                                         <div class="image">
+                                            <img class="img-fluid" src="https://ciet.nic.in/img/contact/jd.jpeg" alt="">
+                                        </div>
+                                        <div class="name">Dr. Amarendra P Behera</div>
+                                        <div class="post">Joint Director</div>
+                                        <div class="extn"><i>Extn. Number</i></div>
+                                        <div class="number">+91-11-26864801-10 (226)</div>
+                
+                                        <a href="" class="profile">View Profile</a>
+                
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="single-item bg-white">
+                                        <div class="image">
                                             <img class="img-fluid" src="https://ciet.nic.in/img/contact/DrBharti.JPG" alt="">
                                         </div>
                                         <div class="name">Dr. Bharti</div>
@@ -101,15 +115,15 @@
                                 <div class="col-sm-3">
                                     <div class="single-item bg-white">
                                         <div class="image">
-                                            <img class="img-fluid" src="/images/web/DrRejaulKarimBarbhuiya.jpg" alt="">
+                                            <img class="img-fluid" src="https://ciet.nic.in/img/contact/DrAngelRathnabaiS.JPG" alt="">
                                         </div>
-                                        <div class="name">Dr. Rejaul Karim Barbhuiya</div>
+                                        <div class="name">Dr. Angel Rathnabai S</div>
                                         <div class="post">Assistant Professor</div>
                                         <div class="extn"><i>Extn. Number</i></div>
-                                        <div class="number">+91-11-26864801-10 (237)</div>
-                
+                                        <div class="number">+91-11-26864801-10 (247)</div>
+    
                                         <a href="" class="profile">View Profile</a>
-                
+            
                                     </div>
                                 </div>
                 
@@ -123,12 +137,12 @@
                                 <div class="col-sm-3">
                                     <div class="single-item bg-white">
                                         <div class="image">
-                                            <img class="img-fluid" src="https://ciet.nic.in/img/contact/DrBharti.JPG" alt="">
+                                            <img class="img-fluid" src="/images/web/placeholder-men.png" alt="">
                                         </div>
-                                        <div class="name">Dr. Bharti</div>
-                                        <div class="post">Associate Professor</div>
+                                        <div class="name">Mr. Naval Kishore</div>
+                                        <div class="post">Dy. Secretary</div>
                                         <div class="extn"><i>Extn. Number</i></div>
-                                        <div class="number">+91-11-26864801-10 (217)</div>
+                                        <div class="number">+91-11-26864801-10 (301)</div>
                 
                                         <a href="" class="profile">View Profile</a>
                 
@@ -138,12 +152,12 @@
                                 <div class="col-sm-3">
                                     <div class="single-item bg-white">
                                         <div class="image">
-                                            <img class="img-fluid" src="/images/web/DrInduKumar.jpg" alt="">
+                                            <img class="img-fluid" src="/images/web/placeholder-men.png" alt="">
                                         </div>
-                                        <div class="name">Dr. Indu Kumar</div>
-                                        <div class="post">Professor</div>
+                                        <div class="name">Manish Singhal</div>
+                                        <div class="post">Under Secretary</div>
                                         <div class="extn"><i>Extn. Number</i></div>
-                                        <div class="number">+91-11-26864801-10 (231)</div>
+                                        <div class="number">+91-11-26864801-10 (338)</div>
                 
                                         <a href="" class="profile">View Profile</a>
                                     </div>
@@ -152,12 +166,12 @@
                                 <div class="col-sm-3">
                                     <div class="single-item bg-white">
                                         <div class="image">
-                                            <img class="img-fluid" src="/images/web/DrRejaulKarimBarbhuiya.jpg" alt="">
+                                            <img class="img-fluid" src="/images/web/placeholder-men.png" alt="">
                                         </div>
-                                        <div class="name">Dr. Rejaul Karim Barbhuiya</div>
-                                        <div class="post">Assistant Professor</div>
+                                        <div class="name">Sh. Raj Kumar</div>
+                                        <div class="post">Accounts Officer</div>
                                         <div class="extn"><i>Extn. Number</i></div>
-                                        <div class="number">+91-11-26864801-10 (237)</div>
+                                        <div class="number">+91-11-26864801-10 (305)</div>
                 
                                         <a href="" class="profile">View Profile</a>
                 
@@ -167,12 +181,12 @@
                                 <div class="col-sm-3">
                                     <div class="single-item bg-white">
                                         <div class="image">
-                                            <img class="img-fluid" src="/images/web/DrRejaulKarimBarbhuiya.jpg" alt="">
+                                            <img class="img-fluid" src="/images/web/placeholder-men.png" alt="">
                                         </div>
-                                        <div class="name">Dr. Rejaul Karim Barbhuiya</div>
-                                        <div class="post">Assistant Professor</div>
+                                        <div class="name">Sh. Parash Ram</div>
+                                        <div class="post">Section Officer</div>
                                         <div class="extn"><i>Extn. Number</i></div>
-                                        <div class="number">+91-11-26864801-10 (237)</div>
+                                        <div class="number">+91-11-26864801-10 (242)</div>
                 
                                         <a href="" class="profile">View Profile</a>
                 
@@ -188,12 +202,12 @@
                                 <div class="col-sm-3">
                                     <div class="single-item bg-white">
                                         <div class="image">
-                                            <img class="img-fluid" src="https://ciet.nic.in/img/contact/DrBharti.JPG" alt="">
+                                            <img class="img-fluid" src="/images/web/placeholder-woman.png" alt="">
                                         </div>
-                                        <div class="name">Dr. Bharti</div>
-                                        <div class="post">Associate Professor</div>
+                                        <div class="name">Ms. Kunda Shamkuwar</div>
+                                        <div class="post">Superintending Engineer</div>
                                         <div class="extn"><i>Extn. Number</i></div>
-                                        <div class="number">+91-11-26864801-10 (217)</div>
+                                        <div class="number">+91-11-26864801-10 (213)</div>
                 
                                         <a href="" class="profile">View Profile</a>
                 
@@ -203,46 +217,19 @@
                                 <div class="col-sm-3">
                                     <div class="single-item bg-white">
                                         <div class="image">
-                                            <img class="img-fluid" src="/images/web/DrInduKumar.jpg" alt="">
+                                            <img class="img-fluid" src="/images/web/placeholder-men.png" alt="">
                                         </div>
-                                        <div class="name">Dr. Indu Kumar</div>
-                                        <div class="post">Professor</div>
+                                        <div class="name">Sh. Rakesh Kumar</div>
+                                        <div class="post">Cameraman Gr.I</div>
                                         <div class="extn"><i>Extn. Number</i></div>
-                                        <div class="number">+91-11-26864801-10 (231)</div>
-                
-                                        <a href="" class="profile">View Profile</a>
-                                    </div>
-                                </div>
-                
-                                <div class="col-sm-3">
-                                    <div class="single-item bg-white">
-                                        <div class="image">
-                                            <img class="img-fluid" src="/images/web/DrRejaulKarimBarbhuiya.jpg" alt="">
-                                        </div>
-                                        <div class="name">Dr. Rejaul Karim Barbhuiya</div>
-                                        <div class="post">Assistant Professor</div>
-                                        <div class="extn"><i>Extn. Number</i></div>
-                                        <div class="number">+91-11-26864801-10 (237)</div>
+                                        <div class="number">+91-11-26864801-10 (130)</div>
                 
                                         <a href="" class="profile">View Profile</a>
                 
                                     </div>
                                 </div>
                 
-                                <div class="col-sm-3">
-                                    <div class="single-item bg-white">
-                                        <div class="image">
-                                            <img class="img-fluid" src="/images/web/DrRejaulKarimBarbhuiya.jpg" alt="">
-                                        </div>
-                                        <div class="name">Dr. Rejaul Karim Barbhuiya</div>
-                                        <div class="post">Assistant Professor</div>
-                                        <div class="extn"><i>Extn. Number</i></div>
-                                        <div class="number">+91-11-26864801-10 (237)</div>
-                
-                                        <a href="" class="profile">View Profile</a>
-                
-                                    </div>
-                                </div>
+                                
                 
                             </div>
                         </div>
