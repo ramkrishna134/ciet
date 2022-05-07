@@ -45,6 +45,7 @@ class WebinarController extends Controller
         $user = auth()->user();
         $rules = [
             'title' => ['required', 'string'],
+            'category' => ['required', 'string'],
             'res_person' => ['required', 'string'],
             'ppt' => ['required', 'string'],
             'video' => ['required', 'string'],
@@ -55,7 +56,7 @@ class WebinarController extends Controller
 
         $validator = Validator::make($request->all(),$rules);
         if ($validator->fails()) {
-            return redirect(route('infrastructure.create'))
+            return back()
                 ->withInput()
                 ->withErrors($validator)->with('error',"Please check the field below *");
                 // dd($validator);
@@ -112,6 +113,7 @@ class WebinarController extends Controller
         $user = auth()->user();
         $rules = [
             'title' => ['required', 'string'],
+            'category' => ['required', 'string'],
             'res_person' => ['required', 'string'],
             'ppt' => ['required', 'string'],
             'video' => ['required', 'string'],
@@ -153,5 +155,32 @@ class WebinarController extends Controller
         //
         $webinar->delete();
         return redirect(route('webinar.index'))->with('status',"webinar Deleted successfully");
+    }
+
+    public function webinar(){
+
+        $today = date('Y-m-d');
+        // dd($today);
+
+        $lang = $_GET['lang'] ?? null;
+        if(!empty($lang)){
+            if($lang == 'en' OR $lang == 'hi'){
+
+                $upcomings = Webinar::query()->whereDate('web_date', '>', $today)->where('lang', $lang)->where('status', 1)->paginate(6);
+
+                $pasts = Webinar::query()->whereDate('web_date', '<', $today)->where('lang', $lang)->where('status', 1)->paginate(6);
+                
+            }else{
+                abort(404);
+            }
+        }else{
+
+            $upcomings = Webinar::query()->whereDate('web_date', '>', $today)->where('lang', 'en')->where('status', 1)->paginate(6);
+
+            $pasts = Webinar::query()->whereDate('web_date', '<', $today)->where('lang', 'en')->where('status', 1)->paginate(6);
+        }
+
+        return view('web.webiner', compact('upcomings', 'pasts'));
+
     }
 }

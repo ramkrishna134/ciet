@@ -73,11 +73,11 @@ foreach ($headerMenus as $item) {
 
   {{---------------- Loading Image ------------------------}}
 
-  <div class="loading-bar active">
+  {{-- <div class="loading-bar active">
     <div class="image">
       <img class="img-fluid" src="/images/ciet-logo-black.png" alt="Loading Image">
     </div>
-  </div>
+  </div> --}}
 
     <div id="app">
   {{-- @dd($headerMenus); --}}
@@ -96,8 +96,8 @@ foreach ($headerMenus as $item) {
                   <ul class="accessibility-menu">
                     <li><a class="smooth-scroll" href="main-content">Skip to main content</a></li>
                     <li><a class="smooth-scroll" href="navigation">Skip to navigation</a></li>
-                    <li><a href="">Screen Reader Access</a></li>
-                    <li>Text Size: <a href="">A-</a> <a href="">A</a> <a href="">A+</a></li>
+                    <li><a href="/screen-reader-access">Screen Reader Access</a></li>
+                    <li>Text Size: <a href="#" aria-label="Decrease Text Size">A&#8722;</a> <a href="#" aria-label="Default Text Size">A</a> <a href="#" aria-label="Increase Text Size">A&#x2b;</a></li>
                     <li class="dropdown">
                       <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Language
@@ -107,11 +107,11 @@ foreach ($headerMenus as $item) {
                         <li><a class="dropdown-item" href="?lang=hi">Hindi</a></li>      
                       </ul>
                     </li>
-                    <li><a href="" class="dark-mode"><i class="fas fa-adjust"></i></a></li>
+                    <li><a href="#" class="dark-mode" aria-label="Darkmode enable or disable"><i class="fas fa-adjust"></i></a></li>
                 </div>
               </div>
 
-              <a href="" class="drop-down" id="topHeadToggler">
+              <a href="#" class="drop-down" id="topHeadToggler" aria-label="Mobile Toolbar Dropdown Button">
                 <i class="fas fa-angle-double-down"></i>
               </a>
 
@@ -121,7 +121,7 @@ foreach ($headerMenus as $item) {
           {{----------------- Main Header ------------------}}
           <nav class="navbar navbar-expand-lg shadow menu-container" id="navigation">
             <div class="container">
-              <a class="navbar-brand" href="{{ route('home') }}">
+              <a class="navbar-brand" href="{{ route('home') }}" aria-label="CIET Logo">
                 <div class="logo">
                   <img class="img-fluid" src="/images/web/logo-english.png" alt="CIET Logo">
                 </div>
@@ -134,8 +134,8 @@ foreach ($headerMenus as $item) {
                   </div>
                 </a>
 
-                <a href="#" class="cross-icon">
-                  <img src="/images/web/cross-icon.png" alt="Menu Close Icon">
+                <a href="#" class="cross-icon" aria-label="Mobile Menu Close Button">
+                  <img src="/images/web/cross-icon.png" alt="Mobile Menu Close Button">
                 </a>
 
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -257,8 +257,8 @@ foreach ($headerMenus as $item) {
                 </ul>
                 </div>
 
-                <a href="#" type="button" class="btn-menu navbar-toggler navbar-toggle" data-bs-toggle="collapse"  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <img class="img-fluid" src="/images/web/menu-icon.png" alt="">
+                <a href="#" type="button" class="btn-menu navbar-toggler navbar-toggle" data-bs-toggle="collapse"  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle Menu">
+                  <img class="img-fluid" src="/images/web/menu-icon.png" alt="Mobile Menu">
                 </a>
 
                 <a href="#" type="button" class="btn-search" data-bs-toggle="modal" data-bs-target="#searchModal">
@@ -311,26 +311,24 @@ foreach ($headerMenus as $item) {
                 <h5 class="footer-heading">Contact Us</h5>
                 <div class="row">
                   <div class="col-sm-6">
-                    <p>Join Director, Central Institute of Educational Technology (CIET),</p>
-                    <p>NCERT, Sri Arobindo Marg, New Delhi - 110016.</p>
+                    {!! setting('address') !!}
                   </div>
                   <div class="col-sm-5">
                     <div class="foot-element mb-2">
                       <div class="foot-icon"><i class="fas fa-envelope"></i></div>
-                      <a href="">jdciet.ncert.nic.in</a><br>
-                      <a href="">dceta.ncert.nic.in</a>
+                      <a href="mailto: {!! setting('contact-email') !!}">{!! setting('contact-email') !!}</a>
                     </div>
 
                     <div class="foot-element mb-2">
                       <div class="foot-icon"><i class="fas fa-phone-alt"></i></div>
-                      <a href="">+91 8800440559</a><br>
-                      <a href="">+91 8448440632</a><br>
-                      <a href="">+91 8448440632</a>
+                      <a href="tel:{{ setting('contact-number1') }}">{{ setting('contact-number1') }}</a><br>
+                      <a href="tel:{{ setting('contact-number2') }}">{{ setting('contact-number2') }}</a><br>
+                      {{-- <a href="">+91 8448440632</a> --}}
                     </div>
 
                     <div class="foot-element">
                       <div class="foot-icon"><i class="fas fa-fax"></i></div>
-                      <a href="">+91 11 2686 4141</a>
+                      <a href="tel: {{ setting('contact-fax') }}">{{ setting('contact-fax') }}</a>
                     </div>
                     
                     </p>
@@ -342,11 +340,11 @@ foreach ($headerMenus as $item) {
                 <h5 class="footer-heading">Follow Us</h5>
 
                 <div class="foot-icon-wrap">
-                  <a href="{{ setting('facebook') }}" target="_blank" class="facebook"><i class="fab fa-facebook-f"></i></a>
-                  <a href="{{ setting('instagram') }}" class="instagram" target="_blank"><i class="fab fa-instagram"></i></a>
-                  <a href="{{ setting('twitter') }}" class="twitter" target="_blank"><i class="fab fa-twitter"></i></a>
-                  <a href="{{ setting('youtube') }}" class="youtube" target="_blank"><i class="fab fa-youtube"></i></a>
-                  <a href="{{ setting('linkedin') }}" class="linkedin" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                  <a href="{{ setting('facebook') }}" target="_blank" class="facebook" aria-label="Facebook page Link"><i class="fab fa-facebook-f"></i></a>
+                  <a href="{{ setting('instagram') }}" class="instagram" target="_blank" aria-label="Instagram page Link"><i class="fab fa-instagram"></i></a>
+                  <a href="{{ setting('twitter') }}" class="twitter" target="_blank" aria-label="Twitter page Link"><i class="fab fa-twitter"></i></a>
+                  <a href="{{ setting('youtube') }}" class="youtube" target="_blank" aria-label="Youtube channel Link"><i class="fab fa-youtube"></i></a>
+                  <a href="{{ setting('linkedin') }}" class="linkedin" target="_blank" aria-label="LinkedIn page Link"><i class="fab fa-linkedin-in"></i></a>
                 </div>
 
                 <div class="counter">
@@ -376,7 +374,7 @@ foreach ($headerMenus as $item) {
         </section>
 
         {{------------------- Go to top Arrow -------------------}}
-        <a href="header" class="go-top-arrow smooth-scroll"><i class="fas fa-angle-up"></i></a>
+        <a href="header" class="go-top-arrow smooth-scroll" aria-label="Go to page Top"><i class="fas fa-angle-up"></i></a>
 
 
         {{----------------------- Searbox Modal --------------------}}
@@ -387,19 +385,21 @@ foreach ($headerMenus as $item) {
               <div class="modal-body shadow">
 
                 <form class="search-box">
+
                   <div class="search-element">
                     <input id="txtSearch" class="form-control"type="search" placeholder="Type anything to Search ...." aria-label="Search accross the website">
                     <i class="fas fa-search"></i>
                   </div>
 
                   {{ csrf_field() }}
-                  <div id="search-result" class="result shadow">
+                  <div id="search-result" class="result shadow"></div>
                 </form>
 
               </div>
             </div>
           </div>
         </div>
+
 
     </div>
 

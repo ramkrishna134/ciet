@@ -102,7 +102,7 @@ $(document).ready(function (){
     })
 
     $('.home-slider').slick({
-        dots: false,
+        dots: true,
         infinite: true,
         speed: 300,
         autoplay: true,

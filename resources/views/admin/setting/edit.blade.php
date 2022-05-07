@@ -153,7 +153,7 @@ Settings
                     <label for="setting[contact-email]" class="col-form-label">Contact Email</label>
                 </div>
                 <div class="col-sm-4">
-                    <input type="email" id="setting[contact-email]" class="form-control" name="setting[contact-email]" value="{{ setting('contact-email') }}">
+                    <input type="text" id="setting[contact-email]" class="form-control" name="setting[contact-email]" value="{{ setting('contact-email') }}">
                 </div>
             </div>
 
@@ -174,6 +174,15 @@ Settings
                 </div>
                 <div class="col-sm-4">
                     <input type="tel" id="setting[contact-number2]" class="form-control" name="setting[contact-number2]" value="{{ setting('contact-number2') }}">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-sm-2">
+                    <label for="setting[contact-fax]" class="col-form-label">Fax</label>
+                </div>
+                <div class="col-sm-4">
+                    <input type="tel" id="setting[contact-fax]" class="form-control" name="setting[contact-fax]" value="{{ setting('contact-fax') }}">
                 </div>
             </div>
 

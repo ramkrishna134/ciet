@@ -151,5 +151,7 @@ class FacultyController extends Controller
     public function destroy(Faculty $faculty)
     {
         //
+        $faculty->delete();
+        return back()->with('status',"Faculty Deleted successfully");
     }
 }

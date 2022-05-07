@@ -22,6 +22,9 @@
 </section>
 
 
+{{-- @dd($vacancies); --}}
+
+
 <section class="page-content" id="main-content">
     <div class="container announcement rounded pt-4">
 
@@ -52,11 +55,28 @@
                     
                     <div class="tab-pane fade show active" id="pills-vacancy" role="tabpanel" aria-labelledby="pills-vacancy-tab">
                         <ul>
-                            <li><a href="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore facere placeat vitae <div class="contractual">Contractual</div></a></li>
-                            <li><a href="">consectetur sit quaerat, nam obcaecati quis ipsam? Perferendis, aut.</a></li>
-                            <li><a href="">suscipit possimus corrupti fugiat minima odit sint expedita aliquid. <div class="regular">Regular</div></a></li>
-                            <li><a href="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore facere placeat vitae</a></li>
+
+                            @foreach($vacancies as $vacancy)
+                            <li>
+                                <a href="{{ $vacancy->url }}" target="_blank">
+                                    {{ $vacancy->title }} 
+
+                                    @if($vacancy->sub_category == 'contractual')
+                                    <div class="contractual">Contractual</div>
+                                    @elseif($vacancy->sub_category == 'regular')
+                                    <div class="regular">Regular</div>
+                                    @endif
+
+                                </a>
+                            </li>
+                            @endforeach
+
+                            
                         </ul>
+
+                        @if($vacancies->count() == 0)
+                            <h4 class="text-center">No Announcement Found..</h4>
+                        @endif
 
                         <div class="accordion mt-5" id="accordionVacancy">
                             <div class="accordion-item">
@@ -68,11 +88,25 @@
                               <div id="collapseVacancy" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionVacancy">
                                 <div class="accordion-body">
                                     <ul>
-                                        <li><a href="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore facere placeat vitae <div class="contractual">Contractual</div></a></li>
-                                        <li><a href="">consectetur sit quaerat, nam obcaecati quis ipsam? Perferendis, aut.</a></li>
-                                        <li><a href="">suscipit possimus corrupti fugiat minima odit sint expedita aliquid. <div class="regular">Regular</div></a></li>
-                                        <li><a href="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore facere placeat vitae</a></li>
+                                        {{-- Archive Vacancy --}}
+                                        @foreach($vacancyArchives as $vacancy)
+                                        <li>
+                                            <a href="{{ $vacancy->url }}" target="_blank">
+                                                {{ $vacancy->title }} 
+
+                                                @if($vacancy->sub_category == 'contractual')
+                                                <div class="contractual">Contractual</div>
+                                                @elseif($vacancy->sub_category == 'regular')
+                                                <div class="regular">Regular</div>
+                                                @endif
+
+                                            </a>
+                                        </li>
+                                        @endforeach
                                     </ul>
+                                    @if($vacancyArchives->count() == 0)
+                                        <h4 class="text-center">No Announcement Found..</h4>
+                                    @endif
                                 </div>
                               </div>
                             </div>
@@ -82,13 +116,18 @@
                     </div>
                     <div class="tab-pane fade" id="pills-notice" role="tabpanel" aria-labelledby="pills-notice-tab">
                         <ul>
-                            <li><a href="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore facere placeat vitae</a></li>
-                            <li><a href="">consectetur sit quaerat, nam obcaecati quis ipsam? Perferendis, aut.</a></li>
-                            <li><a href="">suscipit possimus corrupti fugiat minima odit sint expedita aliquid,</a></li>
-                            <li><a href="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore facere placeat vitae</a></li>
-                            <li><a href="">consectetur sit quaerat, nam obcaecati quis ipsam? Perferendis, aut.</a></li>
-                            <li><a href="">suscipit possimus corrupti fugiat minima odit sint expedita aliquid,</a></li>
+                            @foreach($notices as $notice)
+                            <li>
+                                <a href="{{ $notice->url }}" target="_blank">
+                                    {{ $notice->title }}
+                                </a>
+                            </li>
+                            @endforeach
                         </ul>
+
+                        @if($notices->count() == 0)
+                            <h4 class="text-center">No Announcement Found..</h4>
+                        @endif
 
                         <div class="accordion mt-5" id="accordionNotice">
                             <div class="accordion-item">
@@ -99,12 +138,23 @@
                               </h2>
                               <div id="collapseNotice" class="accordion-collapse collapse" aria-labelledby="headingNotice" data-bs-parent="#accordionNotice">
                                 <div class="accordion-body">
+                                    
+                                        {{-- Archive Notice --}}
                                     <ul>
-                                        <li><a href="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore facere placeat vitae </a></li>
-                                        <li><a href="">consectetur sit quaerat, nam obcaecati quis ipsam? Perferendis, aut.</a></li>
-                                        <li><a href="">suscipit possimus corrupti fugiat minima odit sint expedita aliquid.</a></li>
-                                        <li><a href="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore facere placeat vitae</a></li>
+                                        @foreach($noticeArchices as $notice)
+                                        <li>
+                                            <a href="{{ $notice->url }}" target="_blank">
+                                                {{ $notice->title }}
+                                            </a>
+                                        </li>
+                                        @endforeach
                                     </ul>
+
+                                    @if($noticeArchices->count() == 0)
+                                        <h4 class="text-center">No Announcement Found..</h4>
+                                    @endif
+
+                                    
                                 </div>
                               </div>
                             </div>
@@ -113,14 +163,18 @@
                     </div>
                     <div class="tab-pane fade" id="pills-miscell" role="tabpanel" aria-labelledby="pills-miscell-tab">
                         <ul>
-                            <li><a href="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore facere placeat vitae</a></li>
-                            <li><a href="">consectetur sit quaerat, nam obcaecati quis ipsam? Perferendis, aut.</a></li>
-                            <li><a href="">suscipit possimus corrupti fugiat minima odit sint expedita aliquid.</a></li>
-                            <li><a href="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore facere placeat vitae</a></li>
-                            <li><a href="">consectetur sit quaerat, nam obcaecati quis ipsam? Perferendis, aut.</a></li>
-                            <li><a href="">suscipit possimus corrupti fugiat minima odit sint expedita aliquid,</a></li>
-                            <li><a href="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore facere placeat vitae</a></li>
-                            <li><a href="">consectetur sit quaerat, nam obcaecati quis ipsam? Perferendis, aut.</a></li>
+                            <ul>
+                                @foreach($mislens as $mislen)
+                                <li>
+                                    <a href="{{ $mislen->url }}" target="_blank">
+                                        {{ $mislen->title }}
+                                    </a>
+                                </li>
+                                @endforeach
+                            </ul>
+                            @if($mislens->count() == 0)
+                                <h4 class="text-center">No Announcement Found..</h4>
+                            @endif
                         </ul>
 
                         <div class="accordion mt-5" id="accordionMiscell">
@@ -133,14 +187,20 @@
                               <div id="collapseMiscell" class="accordion-collapse collapse" aria-labelledby="headingMiscell" data-bs-parent="#accordionMiscell">
                                 <div class="accordion-body">
                                     <ul>
-                                        <li><a href="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore facere placeat vitae</a></li>
-                                        <li><a href="">consectetur sit quaerat, nam obcaecati quis ipsam? Perferendis, aut.</a></li>
-                                        <li><a href="">suscipit possimus corrupti fugiat minima odit sint expedita aliquid.</a></li>
-                                        <li><a href="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore facere placeat vitae</a></li>
-                                        <li><a href="">consectetur sit quaerat, nam obcaecati quis ipsam? Perferendis, aut.</a></li>
-                                        <li><a href="">suscipit possimus corrupti fugiat minima odit sint expedita aliquid,</a></li>
-                                        <li><a href="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore facere placeat vitae</a></li>
-                                        <li><a href="">consectetur sit quaerat, nam obcaecati quis ipsam? Perferendis, aut.</a></li>
+                                        {{-- Archive Miscellaneous --}}
+                                        <ul>
+                                            @foreach($mislenArchives as $mislen)
+                                            <li>
+                                                <a href="{{ $mislen->url }}" target="_blank">
+                                                    {{ $mislen->title }}
+                                                </a>
+                                            </li>
+                                            @endforeach
+                                        </ul>
+
+                                        @if($mislenArchives->count() == 0)
+                                            <h4 class="text-center">No Announcement Found..</h4>
+                                        @endif
                                     </ul>
                                 </div>
                               </div>

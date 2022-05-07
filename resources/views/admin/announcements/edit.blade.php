@@ -70,7 +70,12 @@
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label for="category" class="form-label">Category</label>
-                                <input type="text" class="form-control @error('category') is-invalid @enderror" name="category" id="category" placeholder="category" value="{{ $announcement->category ?? old('category') }}">
+                                <select name="category" id="category" class="form-control @error('category') is-invalid @enderror">
+                                    <option value="">-- Select Category ---</option>
+                                    <option value="vacancy">Vacancy</option>
+                                    <option value="notice">Notices</option>
+                                    <option value="mislen">Miscellaneous</option>
+                                </select>
                                 @error('category')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -82,7 +87,11 @@
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label for="sub_category" class="form-label">Sub Category</label>
-                                <input type="text" class="form-control @error('sub_category') is-invalid @enderror" name="sub_category" id="sub_category" placeholder="sub_category" value="{{ $announcement->sub_category ?? old('sub_category') }}">
+                                <select name="sub_category" id="sub_category" class="form-control @error('sub_category') is-invalid @enderror">
+                                    <option value="">-- Select Sub Category --</option>
+                                    <option value="contractual">Contractual</option>
+                                    <option value="regular">Regular</option>
+                                </select>
                                 @error('sub_category')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -101,11 +110,9 @@
                                     </a>
                                     </span>
                                     <input id="thumbnail" class="form-control  @error('url') is-invalid @enderror" type="text" name="url" value="{{ $announcement->url ?? old('url') }}">
-                                    <div id="holder" style="margin-top:5px;width:100%;">
-                                        {{-- @if(!empty($page->featured_icon))
-                                        <img src="{{ $page->featured_icon }}" alt="">
-                                        @endif --}}
-                                    </div>
+                                    {{-- <div id="holder" style="margin-top:5px;width:100%;">
+                                       
+                                    </div> --}}
                                 </div>
                                 @error('url')
                                 <span class="invalid-feedback" role="alert">

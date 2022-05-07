@@ -402,8 +402,8 @@ Menu Builder
                         <div class="mb-3">
                             <select name="parent_id" id="parent_id" class="form-control">
                                 <option value="">-- Select Parent Menu --</option>
-                                @foreach ($items as $item)
-                                    <option value="{{ $item->id }}">{{ $item->label }}</option>
+                                @foreach ($menuItems as $menu)
+                                <option value="{{ $menu->id }}">{{ $menu->label}}</option>
                                 @endforeach
                             </select>
                         </div>

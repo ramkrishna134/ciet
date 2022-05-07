@@ -5,16 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Webinar extends Model
+class Initiative extends Model
 {
     use HasFactory;
+
     protected $fillable = [
-        'title',
-        'category',
-        'res_person',
-        'ppt',
-        'video',
-        'web_date',
+        'name',
+        'icon',
+        'description',
+        'web_link',
+        'play_store',
+        'apple_store',
+        'window_store',
         'user_id',
         'status',
         'lang'

@@ -11360,6 +11360,10 @@ body {
     max-width: 1400px;
   }
 }
+.container-fluid, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
+  width: 90%;
+}
+
 body {
   background-color: #fff;
 }
@@ -12892,6 +12896,7 @@ body a:hover {
   overflow: hidden;
   margin-bottom: 30px;
   transition: all 300ms;
+  height: 100%;
 }
 .ongoing-calender .event-item .image {
   height: 200px;
@@ -12918,6 +12923,7 @@ body a:hover {
 .ongoing-calender .event-item .description {
   padding: 25px;
   background-color: #fff;
+  height: 100%;
 }
 
 .upcoming-calender {
@@ -12928,6 +12934,7 @@ body a:hover {
   overflow: hidden;
   margin-bottom: 30px;
   transition: all 300ms;
+  height: 100%;
 }
 .upcoming-calender .event-item .image {
   height: 200px;
@@ -12955,6 +12962,7 @@ body a:hover {
   padding: 25px;
   background-color: #f8f9fa;
   border: 1px solid #ced4da;
+  height: 100%;
 }
 
 .past-calender {
@@ -12967,6 +12975,7 @@ body a:hover {
   overflow: hidden;
   margin-bottom: 30px;
   transition: all 300ms;
+  height: 100%;
 }
 .past-calender .event-item .image {
   height: 200px;
@@ -12993,11 +13002,93 @@ body a:hover {
 .past-calender .event-item .description {
   padding: 25px;
   background-color: #fff;
+  height: 100%;
 }
 .past-calender .event-item .description .link {
   color: #D46142;
   font-size: 1.1rem;
   font-weight: 600;
+}
+
+.pagination {
+  justify-content: center;
+}
+.pagination .page-item.active .page-link {
+  background-color: #D46142;
+  border-color: #D46142;
+}
+.pagination .page-item .page-link {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  margin: 0 2px;
+}
+
+.webinar-wrap .item {
+  padding: 40px 15px;
+  background-color: #fff;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  position: relative;
+  height: 100%;
+}
+.webinar-wrap .item .date {
+  position: absolute;
+  padding: 2px 10px;
+  top: 12px;
+  left: -8px;
+  font-size: 0.9rem;
+  background-color: #D46142;
+  font-family: "Open Sans", sans-serif;
+  color: #fff;
+  font-weight: 600;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.webinar-wrap .item .date::before {
+  content: "";
+  border-top: 8px solid transparent;
+  border-left: 8px solid transparent;
+  border-right: 8px solid #D46142;
+  left: -8px;
+  top: -8px;
+  position: absolute;
+}
+.webinar-wrap .item .title {
+  font-family: "Raleway", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.webinar-wrap .item .resourse {
+  font-size: 0.8rem;
+}
+.webinar-wrap .item .resourse hr {
+  margin: 2px 0;
+}
+.webinar-wrap .item .buttons {
+  position: absolute;
+  display: flex;
+  flex-grow: 1;
+  left: 0;
+  right: 0;
+  background-color: #ced4da;
+  bottom: 0;
+  justify-content: center;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.webinar-wrap .item .buttons a {
+  display: inline-block;
+  padding: 5px 20px;
+  width: 33%;
+  text-align: center;
+  transition: all 350ms;
+}
+.webinar-wrap .item .buttons a:hover {
+  background-color: #D46142;
+  color: #fff;
 }
 
 .project-hero {
@@ -13539,6 +13630,55 @@ body a:hover {
   border: 5px solid #fff;
   background-color: #fff;
   border-radius: 5px;
+}
+
+.general-page {
+  padding: 30px 0;
+  font-family: "Open Sans", sans-serif;
+  position: relative;
+}
+.general-page.dark-mode {
+  background-color: #20242A;
+  color: #fff;
+}
+.general-page .with-watermark {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30%;
+  z-index: -1;
+  right: -10%;
+}
+.general-page h2, .general-page .h2 {
+  font-family: "Raleway", sans-serif;
+  color: #D46142;
+  font-weight: 600;
+}
+.general-page h3, .general-page .h3 {
+  font-family: "Raleway", sans-serif;
+  color: #D46142;
+  font-weight: 600;
+}
+.general-page h4, .general-page .h4 {
+  font-family: "Raleway", sans-serif;
+  color: #D46142;
+  font-weight: 600;
+}
+.general-page .table {
+  border-radius: 10px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.general-page .table thead {
+  background-color: #94AD78;
+  color: #fff;
+}
+.general-page .table thead th {
+  border: 1px solid #94AD78;
+}
+.general-page .table tbody tr td {
+  border: 1px solid #adb5bd;
 }
 
 .archive-webiner .table {

@@ -11,13 +11,10 @@
 
 @section('content')
 
-<link rel="stylesheet" href="{{asset('vendor/laraberg/css/laraberg.css')}}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css"/>
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
+<script src="https://unpkg.com/react@16.8.6/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@16.8.6/umd/react-dom.production.min.js"></script>
 <script src="{{asset('vendor/laravel-filemanager/js/stand-alone-button.js')}}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
 
 <section class="hero-section">
     <div class="row">
@@ -64,12 +61,21 @@
                                 </span>
                                 @enderror
                             </div>
+
+                            <div class="mb-3">
+                                <label for="category" class="form-label">Category</label>
+                                <select name="category" id="category" class="form-control">
+                                    <option value="">-- Select Category --</option>
+                                    <option value="ict-tool">ICT Tools</option>
+                                    <option value="listen-learn">Listening to Learn Series</option>
+                                </select>
+                            </div>
                         </div>
 
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label for="Resource Person" class="form-label">Resource Person</label>
-                                <input type="text" class="form-control @error('res_person') is-invalid @enderror" name="res_person" id="res_person" placeholder="Resource Person" value="{{ $webinar->res_person ?? old('res_person') }}">
+                                <textarea style="height:120px;" type="text" class="form-control @error('res_person') is-invalid @enderror" name="res_person" id="res_person" placeholder="Resource Person">{{ $webinar->res_person ?? old('res_person') }}</textarea>
                                 @error('res_person')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -83,13 +89,13 @@
                                 <label for="presentation" class="form-label">Presentation PDF</label>
                                 <div class="input-group">
                                     <span class="input-group-btn">
-                                    <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+                                    <a id="lmf" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
                                         <i class="fas fa-file-image"></i> Choose
                                     </a>
                                     </span>
                                     <input id="thumbnail" class="form-control  @error('ppt') is-invalid @enderror" type="text" name="ppt" value="{{ $webinar->ppt ?? old('ppt') }}">
-                                    <div id="holder" style="margin-top:5px;width:100%;">
-                                    </div>
+                                    {{-- <div id="holder" style="margin-top:5px;width:100%;">
+                                    </div> --}}
                                 </div>
                                 @error('ppt')
                                 <span class="invalid-feedback" role="alert">
@@ -126,11 +132,15 @@
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label for="lang" class="form-label">Language</label>
-                                <select class="form-control @error('lang') is-invalid @enderror" name="lang" id="lang" value="{{ $webinar->lang ?? old('lang') }}">
-                                    <option value="">-- Select Language --</option>
+                                <select name="lang" id="lang" class="form-control">
+                                    @if(!empty($event))
+                                        <option value="en" @if($event->lang === 'en') selected @endif>English</option>
+                                        <option value="hi" @if($event->lang === 'hi') selected @endif>Hindi</option>           
+                                    @else
                                     <option value="en">English</option>
                                     <option value="hi">Hindi</option>
-                                    <option value="ur">Urdu</option>
+                                    @endif
+                                    
                                 </select>
                                 @error('lang')
                                 <span class="invalid-feedback" role="alert">
@@ -154,9 +164,35 @@
                                 </select>
                             </div>
                         </div>
+
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label for="status" class="form-label">Banner</label>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-btn">
+                                    <a id="image" data-input="thumbnail2" data-preview="holder2" class="btn btn-primary">
+                                        <i class="fas fa-file-image"></i> Choose Image
+                                    </a>
+                                    </span>
+                                    <input id="thumbnail2" class="form-control" type="text" name="image">
+                                </div>
+                                @error('image')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                    
+                                <div id="holder2" style="margin-top:5px;width:100%;">
+                                    <img class="img img-fluid mb-2" src="" alt="">
+                                </div>
+                                
+                            </div>
+                        </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">{{ $webinar ? "Update" : "Create" }}</button>
+                    <div class="button text-center">
+                        <button type="submit" class="btn btn-success btn-lg">{{ $webinar ? "Update" : "Create" }}</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -167,8 +203,8 @@
 
 <script>
     $(document).ready(function(){
-        $('#lfm').filemanager('file');
-        
+        $('#image').filemanager('image');
+        $('#lmf').filemanager('file');
     })
 
     

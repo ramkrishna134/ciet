@@ -1,15 +1,18 @@
 @extends('layouts.sidebar')
 
 @section('title')
-All Infrastructure
+All Initiative
 @endsection
 
 @section('content')
 
 <section class="hero-section">
     <div class="row">
+        {{-- <div class="col-sm-8">
+            <h3>All Pages</h3>
+        </div> --}}
         <div class="col-sm-4">
-            <a href="{{ route('webinar.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add New Webinar</a>
+            <a href="{{ route('initiative.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add New initiative</a>
         </div>
     </div>
 </section>
@@ -29,12 +32,9 @@ All Infrastructure
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Date</th>
-                            <th width="300px">Title</th>
-                            <th width="300px">Resource Person</th>
-                            <th>Category</th>
-                            {{-- <th>Resource Link</th>
-                            <th>Recorded Video</th> --}}
+                            <th>Title</th>
+                            <th>Icon</th>
+                            <th>Url</th>
                             <th>Author</th>
                             <th>Language</th>
                             <th>Status</th>
@@ -45,15 +45,12 @@ All Infrastructure
                     </thead>
         
                     <tbody>
-                        @foreach($webinars as $item)
+                        @foreach($initiatives as $item)
         
                         <tr>
-                            <td>{{ $item->web_date }}</td>
-                            <td>{{ $item->title }}</td>
-                            <td>{{ $item->res_person }}</td>
-                            <td>{{ $item->category }}</td>
-                            {{-- <td><a href="{{ $item->ppt }}" target="_blank">{{ $item->ppt }}</a></td>
-                            <td><a href="{{ $item->video }}" target="_blank">{{ $item->video }}</a></td> --}}
+                            <td>{{ $item->name }}</td>
+                            <td><a href="{{ $item->icon }}" target="_blank"><img class="img-fluid" width="100px" src="{{ $item->icon }}" alt=""></a></td>
+                            <td><a href="{{ $item->web_link }}" target="_blank">{{ $item->web_link }}</a></td>
                             <td>{{ $item->user->name }}</td>
                             <td>
                                 @if($item->lang === 'en')
@@ -71,7 +68,7 @@ All Infrastructure
                             </td>
                             <td>{{ $item->created_at->diffForHumans() }}</td>
                             <td>{{ $item->updated_at->diffForHumans() }}</td>
-                            <td><a href="{{ route('webinar.edit', $item) }}" class="btn btn-primary btn-sm">Edit</a> <a href="{{ route('webinar.destroy', $item) }}" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Delete</a></td>
+                            <td><a href="{{ route('initiative.edit', $item) }}" class="btn btn-primary btn-sm">Edit</a> <a href="{{ route('initiative.destroy', $item) }}" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Delete</a></td>
                         </tr>
         
                         @endforeach

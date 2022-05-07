@@ -102,11 +102,12 @@
                             <input id="thumbnail4" class="form-control d-none" type="text" name="gallery">
                         </div>
 
-                        <div id="holder4" class="gallery" style="margin-top:5px;max-height:120px;">
+                        <div id="holder4" class="gallery" style="margin-top:5px;max-height:auto;">
                             @if(!empty($department->gallery))
 
                             @php
                             $gallery = json_decode($department->gallery);
+                            // dd($gallery);
                             @endphp
                             @foreach($gallery as $item)
                             <img height="80px" width="80px" src="{{ $item }}" alt="">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Department;
+use App\Models\Faculty;
 use App\Models\Meta;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -113,9 +114,31 @@ class DepartmentController extends Controller
      * @param  \App\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function show(Department $department)
+    public function show(Department $department, $slug)
     {
         //
+        // dd('hello');
+        $lang = $_GET['lang'] ?? null;
+        if(!empty($lang)){
+            if($lang == 'en' OR $lang == 'hi'){
+                $department = Department::where('slug', $slug)->where('lang', $lang)->where('status', 1)->first();
+                $faculties = Faculty::orderBy('id', 'DESC')->where('department_id', $department->id)->where('lang', $lang)->where('status', 1)->get();
+                $metas = Meta::where('model_id', $department->id)->where('lang', $lang)->get();
+                
+            }else{
+                abort(404);
+            }
+        }else{
+            $department = Department::where('slug', $slug)->where('lang', 'en')->where('status', 1)->first();
+            $faculties = Faculty::orderBy('id', 'DESC')->where('department_id', $department->id)->where('lang', 'en')->where('status', 1)->get();
+            $metas = Meta::where('model_id', $department->id)->where('lang', 'en')->get();
+        }
+        
+        if(empty($department)){
+            return abort(404);
+        }else{
+            return view('web.department', compact('department', 'faculties', 'metas'));
+        }
     }
 
     /**
@@ -170,6 +193,8 @@ class DepartmentController extends Controller
                 if(!empty($data['gallery'])){
                     $gallery = explode(',', $data['gallery']);                
                     $department->gallery = $gallery;
+
+                    // dd(json_encode($data['gallery']));
                 }
                 $department->user_id = $user->id;              
                 $department->save();
@@ -222,5 +247,7 @@ class DepartmentController extends Controller
     public function destroy(Department $department)
     {
         //
+        $department->delete();
+        return back()->with('status',"Department Deleted successfully");
     }
 }

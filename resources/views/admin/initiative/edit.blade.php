@@ -1,12 +1,12 @@
 @php
-    $infrastructure = $infrastructure ?? null;
+    $initiative = $initiative ?? null;
 @endphp
 
 
 @extends('layouts.sidebar')
 
 @section('title')
-{{ $infrastructure ? "Edit Infrastructure" : "Add Infrastructure" }}
+{{ $initiative ? "Edit Initiative" : "Add Initiative" }}
 @endsection
 
 @section('content')
@@ -23,7 +23,7 @@
     <div class="row">
         <div class="col-sm-8">
             {{-- <h3>{{ $infrastructure ? "Edit Infrastructure" : "Add Infrastructure" }}</h3> --}}
-            <a href="{{ route('infrastructure.index') }}" class="btn btn-primary"><i class="fas fa-user-friends"></i> View Infrastructure</a>
+            <a href="{{ route('initiative.index') }}" class="btn btn-primary"><i class="fas fa-user-friends"></i> View Initiatives</a>
         </div>
         <div class="col-sm-4 text-end">
             {{-- <a href="{{ route('infrastructure.index') }}" class="btn btn-primary"><i class="fas fa-user-friends"></i> View Infrastructure</a> --}}
@@ -51,36 +51,39 @@
     <div class="col-sm-8">
         <div class="card border border-white rounded shadow">
             <div class="card-body">
-                <form action="{{ $infrastructure ? route('infrastructure.update', $infrastructure) : route('infrastructure.store') }}" method="post">
+                <form action="{{ $initiative ? route('initiative.update', $initiative) : route('initiative.store') }}" method="post">
                     @csrf
-                    @method( $infrastructure ? 'put' : 'post')
+                    @method( $initiative ? 'put' : 'post')
+
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-12">
                             <div class="mb-3">
-                                <label for="name" class="form-label">Title</label>
-                                <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title" placeholder="Title" value="{{ $infrastructure->title ?? old('title') }}">
-                                @error('title')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" name="name" id="name" class="form-control" placeholder="Name">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Description</label>
+                                <textarea name="description" id="description" class="form-control"></textarea>
                             </div>
                         </div>
 
                         <div class="col-sm-6">
                             <div class="mb-3">
-                                <label for="thumbnail" class="form-label">Featured Icon</label>
+                                <label for="thumbnail" class="form-label">Icon</label>
                                 <div class="input-group">
                                     <span class="input-group-btn">
                                     <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
                                         <i class="fas fa-file-image"></i> Choose
                                     </a>
                                     </span>
-                                    <input id="thumbnail" class="form-control  @error('icon') is-invalid @enderror" type="text" name="icon" value="{{ $infrastructure->icon ?? old('icon') }}">
+                                    <input id="thumbnail" class="form-control  @error('icon') is-invalid @enderror" type="text" name="icon" value="{{ $initiative->icon ?? old('icon') }}">
                                     <div id="holder" style="margin-top:5px;width:100%;">
-                                        {{-- @if(!empty($page->featured_icon))
-                                        <img src="{{ $page->featured_icon }}" alt="">
-                                        @endif --}}
+                                        @if(!empty($initiative->icon))
+                                        <img src="{{ $initiative->icon }}" alt="">
+                                        @endif
                                     </div>
                                 </div>
                                 @error('icon')
@@ -93,13 +96,27 @@
 
                         <div class="col-sm-6">
                             <div class="mb-3">
-                                <label for="password" class="form-label">Mapping URL</label>
-                                <input type="url" class="form-control @error('url') is-invalid @enderror" name="url" id="url" placeholder="Mapping URL" value="{{ $infrastructure->url ?? old('url') }}">
-                                @error('url')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
+                                <label for="web_link" class="form-label">Website</label>
+                                <input type="text" name="web_link" id="web_link" class="form-control" placeholder="Website">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="play_store" class="form-label">PlayStore Link</label>
+                                <input type="text" name="play_store" id="play_store" class="form-control" placeholder="Play Store">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label for="apple_store" class="form-label">Apple Store Link</label>
+                                <input type="text" name="apple_store" id="apple_store" class="form-control" placeholder="Apple Store Link">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label for="window_store" class="form-label">Window Store Link</label>
+                                <input type="text" name="window_store" id="window_store" class="form-control" placeholder="Window Store Link">
                             </div>
                         </div>
 
@@ -119,6 +136,8 @@
                                 @enderror
                             </div>
                         </div>
+
+
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label for="status" class="form-label">Status</label>
@@ -134,9 +153,11 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
 
-                    <button type="submit" class="btn btn-primary">{{ $infrastructure ? "Update" : "Create" }}</button>
+                    </div>
+                    
+
+                    <button type="submit" class="btn btn-primary">{{ $initiative ? "Update" : "Create" }}</button>
                 </form>
             </div>
         </div>

@@ -109,12 +109,6 @@ class PageController extends Controller
         }else{
             $page = Page::where('slug', $slug)->where('lang', 'en')->where('status', 1)->first();
         }
-
-        // if(!empty($local)){
-        //     $page = Page::where('slug', $slug)->where('lang', $local)->where('status', 1)->first();
-        // }else{
-        //     $page = Page::where('slug', $slug)->where('lang', 'en')->where('status', 1)->first();
-        // };
         
         if(empty($page)){
             return abort(404);

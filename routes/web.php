@@ -24,25 +24,18 @@ Route::get('/','App\Http\Controllers\HomeController@index')->name('home');
 Route::get('/contact','App\Http\Controllers\PageController@contact')->name('contact');
 Route::post('/contact','App\Http\Controllers\FeedbackController@store')->name('feedback');
 
-Route::get('/dict', function () {
-    return view('web.department');
-})->name('dict');
+// Route::get('/training-calender', function () {
+//     return view('web.training-calender');
+// })->name('training-calender');
 
-Route::get('/training-calender', function () {
-    return view('web.training-calender');
-})->name('training-calender');
 
-Route::get('/event-calender', function () {
-    return view('web.event-calender');
-})->name('event-calender');
+Route::get('/webinar', 'App\Http\Controllers\WebinarController@webinar')->name('webinar');
 
-Route::get('/initiatives', function () {
-    return view('web.initiative');
-})->name('initiative');
+Route::get('/calender', 'App\Http\Controllers\EventController@calender')->name('calender');
 
-Route::get('/webiners', function () {
-    return view('web.webiner');
-})->name('webiner');
+
+Route::get('/initiatives', 'App\Http\Controllers\InitiativeController@initiatives')->name('initiative');
+
 
 Route::get('/newsletter', function () {
     return view('web.newsletter');
@@ -59,23 +52,15 @@ Route::get('/people', function () {
     return view('web.people');
 })->name('people');
 
-Route::get('/announcement', function () {
-    return view('web.announcement');
-})->name('announcement');
+Route::get('/announcement','App\Http\Controllers\AnnouncementsController@announcement')->name('announcement');
+
+Route::get('/department/{slug}','App\Http\Controllers\DepartmentController@show')->name('department.show');
+
+Route::get('/activity/{slug}','App\Http\Controllers\EventController@show')->name('activity');
 
 Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Route::middleware(['auth','HasPermission'])->group(function () {
-
-//     // Route::get('/create',[CheckController::class, 'create']);
-//     Route::get('/create','App\Http\Controllers\CheckController@create');
-//     Route::get('/',[CheckController::class, 'index']);
-//     // Route::get('/home', [HomeController::class, 'index'])->name('home');
-//     Route::get('/home','App\Http\Controllers\HomeController@index');
-
-// });
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
@@ -84,7 +69,7 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
 Route::group(['prefix' => 'laraberg', 'middleware' => ['web', 'auth']], function() {
     Route::apiResource('blocks', 'VanOns\Laraberg\Http\Controllers\BlockController');
     Route::get('oembed', 'VanOns\Laraberg\Http\Controllers\OEmbedController');
-  });
+});
 
 
 // Admin Routes ====================================
@@ -138,6 +123,7 @@ Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () 
     Route::post('/department/create','App\Http\Controllers\DepartmentController@store')->name('department.store');
     Route::get('/department/{department}','App\Http\Controllers\DepartmentController@edit')->name('department.edit');
     Route::put('/department/{department}','App\Http\Controllers\DepartmentController@update')->name('department.update');
+    Route::get('/departments/{department}','App\Http\Controllers\DepartmentController@destroy')->name('department.delete');
 
     Route::get('/meta/{meta}','App\Http\Controllers\MetaController@destroy')->name('meta.delete');
 
@@ -165,6 +151,7 @@ Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () 
     Route::post('/faculty/create','App\Http\Controllers\FacultyController@store')->name('faculty.store');
     Route::get('/faculty/{faculty}','App\Http\Controllers\FacultyController@edit')->name('faculty.edit');
     Route::put('/faculty/{faculty}','App\Http\Controllers\FacultyController@update')->name('faculty.update');
+    Route::get('/faculties/{faculty}','App\Http\Controllers\FacultyController@destroy')->name('faculty.destroy');
 
     Route::get('/settings','App\Http\Controllers\SettingController@index')->name('setting.index');
     Route::post('/settings','App\Http\Controllers\SettingController@store')->name('setting.store');
@@ -212,6 +199,14 @@ Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () 
     Route::put('/webinar/{webinar}','App\Http\Controllers\WebinarController@update')->name('webinar.update');
     Route::get('/webinar/{webinar}','App\Http\Controllers\WebinarController@edit')->name('webinar.edit');
     Route::get('/webinars/{webinar}','App\Http\Controllers\WebinarController@destroy')->name('webinar.destroy');
+
+
+    Route::get('/initiatives', 'App\Http\Controllers\InitiativeController@index')->name('initiative.index');
+    Route::get('/initiative/create', 'App\Http\Controllers\InitiativeController@create')->name('initiative.create');
+    Route::post('/initiative/create','App\Http\Controllers\InitiativeController@store')->name('initiative.store');
+    Route::put('/initiative/{initiative}','App\Http\Controllers\InitiativeController@update')->name('initiative.update');
+    Route::get('/initiative/{initiative}','App\Http\Controllers\InitiativeController@edit')->name('initiative.edit');
+    Route::get('/initiatives/{initiative}','App\Http\Controllers\InitiativeController@destroy')->name('initiative.destroy');
 
 });
 

@@ -43,7 +43,7 @@ Faculty Members
                             <div class="number" data-number="{{ $item->number }}"><strong>Extn.</strong>{{ $item->number }}</div>
                             <div class="subject" data-subject="{{ $item->subject }}">{{ $item->subject }}</div>
                             <div class="category" data-category="{{ $item->category }}">{{ $item->category }}</div>
-                            <div class="department" data-department="{{ $item->department_id}}">{{ $item->department->title }}</div>
+                            <div class="department" data-department="{{ $item->department_id ?? ''}}">{{ $item->department->title ?? '' }}</div>
                             <div class="profile" data-profile="{{ $item->profile }}">
                                 <a href="{{ $item->profile }}" target="_blank">Bio <i class="fas fa-eye"></i></a>
                             </div>
@@ -63,7 +63,7 @@ Faculty Members
                             </div>
                             <div class="actions mt-2">
                                 <a href="" data-bs-toggle="modal" data-bs-target="#editFacultyItem" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
-                                <a href="" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>
+                                <a href="{{ route('faculty.destroy', $item) }}" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>
                             </div>
         
                         </div>

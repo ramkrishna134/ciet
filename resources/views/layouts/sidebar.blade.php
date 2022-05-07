@@ -60,12 +60,15 @@
                     <a class="menu-link {{ (request()->is('admin/events')) ? 'active' : '' }}" href="{{ route('event.index') }}"><i class="fas fa-calendar-day"></i> Events</a>
                 </li>
 
-                <li class="menu-item">
+                {{-- <li class="menu-item">
                     <a class="menu-link {{ (request()->is('admin/trainings')) ? 'active' : '' }}" href="{{ route('training.index') }}"><i class="fas fa-chalkboard"></i>Trainings</a>
-                </li>
+                </li> --}}
 
                 <li class="menu-item">
                     <a class="menu-link {{ (request()->is('admin/faculties')) ? 'active' : '' }}" href="{{ route('faculty.index') }}"><i class="fas fa-user-graduate"></i>Faculties</a>
+                </li>
+
+                <li class="menu-item">
                     <a class="menu-link {{ (request()->is('admin/infrastructures')) ? 'active' : '' }}" href="{{ route('infrastructure.index') }}"><i class="fas fa-photo-video"></i> Infrastructures</a>
                 </li>
 
@@ -74,8 +77,12 @@
                 </li>
 
                 <li class="menu-item">
-                    <a class="menu-link {{ (request()->is('admin/app')) ? 'active' : '' }}" href="{{ route('app.index') }}"><i class="fas fa-mobile-alt"></i> Mobile Apps</a>
+                    <a class="menu-link {{ (request()->is('admin/initiatives')) ? 'active' : '' }}" href="{{ route('initiative.index') }}"><i class="fas fa-asterisk"></i>Initiatives</a>
                 </li>
+
+                {{-- <li class="menu-item">
+                    <a class="menu-link {{ (request()->is('admin/app')) ? 'active' : '' }}" href="{{ route('app.index') }}"><i class="fas fa-mobile-alt"></i> Mobile Apps</a>
+                </li> --}}
 
                 <li class="menu-item">
                     <a class="menu-link {{ (request()->is('admin/webinar')) ? 'active' : '' }}" href="{{ route('webinar.index') }}"><i class="fas fa-warehouse"></i> Webinar</a>

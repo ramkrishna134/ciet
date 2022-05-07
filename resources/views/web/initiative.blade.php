@@ -32,24 +32,34 @@
                 <div class="col-sm-10">
 
                     
+                    @foreach($initiatives as $item)
+
 
                     <div class="row web-item align-items-center">
                         <div class="col-sm-3 image-wrap text-center">
                             <div class="image">
-                                <img class="img-fluid" src="/images/web/diksha.png" alt="DIKSHA">
+                                <img class="img-fluid" src="{{ $item->icon }}" alt="{{ $item->name }} Logo">
                             </div>
                         </div>
 
                         <div class="col-sm-9 details-wrap">
                             <div class="details">
-                                <div class="title">DIKSHA</div>
-                                <p>The National Council of Educational Research and Training (NCERT) is an autonomous organization set up in 1961 by the Government of India to assist and advise the Central and State Governments on policies and programmes for qualitative improvement in school education.</p>
+                                <div class="title">{{ $item->name }}</div>
+                                <p>{{ $item->description }}</p>
 
                                 <div class="icons">
-                                    <a href="" class="item bg-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Visit Website"><i class="fas fa-globe"></i></a>
-                                    <a href="" class="item bg-success" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Get it on Play Store"><i class="fab fa-google-play"></i></a>
-                                    <a href="" class="item bg-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Get it on Apple Store"><i class="fab fa-apple"></i></a>
-                                    <a href="" class="item bg-info" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Get it on Windows Store"><i class="fab fa-windows"></i></a>
+                                    <a href="{{ $item->web_link }}" class="item bg-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Visit Website" target="_blank"><i class="fas fa-globe"></i></a>
+                                    @if(!empty($item->play_store))
+                                    <a href="{{ $item->play_store }}" class="item bg-success" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Get it on Play Store" target="_blank"><i class="fab fa-google-play"></i></a>
+                                    @endif
+
+                                    @if(!empty($item->apple_store))
+                                    <a href="{{ $item->apple_store }}" class="item bg-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Get it on Apple Store" target="_blank"><i class="fab fa-apple"></i></a>
+                                    @endif
+
+                                    @if(!empty($item->window_store))
+                                    <a href="{{ $item->window_store }}" class="item bg-info" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Get it on Windows Store" target="_blank"><i class="fab fa-windows"></i></a>
+                                    @endif
 
                                    
                                 </div>
@@ -57,74 +67,10 @@
                         </div>
                     </div>
 
-                    <div class="row web-item align-items-center">
-                        <div class="col-sm-3 image-wrap text-center">
-                            <div class="image">
-                                <img class="img-fluid" src="/images/web/1-02.png" alt="NISTHA">
-                            </div>
-                        </div>
+                    @endforeach
 
-                        <div class="col-sm-9 details-wrap">
-                            <div class="details">
-                                <div class="title">NISHTHA</div>
-                                <p>The National Council of Educational Research and Training (NCERT) is an autonomous organization set up in 1961 by the Government of India to assist and advise the Central and State Governments on policies and programmes for qualitative improvement in school education.</p>
-
-                                <div class="icons">
-                                    <a href="" class="item bg-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Visit Website"><i class="fas fa-globe"></i></a>
-                                    <a href="" class="item bg-success" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Get it on Play Store"><i class="fab fa-google-play"></i></a>
-                                    <a href="" class="item bg-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Get it on Apple Store"><i class="fab fa-apple"></i></a>
-                                    <a href="" class="item bg-info" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Get it on Windows Store"><i class="fab fa-windows"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row web-item align-items-center">
-                        <div class="col-sm-3 image-wrap text-center">
-                            <div class="image">
-                                <img class="img-fluid" src="/images/web/1-04.png" alt="Pme">
-                            </div>
-                        </div>
-
-                        <div class="col-sm-9 details-wrap">
-                            <div class="details">
-                                <div class="title">PMeVidya</div>
-                                <p>The National Council of Educational Research and Training (NCERT) is an autonomous organization set up in 1961 by the Government of India to assist and advise the Central and State Governments on policies and programmes for qualitative improvement in school education.</p>
-
-                                <div class="icons">
-                                    <a href="" class="item bg-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Visit Website"><i class="fas fa-globe"></i></a>
-                                    {{-- <a href="" class="item bg-success" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Get it on Play Store"><i class="fab fa-google-play"></i></a>
-                                    <a href="" class="item bg-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Get it on Apple Store"><i class="fab fa-apple"></i></a>
-                                    <a href="" class="item bg-info" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Get it on Windows Store"><i class="fab fa-windows"></i></a> --}}
-
-                                   
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row web-item align-items-center">
-                        <div class="col-sm-3 image-wrap text-center">
-                            <div class="image">
-                                <img class="img-fluid" src="/images/web/1-06.png" alt="Pme">
-                            </div>
-                        </div>
-
-                        <div class="col-sm-9 details-wrap">
-                            <div class="details">
-                                <div class="title">ICT Curriculam</div>
-                                <p>The National Council of Educational Research and Training (NCERT) is an autonomous organization set up in 1961 by the Government of India to assist and advise the Central and State Governments on policies and programmes for qualitative improvement in school education.</p>
-
-                                <div class="icons">
-                                    <a href="" class="item bg-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Visit Website"><i class="fas fa-globe"></i></a>
-                                    {{-- <a href="" class="item bg-success" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Get it on Play Store"><i class="fab fa-google-play"></i></a>
-                                    <a href="" class="item bg-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Get it on Apple Store"><i class="fab fa-apple"></i></a>
-                                    <a href="" class="item bg-info" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Get it on Windows Store"><i class="fab fa-windows"></i></a> --}}
-
-                                   
-                                </div>
-                            </div>
-                        </div>
+                    <div class="pagination-wrap pb-4">
+                        {!! $initiatives->links() !!}
                     </div>
 
 

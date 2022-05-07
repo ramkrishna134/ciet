@@ -97,9 +97,26 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $event)
+    public function show(Event $event, $slug)
     {
         //
+        $lang = $_GET['lang'] ?? null;
+        if(!empty($lang)){
+            if($lang == 'en' OR $lang == 'hi'){
+                $event = Event::where('slug', $slug)->where('lang', $lang)->where('status', 1)->first();
+                
+            }else{
+                abort(404);
+            }
+        }else{
+            $event = Event::where('slug', $slug)->where('lang', 'en')->where('status', 1)->first();
+        }
+        
+        if(empty($event)){
+            return abort(404);
+        }else{
+            return view('web.event', compact('event'));
+        }
     }
 
     /**
@@ -179,5 +196,35 @@ class EventController extends Controller
     public function destroy(Event $event)
     {
         //
+    }
+
+
+    public function calender(){
+
+        $today = date('Y-m-d');
+        // dd($today);
+
+        $lang = $_GET['lang'] ?? null;
+        if(!empty($lang)){
+            if($lang == 'en' OR $lang == 'hi'){
+                $ongoings = Event::query()->whereDate('start_date', '<=', $today)->whereDate('end_date', '>=', $today)->where('lang', $lang)->where('status', 1)->paginate(3);
+
+                $upcomings = Event::query()->whereDate('start_date', '>', $today)->where('lang', $lang)->where('status', 1)->paginate(6);
+
+                $pasts = Event::query()->whereDate('end_date', '<', $today)->where('lang', $lang)->where('status', 1)->paginate(6);
+                
+            }else{
+                abort(404);
+            }
+        }else{
+            $ongoings = Event::query()->whereDate('start_date', '<=', $today)->whereDate('end_date', '>=', $today)->where('lang', 'en')->where('status', 1)->paginate(3);
+
+            $upcomings = Event::query()->whereDate('start_date', '>', $today)->where('lang', 'en')->where('status', 1)->paginate(6);
+
+            $pasts = Event::query()->whereDate('end_date', '<', $today)->where('lang', 'en')->where('status', 1)->paginate(6);
+        }
+
+        return view('web.calender', compact('ongoings', 'upcomings', 'pasts'));
+
     }
 }

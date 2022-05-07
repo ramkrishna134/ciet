@@ -5,7 +5,13 @@
     
     <section class="home-slider-wrap count-height">
         <div class="home-slider">
-            <a href="#" class="slide-item">
+            @foreach($sliders as $slide)
+            {{-- @dd($slide); --}}
+            <a href="{{ $slide->url }}" target="_blank" class="slide-item">
+                <img class="img-fluid" src="{{ $slide->image }}" alt="{{ $slide->alt }}">
+            </a>
+            @endforeach
+            {{-- <a href="#" class="slide-item">
                 <img class="img-fluid" src="/images/web/ncert-collage.png" alt="">
             </a>
             <a href="#" class="slide-item">
@@ -13,10 +19,10 @@
             </a>
             <a href="#" class="slide-item">
                 <img class="img-fluid" src="/images/web/BhashaSangambanner.jpg" alt="">
-            </a>
+            </a> --}}
         </div>
 
-        <a href="" class="play-button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#campusModal"><i class="fas fa-play ms-1"></i></a>
+        {{-- <a href="" class="play-button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#campusModal"><i class="fas fa-play ms-1"></i></a> --}}
     </section>
 
     {{-- About CIET --}}
@@ -33,7 +39,7 @@
                     either separately or in combinations, The institute undertakes activities to widen educational
                     opportunities, promote equity and improve quality of educational processes at school level.</p>
 
-                <a href="" class="btn btn-primary">Read More</a>
+                <a href="/about" class="btn btn-primary">Read More</a>
             </div>
         </div>
 
@@ -43,7 +49,7 @@
                     <img class="img-fluid" src="/images/web/jd-message.jpg" alt="JD CIET">
                 </div>
                 <div class="message">
-                    <h4 class="heading">FORM THE desk of joint director</h4>
+                    <h2 class="heading">FORM THE desk of joint director</h2>    
                     <p>"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam amet ad omnis debitis sunt velit
                         Totam amet ad omnis debitis"</p>
                 </div>
@@ -119,7 +125,7 @@
             <div class="row justify-content-center">
                 <div class="col-sm-10">
                     <div class="heading uppercase">
-                        Ongoing Events
+                        Ongoing Activites
                     </div>
         
                     <div class="ongoing-slider scroll-in-view">
@@ -164,7 +170,7 @@
                         </a>
                     </div>
         
-                    <a href="" class="btn btn-primary mt-4">View All Events</a>
+                    <a href="" class="btn btn-primary mt-4">View All Activity</a>
                 </div>
             </div>
             
@@ -190,24 +196,28 @@
                             <div class="col-lg-4 col-sm-6">
                                 <a href="" class="department-item primary">
                                     <div class="content scroll-in-view">
-                                        <div class="title">our <i class="fas fa-arrow-right"></i> <br> constituents</div>
+                                        <div class="title">our <i class="fas fa-arrow-right"></i> <br> departments</div>
                                     </div>
                                 </a>
                             </div>
-        
+
+                            @foreach($departments as $department)
                             <div class="col-lg-4 col-sm-6">
-                                <a href="" class="department-item">
+                                <a href="department/{{$department->slug}}" class="department-item">
                                     <div class="over-layer"></div>
                                     <div class="content scroll-in-view">
                                         <div class="image">
-                                            <img class="img-fluid" src="/images/web/dict.png" alt="DICT">
+                                            <img class="img-fluid" src="{{$department->icon}}" alt="{{ $department->title }} Icon">
                                         </div>
                                         <div class="title sm">
-                                            Department of ICT & Training
+                                            {{ $department->title }}
                                         </div>
                                     </div>
                                 </a>
                             </div>
+                            @endforeach
+        
+                            
         
                             <div class="col-lg-4 col-sm-6">
                                 <a href="" class="department-item">
@@ -318,8 +328,8 @@
                             <a href="" class="item">
                                 <div class="shape" style="background-image: url('/images/web/rhombas.png')"></div>
                                 <div class="content scroll-in-view">
-                                    <img class="img-fluid" src="/images/web/edusat_1.png" alt="">
-                                    <div class="title">satellite network</div>
+                                    <img class="img-fluid" src="/images/web/diksha.png" alt="">
+                                    <div class="title">Diksha CCC</div>
                                 </div>
                             </a>
                         </div>
@@ -334,29 +344,21 @@
 
                 <div class="bottom-element">
                     <div class="row justify-content-center">
-                        <div class="col-lg-2 col-sm-4 d-lg-block d-sm-none d-none">
+                        {{-- <div class="col-lg-2 col-sm-4 d-lg-block d-sm-none d-none">
 
-                        </div>
-
-                        <div class="col-lg-2 col-sm-4 col-6">
-                            <a href="" class="item">
-                                <div class="shape" style="background-image: url('/images/web/rhombas.png')"></div>
-                                <div class="content scroll-in-view">
-                                    <img class="img-fluid" src="/images/web/diksha.png" alt="">
-                                    <div class="title">Diksha CCC</div>
-                                </div>
-                            </a>
-                        </div>
+                        </div> --}}
 
                         <div class="col-lg-2 col-sm-4 col-6">
                             <a href="" class="item">
                                 <div class="shape" style="background-image: url('/images/web/rhombas.png')"></div>
                                 <div class="content scroll-in-view">
-                                    <img class="img-fluid" src="/images/web/edusat_1.png" alt="">
-                                    <div class="title">satellite network</div>
+                                    <img class="img-fluid" src="/images/web/transmission.png" alt="">
+                                    <div class="title"> Transmission</div>
                                 </div>
                             </a>
                         </div>
+
+                        
 
                         <div class="col-lg-2 col-sm-4 col-6">
                             <a href="" class="item">

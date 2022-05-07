@@ -48,7 +48,7 @@ class AnnouncementsController extends Controller
         $rules = [
             'title' => ['required', 'string'],
             'category' => ['required', 'string', 'max:255'],
-            'sub_category' => ['required', 'string', 'max:255'],
+            'sub_category' => ['nullable','string', 'max:255'],
             'url' => ['required', 'string'],
             'expiry_date' => ['required', 'date'],
             'lang' => ['required', 'string', 'max:255'],
@@ -116,7 +116,7 @@ class AnnouncementsController extends Controller
         $rules = [
             'title' => ['required', 'string'],
             'category' => ['required', 'string', 'max:255'],
-            'sub_category' => ['required', 'string', 'max:255'],
+            'sub_category' => ['nullable','string', 'max:255'],
             'url' => ['required', 'string'],
             'expiry_date' => ['required', 'date'],
             'lang' => ['required', 'string', 'max:255'],
@@ -155,5 +155,101 @@ class AnnouncementsController extends Controller
         //
         $announcement->delete();
         return redirect(route('announcements.index'))->with('status',"Announcement Deleted successfully");
+    }
+
+
+
+    public function announcement(){
+        $today = date('Y-m-d');
+
+        $lang = $_GET['lang'] ?? null;
+        if(!empty($lang)){
+            if($lang == 'en' OR $lang == 'hi'){
+
+                $vacancies = Announcements::orderBy('created_at', 'DESC')
+                ->where('category', 'vacancy')
+                ->whereDate('expiry_date', '>', $today)
+                ->where('lang', $lang)
+                ->where('status', 1)->get();
+
+                $notices = Announcements::orderBy('created_at', 'DESC')
+                ->where('category', 'notice')
+                ->whereDate('expiry_date', '>', $today)
+                ->where('lang', $lang)
+                ->where('status', 1)->get();
+
+                $mislens = Announcements::orderBy('created_at', 'DESC')
+                ->where('category', 'mislen')
+                ->whereDate('expiry_date', '>', $today)
+                ->where('lang', $lang)
+                ->where('status', 1)->get();
+
+                // Archives ================
+
+                $vacancyArchives = Announcements::orderBy('created_at', 'DESC')
+                ->where('category', 'vacancy')
+                ->whereDate('expiry_date', '<', $today)
+                ->where('lang', $lang)
+                ->where('status', 1)->get();
+
+                $noticeArchices = Announcements::orderBy('created_at', 'DESC')
+                ->where('category', 'notice')
+                ->whereDate('expiry_date', '<', $today)
+                ->where('lang', $lang)
+                ->where('status', 1)->get();
+
+                $mislenArchives = Announcements::orderBy('created_at', 'DESC')
+                ->where('category', 'mislen')
+                ->whereDate('expiry_date', '<', $today)
+                ->where('lang', $lang)
+                ->where('status', 1)->get();
+                
+                
+            }else{
+                abort(404);
+            }
+        }else{
+
+                $vacancies = Announcements::orderBy('created_at', 'DESC')
+                ->where('category', 'vacancy')
+                ->whereDate('expiry_date', '>', $today)
+                ->where('lang', 'en')
+                ->where('status', 1)->get();
+
+                $notices = Announcements::orderBy('created_at', 'DESC')
+                ->where('category', 'notice')
+                ->whereDate('expiry_date', '>', $today)
+                ->where('lang', 'en')
+                ->where('status', 1)->get();
+
+                $mislens = Announcements::orderBy('created_at', 'DESC')
+                ->where('category', 'mislen')
+                ->whereDate('expiry_date', '>', $today)
+                ->where('lang', 'en')
+                ->where('status', 1)->get();
+
+                // Archives ===================
+
+                $vacancyArchives = Announcements::orderBy('created_at', 'DESC')
+                ->where('category', 'vacancy')
+                ->whereDate('expiry_date', '<', $today)
+                ->where('lang', 'en')
+                ->where('status', 1)->get();
+
+                $noticeArchices = Announcements::orderBy('created_at', 'DESC')
+                ->where('category', 'notice')
+                ->whereDate('expiry_date', '<', $today)
+                ->where('lang', 'en')
+                ->where('status', 1)->get();
+
+                $mislenArchives = Announcements::orderBy('created_at', 'DESC')
+                ->where('category', 'mislen')
+                ->whereDate('expiry_date', '<', $today)
+                ->where('lang', 'en')
+                ->where('status', 1)->get();
+                
+        }
+
+        return view('web.announcement', compact('vacancies', 'notices', 'mislens', 'vacancyArchives', 'noticeArchices', 'mislenArchives'));
     }
 }

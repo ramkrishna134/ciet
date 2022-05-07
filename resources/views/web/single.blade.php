@@ -24,11 +24,11 @@
 </section>
 
 
-<div class="page-content" id="main-content">
+<div class="general-page" id="main-content">
     <div class="with-watermark">
         <img class="img-fluid" src="/images/web/logo-mark.png" alt="Watermark of CIET LOGO">
     </div>
-    <div class="container">
+    <div class="container ">
         <div class="row justify-content-center">
             <div class="col-sm-10">
                 {!! $page->content !!}

@@ -1,5 +1,4 @@
 // Fonts
-// @import url('https://fonts.googleapis.com/css?family=Nunito');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Raleway:wght@100;200;300;400;500;600;700&display=swap');
 
 // Bootstrap
@@ -173,6 +172,68 @@ body{
                 background-color: $white;
                 border-radius: 5px;
                 // border-color: $gray-500;
+            }
+        }
+    }
+}
+
+.general-page{
+    padding: 30px 0;
+    font-family: $font-family-base;
+    position: relative;
+
+    &.dark-mode{
+        background-color: $dark-mode;
+        color: $white;
+    }
+
+    .with-watermark{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 30%;
+        z-index: -1;
+        right: -10%;
+
+    }
+
+    h2{
+        font-family: $font-family-heading;
+        color: $primary;
+        font-weight: 600;
+    }
+
+    h3{
+        font-family: $font-family-heading;
+        color: $primary;
+        font-weight: 600;
+    }
+
+    h4{
+        font-family: $font-family-heading;
+        color: $primary;
+        font-weight: 600;
+    }
+
+    .table{
+        border-radius: 10px;
+        background-color: $gray-100;
+        border-radius: 10px;
+        overflow: hidden;
+
+        thead{
+            background-color: #94AD78;
+            color: $white;
+            th{
+                border: 1px solid #94AD78;
+            }
+        }
+
+        tbody{
+            tr{
+                td{
+                    border: 1px solid $gray-500;
+                }
             }
         }
     }

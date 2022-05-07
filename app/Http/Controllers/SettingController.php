@@ -39,48 +39,10 @@ class SettingController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        // $rules = [
-        //     'setting*' => 'nullable',
-            
-        // ];
-
-        // $validator = Validator::make($request->all(),$rules);
-        // if ($validator->fails()) {
-        //     dd($validator);
-        //     return back()
-        //         ->withInput()
-        //         ->withErrors($validator)->with('error',"Please check the field below *");
-                
-        // }
-        // else{
-        //     $data = $request->input();
-
-        //     // dd($data);
-        //     try{
-
-        //         $settings = $data['setting'];
-                
-        //         foreach($settings as $key => $value){
-
-        //             $item = new Setting;
-        //             $item->key = $key;
-        //             $item->value = $value;
-        //             $item->save();
-                     
-        //         }
-               
-        //         return redirect(route('setting.index'))->with('status',"Setting Updated successfully");
-
-        //     }
-        //     catch(Exception $e){  
-        //         return back()->with('failed',"Operation failed");
-        //     }
-        // }
 
         $setting = $request->input('setting');
         \setting( $setting );
-        return  back();
+        return  back()->with('status', 'Settings updated successfully');
 
     }
 

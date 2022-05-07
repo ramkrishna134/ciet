@@ -28,6 +28,12 @@
 <link rel="stylesheet" href="{{asset('vendor/laraberg/css/laraberg.css')}}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css"/>
 
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/codemirror.css">
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/theme/monokai.css">
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/codemirror.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/mode/xml/xml.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/2.36.0/formatting.js"></script>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react@16.8.6/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@16.8.6/umd/react-dom.production.min.js"></script>
@@ -276,7 +282,9 @@
             ],
             buttons: {
                 lfm: LFMButton
-            }
+            },
+            prettifyHtml: true,
+            codemirror: { theme: 'monokai', mode: 'text/html', htmlMode: true, lineNumbers: true },
         });
         
     })
