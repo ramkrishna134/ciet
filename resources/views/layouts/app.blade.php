@@ -67,6 +67,11 @@ foreach ($headerMenus as $item) {
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
     <link href="{{ asset('js/web/multi-level-dropdown/bootstrap5-dropdown-ml-hack-hover.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/web/app.css') }}" rel="stylesheet">
+
+    {{-- Custom Style added using back end --}}
+    <style>
+      {{ setting('custom_css') ?? '' }}
+    </style>
 </head>
 
 <body>

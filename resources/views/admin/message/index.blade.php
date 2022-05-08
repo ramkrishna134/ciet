@@ -55,7 +55,12 @@ Your Requests
                         </td>
                         <td>{{ $message->created_at->diffForHumans() }}</td>
                         <td>{{ $message->updated_at->diffForHumans() }}</td>
-                        <td><a href="{{ route('message.show', $message) }}" class="btn btn-primary btn btn-sm">View</a></td>
+                        <td>
+                            <a href="{{ route('message.show', $message) }}" class="btn btn-primary btn btn-sm">View</a>
+                            @if(Auth::user()->role === 'Admin')
+                            <a href="{{ route('message.destroy', $message) }}" class="btn btn-danger btn btn-sm">Delete</a>
+                            @endif
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

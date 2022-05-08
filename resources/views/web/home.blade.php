@@ -481,53 +481,15 @@
         <div class="container">
             <div class="partner-slider">
 
+                @foreach($partners as $pertner)
+
                 <div class="slide-item">
-                    <a href="" class="image">
-                        <img src="/images/web/data.png" alt="">
+                    <a href="{{ $pertner->link }}" class="image" target="_blank">
+                        <img src="{{ $pertner->logo }}" alt="{{ $pertner->name }} Logo">
                     </a>
                 </div>
 
-                <div class="slide-item">
-                    <a href="" class="image">
-                        <img src="/images/web/ncert.png" alt="">
-                    </a>
-                </div>
-
-                <div class="slide-item">
-                    <a href="" class="image">
-                        <img src="/images/web/akam.png" alt="">
-                    </a>
-                </div>
-
-                <div class="slide-item">
-                    <a href="" class="image">
-                        <img src="/images/web/moe.png" alt="">
-                    </a>
-                </div>
-
-                <div class="slide-item">
-                    <a href="" class="image">
-                        <img src="/images/web/dic.png" alt="">
-                    </a>
-                </div>
-
-                <div class="slide-item">
-                    <a href="" class="image">
-                        <img  src="/images/web/unesco.png" alt="">
-                    </a>
-                </div>
-
-                <div class="slide-item">
-                    <a href="" class="image">
-                        <img src="/images/web/dic.png" alt="">
-                    </a>
-                </div>
-
-                <div class="slide-item">
-                    <a href="" class="image">
-                        <img src="/images/web/akam.png" alt="">
-                    </a>
-                </div>
+                @endforeach
 
             </div>
         </div>

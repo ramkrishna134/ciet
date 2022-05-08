@@ -40,7 +40,7 @@ Dashboard
             <div class="row row align-items-center">
                 <div class="col-8">
                     <h2>5</h2>
-                    <h5 class="mb-0">Total Events</h5>
+                    <h5 class="mb-0">Total Activities</h5>
                     <small><a href=""><strong><i class="fas fa-eye"></i> View</strong></a></small>
                 </div>
                 <div class="col-4">
@@ -55,7 +55,7 @@ Dashboard
             <div class="row row align-items-center">
                 <div class="col-8">
                     <h2>5</h2>
-                    <h5 class="mb-0">Total Trainings</h5>
+                    <h5 class="mb-0">Total Webinars</h5>
                     <small><a href=""><strong><i class="fas fa-eye"></i> View</strong></a></small>
                 </div>
                 <div class="col-4">

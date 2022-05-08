@@ -93,6 +93,7 @@ Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () 
     Route::put('/user/{user}','App\Http\Controllers\UserController@update')->name('user.update');
     Route::post('/user/{user}','App\Http\Controllers\UserController@assignRole')->name('user.assign');
     Route::post('/create','App\Http\Controllers\UserController@store')->name('user.store');
+    Route::get('/users/{user}','App\Http\Controllers\UserController@destroy')->name('user.destroy');
 
 
 
@@ -161,6 +162,7 @@ Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () 
     Route::post('/message/create','App\Http\Controllers\MessageController@store')->name('message.store');
     Route::get('/message/{message}','App\Http\Controllers\MessageController@show')->name('message.show');
     Route::put('/message/{message}','App\Http\Controllers\MessageController@update')->name('message.update');
+    Route::get('/messages/{message}','App\Http\Controllers\MessageController@destroy')->name('message.destroy');
 
 
     Route::get('/slider','App\Http\Controllers\SliderController@index')->name('slider.index');
@@ -207,6 +209,18 @@ Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () 
     Route::put('/initiative/{initiative}','App\Http\Controllers\InitiativeController@update')->name('initiative.update');
     Route::get('/initiative/{initiative}','App\Http\Controllers\InitiativeController@edit')->name('initiative.edit');
     Route::get('/initiatives/{initiative}','App\Http\Controllers\InitiativeController@destroy')->name('initiative.destroy');
+
+
+    Route::get('/partners', 'App\Http\Controllers\PartnerController@index')->name('partner.index');
+    Route::get('/partner/create', 'App\Http\Controllers\PartnerController@create')->name('partner.create');
+    Route::post('/partner/create','App\Http\Controllers\PartnerController@store')->name('partner.store');
+    Route::put('/partner/{partner}','App\Http\Controllers\PartnerController@update')->name('partner.update');
+    Route::get('/partner/{partner}','App\Http\Controllers\PartnerController@edit')->name('partner.edit');
+    Route::get('/partners/{partner}','App\Http\Controllers\PartnerController@destroy')->name('partner.destroy');
+
+
+    Route::get('/feedback','App\Http\Controllers\FeedbackController@index')->name('feedback.index');
+    Route::get('/feedback/{feedback}','App\Http\Controllers\FeedbackController@show')->name('feedback.show');
 
 });
 

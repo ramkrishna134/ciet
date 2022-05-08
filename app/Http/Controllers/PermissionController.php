@@ -57,15 +57,26 @@ class PermissionController extends Controller
         }
     }
 
-    public function showRole(){
+    public function showRole(Request $request){
 
         $permissions = Permission::query()->get();
         $roles = Role::query()->get();
 
-        $permissions_roles = \DB::table('permission_role')->get();
+        $params = $this->validate($request, [
+            'role_id' => 'nullable',
+        ]);
+        $params['role_id'] = trim( $params['role_id'] ?? '' );
+
+        if( !empty( $params['role_id'] ) ){
+            $permissions_roles = \DB::table('permission_role')->where('role_id', $params['role_id'])->get();
+
+            // dd($permissions_roles);
+            
+        }else{
+            $permissions_roles = \DB::table('permission_role')->get();
+        }
 
         $role_permissions = [];
-
         foreach($permissions_roles as $item){
             $permission = Permission::query()->where('id', $item->permission_id)->first();
             $role = Role::query()->where('id', $item->role_id)->first();
@@ -76,7 +87,10 @@ class PermissionController extends Controller
             ]);
         }
 
-        return view('admin.role.attach', compact('role_permissions', 'permissions', 'roles'));
+
+        
+
+        return view('admin.role.attach', compact('role_permissions', 'permissions', 'roles', 'params'));
         
     }
 
@@ -104,5 +118,10 @@ class PermissionController extends Controller
                 return redirect(route('permission.showRole'))->with('failed',"Operation failed");
             }
         }
+    }
+
+
+    public function deattachRole(){
+        
     }
 }

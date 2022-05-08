@@ -48,7 +48,7 @@
                                       $endDate = new DateTime($ongoing->end_date);
                                     @endphp
                                     <div class="date">{{ $startDate->format('d F Y') }}  to {{ $endDate->format('d F Y') }}</div>
-                                    <a href="" class="title">{{ $ongoing->title }}</a>
+                                    <a href="/activity/{{ $ongoing->slug }}" class="title">{{ $ongoing->title }}</a>
                                     <div class="excerpt"><p>{{ Str::words($ongoing->description,20); }}</p></div>
 
                                     <a href="/activity/{{ $ongoing->slug }}" class="btn btn-outline-primary">Read More</a>
@@ -95,7 +95,7 @@
                                       $endDate = new DateTime($upcoming->end_date);
                                     @endphp
                                     <div class="date">{{ $startDate->format('d F Y') }}  to {{ $endDate->format('d F Y') }}</div>
-                                    <a href="" class="title">{{ $upcoming->title }}</a>
+                                    <a href="/activity/{{ $upcoming->slug }}" class="title">{{ $upcoming->title }}</a>
                                     <div class="excerpt"><p>{{ Str::words($upcoming->description,20); }}</p></div>
 
                                     <a href="/activity/{{ $upcoming->slug }}" class="btn btn-outline-primary">Read More</a>
@@ -144,7 +144,7 @@
                                       $endDate = new DateTime($past->end_date);
                                     @endphp
                                     <div class="date">{{ $startDate->format('d F Y') }}  to {{ $endDate->format('d F Y') }}</div>
-                                    <a href="" class="title">{{ $past->title }}</a>
+                                    <a href="/activity/{{ $past->slug }}" class="title">{{ $past->title }}</a>
                                     
 
                                     <a class="link" href="/activity/{{ $past->slug }}" class="">Read More</a>

@@ -62,7 +62,7 @@ Users
                                 <td>{{ $user->updated_at->diffForHumans() }}</td>
                                 <td>
                                     <a href="{{ route('user.show', $user) }}" class="btn btn-info btn-sm text-light"><i class="fas fa-edit"></i> Edit</a>
-                                    <a href="" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Delete</a>
+                                    <a href="{{ route('user.destroy', $user) }}" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Delete</a>
                                 </td>
                             </tr>
                             @endforeach

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Artical;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class ArticalController extends Controller
@@ -55,7 +55,7 @@ class ArticalController extends Controller
 
         $validator = Validator::make($request->all(),$rules);
         if ($validator->fails()) {
-            dd($validator);
+            // dd($validator);
             return back()
                 ->withInput()
                 ->withErrors($validator)->with('error',"Please check the field below *");     

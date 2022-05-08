@@ -1,7 +1,7 @@
 @extends('layouts.sidebar')
 
 @section('title')
-All Infrastructure
+All Webinars
 @endsection
 
 @section('content')

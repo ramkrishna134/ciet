@@ -18,6 +18,8 @@ class FeedbackController extends Controller
     public function index()
     {
         //
+        $feedbacks = Feedback::paginate(15);
+        return view('admin.feedback.index', compact('feedbacks'));
     }
 
     /**
@@ -80,6 +82,7 @@ class FeedbackController extends Controller
     public function show(Feedback $feedback)
     {
         //
+        return view('admin.feedback.show', compact('feedback'));
     }
 
     /**

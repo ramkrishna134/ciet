@@ -29,33 +29,64 @@ Permissions to Roles
     <div class="col-sm-8">
         <div class="card border border-white rounded">
             <div class="card-body shadow">
-            
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Permission</th>
-                                <th>Description</th>
-                                <th>Role</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
 
-                        <tbody>
-                            @foreach($role_permissions as $item)
-                            <tr>
-                                <td>{{ $item['permission'] }}</td>
-                                <td><small>{{ $item['description'] }}</small></td>
-                                <td><span class="badge bg-primary">{{ $item['role'] }}</span></td>
-                                <td>
-                                    {{-- <a href="{{ route('permission.edit', $permission) }}" class="btn btn-info btn-sm text-light"><i class="fas fa-edit"></i> Edit</a> --}}
-                                    <a href="" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Delete</a>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                <form action="{{ route('permission.showRole') }}">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <select name="role_id" id="role_id" class="form-control">
+                                <option value="">-- Select Role to Filter data--</option>
+
+                                @if(!empty($params['role_id']))
+                                    @foreach($roles as $role)
+                                    <option value="{{ $role->id }}" @if($params['role_id'] == $role->id) selected @endif>{{ $role->display_name }}</option>
+                                    @endforeach
+                                @else
+                                    @foreach($roles as $role)
+                                    <option value="{{ $role->id }}">{{ $role->display_name }}</option>
+                                    @endforeach
+                                @endif
+
+
+                                
+                            </select>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <button type="submit" class="btn btn-primary form-control">Filter</button>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Permission</th>
+                                    <th>Description</th>
+                                    <th>Role</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+    
+                            <tbody>
+                                @foreach($role_permissions as $item)
+                                <tr>
+                                    <td>{{ $item['permission'] }}</td>
+                                    <td><small>{{ $item['description'] }}</small></td>
+                                    <td><span class="badge bg-primary">{{ $item['role'] }}</span></td>
+                                    <td>
+                                        <a href="" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Delete</a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
+
+
+                </form>
+            
+                
 
             </div>
         </div>

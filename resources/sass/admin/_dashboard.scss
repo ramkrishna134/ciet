@@ -1,3 +1,18 @@
+.admin-nav{
+    background-color: #242835;
+    position: relative;
+
+    h4{
+        position: absolute;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        padding: 10px;
+        bottom: 0;
+        background-color: $light;
+    }
+}
+
+
 .sidebar{
     position: fixed;
     width: 210px;
@@ -5,8 +20,16 @@
     bottom: 0;
     left: 0;
     // background-color: #1D2327;
-    background-color: $white;
-    border-right: 1px solid #80808059;
+    background-color: #242933;
+    border-right: 1px solid #242933;
+    padding: 0 10px;
+    overflow: auto;
+
+    small{
+        font-size: 0.7em;
+        position: relative;
+        top: -6px;
+    }
     
 
     .logo{
@@ -30,14 +53,15 @@
         margin: 0;
         padding: 0;
         list-style: none;
-        padding-left: 10px;
-        padding-right: 10px;
+        padding: 20px 5px;
+        border-radius: 5px;
+        background-color: #20222a;
 
         .menu-item{
             margin-bottom: 10px;
 
             .menu-link{
-                color: #7e8388;
+                color: #bcbec2;
                 padding: 5px 10px;
                 font-weight: 600;
                 width: 100%;
@@ -51,12 +75,12 @@
                 }
 
                 &:hover{
-                    background-color: #242835;
+                    background-color: rgba(85,88,94,0.25);
                     color: $white;
                 }
 
                 &.active{
-                    background-color: $black;
+                    background-color: #D46142;
                     color: $white;
                 }
             }
@@ -84,12 +108,12 @@
                 margin-bottom: 5px;
 
                 &:hover{
-                    background-color: #242835;
+                    background-color: rgba(85,88,94,0.25);
                     color: $white;
                 }
 
                 &.active{
-                    background-color: $black;
+                    background-color: #D46142;
                     color: $white;
                 }
             }
@@ -211,3 +235,36 @@
         }
     }
 }
+
+.page-content{
+    .CodeMirror{
+        height: 500px;
+    }
+
+    .alert{
+        position: absolute;
+        top: 10px;
+        z-index: 9999;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: $primary;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }

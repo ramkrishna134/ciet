@@ -15,6 +15,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Login | Admin CIET</title>
+    
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 
     <!-- Scripts -->
@@ -30,17 +31,21 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
-    <link rel="stylesheet" href="{{asset('vendor/laraberg/css/laraberg.css')}}">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
 
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-6 mt-5">
+
+                <div class="logo2 mb-3 text-center mt-3 d-flex align-items-center justify-content-center">
+                    <img class="img-fluid me-1" width="70" src="/images/ciet-logo-black.png" alt="CIET Logo">
+                    <h4 class=" mb-0 mt-2 text-start">CIET <br> <small>Control Panel 2.0</small></h4>
+                </div>
                 
                 <div class="card">
-                    <div class="card-header">{{ __('Login') }}</div>
+                    <div class="card-header text-center"><h1 class="h4">{{ __('Login') }}</h1></div>
     
                     <div class="card-body">
                         <form method="POST" action="{{ route('login') }}">
@@ -49,7 +54,7 @@
                             <div class="row mb-3">
                                 <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
     
-                                <div class="col-md-6">
+                                <div class="col-md-7">
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
     
                                     @error('email')
@@ -63,7 +68,7 @@
                             <div class="row mb-3">
                                 <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
     
-                                <div class="col-md-6">
+                                <div class="col-md-7">
                                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
     
                                     @error('password')
@@ -110,6 +115,10 @@
                                 </div>
                             </div>
                         </form>
+                    </div>
+
+                    <div class="card-footer text-center">
+                        <small>If you don't have Username & Password, please contact your Administrator.</small>
                     </div>
                 </div>
             </div>

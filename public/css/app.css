@@ -11286,14 +11286,34 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.admin-nav {
+  background-color: #242835;
+  position: relative;
+}
+.admin-nav h4, .admin-nav .h4 {
+  position: absolute;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding: 10px;
+  bottom: 0;
+  background-color: #f8f9fa;
+}
+
 .sidebar {
   position: fixed;
   width: 210px;
   top: 0;
   bottom: 0;
   left: 0;
-  background-color: #fff;
-  border-right: 1px solid #80808059;
+  background-color: #242933;
+  border-right: 1px solid #242933;
+  padding: 0 10px;
+  overflow: auto;
+}
+.sidebar small, .sidebar .small {
+  font-size: 0.7em;
+  position: relative;
+  top: -6px;
 }
 .sidebar .logo {
   margin-bottom: 20px;
@@ -11314,14 +11334,15 @@ textarea.form-control-lg {
   margin: 0;
   padding: 0;
   list-style: none;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 20px 5px;
+  border-radius: 5px;
+  background-color: #20222a;
 }
 .sidebar .menu .menu-item {
   margin-bottom: 10px;
 }
 .sidebar .menu .menu-item .menu-link {
-  color: #7e8388;
+  color: #bcbec2;
   padding: 5px 10px;
   font-weight: 600;
   width: 100%;
@@ -11334,11 +11355,11 @@ textarea.form-control-lg {
   margin-right: 10px;
 }
 .sidebar .menu .menu-item .menu-link:hover {
-  background-color: #242835;
+  background-color: rgba(85, 88, 94, 0.25);
   color: #fff;
 }
 .sidebar .menu .menu-item .menu-link.active {
-  background-color: #000;
+  background-color: #D46142;
   color: #fff;
 }
 .sidebar .menu .dropdown-menu {
@@ -11363,11 +11384,11 @@ textarea.form-control-lg {
   margin-bottom: 5px;
 }
 .sidebar .menu .dropdown-menu .dropdown-item:hover {
-  background-color: #242835;
+  background-color: rgba(85, 88, 94, 0.25);
   color: #fff;
 }
 .sidebar .menu .dropdown-menu .dropdown-item.active {
-  background-color: #000;
+  background-color: #D46142;
   color: #fff;
 }
 
@@ -11448,6 +11469,36 @@ textarea.form-control-lg {
 .main .account-menu .dropdown-menu {
   min-width: 15rem;
   padding: 10px;
+}
+
+.page-content .CodeMirror {
+  height: 500px;
+}
+.page-content .alert {
+  position: absolute;
+  top: 10px;
+  z-index: 9999;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #0d6efd;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 a {

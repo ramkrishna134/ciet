@@ -41,6 +41,8 @@ View Request
 
                 {!! $message->message !!}
 
+                @if(Auth::user()->role === 'Admin')
+
                 @if($message->status == 0)
                 <form action="{{ route('message.update', $message) }}" class="d-inline-block" method="POST">
                     @csrf
@@ -57,14 +59,6 @@ View Request
                 </form>
                 @endif
 
-                {{-- @if($message->status == 1)
-                <form action="{{ route('message.update', $message) }}" class="d-inline-block" method="POST">
-                    @csrf
-                    @method('put')
-                    <input type="hidden" name="status" value="2">
-                    <button type="submit" class="btn btn-danger">Decline</button>
-                </form>
-                @endif --}}
 
                 @if($message->status == 2)
                 <form action="{{ route('message.update', $message) }}" class="d-inline-block" method="POST">
@@ -73,6 +67,8 @@ View Request
                     <input type="hidden" name="status" value="1">
                     <button type="submit" class="btn btn-success me-2">Accept</button>
                 </form>
+                @endif
+
                 @endif
             </div>
         </div>

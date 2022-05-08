@@ -124,29 +124,9 @@ class UserController extends Controller
 
     }
 
-    // public function updateRole(Request $request, User $user){
-
-    //     $user_id = $user->id;
-
-    //     $data = $this->validate( $request, [
-    //         'role_id' => 'required',
-    //     ]);
-
-    //     \DB::update('update role_user set role_id = ? where user_id = ?', [$data['role_id'], $user_id]);
-    //     // \DB::insert('update into role_user (role_id, user_id, user_type) values (?, ?, ?)', [$data['role_id'], $user_id, 'App\Models\User']);
-
-    //     $role = \DB::table('roles')->where('id', $data['role_id'])->first();
-
-    //     $user->fill([
-    //         'role' => $role->display_name,
-    //     ]);
-
-    //     $user->saveOrFail();
-    //     // dd($role);
-        
-
-    //     return back()->with('status'," User updated successfully");
-
-    // }
+    public function destroy(User $user){
+        $user->delete();
+        return back()->with('status',"User Deleted successfully");
+    }
 
 }

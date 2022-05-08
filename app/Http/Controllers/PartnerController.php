@@ -4,12 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Models\Message;
-use App\Mail\MessageMail;
-use App\Mail\MessageStatusUpdate;
-use Illuminate\Support\Facades\Mail;
+use App\Models\Partner;
 
-class MessageController extends Controller
+class PartnerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,9 +16,8 @@ class MessageController extends Controller
     public function index()
     {
         //
-        $user = auth()->user();
-        $messages = Message::query()->where('user_id', $user->id)->orWhere('assign_to', 1)->get();
-        return view('admin.message.index', compact('messages'));
+        $partners = Partner::paginate(15);
+        return view('admin.partner.index', compact('partners'));
     }
 
     /**
@@ -32,14 +28,13 @@ class MessageController extends Controller
     public function create()
     {
         //
-
-        return view('admin.message.edit');
+        return view('admin.partner.edit');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreMessageRequest  $request
+     * @param  \App\Http\Requests\StorePartnerRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -48,12 +43,16 @@ class MessageController extends Controller
 
         $user = auth()->user();
         $rules = [
-            'title' =>'required',
-            'message' =>'required',           
+            'name' =>'required',
+            'logo' =>'required',
+            'link' =>'nullable',
+            'lang' =>'required',
+            'status' =>'required',     
         ];
 
         $validator = Validator::make($request->all(),$rules);
         if ($validator->fails()) {
+            // dd($validator);
             return back()
                 ->withInput()
                 ->withErrors($validator)->with('error',"Please check the field below *");     
@@ -61,70 +60,66 @@ class MessageController extends Controller
         else{
             $data = $request->input();
             try{
-                $message = new Message($data);
-                $message->user_id = $user->id;
-                $message->assign_to = 1;
-                $message->status = 0;
-                $message->save();
-
-                Mail::to('admin@ciet.nic.in')
-                ->cc('ramkrishna.ncert@gmail.com')
-                ->send(new MessageMail($message));
-
-                return redirect(route('message.index'))->with('status',"Your Request has been submitted successfully");
-                
-
-                
+                $partner = new Partner($data);
+                $partner->user_id = $user->id; 
+                $partner->save();
+                return redirect(route('partner.index'))->with('status',"Partner added successfully");
 
             }
             catch(Exception $e){  
                 return back()->with('failed',"Operation failed");
             }
         }
-
-        
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Message  $message
+     * @param  \App\Models\Partner  $partner
      * @return \Illuminate\Http\Response
      */
-    public function show(Message $message)
+    public function show(Partner $partner)
     {
-        // 
-        return view('admin.message.show', compact('message'));
+        //
+    
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Message  $message
+     * @param  \App\Models\Partner  $partner
      * @return \Illuminate\Http\Response
      */
-    public function edit(Message $message)
+    public function edit(Partner $partner)
     {
         //
+        return view('admin.partner.edit', compact('partner'));
+
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateMessageRequest  $request
-     * @param  \App\Models\Message  $message
+     * @param  \App\Http\Requests\UpdatePartnerRequest  $request
+     * @param  \App\Models\Partner  $partner
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Message $message)
+    public function update(Request $request, Partner $partner)
     {
         //
 
+        $user = auth()->user();
         $rules = [
-            'status' =>'required',      
+            'name' =>'required',
+            'logo' =>'required',
+            'link' =>'nullable',
+            'lang' =>'required',
+            'status' =>'required',    
         ];
 
         $validator = Validator::make($request->all(),$rules);
         if ($validator->fails()) {
+            dd($validator);
             return back()
                 ->withInput()
                 ->withErrors($validator)->with('error',"Please check the field below *");     
@@ -132,36 +127,29 @@ class MessageController extends Controller
         else{
             $data = $request->input();
             try{
-                $message->fill($data);
-                $message->save();
-
-                Mail::to($message->user->email)
-                ->cc('ramkrishna.ncert@gmail.com')
-                ->send(new MessageStatusUpdate($message));
-
-                return back()->with('status',"Request updated successfully");
-                
-
-                
+                $partner->fill($data);
+                $partner->user_id = $user->id; 
+                $partner->save();
+                return back()->with('status',"Partner data updated successfully");
 
             }
-            catch(Exception $e){  
+            catch(Exception $e){
                 return back()->with('failed',"Operation failed");
             }
         }
-
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Message  $message
+     * @param  \App\Models\Partner  $partner
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Message $message)
+    public function destroy(Partner $partner)
     {
         //
-        $message->delete();
-        return back()->with('status',"Request Deleted successfully");
+
+        $partner->delete();
+        return back()->with('status',"Partner Deleted successfully");
     }
 }
