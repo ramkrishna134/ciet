@@ -62,6 +62,8 @@ class PartnerController extends Controller
             try{
                 $partner = new Partner($data);
                 $partner->user_id = $user->id; 
+                $logo = $data['logo'];
+                $partner->logo = parse_url($logo, PHP_URL_PATH);
                 $partner->save();
                 return redirect(route('partner.index'))->with('status',"Partner added successfully");
 
@@ -128,6 +130,8 @@ class PartnerController extends Controller
             $data = $request->input();
             try{
                 $partner->fill($data);
+                $logo = $data['logo'];
+                $partner->logo = parse_url($logo, PHP_URL_PATH);
                 $partner->user_id = $user->id; 
                 $partner->save();
                 return back()->with('status',"Partner data updated successfully");

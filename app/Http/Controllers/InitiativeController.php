@@ -63,6 +63,8 @@ class InitiativeController extends Controller
 
             try{
                 $initiative = new initiative($data);
+                $imageurl = $data ['icon'];
+                $initiative->icon = parse_url($imageurl, PHP_URL_PATH);
                 $initiative->user_id = $user->id;
                 $initiative->save();
                 return redirect(route('initiative.index'))->with('status',"New initiative created successfully");
@@ -107,6 +109,42 @@ class InitiativeController extends Controller
     public function update(Request $request, Initiative $initiative)
     {
         //
+
+        $user = auth()->user();
+        $rules = [
+            'name' => ['required', 'string'],
+            'icon' => ['required', 'string', 'max:255'],
+            'web_link' => ['required', 'string'],
+            'play_store' => ['nullable', 'string'],
+            'apple_store' => ['nullable', 'string'],
+            'window_store' => ['nullable', 'string'],
+            'lang' => ['required', 'string', 'max:255'],
+            'status' => 'required'
+        ];
+
+        $validator = Validator::make($request->all(),$rules);
+        if ($validator->fails()) {
+            // dd($validator);
+            return back()
+                ->withInput()
+                ->withErrors($validator)->with('error',"Please check the field below *");
+                
+        }else{
+            $data = $request->input();
+
+            try{
+                $initiative->fill($data);
+                $imageurl = $data ['icon'];
+                $initiative->icon = parse_url($imageurl, PHP_URL_PATH);
+                $initiative->user_id = $user->id;
+                $initiative->save();
+                return back()->with('status',"Initiative updated successfully");
+
+            }
+            catch(Exception $e){  
+                return redirect(route('initiative.create'))->with('failed',"Operation failed");
+            }
+        }
     }
 
     /**

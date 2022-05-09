@@ -19,7 +19,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/','App\Http\Controllers\HomeController@index')->name('home');
+// Web Routes ==============================
+
+Route::middleware(['visitor'])->group(function () {
+    Route::get('/','App\Http\Controllers\HomeController@index')->name('home');
+});
+
+
+Route::get('/{slug}','App\Http\Controllers\PageController@show')->name('page.show');
+
+
+
+// Route::get('/demo', function () {
+//     return view('admin.faculty.demo');
+// });
+
+
+// Web Search route =========================================
+
+Route::post('/search', 'App\Http\Controllers\PageController@search')->name('search');
+
+
 
 Route::get('/contact','App\Http\Controllers\PageController@contact')->name('contact');
 Route::post('/contact','App\Http\Controllers\FeedbackController@store')->name('feedback');
@@ -223,22 +243,3 @@ Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () 
     Route::get('/feedback/{feedback}','App\Http\Controllers\FeedbackController@show')->name('feedback.show');
 
 });
-
-
-// Web Routes ==============================
-
-Route::get('/{slug}','App\Http\Controllers\PageController@show')->name('page.show');
-
-
-
-// Route::get('/demo', function () {
-//     return view('admin.faculty.demo');
-// });
-
-
-// Web Search route =========================================
-
-Route::post('/search', 'App\Http\Controllers\PageController@search')->name('search');
-
-
-

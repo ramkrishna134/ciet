@@ -64,6 +64,8 @@ class ArticalController extends Controller
             $data = $request->input();
             try{
                 $artical = new Artical($data);
+                $icon = $data['icon'];
+                $artical->icon = parse_url($icon, PHP_URL_PATH);
                 $artical->user_id = $user->id; 
                 $artical->save();
                 return redirect(route('artical.index'))->with('status',"Artical added successfully");
@@ -132,6 +134,8 @@ class ArticalController extends Controller
             $data = $request->input();
             try{
                 $artical->fill($data);
+                $icon = $data['icon'];
+                $artical->icon = parse_url($icon, PHP_URL_PATH);
                 $artical->user_id = $user->id; 
                 $artical->save();
                 return back()->with('status',"Artical updated successfully");

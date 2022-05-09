@@ -14,6 +14,8 @@ Media Manager
 
 <hr> --}}
 
+
+<p class="text-dark"><i class="fas fa-exclamation-triangle text-warning me-1"></i>Please Note that maximum File Size is 50MB.</p>
 <div class="card border-white rounded">
     <div class="card-body shadow">
 

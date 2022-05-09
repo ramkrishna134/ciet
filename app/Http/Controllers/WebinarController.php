@@ -65,6 +65,8 @@ class WebinarController extends Controller
             // dd($data);
             try{
                 $webinar = new Webinar($data);
+                $ppt = $data ['ppt'];
+                $webinar->ppt = parse_url($ppt, PHP_URL_PATH);
                 $webinar->user_id = $user->id;
                 $webinar->save();
                 return redirect(route('webinar.index'))->with('status',"New Webinar created successfully");
@@ -131,8 +133,9 @@ class WebinarController extends Controller
                 $data = $request->input();
                 // dd($data);
                 try{
-                    //$infrastructure->fill($data);
                     $webinar->fill($data);
+                    $ppt = $data ['ppt'];
+                    $webinar->ppt = parse_url($ppt, PHP_URL_PATH);
                     $webinar->user_id = $user->id;
                     $webinar->save();
                     return redirect(route('webinar.index'))->with('status',"infrastructure updated successfully");

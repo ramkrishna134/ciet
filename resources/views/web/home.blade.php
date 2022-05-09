@@ -66,47 +66,18 @@
                     <div class="heading uppercase">
                         Digital education initiatives
                     </div>
-        
+
                     <div class="digital-slider scroll-in-view">
-        
-                        <a href="#" class="slide-item">
+
+                        @foreach($initiatives as $item)
+                        <a href="{{ $item->link }}" class="slide-item">
                             <div class="image">
-                                <img class="img-fluid" src="/images/web/1-02.png" alt="">
+                                <img class="img-fluid" src="{{ $item->icon }}" alt="{{ $item->name }} Logo">
                             </div>
-                            <div class="title">NISHTHA</div>
+                            <div class="title">{{ $item->name }}</div>
                         </a>
-                        <a href="#" class="slide-item">
-                            <div class="image">
-                                <img class="img-fluid" src="/images/web/1-03.png" alt="">
-                            </div>
-                            <div class="title">ePathshala</div>
-                        </a>
-                        <a href="#" class="slide-item">
-                            <div class="image">
-                                <img class="img-fluid" src="/images/web/1-04.png" alt="">
-                            </div>
-                            <div class="title">PMeVidya</div>
-                        </a>
-        
-                        <a href="#" class="slide-item">
-                            <div class="image">
-                                <img class="img-fluid" src="/images/web/1-06.png" alt="">
-                            </div>
-                            <div class="title">ICT@Schools</div>
-                        </a>
-        
-                        <a href="#" class="slide-item">
-                            <div class="image">
-                                <img class="img-fluid" src="/images/web/1-24.png" alt="">
-                            </div>
-                            <div class="title">ICT Curriculam</div>
-                        </a>
-                        <a href="#" class="slide-item">
-                            <div class="image">
-                                <img class="img-fluid" src="/images/web/ncf.png" alt="">
-                            </div>
-                            <div class="title">NCF Tech Platform</div>
-                        </a>
+                        @endforeach
+                        
                     </div>
         
                     <a href="{{ route('initiative') }}" class="btn btn-primary mt-3">View More</a>

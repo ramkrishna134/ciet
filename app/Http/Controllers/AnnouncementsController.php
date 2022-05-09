@@ -66,10 +66,11 @@ class AnnouncementsController extends Controller
             // dd($data);
             try{
                 $announcement = new Announcements($data);
+                $url = $data ['url'];
+                $announcement->url = parse_url($url, PHP_URL_PATH);
                 $announcement->user_id = $user->id;
                 $announcement->save();
-               // return back()->with('status',"New infrastructure created successfully");
-                return redirect(route('announcements.index'))->with('status',"New infrastructure created successfully");
+                return redirect(route('announcements.index'))->with('status',"New Announcement created successfully");
 
             }
             catch(Exception $e){  
@@ -133,9 +134,11 @@ class AnnouncementsController extends Controller
                 try{
                     //$infrastructure->fill($data);
                     $announcement->fill($data);
+                    $url = $data ['url'];
+                    $announcement->url = parse_url($url, PHP_URL_PATH);
                     $announcement->user_id = $user->id;
                     $announcement->save();
-                    return redirect(route('announcements.index'))->with('status',"announcement updated successfully");
+                    return redirect(route('announcements.index'))->with('status',"Announcement updated successfully");
     
                 }
                 catch(Exception $e){  

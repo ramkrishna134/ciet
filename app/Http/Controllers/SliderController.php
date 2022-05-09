@@ -65,6 +65,8 @@ class SliderController extends Controller
             try{
                 $slide = new Slider($data);
                 $slide->user_id = $user->id;
+                $image = $data['image'];
+                $slide->image = parse_url($image, PHP_URL_PATH);
                 $slide->save();
                 return back()->with('status',"Slider Added successfully");
 
@@ -132,6 +134,8 @@ class SliderController extends Controller
             // dd($data);
             try{
                 $slider->fill($data);
+                $image = $data['image'];
+                $slider->image = parse_url($image, PHP_URL_PATH);
                 $slider->save();
                 return back()->with('status',"Slider Updateed successfully");
 

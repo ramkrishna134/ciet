@@ -59,14 +59,14 @@
                         <div class="col-sm-12">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
-                                <input type="text" name="name" id="name" class="form-control" placeholder="Name">
+                                <input type="text" name="name" id="name" class="form-control" placeholder="Name" value="{{ $initiative->name ?? '' }}">
                             </div>
                         </div>
 
                         <div class="col-sm-12">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Description</label>
-                                <textarea name="description" id="description" class="form-control"></textarea>
+                                <textarea name="description" id="description" class="form-control">{{ $initiative->description ?? '' }}</textarea>
                             </div>
                         </div>
 
@@ -97,7 +97,7 @@
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label for="web_link" class="form-label">Website</label>
-                                <input type="text" name="web_link" id="web_link" class="form-control" placeholder="Website">
+                                <input type="text" name="web_link" id="web_link" class="form-control" placeholder="Website" value="{{ $initiative->web_link ?? '' }}">
                             </div>
 
                             <div class="mb-3">

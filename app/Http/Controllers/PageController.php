@@ -59,7 +59,7 @@ class PageController extends Controller
             'description' => 'required',
             'lang' => 'required',
             'filepath' => 'nullable',
-            'key_word' => 'nullable',
+            'key_word' => 'required',
             'status' => 'required',
         ];
 
@@ -78,7 +78,8 @@ class PageController extends Controller
                     $page->slug = Str::slug( $data['title'] );
                 }
                 $page->user_id = $user->id;
-                $page->featured_icon = $data['filepath'];
+                $featured_icon = $data['filepath'];
+                $page->featured_icon = parse_url($featured_icon, PHP_URL_PATH);
                 $page->save();
                 return redirect(route('page.index'))->with('status',"Page created successfully");
 
@@ -171,7 +172,8 @@ class PageController extends Controller
                     $page->slug = Str::slug( $data['title'] );
                 }
                 $page->description = $data['description'];
-                $page->featured_icon = $data['filepath'];
+                $featured_icon = $data['filepath'];
+                $page->featured_icon = parse_url($featured_icon, PHP_URL_PATH);
                 $page->key_word = $data['key_word'];
                 $page->user_id = $user->id;
                 $page->save();

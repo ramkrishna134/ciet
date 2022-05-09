@@ -13,6 +13,18 @@
 
 <script src="{{asset('vendor/laravel-filemanager/js/stand-alone-button.js')}}"></script>
 
+<section class="hero-section">
+    <div class="row">
+        <div class="col-sm-8">
+
+            <a href="{{ route('artical.index') }}" class="btn btn-primary"><i class="fas fa-user-friends"></i> View All Articals</a>
+        </div>
+
+    </div>
+</section>
+
+<hr>
+
 @if (session('status'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
     <i class="fas fa-check mr-1"></i> {{ session('status') }}

@@ -107,7 +107,7 @@
 
             <div class="row justify-content-center">
                 <div class="col-sm-10">
-                    <h3 class="heading text-center text-primary mb-3">Archive Webinars</h3>
+                    <h3 class="heading text-center text-primary mb-3">Past Webinars</h3>
 
                     <div class="webinar-wrap">
                         <div class="row justify-content-center">

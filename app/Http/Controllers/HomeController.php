@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Slider;
 use App\Models\Department;
 use App\Models\Partner;
+use App\Models\Initiative;
 
 class HomeController extends Controller
 {
@@ -34,6 +35,9 @@ class HomeController extends Controller
                 $sliders = Slider::query()->where('lang', $lang)->where('status', 1)->get();
                 $departments = Department::query()->where('lang', $lang)->where('status', 1)->get();
                 $partners = Partner::query()->where('lang', $lang)->where('status', 1)->get();
+                $initiatives = Initiative::orderBy('created_at', 'DESC')
+                ->where('lang', $lang)
+                ->where('status', 1)->get();
             }else{
                 abort(404);
             }
@@ -41,9 +45,15 @@ class HomeController extends Controller
             $sliders = Slider::query()->where('lang', 'en')->where('status', 1)->get();
             $departments = Department::query()->where('lang', 'en')->where('status', 1)->get();
             $partners = Partner::query()->where('lang', 'en')->where('status', 1)->get();
+            $initiatives = Initiative::orderBy('created_at', 'ASC')
+                ->where('lang', 'en')
+                ->where('status', 1)->get();
         }
-        return view('web.home', compact('sliders', 'departments', 'partners'));
+        return view('web.home', compact('sliders', 'departments', 'partners', 'initiatives'));
     }
+
+
+    // Admin dashboard page ==================
 
     public function dashboard()
     {

@@ -49,7 +49,7 @@ class FacultyController extends Controller
             'number'=>'required',
             'profile' =>'required',
             'category' =>'required',
-            'department_id' =>'required',
+            'department_id' =>'nullable',
             'status' =>'required',
             'lang' =>'required',
             
@@ -64,7 +64,11 @@ class FacultyController extends Controller
         else{
             $data = $request->input();
             try{
-                $faculty = new Faculty($data); 
+                $faculty = new Faculty($data);
+                $image = $data ['image'];
+                $profile = $data ['profile'];
+                $faculty->image = parse_url($image, PHP_URL_PATH);
+                $faculty->profile = parse_url($profile, PHP_URL_PATH);
                 $faculty->save();
                 return redirect(route('faculty.index'))->with('status',"Faculty added successfully");
 
@@ -116,7 +120,7 @@ class FacultyController extends Controller
             'number'=>'required',
             'profile' =>'required',
             'category' =>'required',
-            'department_id' =>'required',
+            'department_id' =>'nullable',
             'status' =>'required',
             'lang' =>'required',
             
@@ -131,7 +135,11 @@ class FacultyController extends Controller
         else{
             $data = $request->input();
             try{
-                $faculty->fill($data); 
+                $faculty->fill($data);
+                $image = $data ['image'];
+                $profile = $data ['profile'];
+                $faculty->image = parse_url($image, PHP_URL_PATH);
+                $faculty->profile = parse_url($profile, PHP_URL_PATH);
                 $faculty->save();
                 return redirect(route('faculty.index'))->with('status',"Faculty updated successfully");
 

@@ -58,7 +58,7 @@ class EventController extends Controller
             'department_id' => 'required',
             'featured_image' => 'required',
             'icon' => 'required',
-            'key_word' => 'nullable',
+            'key_word' => 'required',
             
         ];
 
@@ -77,10 +77,12 @@ class EventController extends Controller
                 if( empty( $data['slug'] ) ){
                     $event->slug = Str::slug( $data['title'] );
                 }
+                $featured_image = $data ['featured_image'];
+                $icon = $data ['icon'];
+                $event->featured_image = parse_url($featured_image, PHP_URL_PATH);
+                $event->icon = parse_url($icon, PHP_URL_PATH);
                 $event->user_id = $user->id;
-                if( !empty( $data['key_word'] ) ){
-                    $event->key_word = json_encode($data['key_word']);
-                } 
+                $event->key_word = json_encode($data['key_word']);
                 $event->save();
                 return redirect(route('event.index'))->with('status',"Event created successfully");
 
@@ -158,7 +160,7 @@ class EventController extends Controller
             'department_id' => 'required',
             'featured_image' => 'required',
             'icon' => 'required',
-            'key_word' => 'nullable',
+            'key_word' => 'required',
             
         ];
 
@@ -173,10 +175,12 @@ class EventController extends Controller
             $data = $request->input();
             try{
                 $event->fill($data);
+                $featured_image = $data ['featured_image'];
+                $icon = $data ['icon'];
+                $event->featured_image = parse_url($featured_image, PHP_URL_PATH);
+                $event->icon = parse_url($icon, PHP_URL_PATH);
                 $event->user_id = $user->id;
-                if( !empty( $data['key_word'] ) ){
-                    $event->key_word = json_encode($data['key_word']);
-                } 
+                $event->key_word = json_encode($data['key_word']); 
                 $event->save();
                 return back()->with('status',"Event updated successfully");
 

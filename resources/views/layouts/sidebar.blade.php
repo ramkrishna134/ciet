@@ -262,10 +262,9 @@ foreach ($rolePermissions as $item) {
                                     </div>
                                 </li>
 
-                                <li class="nav-item ms-2 border rounded">
+                                {{-- <li class="nav-item ms-2 border rounded">
                                     <a href="#" class="nav-link text-light" data-bs-toggle="popover" title="Notification" data-bs-content="You have no New Notification."><i class="fas fa-bell"></i></a>
-                                    {{-- <button type="button" class="nav-link" data-toggle="popover" title="Popover title" data-bs-placement="bottom" data-content="And here's some amazing content. It's very engaging. Right?"><i class="fas fa-bell"></i></button>                                   --}}
-                                </li>
+                                </li> --}}
                                 <li class="nav-item ms-2 border rounded">
                                     <a href="{{ route('setting.index') }}" class="nav-link text-light {{ (request()->is('admin/settings')) ? 'bg-primary text-light' : '' }}"><i class="fas fa-cog"></i></a>
                                 </li>

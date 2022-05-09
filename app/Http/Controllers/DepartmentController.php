@@ -81,6 +81,13 @@ class DepartmentController extends Controller
                 }else{
                     $department->slug = $data['slug'];
                 }
+
+                $featured_image = $data ['featured_image'];
+                $icon = $data ['icon'];
+                $head_image = $data ['head_image'];
+                $department->featured_image = parse_url($featured_image, PHP_URL_PATH);
+                $department->icon = parse_url($icon, PHP_URL_PATH);
+                $department->head_image = parse_url($head_image, PHP_URL_PATH);
                 $department->user_id = $user->id;              
                 $department->save();
 
@@ -196,6 +203,12 @@ class DepartmentController extends Controller
 
                     // dd(json_encode($data['gallery']));
                 }
+                $featured_image = $data ['featured_image'];
+                $icon = $data ['icon'];
+                $head_image = $data ['head_image'];
+                $department->featured_image = parse_url($featured_image, PHP_URL_PATH);
+                $department->icon = parse_url($icon, PHP_URL_PATH);
+                $department->head_image = parse_url($head_image, PHP_URL_PATH);
                 $department->user_id = $user->id;              
                 $department->save();
 
