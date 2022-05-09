@@ -16,6 +16,12 @@ class VisitorController extends Controller
     public function index()
     {
         //
+        $today = date('Y-m-d');
+        $visitors = Visitor::get();
+        $totalVisitor = Visitor::distinct()->get(['ip'])->count();
+        $todayPageHit = Visitor::where('date', $today)->count();
+        // dd($totalVisitor);
+        return view('admin.visitor', compact('visitors', 'totalVisitor', 'todayPageHit'));
     }
 
     /**

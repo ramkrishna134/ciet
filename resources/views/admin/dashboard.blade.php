@@ -24,12 +24,6 @@ Dashboard
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/color-calendar/dist/css/theme-basic.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/color-calendar/dist/css/theme-glass.css" />
 <script src="https://cdn.jsdelivr.net/npm/color-calendar/dist/bundle.min.js"></script>
-{{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css">
-<script src="https://cdn.jsdelivr.net/npm/evo-calendar@1.1.3/evo-calendar/js/evo-calendar.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/evo-calendar@1.1.3/evo-calendar/css/evo-calendar.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/evo-calendar@1.1.3/evo-calendar/css/evo-calendar.midnight-blue.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/evo-calendar@1.1.3/evo-calendar/css/evo-calendar.orange-coral.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/evo-calendar@1.1.3/evo-calendar/css/evo-calendar.royal-navy.min.css"> --}}
 
 @if (session('status'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -38,18 +32,18 @@ Dashboard
 </div>
 @endif
 
-<div class="row">
+<div class="row align-items-stretch">
     <div class="col-sm-3">
-        <div class="card-body shadow py-0 px-2 rounded welcome">
+        <div class="card-body shadow py-0 px-2 rounded welcome h-100">
             <div class="row align-items-center text-primary">
-                <div class="col-6">
+                <div class="col-7">
                     <h5>Welcome Back, <br> {{ Auth::user()->name }} !</h5>
 
                     <p class="mb-0">CIET 2.0 Dashbaord</p>
 
                     
                 </div>
-                <div class="col-6">
+                <div class="col-5">
                     <img class="img-fluid" src="/images/customer-support.png" alt="Welcome Image">
                 </div>
             </div>

@@ -53,7 +53,7 @@ foreach ($rolePermissions as $item) {
 <body>
     <div id="app">
         <section class="sidebar shadow">
-            <div class="logo2 mb-2 text-center mt-3 d-flex align-items-center justify-content-center">
+            <div class="logo2 mb-2 text-center mt-3 d-flex align-items-center justify-content-center sticky-top">
                 <img class="img-fluid me-1" width="50" src="/images/CIET-logo.png" alt="CIET">
                 <h5 class="text-light mb-0 mt-2 text-start">CIET <br> <small>Control Panel 2.0</small></h5>
             </div>

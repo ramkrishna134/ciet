@@ -12,6 +12,7 @@ class Visitor extends Model
     public $timestamps = FALSE;
 
     protected $fillable = [
+        'url',
         'date',
         'ip'
     ];

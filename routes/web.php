@@ -19,78 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Web Routes ==============================
-
-Route::middleware(['visitor'])->group(function () {
-    Route::get('/','App\Http\Controllers\HomeController@index')->name('home');
-});
-
-
-Route::get('/{slug}','App\Http\Controllers\PageController@show')->name('page.show');
-
-
-
-// Route::get('/demo', function () {
-//     return view('admin.faculty.demo');
-// });
-
-
-// Web Search route =========================================
-
-Route::post('/search', 'App\Http\Controllers\PageController@search')->name('search');
-
-
-
-Route::get('/contact','App\Http\Controllers\PageController@contact')->name('contact');
-Route::post('/contact','App\Http\Controllers\FeedbackController@store')->name('feedback');
-
-// Route::get('/training-calender', function () {
-//     return view('web.training-calender');
-// })->name('training-calender');
-
-
-Route::get('/webinar', 'App\Http\Controllers\WebinarController@webinar')->name('webinar');
-
-Route::get('/calender', 'App\Http\Controllers\EventController@calender')->name('calender');
-
-
-Route::get('/initiatives', 'App\Http\Controllers\InitiativeController@initiatives')->name('initiative');
-
-
-Route::get('/newsletter', function () {
-    return view('web.newsletter');
-})->name('newsletter');
-
-Route::get('/feedback-mail', function () {
-    return view('web.mail.mail-contact');
-})->name('feedback-mail');
-
-Route::get('/pmevidya','App\Http\Controllers\Pmevidya@index')->name('pmevidya');
-Route::get('/pmevidya/{class}/{channel}/{category}','App\Http\Controllers\Pmevidya@schedule')->name('pmevidya.schedule');
-
-Route::get('/people', function () {
-    return view('web.people');
-})->name('people');
-
-Route::get('/announcement','App\Http\Controllers\AnnouncementsController@announcement')->name('announcement');
-
-Route::get('/department/{slug}','App\Http\Controllers\DepartmentController@show')->name('department.show');
-
-Route::get('/activity/{slug}','App\Http\Controllers\EventController@show')->name('activity');
-
 Auth::routes();
-
-
-
-Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
-    \UniSharp\LaravelFilemanager\Lfm::routes();
-});
-
-Route::group(['prefix' => 'laraberg', 'middleware' => ['web', 'auth']], function() {
-    Route::apiResource('blocks', 'VanOns\Laraberg\Http\Controllers\BlockController');
-    Route::get('oembed', 'VanOns\Laraberg\Http\Controllers\OEmbedController');
-});
-
 
 // Admin Routes ====================================
 
@@ -242,4 +171,70 @@ Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () 
     Route::get('/feedback','App\Http\Controllers\FeedbackController@index')->name('feedback.index');
     Route::get('/feedback/{feedback}','App\Http\Controllers\FeedbackController@show')->name('feedback.show');
 
+    Route::get('/visitor','App\Http\Controllers\VisitorController@index')->name('visitor');
+
 });
+
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
+
+Route::group(['prefix' => 'laraberg', 'middleware' => ['web', 'auth']], function() {
+    Route::apiResource('blocks', 'VanOns\Laraberg\Http\Controllers\BlockController');
+    Route::get('oembed', 'VanOns\Laraberg\Http\Controllers\OEmbedController');
+});
+
+
+
+
+// Web Routes ==============================
+
+Route::middleware(['visitor'])->group(function () {
+    Route::get('/','App\Http\Controllers\HomeController@index')->name('home');
+    Route::get('/initiatives', 'App\Http\Controllers\InitiativeController@initiatives')->name('initiative');
+    Route::get('/contact','App\Http\Controllers\PageController@contact')->name('contact');
+    Route::post('/contact','App\Http\Controllers\FeedbackController@store')->name('feedback');
+
+
+
+    Route::get('/webinar', 'App\Http\Controllers\WebinarController@webinar')->name('webinar');
+
+    Route::get('/calender', 'App\Http\Controllers\EventController@calender')->name('calender');
+
+
+
+
+
+    Route::get('/newsletter', function () {
+        return view('web.newsletter');
+    })->name('newsletter');
+
+    Route::get('/feedback-mail', function () {
+        return view('web.mail.mail-contact');
+    })->name('feedback-mail');
+
+    Route::get('/pmevidya','App\Http\Controllers\Pmevidya@index')->name('pmevidya');
+    Route::get('/pmevidya/{class}/{channel}/{category}','App\Http\Controllers\Pmevidya@schedule')->name('pmevidya.schedule');
+
+    Route::get('/people', function () {
+        return view('web.people');
+    })->name('people');
+
+    Route::get('/announcement','App\Http\Controllers\AnnouncementsController@announcement')->name('announcement');
+
+    Route::get('/department/{slug}','App\Http\Controllers\DepartmentController@show')->name('department.show');
+
+    Route::get('/activity/{slug}','App\Http\Controllers\EventController@show')->name('activity');
+
+    Route::get('/{slug}','App\Http\Controllers\PageController@show')->name('page.show');
+});
+
+
+
+
+
+
+// Web Search route =========================================
+
+Route::post('/search', 'App\Http\Controllers\PageController@search')->name('search');
+

@@ -81,7 +81,7 @@
                         <input type="text" class="form-control" id="slug" name="slug" value="{{ $department->slug ?? old('slug') }}">
                         @if (!empty($department))
                             <div class="input-group-append">
-                                <a href="{{ url($department->slug,$department->lang) }}" target="_blank" class="btn btn-primary"><i class="fas fa-eye"></i></a>
+                                <a href="/department/{{ $department->slug }}" target="_blank" class="btn btn-primary"><i class="fas fa-eye"></i></a>
                             </div>
                         @endif
                     </div>
@@ -92,7 +92,7 @@
                     @enderror
 
                     <div class="mb-3">
-                        <label for="description" class="form-label">Gallery</label>
+                        <label for="description" class="form-label">Gallery <small class="text-danger">(Please choose only 12 images.)</small></label>
                         <div class="input-group">
                             <span class="input-group-btn">
                               <a id="lfm4" data-input="thumbnail4" data-preview="holder4" class="btn btn-primary text-white btn-sm">

@@ -11294,6 +11294,7 @@ textarea.form-control-lg {
   position: absolute;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+  left: 5px;
   padding: 10px;
   bottom: 0;
   background-color: #f8f9fa;
@@ -11329,6 +11330,9 @@ textarea.form-control-lg {
   background-color: #000;
   padding: 5px;
   border-radius: 5px;
+}
+.sidebar .logo2 {
+  background-color: #242835;
 }
 .sidebar .menu {
   margin: 0;

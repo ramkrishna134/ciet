@@ -17,10 +17,11 @@ class CountVisitor
      */
     public function handle(Request $request, Closure $next)
     {
-        $ip = hash('sha512', $request->ip());
-        if (Visitor::where('date', today())->where('ip', $ip)->count() < 1)
+        $ip = $request->ip();
+        if (Visitor::where('date', today())->where('ip', $ip)->where('url', $_SERVER['REQUEST_URI'])->count() < 1)
         {
             Visitor::create([
+                'url' => $_SERVER['REQUEST_URI'],
                 'date' => today(),
                 'ip' => $ip,
             ]);
