@@ -3,11 +3,15 @@ $lang = $_GET['lang'] ?? null;
 if(!empty($lang)){
     if($lang == 'en' OR $lang == 'hi'){
         $headerMenus = DB::table('menu_items')->where('menu_id', 1)->where('lang', $lang)->where('status', 1)->get();
+        $footLinks = DB::table('menu_items')->where('menu_id', 2)->where('lang', $lang)->where('status', 1)->get();
+        $footOtherLinks = DB::table('menu_items')->where('menu_id', 3)->where('lang', $lang)->where('status', 1)->get();
     }else{
         abort(404);
     }
 }else{
     $headerMenus = DB::table('menu_items')->where('menu_id', 1)->where('lang', 'en')->where('status', 1)->get();
+    $footLinks = DB::table('menu_items')->where('menu_id', 2)->where('lang', 'en')->where('status', 1)->get();
+    $footOtherLinks = DB::table('menu_items')->where('menu_id', 3)->where('lang', 'en')->where('status', 1)->get();
 }
 
 
@@ -46,8 +50,9 @@ foreach ($headerMenus as $item) {
 
     <meta property="og:title" content="@yield('title')" />
     <meta property="og:type" content="@yield('description')" />
-    <meta property="og:url" content="{{ url('/') }}" />
+    <meta property="og:url" content="{{ $_SERVER['SERVER_NAME'] }}{{ $_SERVER['REQUEST_URI'] }}" />
     <meta property="og:image" content="@yield('image')" />
+    <meta property="og:image:alt" content="@yield('title')" />
     <meta property="og:description" content="@yield('description')" />
 
     <title>@yield('title')Central Institute of Educational Technology | A Constituent unit of NCERT</title>
@@ -126,16 +131,21 @@ foreach ($headerMenus as $item) {
           {{----------------- Main Header ------------------}}
           <nav class="navbar navbar-expand-lg shadow menu-container" id="navigation">
             <div class="container">
+
+              <a href="#" type="button" class="btn-menu navbar-toggler navbar-toggle" data-bs-toggle="collapse" title="Mobile menu toggle button"  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle Menu">
+                <img class="img-fluid" src="/images/web/menu-icon.png" alt="Mobile Menu Icon">
+              </a>
+
               <a class="navbar-brand" href="{{ route('home') }}" aria-label="CIET Logo">
                 <div class="logo">
-                  <img class="img-fluid" src="/images/web/logo-english.png" alt="CIET Logo">
+                  <img class="img-fluid" src="{{ setting('logo-english') }}" alt="CIET Logo">
                 </div>
               </a>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                 <a class="navbar-brand d-lg-none d-sm-block d-block py-3 m-0" href="{{ route('home') }}">
                   <div class="logo mx-auto logo-sm">
-                    <img class="img-fluid" class="img-fluid" src="/images/web/logo-english.png" alt="CIET Logo">
+                    <img class="img-fluid" class="img-fluid" src="{{ setting('logo-english') }}" alt="CIET Logo">
                   </div>
                 </a>
 
@@ -146,17 +156,6 @@ foreach ($headerMenus as $item) {
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
                   @foreach($mainMenus as $item)
-                    {{-- <li class="nav-item @if($item->has_child == 1) dropdown @endif">
-                      <a class="nav-link {{ (request()->is($item->link)) ? 'active' : '' }} @if($item->has_child == 1) dropdown-toggle @endif" aria-current="page" href="{{ $item->link }}">{{ $item->label }}</a>
-
-                      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        @foreach($subMenus as $submenu)
-                        @if($item->id == $submenu->parent_id)
-                          <li><a class="dropdown-item" href="#">DIKSHA</a></li>
-                        @endif
-                      @endforeach
-                      </ul>
-                    </li> --}}
                     <li class="nav-item @if($item->has_child == 1) dropdown @endif">
                       <a class="nav-link {{ (request()->is($item->link)) ? 'active' : '' }} @if($item->has_child == 1) dropdown-toggle @endif" href="{{ $item->link }}@if($lang !=null)?lang={{ $lang }}@endif" id="@if($item->has_child == 1) navbarDropdown @endif " @if($item->has_child == 1) role="button" data-bs-toggle="dropdown" aria-expanded="false" @endif @if($item->target == 1) target="_blank" @endif>
                         {{ $item->label }}
@@ -170,103 +169,15 @@ foreach ($headerMenus as $item) {
                         @endforeach
                         
                            
-                      </ul>
-                    </li>
-                  @endforeach
-
-                  {{-- <li class="nav-item">
-                    <a class="nav-link {{ (request()->is('/')) ? 'active' : '' }}" aria-current="page" href="{{ route('home') }}">Home</a>
-                  </li>
-
-                  <li class="nav-item">
-                    <a class="nav-link {{ (request()->is('about')) ? 'active' : '' }}" href="/about">About</a>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Initiatives
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item" href="#">DIKSHA</a></li>
-                      <li><a class="dropdown-item" href="#">TV Channels</a></li>
-                      <li><a class="dropdown-item" href="#">NISHTHA</a></li>
-                      <li><a class="dropdown-item" href="#">ePathshala</a></li>
-                      <li><a class="dropdown-item" href="{{ route('pmevidya') }}">PMeVidya</a></li>
-                      <li><a class="dropdown-item" href="#">Radio Broadcasting</a></li>
-                      <li><a class="dropdown-item" href="#">ICT Curriculam</a></li>
-                      <li><a class="dropdown-item" href="#">NCF Tech Platform</a></li>
-                      <li><a class="dropdown-item" href="#">Cyber Safety & Security</a></li>
-                      <li><a class="dropdown-item" href="#">Accesibility</a></li>
-                      <li><a class="dropdown-item" href="#">MOOC's</a></li>  
-                    </ul>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Contituents
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item" href="/dict">Department of ICT & Training</a></li>
-                      <li><a class="dropdown-item" href="#">Media Production Division</a></li>
-                      <li><a class="dropdown-item" href="#">Planning and Research Division</a></li>
-                      <li><a class="dropdown-item" href="#">Engineering Division</a></li>
-                      <li><a class="dropdown-item" href="#">Administration & Accounts</a></li>
-                         
-                    </ul>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Trainings
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item" href="{{ route('training-calender') }}">Training Calender</a></li>
-                      <li><a class="dropdown-item" href="#">NISHTHA Online</a></li>
-                      <li><a class="dropdown-item" href="#">MOOC's</a></li>
-                      <li><a class="dropdown-item" href="{{ route('webiner') }}">Webiner</a></li>
-                      <li><a class="dropdown-item" href="#">Online Training</a></li>
-                      <li><a class="dropdown-item" href="#">Offline Training</a></li>
-                      <li><a class="dropdown-item" href="#">Action Research</a></li>   
-                    </ul>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Events
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item" href="{{ route('event-calender') }}">Event Calender</a></li>
-                      <li><a class="dropdown-item" href="#">ICT Award</a></li>
-                      <li><a class="dropdown-item" href="#">AICEAVF ICT Mela</a></li>
-                      <li><a class="dropdown-item" href="#">Summer Camp</a></li>
-                      <li><a class="dropdown-item" href="#">Conference</a></li>
-                      <li><a class="dropdown-item" href="#">Quiz</a></li>     
-                    </ul>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      More
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-
-                      <li class="dropdown dropdown-submenu dropend">
-                        <a class="dropdown-item submenu dropdown-toggle" href="#">New dropdown</span></a>
-                        <ul class="dropdown-menu submenu">
-                          <li><a class="dropdown-item" href="#">2nd level dropdown</a></li>
-                          <li><a class="dropdown-item" href="#">2nd level dropdown</a></li>
-                        </ul>
-                      </li>
-
-                      <li><a class="dropdown-item { (request()->is('people')) ? 'active' : '' }}" href="{{ route('people') }}">People</a></li>
-                      <li><a class="dropdown-item" href="{{ route('announcement') }}">Announcements</a></li>
-                      <li><a class="dropdown-item" href="#">RTI</a></li>
-                      <li><a class="dropdown-item {{ (request()->is('contact')) ? 'active' : '' }}" href="{{ route('contact') }}">Contact us</a></li> 
-                    </ul>
-                  </li> --}}
+                          </ul>
+                        </li>
+                      @endforeach
                 </ul>
                 </div>
 
-                <a href="#" type="button" class="btn-menu navbar-toggler navbar-toggle" data-bs-toggle="collapse"  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle Menu">
-                  <img class="img-fluid" src="/images/web/menu-icon.png" alt="Mobile Menu">
-                </a>
+                
 
-                <a href="#" type="button" class="btn-search" data-bs-toggle="modal" data-bs-target="#searchModal">
+                <a href="#" type="button" class="btn-search" title="Search Button" data-bs-toggle="modal" data-bs-target="#searchModal">
                   <i class="fas fa-search"></i>
                 </a>
 
@@ -289,13 +200,10 @@ foreach ($headerMenus as $item) {
                 <h5 class="footer-heading">Links</h5>
 
                 <ul class="footer-menu mb-lg-0 mb-sm-4 mb-4">
-                  <li><a href=""><i class="fas fa-angle-double-right"></i> NCERT</a></li>
-                  <li><a href=""><i class="fas fa-angle-double-right"></i> DIKSHA</a></li>
-                  <li><a href=""><i class="fas fa-angle-double-right"></i> ePathshala</a></li>
-                  <li><a href=""><i class="fas fa-angle-double-right"></i> ICT Curriculam</a></li>
-                  <li><a href=""><i class="fas fa-angle-double-right"></i> Swayam</a></li>
-                  <li><a href=""><i class="fas fa-angle-double-right"></i> MoE</a></li>
-                  <li><a href=""><i class="fas fa-angle-double-right"></i> MyGov</a></li>
+
+                  @foreach($footLinks as $link)
+                  <li><a href="{{ $link->link }}" @if($link->target == 1) target="_blank" @endif><i class="fas fa-angle-double-right"></i> {{ $link->label }}</a></li>
+                  @endforeach
                 </ul>
 
               </div>
@@ -303,13 +211,9 @@ foreach ($headerMenus as $item) {
                 <h5 class="footer-heading">Other Links</h5>
 
                 <ul class="footer-menu mb-lg-0 mb-sm-4 mb-4">
-                  <li><a href="/about"><i class="fas fa-angle-double-right"></i> About</a></li>
-                  <li><a href="{{ route('contact') }}"><i class="fas fa-angle-double-right"></i> Contact us</a></li>
-                  <li><a href=""><i class="fas fa-angle-double-right"></i> Privacy Policy</a></li>
-                  <li><a href=""><i class="fas fa-angle-double-right"></i> Terms & Conditions</a></li>
-                  <li><a href=""><i class="fas fa-angle-double-right"></i> Feedback</a></li>
-                  <li><a href=""><i class="fas fa-angle-double-right"></i> Advisory Board</a></li>
-                  <li><a href=""><i class="fas fa-angle-double-right"></i> CIET in News</a></li>
+                  @foreach($footOtherLinks as $link)
+                  <li><a href="{{ $link->link }}" @if($link->target == 1) target="_blank" @endif><i class="fas fa-angle-double-right"></i> {{ $link->label }}</a></li>
+                  @endforeach
                 </ul>
               </div>
               <div class="col-lg-5 col-sm-12 mb-lg-0 mb-sm-4 mb-4">
@@ -384,7 +288,7 @@ foreach ($headerMenus as $item) {
 
         {{----------------------- Searbox Modal --------------------}}
 
-        <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="Search Accross the CIET Website" aria-hidden="true">
+        <div class="modal fade" id="searchModal" tabindex="-1"  aria-hidden="true">
           <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-body shadow">

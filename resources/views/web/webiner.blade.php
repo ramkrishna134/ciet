@@ -114,7 +114,7 @@
 
                             @foreach($pasts as $past)
 
-                            <div class="col-sm-3">
+                            <div class="col-sm-3 mb-3">
 
                                 <div class="item shadow">
                                     @php

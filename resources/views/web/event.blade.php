@@ -2,7 +2,7 @@
 
 @section('title'){{ $event->title }} | @endsection
 @section('description'){{ $event->description }}@endsection
-@section('image'){{ $event->featured_icon }}@endsection
+@section('image'){{ url("/") }}{{ $event->icon }}@endsection
 @section('keyword'){{ json_decode($event->key_word) }}@endsection
 
 @section('content')

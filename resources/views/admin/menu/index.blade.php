@@ -223,8 +223,28 @@ Menu Builder
 
                 <div class="table-responsive">
                     <div class="row">
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             <input type="text" class="form-control" name="label" placeholder="Type Label" value="{{ $params['label'] ?? '' }}">
+                        </div>
+
+                        <div class="col-sm-2">
+                            <select name="menu_id" id="menu_id" class="form-control">
+                                <option value="">-- Select Menu Group --</option>
+
+                                @if(!empty($params['menu_id']))
+
+                                @foreach ($menus as $menu)
+                                <option value="{{ $menu->id }}" @if($menu->id == $params['menu_id']) selected @endif>{{ $menu->name }}</option>
+                                @endforeach
+
+                                @else
+
+                                @foreach ($menus as $menu)
+                                <option value="{{ $menu->id }}">{{ $menu->name }}</option>
+                                @endforeach
+                                
+                                @endif
+                            </select>
                         </div>
                         <div class="col-sm-3">
                             <select name="parent_id" id="parent_id" class="form-control">
@@ -276,7 +296,7 @@ Menu Builder
                             </select>
                         </div>
 
-                        <div class="col-sm-2">
+                        <div class="col-sm-1">
                             <button type="submit" class="btn btn-primary form-control">Filter</button>
                         </div>
                     </div>
@@ -285,7 +305,7 @@ Menu Builder
                             <tr>
                                 <th>ID</th>
                                 <th>Label</th>
-                                <th>Menu</th>
+                                <th>Menu Group</th>
                                 <th>Link</th>
                                 <th>Parent</th>
                                 <th>Class</th>

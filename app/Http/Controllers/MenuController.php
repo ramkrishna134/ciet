@@ -21,6 +21,7 @@ class MenuController extends Controller
         $menus = Menu::all();
         $params = $this->validate($request, [
             'label' => 'nullable',
+            'menu_id' => 'nullable',
             'parent_id' => 'nullable',
             'lang' => 'nullable',
             'status' => 'nullable',
@@ -28,6 +29,7 @@ class MenuController extends Controller
 
         $query = MenuItem::orderByDesc('id');
         $params['label'] = trim( $params['label'] ?? '' );
+        $params['menu_id'] = trim( $params['menu_id'] ?? '' );
         $params['parent_id'] = $params['parent_id'] ?? '';
         $params['lang'] = $params['lang'] ?? '';
         $params['status'] = $params['status'] ?? '';
@@ -37,6 +39,10 @@ class MenuController extends Controller
                 /** @var Builder $query */
                 $query->where('label', 'like', '%' . $params['label'] . '%' );
             });
+        }
+
+        if( !empty( $params['menu_id'] ) ){
+            $query->where('menu_id', $params['menu_id']);
         }
 
         if( !empty( $params['parent_id'] ) ){

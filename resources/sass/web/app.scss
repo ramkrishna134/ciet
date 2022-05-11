@@ -322,3 +322,15 @@ body{
 .text-primary{
     color: $primary !important;
 }
+
+
+ // Braekpoint Mobile scss ===============================
+ @media only screen and (max-width: $mobile-width){
+
+    .general-page{
+        .with-watermark{
+            display: none;
+        }
+    }
+
+  }

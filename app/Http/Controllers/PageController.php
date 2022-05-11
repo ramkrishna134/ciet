@@ -218,9 +218,8 @@ class PageController extends Controller
             $departments[] = \DB::table('departments')->where("key_word", "LIKE", '%' . $query . '%')->get();
             $pages[] = \DB::table('pages')->where("key_word", "LIKE", '%' . $query . '%')->get();
             $events[] = \DB::table('events')->where("key_word", "LIKE", '%' . $query . '%')->get();
-            $trainings[] = \DB::table('trainings')->where("key_word", "LIKE", '%' . $query . '%')->get();
 
-            $datas = array_merge($departments, $pages, $events, $trainings);
+            $datas = array_merge($departments, $pages, $events);
 
             return response()->json($datas);
         }

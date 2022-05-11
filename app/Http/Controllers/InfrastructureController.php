@@ -67,6 +67,8 @@ class InfrastructureController extends Controller
             try{
                 $infrastructure = new Infrastructure($data);
                 $infrastructure->user_id = $user->id;
+                $icon = $data ['icon'];
+                $infrastructure->icon = parse_url($icon, PHP_URL_PATH);
                 $infrastructure->save();
                 return redirect(route('infrastructure.index'))->with('status',"New infrastructure created successfully");
 
@@ -132,13 +134,15 @@ class InfrastructureController extends Controller
                 try{
                     //$infrastructure->fill($data);
                     $infrastructure->fill($data);
+                    $icon = $data ['icon'];
+                    $infrastructure->icon = parse_url($icon, PHP_URL_PATH);
                     $infrastructure->user_id = $user->id;
                     $infrastructure->save();
-                    return redirect(route('infrastructure.index'))->with('status',"infrastructure updated successfully");
+                    return back()->with('status',"Infrastructure updated successfully");
     
                 }
                 catch(Exception $e){  
-                    return redirect(route('infrastructure.create'))->with('failed',"Operation failed");
+                    return redirect(route('nfrastructure.create'))->with('failed',"Operation failed");
                 }
             }
     }

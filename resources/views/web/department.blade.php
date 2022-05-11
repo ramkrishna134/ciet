@@ -135,9 +135,9 @@
 
     @php
     $gallery = json_decode($department->gallery);
-    // dd($gallery);
     @endphp
     
+    @if(!empty($gallery))
 
     <section class="gallery-wrap">
         <div class="container">
@@ -150,12 +150,12 @@
                         <div class="inner-wrap d-flex">
                             <div class="block-xs-50">
                                 <a href="{{ $img = array_shift($gallery) }}" class="image">
-                                    <img class="img-fluid" src="{{ $img  }}" alt="">
+                                    <img class="img-fluid" src="{{ imageUrl( $img, ['crop' => [ 200, 200 ]] ) }}" alt="">
                                 </a>
                             </div>
                             <div class="block-xs-50">
                                 <a href="{{ $img = array_shift($gallery) }}" class="image">
-                                    <img class="img-fluid" src="{{ $img }}" alt="">
+                                    <img class="img-fluid" src="{{ imageUrl( $img, ['crop' => [ 200, 200 ]] ) }}" alt="">
                                 </a>
                             </div>
                         </div>
@@ -163,7 +163,7 @@
                     <div class="wrap-25">
                         <div class="block-xs-100">
                             <a href="{{ $img = array_shift($gallery) }}" class="image">
-                                <img class="img-fluid" src="{{ $img }}" alt="">
+                                <img class="img-fluid" src="{{ imageUrl( $img, ['crop' => [ 330, 200 ]] ) }}" alt="">
                             </a>
                         </div>
                     </div>
@@ -171,7 +171,7 @@
                     <div class="wrap-50">
                         <div class="block-xs-100 ">
                             <a href="{{ $img = array_shift($gallery) }}" class="image">
-                                <img class="img-fluid" src="{{ $img }}" alt="">
+                                <img class="img-fluid" src="{{ imageUrl( $img, ['crop' => [ 600, 200 ]] ) }}" alt="">
                             </a>
                         </div>
                     </div>
@@ -182,7 +182,7 @@
                     <div class="wrap-25">
                         <div class="block-xs-100">
                             <a href="{{ $img = array_shift($gallery) }}" class="image">
-                                <img class="img-fluid" src="{{ $img }}" alt="">
+                                <img class="img-fluid" src="{{ imageUrl( $img, ['crop' => [ 300, 200 ]] ) }}" alt="">
                             </a>
                         </div>
                     </div>
@@ -191,12 +191,12 @@
                         <div class="inner-wrap d-flex">
                             <div class="block-xs-50">
                                 <a href="{{ $img = array_shift($gallery) }}" class="image">
-                                    <img class="img-fluid" src="{{ $img }}" alt="">
+                                    <img class="img-fluid" src="{{ imageUrl( $img, ['crop' => [ 150, 200 ]] ) }}" alt="">
                                 </a>
                             </div>
                             <div class="block-xs-50">
                                 <a href="{{ $img = array_shift($gallery) }}" class="image">
-                                    <img class="img-fluid" src="{{ $img }}" alt="">
+                                    <img class="img-fluid" src="{{ imageUrl( $img, ['crop' => [ 150, 200 ]] ) }}" alt="">
                                 </a>
                             </div>
                         </div>
@@ -206,12 +206,12 @@
                         <div class="inner-wrap d-flex">
                             <div class="block-xs-50-h-50">
                                 <a href="{{ $img = array_shift($gallery) }}" class="image">
-                                    <img class="img-fluid" src="{{ $img }}" alt="">
+                                    <img class="img-fluid" src="{{ imageUrl( $img, ['crop' => [ 150, 100 ]] ) }}" alt="">
                                 </a>
                             </div>
                             <div class="block-xs-50-h-50">
                                 <a href="{{ $img = array_shift($gallery) }}" class="image">
-                                    <img class="img-fluid" src="{{ $img }}" alt="">
+                                    <img class="img-fluid" src="{{ imageUrl( $img, ['crop' => [ 150, 100 ]] ) }}" alt="">
                                 </a>
                             </div>
                         </div>
@@ -219,12 +219,12 @@
                         <div class="inner-wrap d-flex">
                             <div class="block-xs-50-h-50">
                                 <a href="{{ $img = array_shift($gallery) }}" class="image">
-                                    <img class="img-fluid" src="{{ $img }}" alt="">
+                                    <img class="img-fluid" src="{{ imageUrl( $img, ['crop' => [ 150, 100 ]] ) }}" alt="">
                                 </a>
                             </div>
                             <div class="block-xs-50-h-50">
                                 <a href="{{ $img = array_shift($gallery) }}" class="image">
-                                    <img class="img-fluid" src="{{ $img }}" alt="">
+                                    <img class="img-fluid" src="{{ imageUrl( $img, ['crop' => [ 150, 100 ]] ) }}" alt="">
                                 </a>
                             </div>
                         </div>
@@ -234,7 +234,7 @@
                     <div class="wrap">
                         <div class="block-xs-100">
                             <a href="{{ $img = array_shift($gallery) }}" class="image">
-                                <img class="img-fluid" src="{{ $img }}" alt="">
+                                <img class="img-fluid" src="{{ imageUrl( $img, ['crop' => [ 420, 200 ]] ) }}" alt="">
                             </a>
                         </div>
                     </div>
@@ -244,6 +244,10 @@
             </div>
         </div>
     </section>
+        
+    @endif
+
+    
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>

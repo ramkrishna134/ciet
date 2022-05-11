@@ -94,7 +94,7 @@
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label for="password" class="form-label">Mapping URL</label>
-                                <input type="url" class="form-control @error('url') is-invalid @enderror" name="url" id="url" placeholder="Mapping URL" value="{{ $infrastructure->url ?? old('url') }}">
+                                <input type="text" class="form-control @error('url') is-invalid @enderror" name="url" id="url" placeholder="Mapping URL" value="{{ $infrastructure->url ?? old('url') }}">
                                 @error('url')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

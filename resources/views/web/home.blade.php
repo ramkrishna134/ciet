@@ -100,48 +100,24 @@
                     </div>
         
                     <div class="ongoing-slider scroll-in-view">
-                        <a href="" class="slide-item">
+
+                        @foreach($events as $event)
+
+                        <a href="/activity/{{ $event->slug }}" class="slide-item">
                             <div class="image">
-                                <img class="img-fluid" src="/images/web/ciet-event-1.jpg" alt="">
+                                
+                                <img class="img-fluid" src="{{ imageUrl( $event->icon, ['crop' => [ 350, 250 ]] ) }}" alt="{{ $event->title }} Image">
                                 <div class="layer">
                                     <p>View Details <i class="fas fa-arrow-right"></i></p>
                                 </div>
                             </div>
-                            <div class="title">Event Title</div>
+                            <div class="title">{{ $event->title }}</div>
                         </a>
-        
-                        <a href="" class="slide-item">
-                            <div class="image">
-                                <img class="img-fluid" src="/images/web/ciet-event-1.jpg" alt="">
-                                <div class="layer">
-                                    <p>View Details <i class="fas fa-arrow-right"></i></p>
-                                </div>
-                            </div>
-                            <div class="title">Event Title</div>
-                        </a>
-        
-                        <a href="" class="slide-item">
-                            <div class="image">
-                                <img class="img-fluid" src="/images/web/ciet-event-1.jpg" alt="">
-                                <div class="layer">
-                                    <p>View Details <i class="fas fa-arrow-right"></i></p>
-                                </div>
-                            </div>
-                            <div class="title">Event Title</div>
-                        </a>
-        
-                        <a href="" class="slide-item">
-                            <div class="image">
-                                <img class="img-fluid" src="/images/web/ciet-event-1.jpg" alt="">
-                                <div class="layer">
-                                    <p>View Details <i class="fas fa-arrow-right"></i></p>
-                                </div>
-                            </div>
-                            <div class="title">Event Title</div>
-                        </a>
+
+                        @endforeach
                     </div>
         
-                    <a href="" class="btn btn-primary mt-4">View All Activity</a>
+                    <a href="/calender" class="btn btn-primary mt-4">View All Activity</a>
                 </div>
             </div>
             
@@ -260,47 +236,57 @@
             <div class="heading uppercase">
                 infrastructure & publication
             </div>
+            @php
+            $infra1 = array_shift($infrastrcutures);
+            $infra2 = array_shift($infrastrcutures);
+            $infra3 = array_shift($infrastrcutures);
+            $infra4 = array_shift($infrastrcutures);
+            $infra5 = array_shift($infrastrcutures);
+            $infra6 = array_shift($infrastrcutures);
+            $infra7 = array_shift($infrastrcutures);
+            @endphp
 
             <div class="infrastructure-wrap">
 
                 <div class="top-elemement">
                     <div class="row justify-content-center">
+                        
                         <div class="col-lg-2 col-sm-4 col-6">
-                            <a href="" class="item">
+                            <a href="{{ $infra1['url'] }}" class="item">
                                 <div class="shape" style="background-image: url('/images/web/rhombas.png')"></div>
                                 <div class="content scroll-in-view">
-                                    <img class="img-fluid" src="/images/web/books.png" alt="">
-                                    <div class="title">Resources</div>
+                                    <img class="img-fluid" src="{{ $infra1['icon'] }}" alt="{{ $infra1['title'] }}">
+                                    <div class="title">{{ $infra1['title'] }}</div>
                                 </div>
                             </a>
                         </div>
 
                         <div class="col-lg-2 col-sm-4 col-6">
-                            <a href="" class="item">
+                            <a href="{{ $infra2['url'] }}" class="item">
                                 <div class="shape" style="background-image: url('/images/web/rhombas.png')"></div>
                                 <div class="content scroll-in-view">
-                                    <img class="img-fluid" src="/images/web/books.png" alt="">
-                                    <div class="title">Library</div>
+                                    <img class="img-fluid" src="{{ $infra2['icon'] }}" alt="{{ $infra2['title'] }}">
+                                    <div class="title">{{ $infra2['title'] }}</div>
                                 </div>
                             </a>
                         </div>
 
                         <div class="col-lg-2 col-sm-4 col-6">
-                            <a href="" class="item">
+                            <a href="{{ $infra3['url'] }}" class="item">
                                 <div class="shape" style="background-image: url('/images/web/rhombas.png')"></div>
                                 <div class="content scroll-in-view">
-                                    <img class="img-fluid" src="/images/web/studio_1.png" alt="">
-                                    <div class="title">studio</div>
+                                    <img class="img-fluid" src="{{ $infra3['icon'] }}" alt="{{ $infra1['title'] }}">
+                                    <div class="title">{{ $infra3['title'] }}</div>
                                 </div>
                             </a>
                         </div>
 
                         <div class="col-lg-2 col-sm-4 col-6">
-                            <a href="" class="item">
+                            <a href="{{ $infra4['url'] }}" class="item">
                                 <div class="shape" style="background-image: url('/images/web/rhombas.png')"></div>
                                 <div class="content scroll-in-view">
-                                    <img class="img-fluid" src="/images/web/diksha.png" alt="">
-                                    <div class="title">Diksha CCC</div>
+                                    <img class="img-fluid" src="{{ $infra4['icon'] }}" alt="{{ $infra1['title'] }}">
+                                    <div class="title">{{ $infra4['title'] }}</div>
                                 </div>
                             </a>
                         </div>
@@ -315,16 +301,13 @@
 
                 <div class="bottom-element">
                     <div class="row justify-content-center">
-                        {{-- <div class="col-lg-2 col-sm-4 d-lg-block d-sm-none d-none">
-
-                        </div> --}}
 
                         <div class="col-lg-2 col-sm-4 col-6">
-                            <a href="" class="item">
+                            <a href="{{ $infra5['url'] }}" class="item">
                                 <div class="shape" style="background-image: url('/images/web/rhombas.png')"></div>
                                 <div class="content scroll-in-view">
-                                    <img class="img-fluid" src="/images/web/transmission.png" alt="">
-                                    <div class="title"> Transmission</div>
+                                    <img class="img-fluid" src="{{ $infra5['icon'] }}" alt="{{ $infra5['title'] }}">
+                                    <div class="title"> {{ $infra5['title'] }}</div>
                                 </div>
                             </a>
                         </div>
@@ -332,21 +315,21 @@
                         
 
                         <div class="col-lg-2 col-sm-4 col-6">
-                            <a href="" class="item">
+                            <a href="{{ $infra6['url'] }}" class="item">
                                 <div class="shape" style="background-image: url('/images/web/rhombas.png')"></div>
                                 <div class="content scroll-in-view">
-                                    <img class="img-fluid" src="/images/web/oer.png" alt="">
-                                    <div class="title">journal</div>
+                                    <img class="img-fluid" src="{{ $infra6['icon'] }}" alt="{{ $infra6['title'] }}">
+                                    <div class="title">{{ $infra6['title'] }}</div>
                                 </div>
                             </a>
                         </div>
 
                         <div class="col-lg-2 col-sm-4 col-6">
-                            <a href="{{ route('newsletter') }}" class="item">
+                            <a href="{{ $infra7['url'] }}" class="item">
                                 <div class="shape" style="background-image: url('/images/web/rhombas.png')"></div>
                                 <div class="content scroll-in-view">
-                                    <img class="img-fluid" src="/images/web/journal.png" alt="">
-                                    <div class="title">Newsletter</div>
+                                    <img class="img-fluid" src="{{ $infra7['icon'] }}" alt="{{ $infra7['title'] }}">
+                                    <div class="title">{{ $infra7['title'] }}</div>
                                 </div>
                             </a>
                         </div>
@@ -369,11 +352,11 @@
 
                     <div class="announcement-wrap">
                         <ul class="nav nav-pills mb-4" id="pills-tab" role="tablist">
+
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="pills-all-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-all" type="button" role="tab" aria-controls="pills-all"
-                                    aria-selected="true">All</button>
+                                <button class="nav-link active" id="pills-all-tab" data-bs-toggle="pill" data-bs-target="#pills-all" type="button" role="tab" aria-controls="pills-all" aria-selected="true">All</button>
                             </li>
+                                
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="pills-vacancy-tab" data-bs-toggle="pill"
                                     data-bs-target="#pills-vacancy" type="button" role="tab" aria-controls="pills-vacancy"
@@ -391,50 +374,98 @@
                                     aria-selected="false">Miscellaneous</button>
                             </li>
                         </ul>
-                        <div class="tab-content" id="pills-tabContent">
-                            <div class="tab-pane fade show active" id="pills-all" role="tabpanel"
-                                aria-labelledby="pills-all-tab">
+
+
+                        <div class="tab-content no-height" id="pills-tabContent">
+
+
+
+                            <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
                                 <ul>
-                                    <li><a href="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore facere placeat vitae <div class="contractual">Contractual</div></a></li>
-                                    <li><a href="">consectetur sit quaerat, nam obcaecati quis ipsam? Perferendis, aut.</a></li>
-                                    <li><a href="">suscipit possimus corrupti fugiat minima odit sint expedita aliquid. <div class="regular">Regular</div></a></li>
-                                    <li><a href="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore facere placeat vitae</a></li>
-                                    <li><a href="">consectetur sit quaerat, nam obcaecati quis ipsam? Perferendis, aut.</a></li>
-                                    <li><a href="">suscipit possimus corrupti fugiat minima odit sint expedita aliquid,</a></li>
-                                    <li><a href="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore facere placeat vitae</a></li>
+        
+                                    @foreach($allNotices as $item)
+                                    <li>
+                                        <a href="{{ $item->url }}" target="_blank">
+                                            {{ $item->title }} 
+        
+                                            @if($item->sub_category == 'contractual')
+                                            <div class="item">Contractual</div>
+                                            @elseif($item->sub_category == 'regular')
+                                            <div class="regular">Regular</div>
+                                            @endif
+        
+                                        </a>
+                                    </li>
+                                    @endforeach
+        
                                     
                                 </ul>
+        
+                                @if($allNotices->count() == 0)
+                                    <h4 class="text-center">No Announcement Found..</h4>
+                                @endif
                             </div>
-                            <div class="tab-pane fade" id="pills-vacancy" role="tabpanel" aria-labelledby="pills-vacancy-tab">
+
+                                
+                            <div class="tab-pane fade " id="pills-vacancy" role="tabpanel" aria-labelledby="pills-vacancy-tab">
                                 <ul>
-                                    <li><a href="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore facere placeat vitae <div class="contractual">Contractual</div></a></li>
-                                    <li><a href="">consectetur sit quaerat, nam obcaecati quis ipsam? Perferendis, aut.</a></li>
-                                    <li><a href="">suscipit possimus corrupti fugiat minima odit sint expedita aliquid. <div class="regular">Regular</div></a></li>
-                                    <li><a href="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore facere placeat vitae</a></li>
+        
+                                    @foreach($vacancies as $vacancy)
+                                    <li>
+                                        <a href="{{ $vacancy->url }}" target="_blank">
+                                            {{ $vacancy->title }} 
+        
+                                            @if($vacancy->sub_category == 'contractual')
+                                            <div class="contractual">Contractual</div>
+                                            @elseif($vacancy->sub_category == 'regular')
+                                            <div class="regular">Regular</div>
+                                            @endif
+        
+                                        </a>
+                                    </li>
+                                    @endforeach
+        
+                                    
                                 </ul>
+        
+                                @if($vacancies->count() == 0)
+                                    <h4 class="text-center">No Announcement Found..</h4>
+                                @endif
+        
+                                
                                     
                             </div>
                             <div class="tab-pane fade" id="pills-notice" role="tabpanel" aria-labelledby="pills-notice-tab">
                                 <ul>
-                                    <li><a href="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore facere placeat vitae</a></li>
-                                    <li><a href="">consectetur sit quaerat, nam obcaecati quis ipsam? Perferendis, aut.</a></li>
-                                    <li><a href="">suscipit possimus corrupti fugiat minima odit sint expedita aliquid,</a></li>
-                                    <li><a href="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore facere placeat vitae</a></li>
-                                    <li><a href="">consectetur sit quaerat, nam obcaecati quis ipsam? Perferendis, aut.</a></li>
-                                    <li><a href="">suscipit possimus corrupti fugiat minima odit sint expedita aliquid,</a></li>
+                                    @foreach($notices as $notice)
+                                    <li>
+                                        <a href="{{ $notice->url }}" target="_blank">
+                                            {{ $notice->title }}
+                                        </a>
+                                    </li>
+                                    @endforeach
                                 </ul>
+        
+                                @if($notices->count() == 0)
+                                    <h4 class="text-center">No Announcement Found..</h4>
+                                @endif
+        
+                                
                             </div>
                             <div class="tab-pane fade" id="pills-miscell" role="tabpanel" aria-labelledby="pills-miscell-tab">
                                 <ul>
-                                    <li><a href="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore facere placeat vitae</a></li>
-                                    <li><a href="">consectetur sit quaerat, nam obcaecati quis ipsam? Perferendis, aut.</a></li>
-                                    <li><a href="">suscipit possimus corrupti fugiat minima odit sint expedita aliquid.</a></li>
-                                    <li><a href="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore facere placeat vitae</a></li>
-                                    <li><a href="">consectetur sit quaerat, nam obcaecati quis ipsam? Perferendis, aut.</a></li>
-                                    <li><a href="">suscipit possimus corrupti fugiat minima odit sint expedita aliquid,</a></li>
-                                    <li><a href="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore facere placeat vitae</a></li>
-                                    <li><a href="">consectetur sit quaerat, nam obcaecati quis ipsam? Perferendis, aut.</a></li>
+                                    @foreach($mislens as $mislen)
+                                    <li>
+                                        <a href="{{ $mislen->url }}" target="_blank">
+                                            {{ $mislen->title }}
+                                        </a>
+                                    </li>
+                                    @endforeach
                                 </ul>
+                                @if($mislens->count() == 0)
+                                    <h4 class="text-center">No Announcement Found..</h4>
+                                @endif
+
                                     
                             </div>
                         </div>

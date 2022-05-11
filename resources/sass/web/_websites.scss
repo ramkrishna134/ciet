@@ -2,7 +2,7 @@
     font-family: $font-family-heading;
     background-color: $white;
     .web-wrap{
-        padding: 40px 0;
+        padding-top: 40px;
 
         .web-item{
             margin-bottom: 5px;
@@ -62,3 +62,35 @@
         }
     }
 }
+
+
+// Braekpoint Mobile scss ===============================
+@media only screen and (max-width: $mobile-width){
+
+    .websites{
+        
+        .web-wrap{
+         
+            .web-item{
+                margin: 5px;
+    
+                &:nth-child(even){
+                    .image-wrap{
+                        order: 1;
+                    }
+    
+                    .details-wrap{
+                        order: 2;
+                        text-align: center;
+                    }
+                }
+
+                .details-wrap{
+                    text-align: center;
+                }
+                
+            }
+        }
+    }
+
+  }

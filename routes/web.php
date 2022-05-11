@@ -21,6 +21,8 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+\App\Image\Image::routes();
+
 // Admin Routes ====================================
 
 Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () {

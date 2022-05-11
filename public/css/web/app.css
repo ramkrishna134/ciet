@@ -11445,10 +11445,10 @@ body a:hover {
   display: none;
 }
 .header .logo {
-  width: 350px;
+  width: 250px;
 }
 .header .logo.logo-sm {
-  width: 300px;
+  width: 220px;
 }
 .header .navbar-nav .nav-item {
   margin-left: 0.5rem;
@@ -11678,10 +11678,10 @@ body a:hover {
   }
 
   .header .logo {
-    width: 180px;
+    width: 200px;
   }
   .header .logo.logo-sm {
-    width: 180px;
+    width: 200px;
   }
 }
 .heading {
@@ -11953,17 +11953,18 @@ body a:hover {
   text-align: center;
 }
 .digital-education .digital-slider .slide-item .image {
-  height: 200px;
-  width: 200px;
+  height: 170px;
+  width: 170px;
   border-radius: 50%;
   border: 5px solid #fff;
-  background-color: #F6E2C9;
+  background-color: #fff;
   background-size: cover;
-  padding: 25px;
-  line-height: 140px;
+  padding: 20px;
+  line-height: 110px;
   text-align: center;
   display: inline-block;
   transition: all 350ms;
+  overflow: hidden;
 }
 .digital-education .digital-slider .slide-item .image img {
   display: inline-block;
@@ -12096,7 +12097,7 @@ body a:hover {
 }
 .ongoing-events .ongoing-slider .slide-item .title {
   margin-top: 20px;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 600;
   color: #1a1a1a;
 }
@@ -12457,7 +12458,7 @@ body a:hover {
   }
 
   .announcement {
-    padding: 30px 0;
+    padding: 30px 15px;
   }
   .announcement .announcement-wrap .nav-link {
     padding: 5px 23px;
@@ -12465,8 +12466,11 @@ body a:hover {
     border: none;
     margin: 2px 5px;
   }
+  .announcement .announcement-wrap .tab-pane ul {
+    padding-left: 1rem;
+  }
 }
-@media only screen and (max-width: 1023px) {
+@media only screen and (max-width: 767px) {
   .heading {
     font-size: 1.5rem;
   }
@@ -12614,6 +12618,15 @@ body a:hover {
   overflow: auto;
 }
 
+@media only screen and (max-width: 767px) {
+  .contact-wrap {
+    padding: 0;
+  }
+  .contact-wrap .content .form-wrap {
+    right: 0;
+    border-radius: 15px;
+  }
+}
 .department-hero {
   height: 300px;
   width: 100%;
@@ -13329,7 +13342,7 @@ body a:hover {
   background-color: #fff;
 }
 .websites .web-wrap {
-  padding: 40px 0;
+  padding-top: 40px;
 }
 .websites .web-wrap .web-item {
   margin-bottom: 5px;
@@ -13374,6 +13387,21 @@ body a:hover {
   color: #fff;
 }
 
+@media only screen and (max-width: 767px) {
+  .websites .web-wrap .web-item {
+    margin: 5px;
+  }
+  .websites .web-wrap .web-item:nth-child(even) .image-wrap {
+    order: 1;
+  }
+  .websites .web-wrap .web-item:nth-child(even) .details-wrap {
+    order: 2;
+    text-align: center;
+  }
+  .websites .web-wrap .web-item .details-wrap {
+    text-align: center;
+  }
+}
 .newsletter-wrap .newsletter {
   background-color: #f8f9fa;
   margin-bottom: 25px;
@@ -13729,4 +13757,10 @@ body a:hover {
 
 .text-primary {
   color: #D46142 !important;
+}
+
+@media only screen and (max-width: 767px) {
+  .general-page .with-watermark {
+    display: none;
+  }
 }

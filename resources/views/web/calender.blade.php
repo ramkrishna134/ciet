@@ -39,7 +39,8 @@
 
                         <div class="col-sm-4">
                             <article class="event-item">
-                                <div class="image" style="background-image: url('{{ $ongoing->icon }}')">
+                                <div class="image">
+                                    <img class="img-fluid" src="{{ imageUrl( $ongoing->icon, ['crop' => [ 420, 200 ]] ) }}" alt="{{ $ongoing->title }} Image">
                                 </div>
 
                                 <div class="description">
@@ -86,7 +87,8 @@
 
                         <div class="col-sm-4">
                             <article class="event-item">
-                                <div class="image" style="background-image: url('{{ $upcoming->icon }}')">
+                                <div class="image">
+                                    <img class="img-fluid" src="{{ imageUrl( $upcoming->icon, ['crop' => [ 420, 200 ]] ) }}" alt="{{ $upcoming->title }} Image">
                                 </div>
 
                                 <div class="description">
@@ -135,7 +137,8 @@
 
                         <div class="col-sm-4">
                             <article class="event-item">
-                                <div class="image" style="background-image: url('{{ $past->icon }}')">
+                                <div class="image">
+                                    <img class="img-fluid" src="{{ imageUrl( $past->icon, ['crop' => [ 420, 200 ]] ) }}" alt="{{ $past->title }} Image">
                                 </div>
 
                                 <div class="description">

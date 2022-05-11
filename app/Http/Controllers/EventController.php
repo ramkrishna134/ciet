@@ -82,7 +82,6 @@ class EventController extends Controller
                 $event->featured_image = parse_url($featured_image, PHP_URL_PATH);
                 $event->icon = parse_url($icon, PHP_URL_PATH);
                 $event->user_id = $user->id;
-                $event->key_word = json_encode($data['key_word']);
                 $event->save();
                 return redirect(route('event.index'))->with('status',"Event created successfully");
 
@@ -180,7 +179,6 @@ class EventController extends Controller
                 $event->featured_image = parse_url($featured_image, PHP_URL_PATH);
                 $event->icon = parse_url($icon, PHP_URL_PATH);
                 $event->user_id = $user->id;
-                $event->key_word = json_encode($data['key_word']); 
                 $event->save();
                 return back()->with('status',"Event updated successfully");
 

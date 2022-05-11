@@ -96,7 +96,7 @@ foreach ($rolePermissions as $item) {
 
                 @if(in_array("Infrastructures", $permissions))
                 <li class="menu-item">
-                    <a class="menu-link {{ (request()->is('admin/infrastructures')) ? 'active' : '' }}" href="{{ route('infrastructure.index') }}"><i class="fas fa-photo-video"></i> Infrastructures</a>
+                    <a class="menu-link {{ (request()->is('admin/infrastructures')) ? 'active' : '' }}" href="{{ route('infrastructure.index') }}"><i class="fas fa-building"></i>Infrastructures</a>
                 </li>
                 @endif
 

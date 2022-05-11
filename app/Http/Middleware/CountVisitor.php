@@ -17,8 +17,8 @@ class CountVisitor
      */
     public function handle(Request $request, Closure $next)
     {
-        $ip = $request->ip();
-        if (Visitor::where('date', today())->where('ip', $ip)->where('url', $_SERVER['REQUEST_URI'])->count() < 1)
+        $ip = $_SERVER['REMOTE_ADDR'];
+        if (Visitor::where('ip', $ip)->where('url', $_SERVER['REQUEST_URI'])->count() < 1)
         {
             Visitor::create([
                 'url' => $_SERVER['REQUEST_URI'],

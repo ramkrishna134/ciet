@@ -215,19 +215,19 @@ class AnnouncementsController extends Controller
 
                 $vacancies = Announcements::orderBy('created_at', 'DESC')
                 ->where('category', 'vacancy')
-                ->whereDate('expiry_date', '>', $today)
+                ->whereDate('expiry_date', '>=', $today)
                 ->where('lang', 'en')
                 ->where('status', 1)->get();
 
                 $notices = Announcements::orderBy('created_at', 'DESC')
                 ->where('category', 'notice')
-                ->whereDate('expiry_date', '>', $today)
+                ->whereDate('expiry_date', '>=', $today)
                 ->where('lang', 'en')
                 ->where('status', 1)->get();
 
                 $mislens = Announcements::orderBy('created_at', 'DESC')
                 ->where('category', 'mislen')
-                ->whereDate('expiry_date', '>', $today)
+                ->whereDate('expiry_date', '>=', $today)
                 ->where('lang', 'en')
                 ->where('status', 1)->get();
 
@@ -235,19 +235,19 @@ class AnnouncementsController extends Controller
 
                 $vacancyArchives = Announcements::orderBy('created_at', 'DESC')
                 ->where('category', 'vacancy')
-                ->whereDate('expiry_date', '<', $today)
+                ->whereDate('expiry_date', '<=', $today)
                 ->where('lang', 'en')
                 ->where('status', 1)->get();
 
                 $noticeArchices = Announcements::orderBy('created_at', 'DESC')
                 ->where('category', 'notice')
-                ->whereDate('expiry_date', '<', $today)
+                ->whereDate('expiry_date', '<=', $today)
                 ->where('lang', 'en')
                 ->where('status', 1)->get();
 
                 $mislenArchives = Announcements::orderBy('created_at', 'DESC')
                 ->where('category', 'mislen')
-                ->whereDate('expiry_date', '<', $today)
+                ->whereDate('expiry_date', '<=', $today)
                 ->where('lang', 'en')
                 ->where('status', 1)->get();
                 
