@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Initiative;
+use Illuminate\Support\Str;
 
 class InitiativeController extends Controller
 {
@@ -43,6 +44,8 @@ class InitiativeController extends Controller
         $rules = [
             'name' => ['required', 'string'],
             'icon' => ['required', 'string', 'max:255'],
+            'description' => ['required'],
+            'content' => ['required'],
             'web_link' => ['required', 'string'],
             'play_store' => ['nullable', 'string'],
             'apple_store' => ['nullable', 'string'],
@@ -63,6 +66,9 @@ class InitiativeController extends Controller
 
             try{
                 $initiative = new initiative($data);
+                if( empty( $data['slug'] ) ){
+                    $initiative->slug = Str::slug( $initiative['name'] );
+                }
                 $imageurl = $data ['icon'];
                 $initiative->icon = parse_url($imageurl, PHP_URL_PATH);
                 $initiative->user_id = $user->id;
@@ -82,9 +88,27 @@ class InitiativeController extends Controller
      * @param  \App\Models\Initiative  $initiative
      * @return \Illuminate\Http\Response
      */
-    public function show(Initiative $initiative)
+    public function show(Initiative $initiative, $slug)
     {
         //
+
+        $lang = $_GET['lang'] ?? null;
+        if(!empty($lang)){
+            if($lang == 'en' OR $lang == 'hi'){
+                $initiative = Initiative::where('slug', $slug)->where('lang', $lang)->where('status', 1)->first();
+                
+            }else{
+                abort(404);
+            }
+        }else{
+            $initiative = Initiative::where('slug', $slug)->where('lang', 'en')->where('status', 1)->first();
+        }
+        
+        if(empty($initiative)){
+            return abort(404);
+        }else{
+            return view('web.initiative-single', compact('initiative'));
+        }
     }
 
     /**
@@ -114,6 +138,9 @@ class InitiativeController extends Controller
         $rules = [
             'name' => ['required', 'string'],
             'icon' => ['required', 'string', 'max:255'],
+            'slug' => ['string','nullable'],
+            'description' => ['required'],
+            'content' => ['required'],
             'web_link' => ['required', 'string'],
             'play_store' => ['nullable', 'string'],
             'apple_store' => ['nullable', 'string'],
@@ -134,6 +161,9 @@ class InitiativeController extends Controller
 
             try{
                 $initiative->fill($data);
+                if( empty( $data['slug'] ) ){
+                    $initiative->slug = Str::slug( $initiative['name'] );
+                }
                 $imageurl = $data ['icon'];
                 $initiative->icon = parse_url($imageurl, PHP_URL_PATH);
                 $initiative->user_id = $user->id;

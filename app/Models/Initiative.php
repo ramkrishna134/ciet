@@ -11,13 +11,16 @@ class Initiative extends Model
 
     protected $fillable = [
         'name',
+        'slug',
         'icon',
         'description',
+        'content',
         'web_link',
         'play_store',
         'apple_store',
         'window_store',
         'user_id',
+        'key_word',
         'status',
         'lang'
     ];

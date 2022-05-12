@@ -155,7 +155,7 @@ foreach ($rolePermissions as $item) {
                 @if(in_array("Permissions", $permissions))
                 <li class="menu-item dropdown">
                     <a class="menu-link dropdown-toggle {{ (request()->is('admin/permissions')) ? 'show' : '' }} {{ (request()->is('admin/roles')) ? 'show' : '' }} {{ (request()->is('admin/permission-role')) ? 'show' : '' }}" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-lock"></i> Permission Control
+                        <i class="fas fa-lock"></i> Access Control
                     </a>
                     <ul class="dropdown-menu {{ (request()->is('admin/permissions')) ? 'show' : '' }} {{ (request()->is('admin/roles')) ? 'show' : '' }} {{ (request()->is('admin/permission-role')) ? 'show' : '' }}" aria-labelledby="dropdownMenuButton1">
                         
@@ -262,9 +262,9 @@ foreach ($rolePermissions as $item) {
                                     </div>
                                 </li>
 
-                                {{-- <li class="nav-item ms-2 border rounded">
-                                    <a href="#" class="nav-link text-light" data-bs-toggle="popover" title="Notification" data-bs-content="You have no New Notification."><i class="fas fa-bell"></i></a>
-                                </li> --}}
+                                <li class="nav-item ms-2 border rounded">
+                                    <a href="{{ route('redirection') }}" class="nav-link text-light {{ (request()->is('admin/redirection')) ? 'bg-primary text-light' : '' }}"><i class="fas fa-recycle"></i></a>
+                                </li>
                                 <li class="nav-item ms-2 border rounded">
                                     <a href="{{ route('setting.index') }}" class="nav-link text-light {{ (request()->is('admin/settings')) ? 'bg-primary text-light' : '' }}"><i class="fas fa-cog"></i></a>
                                 </li>

@@ -175,6 +175,10 @@ Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () 
 
     Route::get('/visitor','App\Http\Controllers\VisitorController@index')->name('visitor');
 
+    Route::get('/redirection','App\Http\Controllers\RedirectionController@index')->name('redirection');
+    Route::post('/redirection','App\Http\Controllers\RedirectionController@store')->name('redirection.store');
+    Route::get('/redirection/{redirection}','App\Http\Controllers\RedirectionController@destroy')->name('redirection.destroy');
+
 });
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
@@ -203,18 +207,11 @@ Route::middleware(['visitor'])->group(function () {
 
     Route::get('/calender', 'App\Http\Controllers\EventController@calender')->name('calender');
 
-
-
-
-
-    Route::get('/newsletter', function () {
-        return view('web.newsletter');
-    })->name('newsletter');
-
-    Route::get('/feedback-mail', function () {
-        return view('web.mail.mail-contact');
-    })->name('feedback-mail');
-
+    Route::get('/newsletter','App\Http\Controllers\ArticalController@newsletter')->name('newsletter');
+    // Route::get('/feedback-mail', function () {
+    //     return view('web.mail.mail-contact');
+    // })->name('feedback-mail');
+    
     Route::get('/pmevidya','App\Http\Controllers\Pmevidya@index')->name('pmevidya');
     Route::get('/pmevidya/{class}/{channel}/{category}','App\Http\Controllers\Pmevidya@schedule')->name('pmevidya.schedule');
 
@@ -229,6 +226,8 @@ Route::middleware(['visitor'])->group(function () {
     Route::get('/activity/{slug}','App\Http\Controllers\EventController@show')->name('activity');
 
     Route::get('/{slug}','App\Http\Controllers\PageController@show')->name('page.show');
+
+    Route::get('/initiative/{slug}','App\Http\Controllers\InitiativeController@show')->name('initiative.show');
 });
 
 

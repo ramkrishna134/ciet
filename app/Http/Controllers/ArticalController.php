@@ -50,7 +50,8 @@ class ArticalController extends Controller
             'month' => 'required',
             'year' => 'required',
             'lang' =>'required',
-            'status' =>'required',     
+            'status' =>'required',
+            'latest' => 'nullable',     
         ];
 
         $validator = Validator::make($request->all(),$rules);
@@ -120,7 +121,8 @@ class ArticalController extends Controller
             'month' => 'required',
             'year' => 'required',
             'lang' =>'required',
-            'status' =>'required',     
+            'status' =>'required',
+            'latest' => 'nullable',    
         ];
 
         $validator = Validator::make($request->all(),$rules);
@@ -158,5 +160,21 @@ class ArticalController extends Controller
         //
         $artical->delete();
         return back()->with('status',"Artical Deleted successfully");
+    }
+
+    public function newsletter(){
+        $lang = $_GET['lang'] ?? null;
+        if(!empty($lang)){
+            if($lang == 'en' OR $lang == 'hi'){
+                $articals = Artical::orderBy('date', 'DESC')->where('lang', $lang)->where('status', 1)->paginate(12);
+                
+            }else{
+                abort(404);
+            }
+        }else{
+            $articals = Artical::orderBy('date', 'DESC')->where('lang', 'en')->where('status', 1)->paginate(12);
+        }
+        
+        return view('web.newsletter', compact('articals'));
     }
 }

@@ -141,6 +141,20 @@
                             </span>
                         @enderror
                     </div>
+
+                    <div class="mb-3">
+                        <label for="latest" class="form-label">Latest</label>
+                        <select name="latest" id="latest" class="form-control">
+                            @if(!empty($artical))
+                            <option value="0" @if($artical->latest == 0) selected @endif>No</option>
+                            <option value="1" @if($artical->latest == 1) selected @endif>Yes</option>           
+                            @else
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                            @endif
+                            
+                        </select>
+                    </div>
     
                     <div class="mb-3">
                         <label for="lang" class="form-label">Language</label>

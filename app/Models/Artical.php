@@ -20,6 +20,7 @@ class Artical extends Model
         'user_id',
         'lang',
         'status',
+        'latest',
     ];
 
     public function user()
