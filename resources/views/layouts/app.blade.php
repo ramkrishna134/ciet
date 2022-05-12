@@ -136,7 +136,7 @@ foreach ($headerMenus as $item) {
                 <img class="img-fluid" src="/images/web/menu-icon.png" alt="Mobile Menu Icon">
               </a>
 
-              <a class="navbar-brand" href="{{ route('home') }}" aria-label="CIET Logo">
+              <a class="navbar-brand" href="{{ route('home') }}{{ $lang ? "?lang=".$lang : ""  }}" aria-label="CIET Logo">
                 <div class="logo">
                   <img class="img-fluid" src="{{ setting('logo-english') }}" alt="CIET Logo">
                 </div>
@@ -164,7 +164,7 @@ foreach ($headerMenus as $item) {
                       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         @foreach($subMenus as $submenu)
                           @if($item->id == $submenu->parent_id)
-                            <li><a class="dropdown-item {{ (request()->is($submenu->link)) ? 'active' : '' }}" href="{{ $submenu->link }}" @if($submenu->target == 1) target="_blank" @endif>{{ $submenu->label }}</a></li>
+                            <li><a class="dropdown-item {{ (request()->is($submenu->link)) ? 'active' : '' }}" href="{{ $submenu->link }}@if($lang !=null)?lang={{ $lang }}@endif" @if($submenu->target == 1) target="_blank" @endif>{{ $submenu->label }}</a></li>
                           @endif
                         @endforeach
                         

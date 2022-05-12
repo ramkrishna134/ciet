@@ -30,7 +30,7 @@ Redirection Manager
             <div class="row">
                 <div class="col-sm-6">
                     <div class="mb-3">
-                        <input type="text" name="form_url" id="form-url" class="form-control" placeholder="From URL">
+                        <input type="text" name="from_url" id="from-url" class="form-control" placeholder="From URL">
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -89,6 +89,24 @@ Redirection Manager
                     <th>Status</th>
                     <th>Action</th>
                 </thead>
+
+                <tbody>
+                    @foreach ($redirections as $item )
+                        <tr>
+                            <td>{{ $item->from_url }}</td>
+                            <td>{{ $item->to_url }}</td>
+                            <td>{{ $item->method }}</td>
+                            <td>
+                                @if($item->status == 0)
+                                <span class="badge bg-warning">Darft</span>
+                                @elseif($item->status == 1)
+                                <span class="badge bg-primary">Published</span>
+                                @endif
+                            </td>
+                            <td><a href="" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Delete</a></td>
+                        </tr>
+                    @endforeach
+                </tbody>
             </table>
         </div>
     </div>

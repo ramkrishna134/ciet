@@ -1,3 +1,7 @@
+@php
+    $lang = $_GET['lang'] ?? null;
+@endphp
+
 @extends('layouts.app')
 
 @section('content')
@@ -11,15 +15,6 @@
                 <img class="img-fluid" src="{{ $slide->image }}" alt="{{ $slide->alt }}">
             </a>
             @endforeach
-            {{-- <a href="#" class="slide-item">
-                <img class="img-fluid" src="/images/web/ncert-collage.png" alt="">
-            </a>
-            <a href="#" class="slide-item">
-                <img class="img-fluid" src="/images/web/Diksha_Web_Banner.jpg" alt="">
-            </a>
-            <a href="#" class="slide-item">
-                <img class="img-fluid" src="/images/web/BhashaSangambanner.jpg" alt="">
-            </a> --}}
         </div>
 
         {{-- <a href="" class="play-button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#campusModal"><i class="fas fa-play ms-1"></i></a> --}}
@@ -39,7 +34,7 @@
                     either separately or in combinations, The institute undertakes activities to widen educational
                     opportunities, promote equity and improve quality of educational processes at school level.</p>
 
-                <a href="/about" class="btn btn-primary">Read More</a>
+                <a href="/about{{ $lang ? "?lang=".$lang : ""  }}" class="btn btn-primary">Read More</a>
             </div>
         </div>
 
@@ -70,7 +65,7 @@
                     <div class="digital-slider scroll-in-view">
 
                         @foreach($initiatives as $item)
-                        <a href="{{ $item->link }}" class="slide-item">
+                        <a href="/initiative/{{ $item->slug }}{{ $lang ? "?lang=".$lang : ""  }}" class="slide-item">
                             <div class="image">
                                 <img class="img-fluid" src="{{ $item->icon }}" alt="{{ $item->name }} Logo">
                             </div>
@@ -80,7 +75,7 @@
                         
                     </div>
         
-                    <a href="{{ route('initiative') }}" class="btn btn-primary mt-3">View More</a>
+                    <a href="{{ route('initiative') }}{{ $lang ? "?lang=".$lang : ""  }}" class="btn btn-primary mt-3">View More</a>
                 </div>
             </div>
         </div>
@@ -103,7 +98,7 @@
 
                         @foreach($events as $event)
 
-                        <a href="/activity/{{ $event->slug }}" class="slide-item">
+                        <a href="/activity/{{ $event->slug }}{{ $lang ? "?lang=".$lang : ""  }}" class="slide-item">
                             <div class="image">
                                 
                                 <img class="img-fluid" src="{{ imageUrl( $event->icon, ['crop' => [ 350, 250 ]] ) }}" alt="{{ $event->title }} Image">
@@ -117,7 +112,7 @@
                         @endforeach
                     </div>
         
-                    <a href="/calender" class="btn btn-primary mt-4">View All Activity</a>
+                    <a href="/calender{{ $lang ? "?lang=".$lang : ""  }}" class="btn btn-primary mt-4">View All Activity</a>
                 </div>
             </div>
             
@@ -150,7 +145,7 @@
 
                             @foreach($departments as $department)
                             <div class="col-lg-4 col-sm-6">
-                                <a href="department/{{$department->slug}}" class="department-item">
+                                <a href="department/{{$department->slug}}{{ $lang ? "?lang=".$lang : ""  }}" class="department-item">
                                     <div class="over-layer"></div>
                                     <div class="content scroll-in-view">
                                         <div class="image">
@@ -230,6 +225,8 @@
 
 
     {{-- Infrastructure --}}
+
+    @if(count($infrastrcutures) == 7)
 
     <section class="infrastructure" style="background-image: url('/images/web/bg-it.png')">
         <div class="container">
@@ -342,6 +339,8 @@
         </div>
 
     </section>
+
+    @endif
 
     {{-- Announcement --}}
 

@@ -1,3 +1,6 @@
+@php
+    $lang = $_GET['lang'] ?? null;
+@endphp
 @extends('layouts.app')
 
 
@@ -52,7 +55,7 @@
                                     <a href="/activity/{{ $ongoing->slug }}" class="title">{{ $ongoing->title }}</a>
                                     <div class="excerpt"><p>{{ Str::words($ongoing->description,20); }}</p></div>
 
-                                    <a href="/activity/{{ $ongoing->slug }}" class="btn btn-outline-primary">Read More</a>
+                                    <a href="/activity/{{ $ongoing->slug }}{{ $lang ? "?lang=".$lang : ""  }}" class="btn btn-outline-primary">Read More</a>
                                 </div>
 
                             </article>

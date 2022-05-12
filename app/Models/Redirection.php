@@ -10,7 +10,7 @@ class Redirection extends Model
     use HasFactory;
 
     protected $fillable = [
-        'form_url',
+        'from_url',
         'to_url',
         'method',
         'status',

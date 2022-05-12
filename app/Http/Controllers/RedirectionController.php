@@ -16,7 +16,8 @@ class RedirectionController extends Controller
     public function index()
     {
         //
-        return view('admin.redirection.index');
+        $redirections = Redirection::paginate(15);
+        return view('admin.redirection.index', compact('redirections'));
     }
 
     /**
@@ -47,7 +48,7 @@ class RedirectionController extends Controller
 
         $validator = Validator::make($request->all(),$rules);
         if ($validator->fails()) {
-            // dd($validator);
+            dd($validator);
             return back()
                 ->withInput()
                 ->withErrors($validator)->with('error',"Please check the field below *");

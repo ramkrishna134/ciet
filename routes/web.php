@@ -7,6 +7,7 @@ use App\Http\Controllers\AnnouncementsController;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\WebinarController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Redirection;
 
 /*
 |--------------------------------------------------------------------------
@@ -230,6 +231,17 @@ Route::middleware(['visitor'])->group(function () {
     Route::get('/initiative/{slug}','App\Http\Controllers\InitiativeController@show')->name('initiative.show');
 });
 
+// $redirects = Redirection::where('status', 1)->get();
+
+// foreach($redirects as $item){
+
+//     Route::get($item->from_url, function () {
+//         return redirect()->to($item->to_url, $status = $item->method, $headers = [], $secure = null);
+//     });
+
+// }
+
+
 
 
 
@@ -238,4 +250,6 @@ Route::middleware(['visitor'])->group(function () {
 // Web Search route =========================================
 
 Route::post('/search', 'App\Http\Controllers\PageController@search')->name('search');
+
+
 
