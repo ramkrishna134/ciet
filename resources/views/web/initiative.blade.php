@@ -1,3 +1,6 @@
+@php
+    $lang = $_GET['lang'] ?? null;
+@endphp
 @extends('layouts.app')
 
 @section('title')Digital education initiatives | @endsection
@@ -45,7 +48,7 @@
                         <div class="col-sm-9 details-wrap">
                             <div class="details">
                                 <div class="title">{{ $item->name }}</div>
-                                <p>{{ $item->description }} @if(!empty($item->slug))<a href="/initiative/{{ $item->slug }}"><strong>Read More</strong></a>@endif </p>
+                                <p>{{ $item->description }} @if(!empty($item->slug))<a href="/initiative/{{ $item->slug }}{{ $lang ? "?lang=".$lang : ""  }}"><strong>Read More</strong></a>@endif </p>
 
                                 <div class="icons">
                                     <a href="{{ $item->web_link }}" class="item bg-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Visit Website" target="_blank"><i class="fas fa-globe"></i></a>

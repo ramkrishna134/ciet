@@ -68,6 +68,7 @@
                                     <option value="">-- Select Category --</option>
                                     <option value="ict-tool">ICT Tools</option>
                                     <option value="listen-learn">Listening to Learn Series</option>
+                                    <option value="teaching-learing">Teaching Learning Intervention</option>
                                 </select>
                             </div>
                         </div>
@@ -165,7 +166,7 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-6">
+                        {{-- <div class="col-sm-6">
                             <div class="mb-3">
                                 <label for="status" class="form-label">Banner</label>
                                 <div class="input-group mb-3">
@@ -187,7 +188,7 @@
                                 </div>
                                 
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
 
                     <div class="button text-center">

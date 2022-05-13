@@ -205,6 +205,8 @@ Route::middleware(['visitor'])->group(function () {
 
 
     Route::get('/webinar', 'App\Http\Controllers\WebinarController@webinar')->name('webinar');
+    Route::get('/listen-to-learn', 'App\Http\Controllers\WebinarController@listen')->name('listen');
+    Route::get('/teaching-learning', 'App\Http\Controllers\WebinarController@teaching')->name('teaching');
 
     Route::get('/calender', 'App\Http\Controllers\EventController@calender')->name('calender');
 
@@ -230,16 +232,6 @@ Route::middleware(['visitor'])->group(function () {
 
     Route::get('/initiative/{slug}','App\Http\Controllers\InitiativeController@show')->name('initiative.show');
 });
-
-// $redirects = Redirection::where('status', 1)->get();
-
-// foreach($redirects as $item){
-
-//     Route::get($item->from_url, function () {
-//         return redirect()->to($item->to_url, $status = $item->method, $headers = [], $secure = null);
-//     });
-
-// }
 
 
 

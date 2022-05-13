@@ -196,7 +196,7 @@ class InitiativeController extends Controller
         if(!empty($lang)){
             if($lang == 'en' OR $lang == 'hi'){
 
-                $initiatives = Initiative::orderBy('created_at', 'DESC')
+                $initiatives = Initiative::orderBy('created_at', 'ASC')
                 ->where('lang', $lang)
                 ->where('status', 1)->paginate(10);
                 

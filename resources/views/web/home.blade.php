@@ -161,7 +161,7 @@
         
                             
         
-                            <div class="col-lg-4 col-sm-6">
+                            {{-- <div class="col-lg-4 col-sm-6">
                                 <a href="" class="department-item">
                                     <div class="over-layer"></div>
                                     <div class="content scroll-in-view">
@@ -215,7 +215,7 @@
                                         </div>
                                     </div>
                                 </a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

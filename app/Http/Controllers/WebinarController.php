@@ -47,8 +47,8 @@ class WebinarController extends Controller
             'title' => ['required', 'string'],
             'category' => ['required', 'string'],
             'res_person' => ['required', 'string'],
-            'ppt' => ['required', 'string'],
-            'video' => ['required', 'string'],
+            'ppt' => ['nullable', 'string'],
+            'video' => ['nullable','string'],
             'web_date' => ['required', 'date'],
             'lang' => ['required', 'string', 'max:255'],
             'status' => 'required'
@@ -117,8 +117,8 @@ class WebinarController extends Controller
             'title' => ['required', 'string'],
             'category' => ['required', 'string'],
             'res_person' => ['required', 'string'],
-            'ppt' => ['required', 'string'],
-            'video' => ['required', 'string'],
+            'ppt' => ['nullable','string'],
+            'video' => ['nullable','string'],
             'web_date' => ['required', 'date'],
             'lang' => ['required', 'string', 'max:255'],
             'status' => 'required'
@@ -169,21 +169,75 @@ class WebinarController extends Controller
         if(!empty($lang)){
             if($lang == 'en' OR $lang == 'hi'){
 
-                $upcomings = Webinar::query()->whereDate('web_date', '>', $today)->where('lang', $lang)->where('status', 1)->paginate(6);
+                $upcomings = Webinar::orderBy('web_date', 'DESC')->where('category', 'ict-tool')->whereDate('web_date', '>', $today)->where('lang', $lang)->where('status', 1)->paginate(6);
 
-                $pasts = Webinar::query()->whereDate('web_date', '<', $today)->where('lang', $lang)->where('status', 1)->paginate(6);
+                $pasts = Webinar::orderBy('web_date', 'DESC')->where('category', 'ict-tool')->whereDate('web_date', '<', $today)->where('lang', $lang)->where('status', 1)->paginate(6);
                 
             }else{
                 abort(404);
             }
         }else{
 
-            $upcomings = Webinar::query()->whereDate('web_date', '>', $today)->where('lang', 'en')->where('status', 1)->paginate(6);
+            $upcomings = Webinar::orderBy('web_date', 'DESC')->where('category', 'ict-tool')->whereDate('web_date', '>', $today)->where('lang', 'en')->where('status', 1)->paginate(6);
 
-            $pasts = Webinar::query()->whereDate('web_date', '<', $today)->where('lang', 'en')->where('status', 1)->paginate(6);
+            $pasts = Webinar::orderBy('web_date', 'DESC')->where('category', 'ict-tool')->whereDate('web_date', '<', $today)->where('lang', 'en')->where('status', 1)->paginate(6);
         }
 
         return view('web.webiner', compact('upcomings', 'pasts'));
+
+    }
+
+    public function listen(){
+
+        $today = date('Y-m-d');
+        // dd($today);
+
+        $lang = $_GET['lang'] ?? null;
+        if(!empty($lang)){
+            if($lang == 'en' OR $lang == 'hi'){
+
+                $upcomings = Webinar::orderBy('web_date', 'DESC')->where('category', 'listen-learn')->whereDate('web_date', '>', $today)->where('lang', $lang)->where('status', 1)->paginate(6);
+
+                $pasts = Webinar::orderBy('web_date', 'DESC')->where('category', 'listen-learn')->whereDate('web_date', '<', $today)->where('lang', $lang)->where('status', 1)->paginate(6);
+                
+            }else{
+                abort(404);
+            }
+        }else{
+
+            $upcomings = Webinar::orderBy('web_date', 'DESC')->where('category', 'listen-learn')->whereDate('web_date', '>', $today)->where('lang', 'en')->where('status', 1)->paginate(6);
+
+            $pasts = Webinar::orderBy('web_date', 'DESC')->where('category', 'listen-learn')->whereDate('web_date', '<', $today)->where('lang', 'en')->where('status', 1)->paginate(6);
+        }
+
+        return view('web.listen', compact('upcomings', 'pasts'));
+
+    }
+
+    public function teaching(){
+
+        $today = date('Y-m-d');
+        // dd($today);
+
+        $lang = $_GET['lang'] ?? null;
+        if(!empty($lang)){
+            if($lang == 'en' OR $lang == 'hi'){
+
+                $upcomings = Webinar::orderBy('web_date', 'DESC')->where('category', 'teaching-learing')->whereDate('web_date', '>', $today)->where('lang', $lang)->where('status', 1)->paginate(6);
+
+                $pasts = Webinar::orderBy('web_date', 'DESC')->where('category', 'teaching-learing')->whereDate('web_date', '<', $today)->where('lang', $lang)->where('status', 1)->paginate(6);
+                
+            }else{
+                abort(404);
+            }
+        }else{
+
+            $upcomings = Webinar::orderBy('web_date', 'DESC')->where('category', 'teaching-learing')->whereDate('web_date', '>', $today)->where('lang', 'en')->where('status', 1)->paginate(6);
+
+            $pasts = Webinar::orderBy('web_date', 'DESC')->where('category', 'teaching-learing')->whereDate('web_date', '<', $today)->where('lang', 'en')->where('status', 1)->paginate(6);
+        }
+
+        return view('web.teaching', compact('upcomings', 'pasts'));
 
     }
 }
