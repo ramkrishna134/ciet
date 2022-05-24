@@ -57,7 +57,7 @@ class DepartmentController extends Controller
             'head_message' => 'required',
             'status' => 'required',
             'key_word' => 'required',
-            'meta.*' => 'required'
+            'meta.*' => 'nullable'
         ];
 
         $validator = Validator::make($request->all(),$rules);
@@ -68,18 +68,19 @@ class DepartmentController extends Controller
         }
         else{
             $data = $request->input();
+            // dd($data);
             
             try{
                 $department = new Department($data);
 
-                if(!empty($data['gallery'])){
-                    $gallery = explode(',', $data['gallery']);                
-                    $department->gallery = $gallery;
-                }
-                if( empty( $data['slug'] ) ){
+                if(empty( $data['slug'] ) ){
                     $department->slug = Str::slug( $data['title'] );
-                }else{
-                    $department->slug = $data['slug'];
+                }
+
+                if(!empty($data['gallery'])){
+                    
+                    $gallery = explode(',', $data['gallery']);        
+                    $department->gallery = json_encode($gallery);
                 }
 
                 $featured_image = $data ['featured_image'];
@@ -198,10 +199,8 @@ class DepartmentController extends Controller
             try{
                 $department->fill($data);
                 if(!empty($data['gallery'])){
-                    $gallery = explode(',', $data['gallery']);                
-                    $department->gallery = $gallery;
-
-                    // dd(json_encode($data['gallery']));
+                    $gallery = explode(',', $data['gallery']);        
+                    $department->gallery = json_encode($gallery);
                 }
                 $featured_image = $data ['featured_image'];
                 $icon = $data ['icon'];
@@ -213,18 +212,12 @@ class DepartmentController extends Controller
                 $department->save();
 
 
+                if(!empty($data['meta'])){
                 // Save custom fields in meta table
 
                 $metas = $data['meta'];
                 $fields = \DB::table('metas')->get();
 
-                // dd($metas);
-                // dd($metas->count());
-                // dd($metas[1]);
-
-                // for($i=0; $i<=count($metas); $i++){
-                //     dd($metas[$i]);
-                // }
                 
                 foreach($metas as $key => $value){
                     
@@ -241,6 +234,8 @@ class DepartmentController extends Controller
                     }
 
                     
+                }
+
                 }
                 return back()->with('status',"Department updated successfully");
 

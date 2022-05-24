@@ -425,7 +425,9 @@ foreach ($headerMenus as $item) {
 
             data.forEach(function(item) {
               item.forEach(function(single){
-                var html = ('<a href="/'+single['slug']+'">'+single['title']+'</a>');
+                const descrip = single['description'].substring(0, 200)
+                console.log(descrip);
+                var html = ('<a href="/'+single['slug']+'">'+'<strong>'+single['title']+'</strong>'+'<br><small>'+descrip+'...</small>'+'</a>');
                 
                 $('#search-result').append(html);
 

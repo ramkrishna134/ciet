@@ -180,6 +180,13 @@ Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () 
     Route::post('/redirection','App\Http\Controllers\RedirectionController@store')->name('redirection.store');
     Route::get('/redirection/{redirection}','App\Http\Controllers\RedirectionController@destroy')->name('redirection.destroy');
 
+    Route::get('/keywords', 'App\Http\Controllers\KeywordController@index')->name('keyword.index');
+    Route::get('/keyword/create', 'App\Http\Controllers\KeywordController@create')->name('keyword.create');
+    Route::post('/keyword/create','App\Http\Controllers\KeywordController@store')->name('keyword.store');
+    Route::put('/keyword/{keyword}','App\Http\Controllers\KeywordController@update')->name('keyword.update');
+    Route::get('/keyword/{keyword}','App\Http\Controllers\KeywordController@edit')->name('keyword.edit');
+    Route::get('/keywords/{keyword}','App\Http\Controllers\KeywordController@destroy')->name('keyword.destroy');
+
 });
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {

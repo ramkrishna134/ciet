@@ -241,6 +241,7 @@ body{
   
   .modal-content{
     border-radius: 30px;
+    background-color: transparent;
 
     .modal-body{
       padding: 0;
@@ -282,6 +283,7 @@ body{
 
   .search-box{
     position: relative;
+    font-family: $font-family-heading;
 
     .search-element{
       position: relative;
@@ -299,8 +301,8 @@ body{
   }
 
   .search-box .result{
-    position: absolute;
-    top: 99%;
+    position: relative;
+    top: -2px;
     left: 0;
     right: 0;
     background: $white;
@@ -323,9 +325,23 @@ body{
     }
   }
 
-  .search-box .result a{
-    display: block;
-    color: black
+  .search-box{
+    .result{
+      a{
+        display: block;
+        color: black;
+        padding-bottom: 3px;
+        border-bottom: 1px solid #8080801f;
+
+        &:last-child{
+          border-bottom: none;
+        }
+      }
+
+      small{
+        font-size: 0.8em;
+      }
+    }
   }
 
   .search-box .result a:hover{

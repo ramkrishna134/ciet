@@ -178,6 +178,12 @@ foreach ($rolePermissions as $item) {
                 </li>
                 @endif
 
+                @if(in_array("Keywords", $permissions))
+                <li class="menu-item">
+                    <a class="menu-link {{ (request()->is('admin/keywords')) ? 'active' : '' }}" href="{{ route('keyword.index') }}"><i class="fas fa-search-plus"></i> Keywords</a>
+                </li>
+                @endif
+
                 @if(in_array("Feedbacks", $permissions))
                 <li class="menu-item">
                     <a class="menu-link {{ (request()->is('admin/feedbacks')) ? 'active' : '' }}" href="{{ route('feedback.index') }}"><i class="fas fa-comment-dots"></i> Feedbacks</a>

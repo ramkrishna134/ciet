@@ -185,6 +185,11 @@ body{
     &.dark-mode{
         background-color: $dark-mode;
         color: $white;
+
+        .table{
+            background-color: $dark-mode;
+            color: $white;
+        }
     }
 
     .with-watermark{

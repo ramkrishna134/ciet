@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreKeywordRequest;
-use App\Http\Requests\UpdateKeywordRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Keyword;
 
 class KeywordController extends Controller
@@ -16,6 +16,8 @@ class KeywordController extends Controller
     public function index()
     {
         //
+        $keywords = Keyword::paginate(15);
+        return view('admin.keyword.index', compact('keywords'));
     }
 
     /**
@@ -26,6 +28,7 @@ class KeywordController extends Controller
     public function create()
     {
         //
+        return view('admin.keyword.edit');
     }
 
     /**
@@ -34,9 +37,36 @@ class KeywordController extends Controller
      * @param  \App\Http\Requests\StoreKeywordRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreKeywordRequest $request)
+    public function store(Request $request)
     {
         //
+        $rules = [
+            'title' => ['required', 'string'],
+            'key_word' => ['required'],
+            'slug' => ['required', 'string'],
+            'description' => ['required', 'string'],            
+        ];
+
+        $validator = Validator::make($request->all(),$rules);
+        if ($validator->fails()) {
+            return back()
+                ->withInput()
+                ->withErrors($validator)->with('error',"Please check the field below *");
+                
+        }else{
+            $data = $request->input();
+
+            try{
+                $keyword = new Keyword($data);
+                
+                $keyword->save();
+                return redirect(route('keyword.index'))->with('status',"New Keyword added successfully");
+
+            }
+            catch(Exception $e){  
+                return redirect(route('keyword.create'))->with('failed',"Operation failed");
+            }
+        }
     }
 
     /**
@@ -59,6 +89,8 @@ class KeywordController extends Controller
     public function edit(Keyword $keyword)
     {
         //
+
+        return view('admin.keyword.edit', compact('keyword'));
     }
 
     /**
@@ -68,9 +100,36 @@ class KeywordController extends Controller
      * @param  \App\Models\Keyword  $keyword
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateKeywordRequest $request, Keyword $keyword)
+    public function update(Request $request, Keyword $keyword)
     {
         //
+
+        $rules = [
+            'title' => ['required', 'string'],
+            'key_word' => ['required'],
+            'slug' => ['required', 'string'],
+            'description' => ['required', 'string'],
+        ];
+
+        $validator = Validator::make($request->all(),$rules);
+        if ($validator->fails()) {
+            return back()
+                ->withInput()
+                ->withErrors($validator)->with('error',"Please check the field below *");
+                
+        }else{
+            $data = $request->input();
+
+            try{
+                $keyword->fill($data);
+                $keyword->save();
+                return back()->with('status',"Keyword updated successfully");
+
+            }
+            catch(Exception $e){  
+                return redirect(route('initiative.create'))->with('failed',"Operation failed");
+            }
+        }
     }
 
     /**
@@ -82,5 +141,7 @@ class KeywordController extends Controller
     public function destroy(Keyword $keyword)
     {
         //
+        $keyword->delete();
+        return back()->with('status',"Keyword Deleted successfully");
     }
 }
