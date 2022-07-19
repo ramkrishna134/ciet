@@ -20,7 +20,16 @@ use App\Models\Redirection;
 |
 */
 
-Auth::routes();
+Auth::routes([
+
+    'register' => false, // Register Routes...
+  
+    'reset' => false, // Reset Password Routes...
+  
+    'verify' => false, // Email Verification Routes...
+  
+]);
+
 
 \App\Image\Image::routes();
 
@@ -203,6 +212,8 @@ Route::group(['prefix' => 'laraberg', 'middleware' => ['web', 'auth']], function
 
 // Web Routes ==============================
 
+Route::get('/reload-captcha', 'App\Http\Controllers\FeedbackController@reloadCaptcha');
+
 Route::middleware(['visitor'])->group(function () {
     Route::get('/','App\Http\Controllers\HomeController@index')->name('home');
     Route::get('/initiatives', 'App\Http\Controllers\InitiativeController@initiatives')->name('initiative');
@@ -239,10 +250,6 @@ Route::middleware(['visitor'])->group(function () {
 
     Route::get('/initiative/{slug}','App\Http\Controllers\InitiativeController@show')->name('initiative.show');
 });
-
-
-
-
 
 
 

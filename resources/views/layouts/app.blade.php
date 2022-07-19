@@ -39,6 +39,14 @@ foreach ($headerMenus as $item) {
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    @php
+    header("X-XSS-Protection: 1; mode=block");
+    header("x-content-type-options: nosniff"); 
+    header("X-Frame-Options: SAMEORIGIN"); 
+    header("Content-Security-Policy: https://dev.ciet.co.in");  
+    setcookie("sessionid", "QmFieWxvbiA1", ['httponly' => true, 'secure' => true, 'samesite'=>'Strict']);
+    @endphp
+
     <!-- Meta Tags -->
     <meta name="title" content="@yield('title')Central Institute of Educational Technology | A Constituent unit of NCERT">
     <meta name="description" content="@yield('description')">
@@ -107,7 +115,7 @@ foreach ($headerMenus as $item) {
                     <li><a class="smooth-scroll" href="main-content">Skip to main content</a></li>
                     <li><a class="smooth-scroll" href="navigation">Skip to navigation</a></li>
                     <li><a href="/screen-reader-access">Screen Reader Access</a></li>
-                    <li>Text Size: <a href="#" aria-label="Decrease Text Size">A&#8722;</a> <a href="#" aria-label="Default Text Size">A</a> <a href="#" aria-label="Increase Text Size">A&#x2b;</a></li>
+                    <li>Text Size: <a href="#" id="_smallify" aria-label="Decrease Text Size">A&#8722;</a> <a href="{{ $_SERVER['REQUEST_URI'] }}" aria-label="Default Text Size">A</a> <a href="#" id="_biggify" aria-label="Increase Text Size">A&#x2b;</a></li>
                     <li class="dropdown">
                       <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Language
@@ -257,7 +265,7 @@ foreach ($headerMenus as $item) {
                 </div>
 
                 <div class="counter">
-                  Total Visitor: 987563214
+                  Total Visitor: <script type="text/javascript" src="//counter.websiteout.net/js/17/8/567890/0"></script>
                 </div>
 
               </div>
@@ -289,7 +297,7 @@ foreach ($headerMenus as $item) {
         {{----------------------- Searbox Modal --------------------}}
 
         <div class="modal fade" id="searchModal" tabindex="-1"  aria-hidden="true">
-          <div class="modal-dialog modal-lg modal-dialog-centered">
+          <div class="modal-dialog modal-lg ">
             <div class="modal-content">
               <div class="modal-body shadow">
 

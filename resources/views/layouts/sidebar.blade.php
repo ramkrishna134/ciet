@@ -22,7 +22,7 @@ foreach ($rolePermissions as $item) {
     header("X-XSS-Protection: 1; mode=block");
     header("x-content-type-options: nosniff"); 
     header("X-Frame-Options: SAMEORIGIN"); 
-    // header("Content-Security-Policy: default-src 'self'");  
+    header("Content-Security-Policy: https://dev.ciet.co.in");   
     @endphp
     
     <meta charset="utf-8">

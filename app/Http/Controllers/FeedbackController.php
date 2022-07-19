@@ -46,7 +46,8 @@ class FeedbackController extends Controller
             'phone' =>'digits:10|required',
             'email' =>['required', 'string', 'email', 'max:255'],
             'subject' =>'required',
-            'message' =>'required',           
+            'message' =>'required',
+            'captcha' =>'required|captcha'         
         ];
 
         $validator = Validator::make($request->all(),$rules);
@@ -71,6 +72,11 @@ class FeedbackController extends Controller
                 return back()->with('failed',"Operation failed");
             }
         }
+    }
+
+    public function reloadCaptcha()
+    {
+        return response()->json(['captcha'=> captcha_img()]);
     }
 
     /**

@@ -66,6 +66,11 @@
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Name</label>
                                     <input type="text" name="name" id="name" class="form-control" placeholder="Name" value="{{ $initiative->name ?? '' }}">
+                                    @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -78,8 +83,13 @@
 
                             <div class="col-sm-12">
                                 <div class="mb-3">
-                                    <label for="name" class="form-label">Description</label>
+                                    <label for="name" class="form-label">Short Description</label>
                                     <textarea name="description" id="description" class="form-control">{{ $initiative->description ?? '' }}</textarea>
+                                    @error('description')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -106,7 +116,7 @@
                 <div class="card-body">
                     <div class="mb-3">
                         <label for="lang" class="form-label">Language</label>
-                        <select class="form-control @error('lang') is-invalid @enderror" name="lang" id="lang" value="{{ $initiative->lang ?? old('lang') }}">
+                        <select class="form-control @error('lang') is-invalid @enderror" name="lang" id="lang" >
                             @if(!empty($initiative))
                                 <option value="en" @if($initiative->lang === 'en') selected @endif>English</option>
                                 <option value="hi" @if($initiative->lang === 'hi') selected @endif>Hindi</option>           
@@ -134,6 +144,17 @@
                             <option value="1">Published</option>
                             @endif
                         </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="order" class="form-label">Order</label>
+                        <input type="number" class="form-control" name="order" id="order" placeholder="Order by Number" value="{{ $initiative->order ?? old('order') }}">
+
+                        @error('order')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
                     </div>
 
                     <button type="submit" class="btn btn-success">{{ $initiative ? "Update" : "Create" }}</button>
@@ -169,6 +190,11 @@
                     <div class="mb-3">
                         <label for="web_link" class="form-label">Website</label>
                         <input type="text" name="web_link" id="web_link" class="form-control" placeholder="Website" value="{{ $initiative->web_link ?? '' }}">
+                        @error('web_link')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
                     </div>
 
                     <div class="mb-3">

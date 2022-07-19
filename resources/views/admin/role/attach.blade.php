@@ -6,10 +6,8 @@ Permissions to Roles
 
 @section('content')
 
-{{-- <section class="hero-section">
-    <h3>Permissions to Roles</h3>
-</section>
-<hr> --}}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 @if (session('status'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -103,8 +101,7 @@ Permissions to Roles
                     @method('post')
                     <div class="mb-3">
                         <label for="permission_id" class="form-label">Permisson</label>
-                        <select class="form-control" name="permission_id" id="permission_id">
-                            <option value="">-- Select Permission --</option>
+                        <select class="form-control js-example-basic-multiple" name="permission_id[]" id="permission_id" multiple="multiple">
                             @foreach ($permissions as $permission)
                                 <option value="{{ $permission->id }}">{{ $permission->display_name }}</option>
                             @endforeach
@@ -142,5 +139,15 @@ Permissions to Roles
         </div>
     </div>
 </div>
+
+
+<script>
+    $(document).ready(function() {
+        $('.js-example-basic-multiple').select2({
+            placeholder: "-- Select Permissions --",
+            allowClear: true
+        });
+    });
+</script>
 
 @endsection

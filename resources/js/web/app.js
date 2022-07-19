@@ -85,6 +85,36 @@ $(document).ready(function (){
     e.preventDefault();
   });
 
+  $('#_biggify').on('click', function(e) {
+    e.preventDefault();
+    var fontSize = $('html').css('font-size');
+    var newFontSize = parseInt(fontSize)+1;
+    
+    if(newFontSize < 21){
+      $('html').css('font-size', newFontSize+'px')
+    }else{
+      alert('Maximum Font size limit exceeded');
+    }
+    
+
+    console.log(newFontSize);
+    
+  })
+  
+  $('#_smallify').on('click', function(e) {
+    e.preventDefault();
+    var fontSize = $('html').css('font-size');
+    // console.log(fontSize);
+    var newFontSize = parseInt(fontSize)-1;
+    
+    if(newFontSize > 12){
+      $('html').css('font-size', newFontSize+'px')
+    }else{
+      alert('Minimum Font size limit exceeded');
+    }
+    
+  })
+
   $('#sheduleTable').DataTable({
         dom: 'Bfrtip',
         lengthMenu: [

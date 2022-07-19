@@ -22,6 +22,7 @@ class Initiative extends Model
         'user_id',
         'key_word',
         'status',
+        'order',
         'lang'
     ];
 

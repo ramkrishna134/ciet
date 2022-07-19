@@ -211,6 +211,25 @@
                                                         @enderror
                                                     </div>
                                                 </div>
+
+                                                <div class="col-sm-12">
+                                                    <div class="form-group mt-2 mb-2">
+                                                        <div class="captcha">
+                                                            <span>{!! captcha_img() !!}</span>
+                                                            <button type="button" class="btn btn-primary" class="reload" id="reload">
+                                                                &#x21bb;
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group mb-4">
+                                                        <input id="captcha" type="text" class="form-control" placeholder="Enter Captcha" name="captcha">
+                                                        @error('captcha')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
         
         
                                             </div>
@@ -239,4 +258,20 @@
             width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"></iframe>
     </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('#reload').click(function () {
+                $.ajax({
+                    type: 'GET',
+                    url: 'reload-captcha',
+                    success: function (data) {
+                        $(".captcha span").html(data.captcha);
+                    }
+                });
+            });
+        })
+    </script>
 @endsection

@@ -11923,10 +11923,6 @@ body a:hover {
 .about-us .head-message .message-wrap .message {
   width: 60%;
 }
-.about-us .head-message .message-wrap .message p {
-  text-transform: uppercase;
-  letter-spacing: 1;
-}
 .about-us .head-message .message-wrap .heading {
   font-size: 1.4rem;
   text-transform: uppercase;

@@ -5,7 +5,7 @@
     header("X-XSS-Protection: 1; mode=block");
     header("x-content-type-options: nosniff"); 
     header("X-Frame-Options: SAMEORIGIN"); 
-    // header("Content-Security-Policy: default-src 'self'");  
+    header("Content-Security-Policy: https://dev.ciet.co.in");  
     @endphp
     
     <meta charset="utf-8">
@@ -107,11 +107,7 @@
                                         {{ __('Login') }}
                                     </button>
     
-                                    @if (Route::has('password.request'))
-                                        <a class="btn btn-link" href="{{ route('password.request') }}">
-                                            {{ __('Forgot Your Password?') }}
-                                        </a>
-                                    @endif
+                                    
                                 </div>
                             </div>
                         </form>

@@ -45,8 +45,9 @@
                 </div>
                 <div class="message">
                     <h2 class="heading">FORM THE desk of joint director</h2>    
-                    <p>"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam amet ad omnis debitis sunt velit
-                        Totam amet ad omnis debitis"</p>
+                    <p class="mb-1">"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam amet ad omnis debitis sunt velit
+                        Totam amet ad omnis debitis.."</p>
+                    <a href="" data-bs-toggle="modal" data-bs-target="#headmessageModal"><strong>Read More</strong></a>
                 </div>
             </div>
         </div>
@@ -499,17 +500,35 @@
 
     {{-- Campus Tour Video --}}
     <!-- Modal -->
-  <div class="modal fade" id="campusModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    {{-- <div class="modal fade" id="campusModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title p-2" id="exampleModalLabel">Campus Tour</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-1">
+                <iframe width="100%" height="500" src="https://www.youtube.com/embed/ZBqJ_GeLPok" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            
+        </div>
+        </div>
+    </div> --}}
+
+
+  <div class="modal fade" id="headmessageModal" tabindex="-1" aria-labelledby="Head Message Modal" aria-hidden="true">
+    <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title p-2" id="exampleModalLabel">Campus Tour</h5>
+          <h5 class="modal-title font-w-bold" id="exampleModalLabel"><strong>FORM THE DESK OF JOINT DIRECTOR</strong></h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body p-1">
-            <iframe width="100%" height="500" src="https://www.youtube.com/embed/ZBqJ_GeLPok" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="modal-body text-center">
+            <div class="image d-inline-block p-2 border rounded mb-3">
+                <img class="img-fluid" src="/images/web/jd-message.jpg" alt="JD CIET">
+            </div>
+            <p>"LOREM IPSUM, DOLOR SIT AMET CONSECTETUR ADIPISICING ELIT. TOTAM AMET AD OMNIS DEBITIS SUNT VELIT TOTAM AMET AD OMNIS DEBITIS."</p>
         </div>
-        
       </div>
     </div>
   </div>

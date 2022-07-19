@@ -17,7 +17,7 @@ class InitiativeController extends Controller
     public function index()
     {
         //
-        $initiatives = Initiative::paginate(10);
+        $initiatives = Initiative::query()->orderBy('order', 'desc')->paginate(10);
         return view('admin.initiative.index', compact('initiatives'));
     }
 
@@ -45,13 +45,14 @@ class InitiativeController extends Controller
             'name' => ['required', 'string'],
             'icon' => ['required', 'string', 'max:255'],
             'description' => ['required'],
-            'content' => ['required'],
+            'content' => ['nullable'],
             'web_link' => ['required', 'string'],
             'play_store' => ['nullable', 'string'],
             'apple_store' => ['nullable', 'string'],
             'window_store' => ['nullable', 'string'],
             'lang' => ['required', 'string', 'max:255'],
-            'status' => 'required'
+            'status' => 'required',
+            'order' => 'required',
         ];
 
         $validator = Validator::make($request->all(),$rules);
@@ -140,13 +141,14 @@ class InitiativeController extends Controller
             'icon' => ['required', 'string', 'max:255'],
             'slug' => ['string','nullable'],
             'description' => ['required'],
-            'content' => ['required'],
+            'content' => ['nullable'],
             'web_link' => ['required', 'string'],
             'play_store' => ['nullable', 'string'],
             'apple_store' => ['nullable', 'string'],
             'window_store' => ['nullable', 'string'],
             'lang' => ['required', 'string', 'max:255'],
-            'status' => 'required'
+            'status' => 'required',
+            'order' => 'required',
         ];
 
         $validator = Validator::make($request->all(),$rules);
@@ -196,9 +198,10 @@ class InitiativeController extends Controller
         if(!empty($lang)){
             if($lang == 'en' OR $lang == 'hi'){
 
-                $initiatives = Initiative::orderBy('created_at', 'ASC')
+                $initiatives = Initiative::orderBy('order', 'desc')
                 ->where('lang', $lang)
-                ->where('status', 1)->paginate(10);
+                ->where('status', 1)
+                ->paginate(10);
                 
                 
             }else{
@@ -206,9 +209,10 @@ class InitiativeController extends Controller
             }
         }else{
 
-                $initiatives = Initiative::orderBy('created_at', 'ASC')
+                $initiatives = Initiative::orderBy('order', 'desc')
                 ->where('lang', 'en')
-                ->where('status', 1)->paginate(10);
+                ->where('status', 1)
+                ->paginate(10);
                 
         }
         return view('web.initiative', compact('initiatives'));

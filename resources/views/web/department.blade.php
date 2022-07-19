@@ -48,7 +48,8 @@
                             </div>
                             <div class="message">
                                 <h4 class="heading">FORM THE desk of The Head </h4>
-                                <p>"{{ $department->head_message }}"</p>
+                                <p class="mb-1">"{{ substr($department->head_message, 0,  100) }}..."</p>
+                                <a href="" data-bs-toggle="modal" data-bs-target="#headmessageModal"><strong>Read More</strong></a>
                             </div>
                         </div>
                     </div>
@@ -67,8 +68,8 @@
 
                 @foreach($metas as $meta)
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="pills-{{$meta->key}}-tab" data-bs-toggle="pill" data-bs-target="#pill-{{$meta->key}}"
-                        type="button" role="tab" aria-controls="pills-{{$meta->key}}" aria-selected="true">{{$meta->key}}</button>
+                    <button class="nav-link" id="pills-{{Str::slug($meta->key)}}-tab" data-bs-toggle="pill" data-bs-target="#pill-{{Str::slug($meta->key)}}"
+                        type="button" role="tab" aria-controls="pills-{{Str::slug($meta->key)}}" aria-selected="true">{{$meta->key}}</button>
                 </li>
                 @endforeach
 
@@ -77,8 +78,7 @@
             <div class="tab-content section-content" id="pills-tabContent">
 
                 @foreach($metas as $meta)
-
-                <div class="tab-pane fade" id="pill-{{$meta->key}}" role="tabpanel" aria-labelledby="pill-{{$meta->key}}-tab">
+                <div class="tab-pane fade" id="pill-{{Str::slug($meta->key)}}" role="tabpanel" aria-labelledby="pill-{{Str::slug($meta->key)}}-tab">
                     {!! $meta->value !!}
                 </div>
                 @endforeach
@@ -247,6 +247,22 @@
         
     @endif
 
+    <div class="modal fade" id="headmessageModal" tabindex="-1" aria-labelledby="Head Message Modal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title font-w-bold" id="exampleModalLabel"><strong>FORM THE DESK OF THE HEAD</strong></h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <div class="image d-inline-block p-2 border rounded mb-3">
+                    <img class="img-fluid" src="{{ $department->head_image }}" alt="Head Department Image">
+                </div>
+                <p>"{{ $department->head_message }}"</p>
+            </div>
+          </div>
+        </div>
+      </div>
     
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

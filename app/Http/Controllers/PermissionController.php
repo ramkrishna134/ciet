@@ -109,14 +109,20 @@ class PermissionController extends Controller
         }
         else{
             $data = $request->input();
-            try{
-                \DB::insert('insert into permission_role (permission_id, role_id) values (?, ?)', [$data['permission_id'], $data['role_id']]);
-                return redirect(route('permission.showRole'))->with('status',"Permission added successfully");
 
+            $permissions = $data['permission_id'];
+
+            foreach($permissions as $permission){
+                try{
+                    \DB::insert('insert into permission_role (permission_id, role_id) values (?, ?)', [$permission, $data['role_id']]);
+    
+                }
+                catch(Exception $e){  
+                    return redirect(route('permission.showRole'))->with('failed',"Operation failed");
+                }
             }
-            catch(Exception $e){  
-                return redirect(route('permission.showRole'))->with('failed',"Operation failed");
-            }
+            return redirect(route('permission.showRole'))->with('status',"Permissions attached successfully");
+            
         }
     }
 

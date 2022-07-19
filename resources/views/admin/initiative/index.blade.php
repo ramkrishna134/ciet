@@ -32,6 +32,7 @@ All Initiative
                 <table class="table">
                     <thead>
                         <tr>
+                            <th>Order</th>
                             <th>Title</th>
                             <th>Icon</th>
                             <th>Url</th>
@@ -48,6 +49,7 @@ All Initiative
                         @foreach($initiatives as $item)
         
                         <tr>
+                            <td>{{ $item->order }}</td>
                             <td>{{ $item->name }}</td>
                             <td><a href="{{ $item->icon }}" target="_blank"><img class="img-fluid" width="100px" src="{{ $item->icon }}" alt=""></a></td>
                             <td><a href="{{ $item->web_link }}" target="_blank">{{ $item->web_link }}</a></td>
