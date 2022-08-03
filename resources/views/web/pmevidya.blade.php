@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title')PMeVidya | @endsection
+@section('title')TV Channels | @endsection
 @section('description')
     PM eVidya is an innovative and unique initiative by the Ministry of Education, Government of India to facilitate
     learning and teaching at school level. It offers multifarious educational resources in multi-platform mode viz.
@@ -10,7 +10,25 @@
 @section('keyword'){{ json_decode($page->key_word) }}@endsection --}}
 
 @section('content')
-    <section class="project-hero" style="background-image: url('images/web/depart-hero.jpg')">
+
+
+<section class="hero-section count-height" style="background-image: url('/images/web/hero.png')">
+    <div class="container">
+        <div class="content">
+            <h1 class="title">TV Channel Transmission</h1>
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center mb-0">
+                  <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">TV Channel Transmission</li>
+                </ol>
+            </nav>
+        </div>
+        
+    </div>
+</section>
+
+    {{-- <section class="project-hero" style="background-image: url('images/web/depart-hero.jpg')">
         <div class="content">
             <div class="container">
                 <div class="row justify-content-center">
@@ -27,7 +45,7 @@
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb mb-0">
                                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">PMeVidya</li>
+                                        <li class="breadcrumb-item active" aria-current="page">TV Channel Transmission</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -36,14 +54,14 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <section class="project-content" id="main-content">
 
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-sm-10">
-                    <p>PM eVidya is an innovative and unique initiative by the Ministry of Education, Government of India to
+                    {{-- <p>PM eVidya is an innovative and unique initiative by the Ministry of Education, Government of India to
                         facilitate learning and teaching at school level. It offers multifarious educational resources in
                         multi-platform mode viz. digital/online, TV, radio, community radio, podcast etc. The multi-modal
                         components
@@ -78,7 +96,10 @@
                         Hon’ble Minister of Education launched Vidya Daan program on 21st April’ 20. This program, under the
                         PM eVidya initiative of Government of India, envisions the accessibility of quality digital content
                         in different languages on all topics of all the disciplinary subjects to the school students through
-                        DIKSHA platform.</p>
+                        DIKSHA platform.</p> --}}
+                        <p>One of the major components of PM eVidya initiative is ‘One Class-One Channel’ where 12 DTH television channels are dedicated for the transmission of education contents for Class 1 to 12 based on NCERT curriculum.
+
+                            <a href="https://ciet.nic.in/upload/eVidya%20Channel%20Details.pdf" target="_blank"><strong>Details of Service providers for PMeVidya TV Channels</strong></a></p>
 
                     <h2 class="heading text-center">12 DTH Educational TV Channel Transmission Schedule</h2>
                 </div>
@@ -87,24 +108,6 @@
 
             <div class="class-wrap mt-3 mb-4">
                 <div class="row">
-                    {{-- <div class="col-sm-3">
-                        <div class="class-item" style="background-image: url('/images/web/channel.jpeg')">
-                            <div class="layer"></div>
-                            <div class="class-name">
-                                Class 1
-                            </div>
-
-                            <div class="channel">CHANNEL No: 23</div>
-
-                            <div class="schedule">
-                                <div class="list">
-                                    <a href="{{ route('pmevidya.schedule', ['class'=> 1,'channel' => 23, 'category' => 'current']) }}" class="btn-success">Current</a>
-                                    <a href="{{ route('pmevidya.schedule', ['class'=> 1, 'channel' => 23, 'category' => 'upcoming']) }}" class="bg-primary">Upcoming</a>
-                                    <a href="{{ route('pmevidya.schedule', ['class'=> 1, 'channel' => 23, 'category' => 'archive']) }}" class="btn-danger right-radius">Archive</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
 
                     @php
                         $class = 1;
@@ -122,9 +125,9 @@
                             <div class="channel">CHANNEL No: {{ $channel+$i }}</div>
                             <div class="schedule">
                                 <div class="list">
-                                    <a href="{{ route('pmevidya.schedule', ['class'=> $i ,'channel' => $channel+$i, 'category' => 'current']) }}" class="btn-success">Current</a>
-                                    <a href="{{ route('pmevidya.schedule', ['class'=> $i, 'channel' => $channel+$i, 'category' => 'upcoming']) }}" class="bg-primary">Upcoming</a>
-                                    <a href="{{ route('pmevidya.schedule', ['class'=> $i, 'channel' => $channel+$i, 'category' => 'archive']) }}" class="btn-danger right-radius">Archive</a>
+                                    <a href="{{ route('tvchannel.schedule', ['class'=> $i ,'channel' => $channel+$i, 'category' => 'current']) }}" class="btn-success">Current</a>
+                                    <a href="{{ route('tvchannel.schedule', ['class'=> $i, 'channel' => $channel+$i, 'category' => 'upcoming']) }}" class="bg-primary">Upcoming</a>
+                                    <a href="{{ route('tvchannel.schedule', ['class'=> $i, 'channel' => $channel+$i, 'category' => 'archive']) }}" class="btn-danger right-radius">Archive</a>
                                 </div>
                             </div>
                         </div>

@@ -14,6 +14,20 @@ if(!empty($lang)){
     $footOtherLinks = DB::table('menu_items')->where('menu_id', 3)->where('lang', 'en')->where('status', 1)->get();
 }
 
+if(!empty($lang)){
+  if($lang === 'en'){
+    $logo_image = setting('logo-english');
+  }elseif($lang === 'hi'){
+    $logo_image = setting('logo-hindi');
+  }elseif($lang === 'ur'){
+    $logo_image = setting('logo-urdu');
+  }else{
+    abort(404);
+  }
+}else{
+  $logo_image = setting('logo-english');
+}
+
 
 $mainMenus = [];
 $subMenus = [];
@@ -42,14 +56,13 @@ foreach ($headerMenus as $item) {
     @php
     header("X-XSS-Protection: 1; mode=block");
     header("x-content-type-options: nosniff"); 
-    header("X-Frame-Options: SAMEORIGIN"); 
-    header("Content-Security-Policy: https://dev.ciet.co.in");  
+    header("X-Frame-Options: SAMEORIGIN");   
     setcookie("sessionid", "QmFieWxvbiA1", ['httponly' => true, 'secure' => true, 'samesite'=>'Strict']);
     @endphp
 
     <!-- Meta Tags -->
     <meta name="title" content="@yield('title')Central Institute of Educational Technology | A Constituent unit of NCERT">
-    <meta name="description" content="@yield('description')">
+    <meta name="description" content="@yield('description') Central Institute of Educational Technology | A Constituent unit of NCERT">
     <meta name="keywords" content="@yield('keyword')">
     <meta property="og:image"  content="@yield('image')">
     <meta name="author" content="Central Institute of Educational Technology">
@@ -146,14 +159,14 @@ foreach ($headerMenus as $item) {
 
               <a class="navbar-brand" href="{{ route('home') }}{{ $lang ? "?lang=".$lang : ""  }}" aria-label="CIET Logo">
                 <div class="logo">
-                  <img class="img-fluid" src="{{ setting('logo-english') }}" alt="CIET Logo">
+                  <img class="img-fluid" src="{{ $logo_image }}" alt="CIET Logo">
                 </div>
               </a>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                 <a class="navbar-brand d-lg-none d-sm-block d-block py-3 m-0" href="{{ route('home') }}">
                   <div class="logo mx-auto logo-sm">
-                    <img class="img-fluid" class="img-fluid" src="{{ setting('logo-english') }}" alt="CIET Logo">
+                    <img class="img-fluid" class="img-fluid" src="{{ $logo_image }}" alt="CIET Logo">
                   </div>
                 </a>
 
@@ -334,8 +347,9 @@ foreach ($headerMenus as $item) {
     {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.js"></script> --}}
     {{-- <script src="{{ asset('js/web/multi-level-dropdown/bootstrap5-dropdown-ml-hack.js') }}"></script> --}}
     <script src="{{ asset('js/web/app.js') }}" defer></script>
-    {{-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script> --}}
 
+    
+    
 
     {{-- Search Box --}}
 

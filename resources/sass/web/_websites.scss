@@ -1,6 +1,10 @@
 .websites{
     font-family: $font-family-heading;
     background-color: $white;
+
+    &.dark-mode{
+        background-color: $dark-mode;
+    }
     .web-wrap{
         padding-top: 40px;
 
@@ -20,6 +24,10 @@
                 }
 
                 .details-wrap{
+                    .details{
+                        padding-right: 0;
+                        padding-left: 25px;
+                    }
                     order: 1;
                     text-align: right;
                 }
@@ -39,10 +47,15 @@
             }
 
             .details{
+                padding-right: 25px;
                 .title{
                     font-size: 1.7rem;
                     font-weight: 700;
                     margin-bottom: 15px;
+                }
+
+                p{
+                    text-align: justify;
                 }
 
                 .icons{

@@ -83,7 +83,7 @@ Slider Editor
                             </div>
                         </div>
 
-                        <div class="col-sm-2">
+                        <div class="col-sm-2 d-none">
                             <div class="mb-3">
                                 <label for="default" class="form-label">Make this first</label>
                                 <select name="default" id="default" class="form-control">
@@ -159,6 +159,9 @@ Slider Editor
                 </div>
 
                 <div class="col-sm-3 border-end text-center">
+                    <div class="order" data-order="{{ $slider->order }}">
+                        <strong>Order: </strong> {{ $slider->order }}
+                    </div>
                     <div class="title" data-title="{{ $slider->title }}">
                         <strong>{{ $slider->title }}</strong>
                     </div>
@@ -184,10 +187,10 @@ Slider Editor
                     <span class="badge bg-primary">Published</span>
                     @endif
 
-                    <hr class="mt-0 mb-0 default" data-default="{{ $slider->default }}">
+                    {{-- <hr class="mt-0 mb-0 default" data-default="{{ $slider->default }}">
                     @if($slider->default == 1)
                     <span class="badge bg-info">First Slide</span>
-                    @endif
+                    @endif --}}
 
                 </div>
 
@@ -265,7 +268,7 @@ Slider Editor
                       </div>
                   </div>
       
-                  <div class="col-sm-2">
+                  <div class="col-sm-2 d-none">
                       <div class="mb-3">
                           <label for="default" class="form-label">Make this first</label>
                           <select name="default" id="default" class="form-control">
@@ -348,12 +351,12 @@ Slider Editor
 
         var id = parent.attr('data-id');
 
+        var order = parent.find('.order').attr('data-order');
         var title = parent.find('.title').attr('data-title');
 
         var alt = parent.find('.alt').attr('data-alt');
         var url = parent.find('.url').attr('data-url');
         var default_value = parent.find('.default').attr('data-default');
-        console.log(default_value);
         var depth = parent.children('.depth').html();
         var status = parent.find('.status').attr('data-status');
         var lang = parent.find('.lang').attr('data-lang');
@@ -367,10 +370,10 @@ Slider Editor
 
         $('#sliderModalForm').attr('action', '/admin/slider/'+id);
 
+        modal.find('#order').val(order);
         modal.find('#title').val(title);
         modal.find('#alt').val(alt);
         modal.find('#url').val(url);
-        modal.find('#default').val(default_value);
         modal.find('#status').val(status);
         modal.find('#lang').val(lang);
         modal.find('.img').attr('src', img);

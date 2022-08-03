@@ -36,7 +36,7 @@ class HomeController extends Controller
         $lang = $_GET['lang'] ?? null;
         if(!empty($lang)){
             if($lang == 'en' OR $lang == 'hi'){
-                $sliders = Slider::query()->where('lang', $lang)->where('status', 1)->get();
+                $sliders = Slider::orderBy('order', 'desc')->where('lang', $lang)->where('status', 1)->get();
                 $departments = Department::query()->where('lang', $lang)->where('status', 1)->get();
                 $partners = Partner::query()->where('lang', $lang)->where('status', 1)->get();
                 $initiatives = Initiative::orderBy('created_at', 'DESC')
@@ -73,7 +73,7 @@ class HomeController extends Controller
                 abort(404);
             }
         }else{
-            $sliders = Slider::query()->where('lang', 'en')->where('status', 1)->get();
+            $sliders = Slider::orderBy('order', 'desc')->where('lang', 'en')->where('status', 1)->get();
             $departments = Department::query()->where('lang', 'en')->where('status', 1)->get();
             $partners = Partner::query()->where('lang', 'en')->where('status', 1)->get();
             $initiatives = Initiative::orderBy('created_at', 'ASC')

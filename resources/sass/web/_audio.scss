@@ -1,0 +1,126 @@
+.audio-book{
+
+    .book-filter{
+        border-radius: 35px;
+        .form-group{
+            position: relative;
+
+            label{
+                position: absolute;
+                top: -16px;
+                left: 12px;
+                font-family: $font-family-heading;
+                font-weight: 600;
+                background-color: $white;
+                padding: 2px;
+            }
+
+            .form-control{
+                border-color: $black;
+                border-radius: 30px;
+            }
+        }
+    }
+
+
+    .class-wrap{
+        margin-top: 50px;
+        .class-item{
+            padding: 5px 20px;
+            background-color: #299E8B;
+            border-radius: 5px;
+            width: 100%;
+            display: block;
+            color: $white;
+            font-family: $font-family-heading;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+            position: relative;
+            margin-bottom: 40px;
+
+            .girl{
+                position: absolute;
+                top: -37px;
+                right: 0;
+                width: 50px;
+                transform: rotate(13deg);
+            }
+
+            .boy{
+                position: absolute;
+                top: -37px;
+                left: 0;
+                width: 50px;
+            }
+        }
+        
+    }
+
+    .book-wrap{
+        margin-top: 75px;
+
+        .book-item{
+            display: inline-block;
+            width: 100%;
+            border-radius: 5px;
+            padding: 20px;
+            position: relative;
+            transition: all 350ms;
+
+            &:hover{
+                background-color: $gray-200;
+            }
+
+            .image{
+                border-radius: 5px;
+                overflow: hidden;
+                width: 100%;
+                margin-top: -80px;
+            }
+            .name{
+                color: $primary;
+                font-family: $font-family-heading;
+                font-weight: 600;
+                font-size: 1.5rem;
+            }
+
+            
+
+            p{
+                color: $black;
+                font-size: 0.9rem;
+            }
+        }
+    }
+
+    .heading{
+        font-size: 2.1rem;
+        color: $primary;
+        margin-bottom: 20px;
+    }
+
+    .audio-wrap{
+        padding: 15px 20px 10px 20px;
+        border: 2px solid $primary;
+        border-radius: 50px;
+        margin-bottom: 25px;
+        position: relative;
+
+        .title{
+            font-family: $font-family-heading;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            position: absolute;
+            background-color: $white;
+            padding: 2px 5px;
+            top: -20px;
+            left: 25px;
+        }
+
+        audio{
+            width: 100%;
+        }
+    }
+}

@@ -23,9 +23,7 @@ use App\Models\Redirection;
 Auth::routes([
 
     'register' => false, // Register Routes...
-  
     'reset' => false, // Reset Password Routes...
-  
     'verify' => false, // Email Verification Routes...
   
 ]);
@@ -196,6 +194,20 @@ Route::middleware(['auth','HasPermission'])->prefix('admin')->group(function () 
     Route::get('/keyword/{keyword}','App\Http\Controllers\KeywordController@edit')->name('keyword.edit');
     Route::get('/keywords/{keyword}','App\Http\Controllers\KeywordController@destroy')->name('keyword.destroy');
 
+    Route::get('/books', 'App\Http\Controllers\BookController@index')->name('book.index');
+    Route::get('/book/create', 'App\Http\Controllers\BookController@create')->name('book.create');
+    Route::post('/book/create','App\Http\Controllers\BookController@store')->name('book.store');
+    Route::put('/book/{book}','App\Http\Controllers\BookController@update')->name('book.update');
+    Route::get('/book/{book}','App\Http\Controllers\BookController@edit')->name('book.edit');
+    Route::get('/books/{book}','App\Http\Controllers\BookController@destroy')->name('book.destroy');
+
+    Route::get('/audios', 'App\Http\Controllers\AudioController@index')->name('audio.index');
+    Route::get('/audio/create', 'App\Http\Controllers\AudioController@create')->name('audio.create');
+    Route::post('/audio/create','App\Http\Controllers\AudioController@store')->name('audio.store');
+    Route::put('/audio/{audio}','App\Http\Controllers\AudioController@update')->name('audio.update');
+    Route::get('/audio/{audio}','App\Http\Controllers\AudioController@edit')->name('audio.edit');
+    Route::get('/audios/{audio}','App\Http\Controllers\AudioController@destroy')->name('audio.destroy');
+
 });
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
@@ -233,8 +245,11 @@ Route::middleware(['visitor'])->group(function () {
     //     return view('web.mail.mail-contact');
     // })->name('feedback-mail');
     
-    Route::get('/pmevidya','App\Http\Controllers\Pmevidya@index')->name('pmevidya');
-    Route::get('/pmevidya/{class}/{channel}/{category}','App\Http\Controllers\Pmevidya@schedule')->name('pmevidya.schedule');
+    Route::get('/tvchannel','App\Http\Controllers\Pmevidya@index')->name('tvchannel');
+    Route::get('/tvchannel/{class}/{channel}/{category}','App\Http\Controllers\Pmevidya@schedule')->name('tvchannel.schedule');
+
+
+    Route::get('/audio-books','App\Http\Controllers\AudioController@audios')->name('audio.list');
 
     Route::get('/people', function () {
         return view('web.people');
@@ -249,7 +264,14 @@ Route::middleware(['visitor'])->group(function () {
     Route::get('/{slug}','App\Http\Controllers\PageController@show')->name('page.show');
 
     Route::get('/initiative/{slug}','App\Http\Controllers\InitiativeController@show')->name('initiative.show');
+
+    Route::get('/audio-books','App\Http\Controllers\AudioController@audios')->name('audio.list');
+
+    Route::get('/audio-book/{book}','App\Http\Controllers\AudioController@audio_book')->name('audio.book');
+
 });
+
+
 
 
 

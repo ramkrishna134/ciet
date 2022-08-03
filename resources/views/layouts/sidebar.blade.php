@@ -21,8 +21,7 @@ foreach ($rolePermissions as $item) {
     @php
     header("X-XSS-Protection: 1; mode=block");
     header("x-content-type-options: nosniff"); 
-    header("X-Frame-Options: SAMEORIGIN"); 
-    header("Content-Security-Policy: https://dev.ciet.co.in");   
+    header("X-Frame-Options: SAMEORIGIN");   
     @endphp
     
     <meta charset="utf-8">
@@ -136,6 +135,18 @@ foreach ($rolePermissions as $item) {
                 @if(in_array("Articals", $permissions))
                 <li class="menu-item">
                     <a class="menu-link {{ (request()->is('admin/articals')) ? 'active' : '' }}" href="{{ route('artical.index') }}"><i class="fas fa-newspaper"></i> Articals</a>
+                </li>
+                @endif
+
+                @if(in_array("Books", $permissions))
+                <li class="menu-item">
+                    <a class="menu-link {{ (request()->is('admin/books')) ? 'active' : '' }}" href="{{ route('book.index') }}"><i class="fas fa-book"></i> Books</a>
+                </li>
+                @endif
+
+                @if(in_array("Audios", $permissions))
+                <li class="menu-item">
+                    <a class="menu-link {{ (request()->is('admin/audios')) ? 'active' : '' }}" href="{{ route('audio.index') }}"><i class="fas fa-microphone-alt"></i> Audio</a>
                 </li>
                 @endif
 

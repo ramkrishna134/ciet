@@ -314,6 +314,7 @@ function darkMode(){
         $('.partner').toggleClass('dark-mode');
         $('.page-content').toggleClass('dark-mode');
         $('.general-page').toggleClass('dark-mode');
+        $('.websites').toggleClass('dark-mode');
         // $('section').css("background-color", "#20242A");
     })
 }

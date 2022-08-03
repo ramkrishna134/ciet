@@ -5,7 +5,7 @@
 
 @extends('layouts.app')
 
-@section('title')PMeVidya | Channel -{{ $channel }} | {{ ucfirst($category) }} Programms | @endsection
+@section('title')TV Channels | Channel -{{ $channel }} | {{ ucfirst($category) }} Programms | @endsection
 
 @section('content')
 
@@ -18,7 +18,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb justify-content-center mb-0">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('pmevidya') }}">PMeVidya</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('tvchannel') }}">TV Channels</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Class-{{$class}} {{ ucfirst($category) }} Programms</li>
                 </ol>
             </nav>
@@ -35,9 +35,9 @@
 
                 <div class="schedule-button d-flex justify-content-center">
                     <div class="btn-group" role="group" aria-label="Basic outlined example">
-                        <a href="{{ route('pmevidya.schedule', ['class'=> $class,'channel' => $channel, 'category' => 'current']) }}" class="btn btn-outline-primary @if($category === 'current') active @endif">Current</a>
-                        <a href="{{ route('pmevidya.schedule', ['class'=> $class,'channel' => $channel, 'category' => 'upcoming']) }}" class="btn btn-outline-primary @if($category === 'upcoming') active @endif">Upcoming</a>
-                        <a href="{{ route('pmevidya.schedule', ['class'=> $class,'channel' => $channel, 'category' => 'archive']) }}" class="btn btn-outline-primary @if($category === 'archive') active @endif">Archive</a>
+                        <a href="{{ route('tvchannel.schedule', ['class'=> $class,'channel' => $channel, 'category' => 'current']) }}" class="btn btn-outline-primary @if($category === 'current') active @endif">Current</a>
+                        <a href="{{ route('tvchannel.schedule', ['class'=> $class,'channel' => $channel, 'category' => 'upcoming']) }}" class="btn btn-outline-primary @if($category === 'upcoming') active @endif">Upcoming</a>
+                        <a href="{{ route('tvchannel.schedule', ['class'=> $class,'channel' => $channel, 'category' => 'archive']) }}" class="btn btn-outline-primary @if($category === 'archive') active @endif">Archive</a>
                     </div>
                 </div>
                 
